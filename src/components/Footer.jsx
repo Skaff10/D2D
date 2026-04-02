@@ -1,149 +1,205 @@
-import { Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Clock, ArrowUp } from 'lucide-react'
-import { FaInstagram, FaFacebookF } from 'react-icons/fa'
-import logo from '../assets/imgi_1_d2dlogo.png'
-
-const quickLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'About Us', path: '/about' },
-  { name: 'Contact', path: '/contact' },
-  { name: 'Book Now', path: '/booking' },
-]
-
-const services = [
-  { name: 'Exterior Detailing', path: '/services' },
-  { name: 'Interior Detailing', path: '/services' },
-  { name: 'Paint Correction', path: '/services' },
-  { name: 'Ceramic Coating', path: '/services' },
-]
+import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin, Clock, ArrowUp } from "lucide-react";
+import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
+import logo from "../assets/imgi_1_d2dlogo.png";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <footer className="relative bg-surface border-t border-border-warm">
+    <footer className="relative bg-[#0a0a0a] border-t border-white/[0.04]">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-          {/* Column 1: Logo & About */}
-          <div className="space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+          {/* Left Column — Email & Social */}
+          <div className="space-y-10">
+            {/* Logo */}
             <Link to="/" className="inline-block">
-              <img src={logo} alt="Down2Detail Logo" className="h-12 w-auto" />
+              <img src={logo} alt="Down2Detail Logo" className="h-10 w-auto" />
             </Link>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              Professional auto detailing services in Montreal & Saint-Hubert. We bring your car's shine back to life with premium products and expert care.
-            </p>
-            <div className="flex gap-3">
-              <a
-                href="https://www.instagram.com/down2detail.ca/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-card rounded-lg flex items-center justify-center text-text-secondary hover:text-primary hover:bg-card-hover transition-all duration-300"
-                aria-label="Instagram"
-              >
-                <FaInstagram size={18} />
+
+            {/* Email */}
+            <div>
+              <span className="section-tag block mb-3">EMAIL →</span>
+              <a href="mailto:down2detail.ca@gmail.com" className="social-icon">
+                <MdOutlineEmail size={18} />
               </a>
-              <a
-                href="https://www.facebook.com/people/Down2Detail/61577327687487/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-card rounded-lg flex items-center justify-center text-text-secondary hover:text-primary hover:bg-card-hover transition-all duration-300"
-                aria-label="Facebook"
-              >
-                <FaFacebookF size={18} />
-              </a>
+            </div>
+
+            {/* Social Media */}
+            <div>
+              <span className="section-tag block mb-4">SOCIAL MEDIA →</span>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.instagram.com/down2detail.ca/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram size={18} />
+                </a>
+                <a
+                  href="https://wa.me/14384838175"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label="WhatsApp"
+                >
+                  <FaWhatsapp size={18} />
+                </a>
+                <a
+                  href="https://www.facebook.com/people/Down2Detail/61577327687487/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label="Facebook"
+                >
+                  <FaFacebookF size={16} />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links Cards — like reference */}
+            <div>
+              <span className="section-tag block mb-4">QUICK LINK →</span>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="footer-link-card">
+                  <h4>Service</h4>
+                  <Link to="/services">Exterior Wash</Link>
+                  <Link to="/services">Interior Wash</Link>
+                  <Link to="/services">Painting & Coating</Link>
+                </div>
+                <div className="footer-link-card">
+                  <h4>Official</h4>
+                  <p>Saint-Hubert, QC</p>
+                  <a href="tel:+14384838175">438-483-8175</a>
+                  <p>08:00 - 18:00</p>
+                </div>
+                <div className="footer-link-card">
+                  <h4>Booking</h4>
+                  <Link to="/booking">See Schedule</Link>
+                  <Link to="/about">About Us</Link>
+                  <Link to="/contact">Contact</Link>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h3 className="font-heading text-lg font-semibold text-white mb-5">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    className="text-text-secondary text-sm hover:text-primary transition-colors duration-300"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Services */}
-          <div>
-            <h3 className="font-heading text-lg font-semibold text-white mb-5">Our Services</h3>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
-                  <Link
-                    to={service.path}
-                    className="text-text-secondary text-sm hover:text-primary transition-colors duration-300"
-                  >
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Contact Info */}
-          <div>
-            <h3 className="font-heading text-lg font-semibold text-white mb-5">Contact Us</h3>
-            <ul className="space-y-4">
-              <li>
-                <a href="tel:+14384838175" className="flex items-start gap-3 text-text-secondary hover:text-primary transition-colors group">
-                  <Phone size={16} className="mt-0.5 shrink-0 text-primary" />
-                  <span className="text-sm">+1 438 483 8175</span>
+          {/* Right Column — Contact Info */}
+          <div className="space-y-8">
+            <div>
+              <span className="section-tag block mb-4">CONTACT →</span>
+              <div className="space-y-5">
+                <a
+                  href="tel:+14384838175"
+                  className="flex items-start gap-3 text-text-secondary hover:text-white transition-colors group"
+                >
+                  <div className="shield-badge mt-0.5">
+                    <Phone
+                      size={13}
+                      className="text-white/40 group-hover:text-primary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">
+                      +1 438 483 8175
+                    </p>
+                    <p className="text-text-muted text-xs mt-0.5">
+                      Call us anytime during business hours
+                    </p>
+                  </div>
                 </a>
-              </li>
-              <li>
-                <a href="mailto:down2detail.ca@gmail.com" className="flex items-start gap-3 text-text-secondary hover:text-primary transition-colors group">
-                  <Mail size={16} className="mt-0.5 shrink-0 text-primary" />
-                  <span className="text-sm">down2detail.ca@gmail.com</span>
+
+                <a
+                  href="mailto:down2detail.ca@gmail.com"
+                  className="flex items-start gap-3 text-text-secondary hover:text-white transition-colors group"
+                >
+                  <div className="shield-badge mt-0.5">
+                    <Mail
+                      size={13}
+                      className="text-white/40 group-hover:text-primary transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">
+                      down2detail.ca@gmail.com
+                    </p>
+                    <p className="text-text-muted text-xs mt-0.5">
+                      We respond within 24 hours
+                    </p>
+                  </div>
                 </a>
-              </li>
-              <li>
+
                 <div className="flex items-start gap-3 text-text-secondary">
-                  <MapPin size={16} className="mt-0.5 shrink-0 text-primary" />
-                  <span className="text-sm">4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5</span>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-3 text-text-secondary">
-                  <Clock size={16} className="mt-0.5 shrink-0 text-primary" />
-                  <div className="text-sm">
-                    <p>Mon – Sun</p>
-                    <p>8:00 AM – 6:00 PM</p>
+                  <div className="shield-badge mt-0.5">
+                    <MapPin size={13} className="text-white/40" />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">
+                      4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5
+                    </p>
+                    <p className="text-text-muted text-xs mt-0.5">
+                      Serving Greater Montreal Area
+                    </p>
                   </div>
                 </div>
-              </li>
-            </ul>
+
+                <div className="flex items-start gap-3 text-text-secondary">
+                  <div className="shield-badge mt-0.5">
+                    <Clock size={13} className="text-white/40" />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">
+                      Mon – Sun: 8AM – 6PM
+                    </p>
+                    <p className="text-text-muted text-xs mt-0.5">
+                      Open 7 days a week
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="dark-card p-6 mt-6">
+              <h3 className="serif-heading text-xl text-white mb-3">
+                Ready to get started?
+              </h3>
+              <p className="text-text-secondary text-sm mb-5">
+                Book your premium car detailing appointment today.
+              </p>
+              <div className="flex gap-3">
+                <Link to="/booking" className="btn-filled text-sm">
+                  Book Now
+                </Link>
+                <a href="tel:+14384838175" className="btn-outline text-sm">
+                  Call Us
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-border-warm">
+      <div className="border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-text-muted text-xs">
+          <p className="text-text-muted text-xs font-mono">
             © {new Date().getFullYear()} Down2Detail. All rights reserved.
           </p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-text-muted hover:text-primary text-xs transition-colors"
+            className="flex items-center gap-2 text-text-muted hover:text-white text-xs transition-colors font-mono"
           >
             Back to top
-            <ArrowUp size={14} />
+            <ArrowUp size={12} />
           </button>
         </div>
       </div>
     </footer>
-  )
+  );
 }

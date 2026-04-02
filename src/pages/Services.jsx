@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { ArrowRight, Clock, DollarSign, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, Clock, DollarSign, CheckCircle2, Maximize2, Shield } from 'lucide-react'
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import SectionHeading from '../components/ui/SectionHeading'
@@ -37,7 +37,7 @@ const fallbackServices = [
     id: 'paint-correction',
     name: 'Paint Correction',
     description: 'Multi-Stage Perfection & Showroom Finish — Our most advanced polishing service using multiple machine steps of cutting and refining compounds. Removes up to 90% of imperfections like heavy swirls, oxidation, scratches, and etching. The result is a mirror-like, showroom-quality finish with unmatched clarity and depth.',
-    price: 'From $749.99',
+    price: '$749.99+',
     duration: '4-8 hours',
     isActive: true,
     image: paintImg,
@@ -103,16 +103,16 @@ export default function Services() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 bg-black">
+      <section className="py-16 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               {[1, 2, 3, 4].map(i => (
-                <div key={i} className="bg-card rounded-2xl h-[500px] shimmer" />
+                <div key={i} className="dark-card h-[500px] shimmer" />
               ))}
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               {services.map((service, i) => (
                 <motion.div
                   key={service.id}
@@ -120,64 +120,83 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-card rounded-2xl overflow-hidden border border-border-warm/50 card-hover group"
+                  className="group"
                 >
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
-                    {service.image ? (
-                      <img
-                        src={service.image}
-                        alt={service.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-800" />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                  {/* Service label header */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="section-tag">
+                      [SERVICE] [{String(i + 1).padStart(2, '0')}] / {service.name.toUpperCase()}
+                    </span>
+                    <div className="expand-btn opacity-60 group-hover:opacity-100 transition-opacity">
+                      <Maximize2 size={14} className="text-white/50" />
+                    </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <h3 className="font-heading text-xl font-bold text-white group-hover:text-primary transition-colors">
-                        {service.name}
-                      </h3>
-                      <span className="flex items-center gap-1 bg-primary/10 text-primary text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap shrink-0">
-                        <DollarSign size={14} />
-                        {service.price}
-                      </span>
+                  <div className="dark-card overflow-hidden card-hover">
+                    {/* Image */}
+                    <div className="relative h-56 overflow-hidden">
+                      {service.image ? (
+                        <img
+                          src={service.image}
+                          alt={service.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-[#1a1a1a]" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-transparent" />
                     </div>
 
-                    {service.duration && (
-                      <div className="flex items-center gap-1.5 text-text-muted text-sm mb-3">
-                        <Clock size={14} />
-                        <span>{service.duration}</span>
-                      </div>
-                    )}
-
-                    <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-3">
-                      {service.description}
-                    </p>
-
-                    {/* Features */}
-                    {service.features && service.features.length > 0 && (
-                      <div className="grid grid-cols-2 gap-2 mb-5">
-                        {service.features.slice(0, 6).map((f, j) => (
-                          <div key={j} className="flex items-center gap-1.5 text-text-secondary text-xs">
-                            <CheckCircle2 size={12} className="text-primary shrink-0" />
-                            <span>{f}</span>
+                    {/* Content */}
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div>
+                          <span className="section-tag block mb-1">[SERVICE] [{String(i + 1).padStart(2, '0')}]</span>
+                          <h3 className="serif-heading text-xl text-white group-hover:text-primary/90 transition-colors mt-2">
+                            {service.name}
+                          </h3>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="price-mono text-primary text-sm whitespace-nowrap">
+                            {service.price}
+                          </span>
+                          <div className="shield-badge">
+                            <Shield size={12} className="text-white/30" />
                           </div>
-                        ))}
+                        </div>
                       </div>
-                    )}
 
-                    <Link
-                      to={`/booking?service=${encodeURIComponent(service.name)}`}
-                      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-black font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 text-sm"
-                    >
-                      Book Now
-                      <ArrowRight size={14} />
-                    </Link>
+                      {service.duration && (
+                        <div className="flex items-center gap-1.5 text-text-muted text-xs mb-3 font-mono">
+                          <Clock size={12} />
+                          <span>{service.duration}</span>
+                        </div>
+                      )}
+
+                      <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-3">
+                        {service.description}
+                      </p>
+
+                      {/* Features */}
+                      {service.features && service.features.length > 0 && (
+                        <div className="grid grid-cols-2 gap-2 mb-5">
+                          {service.features.slice(0, 6).map((f, j) => (
+                            <div key={j} className="flex items-center gap-1.5 text-text-secondary text-xs">
+                              <CheckCircle2 size={11} className="text-primary/60 shrink-0" />
+                              <span>{f}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      <Link
+                        to={`/booking?service=${encodeURIComponent(service.name)}`}
+                        className="btn-outline text-sm py-2 px-5"
+                      >
+                        Book Now
+                        <ArrowRight size={13} />
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -189,23 +208,17 @@ export default function Services() {
       {/* CTA */}
       <section className="py-16 page-gradient">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="serif-heading text-3xl md:text-4xl mb-4">
             Not Sure Which Service You Need?
           </h2>
           <p className="text-text-secondary text-lg mb-8">
             Contact us for a free consultation and we'll recommend the perfect service for your vehicle.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-black font-bold px-8 py-3.5 rounded-lg transition-all"
-            >
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/contact" className="btn-filled">
               Get a Free Quote
             </Link>
-            <a
-              href="tel:+14384838175"
-              className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-primary text-white font-medium px-8 py-3.5 rounded-lg transition-all"
-            >
+            <a href="tel:+14384838175" className="btn-outline">
               Call: 438-483-8175
             </a>
           </div>

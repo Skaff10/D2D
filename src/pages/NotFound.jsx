@@ -17,26 +17,26 @@ export default function NotFound() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-lg"
         >
-          <h1 className="font-heading text-8xl md:text-9xl font-black text-gradient mb-4">404</h1>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4">
+          <h1 className="serif-heading text-8xl md:text-9xl text-gradient mb-4">404</h1>
+          <h2 className="serif-heading text-2xl md:text-3xl text-white mb-4">
             Page Not Found
           </h2>
-          <p className="text-text-secondary mb-8 text-lg">
+          <p className="text-text-secondary mb-8 text-base">
             Looks like this page drove off. Let's get you back on track.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300"
+              className="btn-filled"
             >
-              <Home size={18} />
+              <Home size={16} />
               Go Home
             </Link>
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-primary text-white font-medium px-6 py-3 rounded-lg transition-all duration-300"
+              className="btn-outline"
             >
-              <ArrowLeft size={18} />
+              <ArrowLeft size={16} />
               Go Back
             </button>
           </div>

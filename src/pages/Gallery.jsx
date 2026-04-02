@@ -65,18 +65,18 @@ export default function Gallery() {
         </div>
       </section>
 
-      <section className="py-16 bg-black">
+      <section className="py-16 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-primary text-black'
-                    : 'bg-card text-text-secondary hover:text-white border border-border-warm'
+                    ? 'bg-white/[0.1] text-white border border-white/[0.12]'
+                    : 'bg-transparent text-white/40 hover:text-white/70 border border-white/[0.04] hover:border-white/[0.08]'
                 }`}
               >
                 {cat}
@@ -85,7 +85,7 @@ export default function Gallery() {
           </div>
 
           {/* Grid */}
-          <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             <AnimatePresence mode="popLayout">
               {filtered.map((img, i) => (
                 <motion.div
@@ -95,7 +95,7 @@ export default function Gallery() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className={`relative group cursor-pointer rounded-xl overflow-hidden ${
+                  className={`relative group cursor-pointer rounded-2xl overflow-hidden ${
                     i % 5 === 0 ? 'md:col-span-2 md:row-span-2' : ''
                   }`}
                   onClick={() => setLightbox(img)}
@@ -109,10 +109,10 @@ export default function Gallery() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
-                    <ZoomIn size={28} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ZoomIn size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-white text-xs font-medium">{img.category}</span>
+                    <span className="section-tag text-white/70">{img.category}</span>
                   </div>
                 </motion.div>
               ))}
@@ -132,10 +132,10 @@ export default function Gallery() {
             onClick={() => setLightbox(null)}
           >
             <button
-              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+              className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
               onClick={() => setLightbox(null)}
             >
-              <X size={28} />
+              <X size={24} />
             </button>
             <motion.img
               initial={{ scale: 0.8, opacity: 0 }}
@@ -143,7 +143,7 @@ export default function Gallery() {
               exit={{ scale: 0.8, opacity: 0 }}
               src={lightbox.src}
               alt={lightbox.alt}
-              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl"
               onClick={e => e.stopPropagation()}
             />
           </motion.div>

@@ -77,7 +77,6 @@ export default function Booking() {
   const onSubmit = async (data) => {
     setSubmitting(true)
     try {
-      // Save to Firestore
       await addDoc(collection(db, 'bookings'), {
         customerName: data.customerName,
         phone: data.phone,
@@ -91,7 +90,6 @@ export default function Booking() {
         createdAt: Timestamp.now(),
       })
 
-      // Send EmailJS notification
       try {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           customer_name: data.customerName,
@@ -120,8 +118,8 @@ export default function Booking() {
 
   const today = new Date().toISOString().split('T')[0]
 
-  const inputClasses = 'w-full bg-card border border-border-warm rounded-lg px-4 py-3 text-white placeholder-text-muted text-sm transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/20'
-  const labelClasses = 'flex items-center gap-2 text-sm font-medium text-text-secondary mb-2'
+  const inputClasses = 'w-full bg-[#161616] border border-white/[0.06] rounded-xl px-4 py-3.5 text-white placeholder-white/20 text-sm transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15'
+  const labelClasses = 'flex items-center gap-2 text-xs font-medium text-text-secondary mb-2'
 
   if (submitted) {
     return (
@@ -135,16 +133,16 @@ export default function Booking() {
             animate={{ opacity: 1, scale: 1 }}
             className="text-center max-w-md"
           >
-            <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CalendarDays size={36} className="text-primary" />
+            <div className="shield-badge w-20 h-20 rounded-2xl mx-auto mb-6">
+              <CalendarDays size={32} className="text-primary/60" />
             </div>
-            <h1 className="font-heading text-3xl font-bold text-white mb-4">Booking Received!</h1>
+            <h1 className="serif-heading text-3xl text-white mb-4">Booking Received!</h1>
             <p className="text-text-secondary mb-8">
               Thank you for choosing Down2Detail. We'll call you shortly to confirm your appointment.
             </p>
             <button
               onClick={() => setSubmitted(false)}
-              className="bg-primary hover:bg-primary-dark text-black font-semibold px-6 py-3 rounded-lg transition-all"
+              className="btn-filled"
             >
               Book Another Service
             </button>
@@ -174,13 +172,13 @@ export default function Booking() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             onSubmit={handleSubmit(onSubmit)}
-            className="bg-card/50 border border-border-warm rounded-2xl p-6 md:p-8 space-y-6"
+            className="dark-card p-6 md:p-8 space-y-6"
           >
             {/* Name & Phone */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className={labelClasses}>
-                  <User size={14} /> Full Name *
+                  <User size={12} /> Full Name *
                 </label>
                 <input
                   type="text"
@@ -192,7 +190,7 @@ export default function Booking() {
               </div>
               <div>
                 <label className={labelClasses}>
-                  <Phone size={14} /> Phone Number *
+                  <Phone size={12} /> Phone Number *
                 </label>
                 <input
                   type="tel"
@@ -208,7 +206,7 @@ export default function Booking() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className={labelClasses}>
-                  <Mail size={14} /> Email *
+                  <Mail size={12} /> Email *
                 </label>
                 <input
                   type="email"
@@ -223,7 +221,7 @@ export default function Booking() {
               </div>
               <div>
                 <label className={labelClasses}>
-                  <Car size={14} /> Vehicle Type *
+                  <Car size={12} /> Vehicle Type *
                 </label>
                 <select
                   className={inputClasses}
@@ -241,7 +239,7 @@ export default function Booking() {
             {/* Service */}
             <div>
               <label className={labelClasses}>
-                <FileText size={14} /> Service *
+                <FileText size={12} /> Service *
               </label>
               <select
                 className={inputClasses}
@@ -254,9 +252,9 @@ export default function Booking() {
               </select>
               {errors.serviceName && <p className="text-red-400 text-xs mt-1">{errors.serviceName.message}</p>}
               {isCeramicCoating && (
-                <div className="flex items-start gap-2 mt-2 bg-primary/10 border border-primary/20 rounded-lg p-3">
-                  <AlertCircle size={16} className="text-primary shrink-0 mt-0.5" />
-                  <p className="text-primary text-xs">
+                <div className="flex items-start gap-2 mt-2 dark-card p-3 bg-primary/[0.04] border-primary/10">
+                  <AlertCircle size={14} className="text-primary/60 shrink-0 mt-0.5" />
+                  <p className="text-primary/70 text-xs">
                     Contact for pricing — Ceramic coating pricing varies based on vehicle size and condition. We'll provide a custom quote after inspection.
                   </p>
                 </div>
@@ -267,7 +265,7 @@ export default function Booking() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className={labelClasses}>
-                  <CalendarDays size={14} /> Preferred Date *
+                  <CalendarDays size={12} /> Preferred Date *
                 </label>
                 <input
                   type="date"
@@ -279,7 +277,7 @@ export default function Booking() {
               </div>
               <div>
                 <label className={labelClasses}>
-                  <Clock size={14} /> Preferred Time *
+                  <Clock size={12} /> Preferred Time *
                 </label>
                 <select
                   className={inputClasses}
@@ -297,7 +295,7 @@ export default function Booking() {
             {/* Notes */}
             <div>
               <label className={labelClasses}>
-                <FileText size={14} /> Additional Notes (Optional)
+                <FileText size={12} /> Additional Notes (Optional)
               </label>
               <textarea
                 rows={4}
@@ -311,22 +309,22 @@ export default function Booking() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed text-black font-bold py-4 rounded-lg transition-all duration-300 text-base flex items-center justify-center gap-2"
+              className="w-full btn-filled py-4 justify-center text-base"
             >
               {submitting ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Submitting...
                 </>
               ) : (
                 <>
-                  <CalendarDays size={18} />
+                  <CalendarDays size={16} />
                   Submit Booking
                 </>
               )}
             </button>
 
-            <p className="text-text-muted text-xs text-center">
+            <p className="text-text-muted text-xs text-center font-mono">
               We'll contact you within 24 hours to confirm your appointment.
             </p>
           </motion.form>

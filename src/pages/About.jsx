@@ -56,7 +56,7 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
@@ -73,9 +73,9 @@ export default function About() {
                     className="w-full h-[400px] object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-6 -right-6 glass rounded-xl p-5 hidden md:block">
-                  <p className="text-primary font-heading text-2xl font-bold">500+</p>
-                  <p className="text-text-secondary text-sm">Cars Detailed</p>
+                <div className="absolute -bottom-5 -right-5 glass rounded-xl p-4 hidden md:block">
+                  <p className="price-mono text-primary text-xl">500+</p>
+                  <p className="text-text-secondary text-xs mt-1">Cars Detailed</p>
                 </div>
               </div>
             </motion.div>
@@ -86,11 +86,12 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
+              <span className="section-tag block mb-4">OUR JOURNEY</span>
+              <h2 className="serif-heading text-3xl md:text-4xl mb-6">
                 From a Simple Wash to{' '}
-                <span className="text-gradient">Comprehensive Detailing</span>
+                <span className="serif-heading-italic">Comprehensive Detailing</span>
               </h2>
-              <div className="space-y-4 text-text-secondary leading-relaxed">
+              <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
                 <p>
                   Down2Detail was born from a simple belief: your car deserves better than a quick, automated wash that leaves swirl marks and misses hidden areas. Based in Saint-Hubert and serving the entire Greater Montreal Area, we've built our reputation on doing things the right way.
                 </p>
@@ -107,7 +108,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 bg-surface border-y border-border-warm">
+      <section className="py-16 bg-surface border-y border-white/[0.04]">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -119,11 +120,11 @@ export default function About() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="text-center"
               >
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <stat.icon size={24} className="text-primary" />
+                <div className="shield-badge mx-auto mb-3 w-12 h-12 rounded-xl">
+                  <stat.icon size={20} className="text-primary/60" />
                 </div>
-                <p className="font-heading text-3xl md:text-4xl font-bold text-primary mb-1">{stat.value}</p>
-                <p className="text-text-secondary text-sm">{stat.label}</p>
+                <p className="price-mono text-2xl md:text-3xl text-primary mb-1">{stat.value}</p>
+                <p className="text-text-secondary text-xs">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -138,7 +139,7 @@ export default function About() {
             title="What Sets Us Apart"
           />
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-4">
             {values.map((val, i) => (
               <motion.div
                 key={val.title}
@@ -146,12 +147,12 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-card rounded-2xl p-6 border border-border-warm/50 card-hover"
+                className="dark-card p-6 card-hover"
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                  <val.icon size={24} className="text-primary" />
+                <div className="shield-badge mb-4 w-11 h-11 rounded-xl">
+                  <val.icon size={18} className="text-primary/60" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-white mb-2">{val.title}</h3>
+                <h3 className="serif-heading text-xl text-white mb-2">{val.title}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed">{val.desc}</p>
               </motion.div>
             ))}
@@ -160,26 +161,28 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-black">
+      <section className="py-20 bg-[#0a0a0a]">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="serif-heading text-3xl md:text-4xl mb-4">
               Ready to Experience the Difference?
             </h2>
-            <p className="text-text-secondary text-lg mb-8">
+            <p className="text-text-secondary text-base mb-8">
               Book your appointment today and see why hundreds of car owners trust Down2Detail.
             </p>
-            <Link
-              to="/booking"
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-black font-bold px-8 py-4 rounded-lg transition-all"
-            >
-              Book Now
-              <ArrowRight size={18} />
-            </Link>
+            <div className="flex gap-3 justify-center">
+              <Link to="/booking" className="btn-filled">
+                Book Now
+                <ArrowRight size={14} />
+              </Link>
+              <Link to="/contact" className="btn-outline">
+                Contact Us
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
