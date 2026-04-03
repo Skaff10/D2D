@@ -1,227 +1,160 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { ArrowRight, Clock, DollarSign, CheckCircle2, Maximize2, Shield } from 'lucide-react'
-import { collection, getDocs, query, where, orderBy } from 'firebase/firestore'
-import { db } from '../firebase/config'
+import { ArrowRight, Phone } from 'lucide-react'
 import SectionHeading from '../components/ui/SectionHeading'
-
-import ceramicImg from '../assets/imgi_2_ceramiccoating.webp'
-import interiorImg from '../assets/imgi_4_Interior.png'
-import exteriorImg from '../assets/imgi_2_exterior2.jpg'
-import paintImg from '../assets/imgi_5_paint-correction.webp'
-
-const fallbackServices = [
-  {
-    id: 'exterior-detailing',
-    name: 'Exterior Detailing',
-    description: 'More Than Just a Wash — Wheels & tires deep cleaned with pH-balanced cleaner, pre-rinse & snow foam, detailed brush cleaning (grille, emblems, trim), door jamb cleaning, contact wash (two-bucket method) with pH-neutral shampoo, paint decontamination (iron remover + clay bar), air blow & microfiber towel drying, tire dressing, and glass cleaning.',
-    price: 'Package Pricing',
-    duration: '2-3 hours',
-    isActive: true,
-    image: exteriorImg,
-    features: ['Snow foam pre-wash', 'Two-bucket method', 'Iron remover + clay bar', 'Door jamb cleaning', 'Tire dressing', 'Coating-safe process'],
-  },
-  {
-    id: 'interior-detailing',
-    name: 'Interior Detailing',
-    description: 'Deep Clean, Restore & Refresh Your Cabin — Interior vacuuming (floor, mats, trunk), dashboard, door panels & center console detailed, vents, buttons & knobs cleaned with soft detailing brushes, steering wheel deep cleaned to factory matte finish, steam cleaning of high-touch surfaces, headliner spot-cleaning, and interior fragrance application.',
-    price: 'Package Pricing',
-    duration: '2-4 hours',
-    isActive: true,
-    image: interiorImg,
-    features: ['Full vacuuming', 'Steam sanitization', 'Leather treatment', 'Steering wheel restoration', 'Headliner spot-clean', 'Fragrance application'],
-  },
-  {
-    id: 'paint-correction',
-    name: 'Paint Correction',
-    description: 'Multi-Stage Perfection & Showroom Finish — Our most advanced polishing service using multiple machine steps of cutting and refining compounds. Removes up to 90% of imperfections like heavy swirls, oxidation, scratches, and etching. The result is a mirror-like, showroom-quality finish with unmatched clarity and depth.',
-    price: '$749.99+',
-    duration: '4-8 hours',
-    isActive: true,
-    image: paintImg,
-    features: ['Exterior detail wash', 'Paint decontamination', 'Multi-stage correction', '3-month polymer sealant', 'Detailing light inspection', 'Final quality check'],
-  },
-  {
-    id: 'ceramic-coating',
-    name: 'Ceramic Coating',
-    description: 'Professional ceramic coating installer in Montreal. SiO₂ nanotechnology protection against Quebec road salt, calcium, and industrial fallout. Provides a hydrophobic layer that keeps your car cleaner for longer, with superior UV protection and an incredible depth of gloss. 2-5 year warranty included.',
-    price: 'Contact for Pricing',
-    duration: '1-2 days',
-    isActive: true,
-    image: ceramicImg,
-    features: ['SiO₂ nanotechnology', 'Road salt protection', 'UV damage prevention', 'Hydrophobic finish', '2-5 year warranty', 'Paint correction prerequisite'],
-  },
-]
+import ServiceCategoryTabs from '../components/services/ServiceCategoryTabs'
+import ServiceCard from '../components/services/ServiceCard'
+import CeramicCoatingSection from '../components/services/CeramicCoatingSection'
+import { categories, services } from '../data/servicesData'
 
 export default function Services() {
-  const [services, setServices] = useState(fallbackServices)
-  const [loading, setLoading] = useState(true)
+  const [activeCategory, setActiveCategory] = useState('exterior')
+  const sectionsRef = useRef({})
 
-  useEffect(() => {
-    async function fetchServices() {
-      try {
-        const q = query(collection(db, 'services'), where('isActive', '==', true))
-        const snapshot = await getDocs(q)
-        if (!snapshot.empty) {
-          const firestoreServices = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          }))
-          setServices(firestoreServices.map((s, i) => ({
-            ...s,
-            image: fallbackServices[i]?.image || fallbackServices[0].image,
-            features: s.features || fallbackServices[i]?.features || [],
-          })))
-        }
-      } catch (err) {
-        console.log('Using fallback services:', err.message)
-      } finally {
-        setLoading(false)
-      }
+  const handleCategoryChange = useCallback((categoryId) => {
+    setActiveCategory(categoryId)
+    const el = sectionsRef.current[categoryId]
+    if (el) {
+      const offset = 120
+      const top = el.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top, behavior: 'smooth' })
     }
-    fetchServices()
   }, [])
+
+  // Track which index we're at globally across all categories for numbering
+  let globalIndex = 0
+  const getCategoryOffset = (catId) => {
+    let offset = 0
+    for (const cat of categories) {
+      if (cat.id === catId) break
+      offset += services[cat.id].length
+    }
+    return offset
+  }
 
   return (
     <>
       <Helmet>
-        <title>Auto Detailing Services in Montreal & Saint-Hubert | Down2Detail</title>
-        <meta name="description" content="Explore Down2Detail's professional auto detailing services in Montreal & Saint-Hubert. Exterior detailing, interior detailing, paint correction, and ceramic coating. Book now!" />
+        <title>Professional Detailing Services | Down2Detail — Montreal & Saint-Hubert</title>
+        <meta
+          name="description"
+          content="Explore Down2Detail's full range of professional detailing services — exterior, interior, paint correction, ceramic coating, and more. Serving Montreal & Saint-Hubert. Book today!"
+        />
       </Helmet>
 
-      {/* Hero Banner */}
+      {/* ===== PAGE HERO ===== */}
       <section className="pt-32 pb-16 page-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Our Services"
-            title="Premium Auto Detailing Services"
-            description="We offer a full range of premium services using professional-grade products to keep your vehicle in showroom condition year-round."
+            title="Professional Detailing Services Tailored for Your Vehicle"
+            description="From exterior washes to ceramic coatings — every service is performed with precision, premium products, and a genuine passion for perfection."
           />
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-16 bg-[#0a0a0a]">
+      {/* ===== CATEGORY TABS ===== */}
+      <section className="pt-8 pb-4 bg-[#0a0a0a]  top-[72px] z-30 border-b border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {loading ? (
-            <div className="grid md:grid-cols-2 gap-6">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="dark-card h-[500px] shimmer" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-6">
-              {services.map((service, i) => (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group"
-                >
-                  {/* Service label header */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="section-tag">
-                      [SERVICE] [{String(i + 1).padStart(2, '0')}] / {service.name.toUpperCase()}
-                    </span>
-                    <div className="expand-btn opacity-60 group-hover:opacity-100 transition-opacity">
-                      <Maximize2 size={14} className="text-white/50" />
-                    </div>
-                  </div>
-
-                  <div className="dark-card overflow-hidden card-hover">
-                    {/* Image */}
-                    <div className="relative h-56 overflow-hidden">
-                      {service.image ? (
-                        <img
-                          src={service.image}
-                          alt={service.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-[#1a1a1a]" />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-transparent" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div>
-                          <span className="section-tag block mb-1">[SERVICE] [{String(i + 1).padStart(2, '0')}]</span>
-                          <h3 className="serif-heading text-xl text-white group-hover:text-primary/90 transition-colors mt-2">
-                            {service.name}
-                          </h3>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="price-mono text-primary text-sm whitespace-nowrap">
-                            {service.price}
-                          </span>
-                          <div className="shield-badge">
-                            <Shield size={12} className="text-white/30" />
-                          </div>
-                        </div>
-                      </div>
-
-                      {service.duration && (
-                        <div className="flex items-center gap-1.5 text-text-muted text-xs mb-3 font-mono">
-                          <Clock size={12} />
-                          <span>{service.duration}</span>
-                        </div>
-                      )}
-
-                      <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-3">
-                        {service.description}
-                      </p>
-
-                      {/* Features */}
-                      {service.features && service.features.length > 0 && (
-                        <div className="grid grid-cols-2 gap-2 mb-5">
-                          {service.features.slice(0, 6).map((f, j) => (
-                            <div key={j} className="flex items-center gap-1.5 text-text-secondary text-xs">
-                              <CheckCircle2 size={11} className="text-primary/60 shrink-0" />
-                              <span>{f}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      <Link
-                        to={`/booking?service=${encodeURIComponent(service.name)}`}
-                        className="btn-outline text-sm py-2 px-5"
-                      >
-                        Book Now
-                        <ArrowRight size={13} />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+          <ServiceCategoryTabs
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={handleCategoryChange}
+          />
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 page-gradient">
+      {/* ===== SERVICE SECTIONS ===== */}
+      <section className="py-16 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {categories.map((category) => {
+            const categoryServices = services[category.id]
+            const offset = getCategoryOffset(category.id)
+
+            return (
+              <div
+                key={category.id}
+                ref={(el) => (sectionsRef.current[category.id] = el)}
+                className="mb-20 last:mb-0 scroll-mt-48"
+                id={`section-${category.id}`}
+              >
+                {/* Section Header */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="mb-10"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-[1px] bg-primary/40" />
+                    <span className="section-tag text-primary/80">{category.label}</span>
+                    <div className="flex-1 h-[1px] bg-white/[0.04]" />
+                  </div>
+                  <h2 className="serif-heading text-2xl sm:text-3xl text-white">
+                    {category.label} Services
+                  </h2>
+                </motion.div>
+
+                {/* Service Cards Grid */}
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+                  {categoryServices.map((service, i) => {
+                    // Special treatment for Ceramic Coating
+                    if (service.isFeatured) {
+                      return (
+                        <div key={service.id} className="md:col-span-2 xl:col-span-3">
+                          <CeramicCoatingSection service={service} />
+                        </div>
+                      )
+                    }
+
+                    return (
+                      <ServiceCard
+                        key={service.id}
+                        service={service}
+                        index={offset + i}
+                      />
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* ===== CTA SECTION ===== */}
+      <section className="py-20 page-gradient">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="serif-heading text-3xl md:text-4xl mb-4">
-            Not Sure Which Service You Need?
-          </h2>
-          <p className="text-text-secondary text-lg mb-8">
-            Contact us for a free consultation and we'll recommend the perfect service for your vehicle.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to="/contact" className="btn-filled">
-              Get a Free Quote
-            </Link>
-            <a href="tel:+14384838175" className="btn-outline">
-              Call: 438-483-8175
-            </a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="section-tag inline-block mb-4">Ready to Book?</span>
+            <h2 className="serif-heading text-3xl md:text-4xl mb-4">
+              Not Sure Which Service You Need?
+            </h2>
+            <p className="text-text-secondary text-lg mb-8">
+              Contact us for a free consultation and we'll recommend the perfect service for your vehicle.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link to="/booking" className="btn-filled">
+                Book a Service
+                <ArrowRight size={14} />
+              </Link>
+              <Link to="/contact" className="btn-outline">
+                Get a Free Quote
+              </Link>
+              <a href="tel:+14384838175" className="btn-outline">
+                <Phone size={14} />
+                438-483-8175
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>

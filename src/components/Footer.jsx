@@ -190,6 +190,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-text-muted text-xs font-mono">
             © {new Date().getFullYear()} Down2Detail. All rights reserved.
+            Developed by <a href="https://github.com/Skaff10">Skaf</a>
           </p>
           <button
             onClick={scrollToTop}
