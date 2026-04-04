@@ -75,7 +75,7 @@ export default function Contact() {
         <meta name="description" content="Contact Down2Detail for professional auto detailing in Montreal & Saint-Hubert. Call +1 438 483 8175 or email us. Open 7 days a week." />
       </Helmet>
 
-      <section className="pt-32 pb-16 page-gradient">
+      <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Get in Touch"
@@ -85,7 +85,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#0a0a0a]">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">

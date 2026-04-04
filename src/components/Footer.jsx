@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, ArrowUp } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import logo from "../assets/imgi_1_d2dlogo.png";
+import logo from "../assets/logo/logo.png";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -10,7 +10,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#0a0a0a] border-t border-white/[0.04]">
+    <footer className="relative border-t border-white/[0.04]">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">

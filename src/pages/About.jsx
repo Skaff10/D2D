@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Shield, Sparkles, Heart, Award, Users, Car, Star, ArrowRight } from 'lucide-react'
 import SectionHeading from '../components/ui/SectionHeading'
-import ceramicImg from '../assets/imgi_2_ceramiccoating.webp'
-import beforeAfterImg from '../assets/imgi_3_beforeaftercoating.webp'
+import ceramicImg from '../assets/dk/imgi_2_ceramiccoating.webp'
+import beforeAfterImg from '../assets/dk/imgi_3_beforeaftercoating.webp'
 
 const values = [
   {
@@ -45,7 +45,7 @@ export default function About() {
       </Helmet>
 
       {/* Hero */}
-      <section className="pt-32 pb-16 page-gradient">
+      <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="About Us"
@@ -56,7 +56,7 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-[#0a0a0a]">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
@@ -108,7 +108,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 bg-surface border-y border-white/[0.04]">
+      <section className="py-16 border-y border-white/[0.04]">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -132,7 +132,7 @@ export default function About() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 page-gradient">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Why Choose Us"
@@ -161,7 +161,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-[#0a0a0a]">
+      <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

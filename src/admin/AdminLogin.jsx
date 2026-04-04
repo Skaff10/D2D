@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 import { Lock, Mail, Eye, EyeOff } from 'lucide-react'
 import toast from 'react-hot-toast'
-import logo from '../assets/imgi_1_d2dlogo.png'
+import logo from "../assets/logo/logo.png"
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
@@ -37,7 +37,7 @@ export default function AdminLogin() {
   return (
     <>
       <Helmet><title>Admin Login | Down2Detail</title></Helmet>
-      <div className="min-h-screen page-gradient flex items-center justify-center px-4">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

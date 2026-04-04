@@ -2,7 +2,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { LayoutDashboard, CalendarDays, Wrench, LogOut, Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import logo from '../assets/imgi_1_d2dlogo.png'
+import logo from "../assets/logo/logo.png"
 
 const sidebarLinks = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
@@ -23,7 +23,7 @@ export default function AdminLayout() {
   return (
     <div className="min-h-screen bg-black flex">
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-surface border-r border-border-warm transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 border-r border-border-warm transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
           <div className="p-5 border-b border-border-warm flex items-center justify-between">
             <img src={logo} alt="Down2Detail" className="h-8" />
@@ -57,7 +57,7 @@ export default function AdminLayout() {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen">
-        <header className="sticky top-0 z-30 bg-surface/80 backdrop-blur-lg border-b border-border-warm px-4 sm:px-6 py-4 flex items-center gap-4">
+        <header className="sticky top-0 z-30/80 backdrop-blur-lg border-b border-border-warm px-4 sm:px-6 py-4 flex items-center gap-4">
           <button onClick={() => setSidebarOpen(true)} className="lg:hidden text-white"><Menu size={22} /></button>
           <h1 className="font-heading text-lg font-semibold text-white">Admin Panel</h1>
         </header>

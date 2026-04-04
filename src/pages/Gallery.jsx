@@ -4,21 +4,21 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn } from 'lucide-react'
 import SectionHeading from '../components/ui/SectionHeading'
 
-import img1 from '../assets/imgi_2_ceramiccoating.webp'
-import img2 from '../assets/imgi_2_exterior2.jpg'
-import img3 from '../assets/imgi_2_headlight-Restoration.png'
-import img4 from '../assets/imgi_3_beforeaftercoating.webp'
-import img5 from '../assets/imgi_3_ceramic-sealant-spray.jpg'
-import img6 from '../assets/imgi_3_shutHero.jpg'
-import img7 from '../assets/imgi_4_Ceramic-coating.webp'
-import img8 from '../assets/imgi_4_Interior.png'
-import img9 from '../assets/imgi_4_monthly.webp'
-import img10 from '../assets/imgi_5_paint-correction.webp'
-import img11 from '../assets/imgi_5_wheelcoating.webp'
-import img12 from '../assets/imgi_6_cleaning-engine.webp'
-import img13 from '../assets/imgi_7_gloss-enhancer.webp'
-import img14 from '../assets/imgi_2_ceramic.png'
-import img15 from '../assets/imgi_10_cadillac.webp'
+import img1 from '../assets/dk/imgi_2_ceramiccoating.webp'
+import img2 from '../assets/dk/imgi_2_exterior2.jpg'
+import img3 from '../assets/dk/imgi_2_headlight-Restoration.png'
+import img4 from '../assets/dk/imgi_3_beforeaftercoating.webp'
+import img5 from '../assets/dk/imgi_3_ceramic-sealant-spray.jpg'
+import img6 from '../assets/dk/imgi_3_shutHero.jpg'
+import img7 from '../assets/dk/imgi_4_Ceramic-coating.webp'
+import img8 from '../assets/dk/imgi_4_Interior.png'
+import img9 from '../assets/dk/imgi_4_monthly.webp'
+import img10 from '../assets/dk/imgi_5_paint-correction.webp'
+import img11 from '../assets/dk/imgi_5_wheelcoating.webp'
+import img12 from '../assets/dk/imgi_6_cleaning-engine.webp'
+import img13 from '../assets/dk/imgi_7_gloss-enhancer.webp'
+import img14 from '../assets/dk/imgi_2_ceramic.png'
+import img15 from '../assets/images/brand/imgi_10_cadillac.webp'
 
 const galleryImages = [
   { src: img4, alt: 'Before and after ceramic coating', category: 'Ceramic Coating' },
@@ -55,7 +55,7 @@ export default function Gallery() {
         <meta name="description" content="View our portfolio of professional auto detailing results in Montreal & Saint-Hubert. Before/after photos of paint correction, ceramic coating, and interior detailing." />
       </Helmet>
 
-      <section className="pt-32 pb-16 page-gradient">
+      <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Our Work"
@@ -65,7 +65,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#0a0a0a]">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter Tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">

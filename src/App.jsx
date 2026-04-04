@@ -10,6 +10,7 @@ import WhatsAppButton from './components/ui/WhatsAppButton'
 
 import Home from './pages/Home'
 import Services from './pages/Services'
+import ServiceDetailPage from './pages/ServiceDetailPage'
 import Gallery from './pages/Gallery'
 import About from './pages/About'
 import Contact from './pages/Contact'
@@ -60,6 +61,7 @@ export default function App() {
             {/* Public Routes */}
             <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
             <Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
+            <Route path="/services/:serviceSlug" element={<PublicLayout><ServiceDetailPage /></PublicLayout>} />
             <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
             <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
             <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />

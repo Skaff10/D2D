@@ -127,7 +127,7 @@ export default function Booking() {
         <Helmet>
           <title>Booking Confirmed | Down2Detail</title>
         </Helmet>
-        <div className="min-h-screen page-gradient flex items-center justify-center px-4">
+        <div className="min-h-screen flex items-center justify-center px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -159,7 +159,7 @@ export default function Booking() {
         <meta name="description" content="Book your professional auto detailing appointment with Down2Detail. Serving Montreal, Saint-Hubert & the Greater Montreal Area. Easy online booking." />
       </Helmet>
 
-      <section className="pt-32 pb-20 page-gradient min-h-screen">
+      <section className="pt-32 pb-20 min-h-screen">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Book an Appointment"

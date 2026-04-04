@@ -6,7 +6,6 @@ import { ArrowRight, Phone } from 'lucide-react'
 import SectionHeading from '../components/ui/SectionHeading'
 import ServiceCategoryTabs from '../components/services/ServiceCategoryTabs'
 import ServiceCard from '../components/services/ServiceCard'
-import CeramicCoatingSection from '../components/services/CeramicCoatingSection'
 import { categories, services } from '../data/servicesData'
 
 export default function Services() {
@@ -45,7 +44,7 @@ export default function Services() {
       </Helmet>
 
       {/* ===== PAGE HERO ===== */}
-      <section className="pt-32 pb-16 page-gradient">
+      <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle="Our Services"
@@ -56,7 +55,7 @@ export default function Services() {
       </section>
 
       {/* ===== CATEGORY TABS ===== */}
-      <section className="pt-8 pb-4 bg-[#0a0a0a]  top-[72px] z-30 border-b border-white/[0.04]">
+      <section className="pt-8 pb-4  top-[72px] z-30 border-b border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ServiceCategoryTabs
             categories={categories}
@@ -67,7 +66,7 @@ export default function Services() {
       </section>
 
       {/* ===== SERVICE SECTIONS ===== */}
-      <section className="py-16 bg-[#0a0a0a]">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {categories.map((category) => {
             const categoryServices = services[category.id]
@@ -100,24 +99,13 @@ export default function Services() {
 
                 {/* Service Cards Grid */}
                 <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
-                  {categoryServices.map((service, i) => {
-                    // Special treatment for Ceramic Coating
-                    if (service.isFeatured) {
-                      return (
-                        <div key={service.id} className="md:col-span-2 xl:col-span-3">
-                          <CeramicCoatingSection service={service} />
-                        </div>
-                      )
-                    }
-
-                    return (
-                      <ServiceCard
-                        key={service.id}
-                        service={service}
-                        index={offset + i}
-                      />
-                    )
-                  })}
+                  {categoryServices.map((service, i) => (
+                    <ServiceCard
+                      key={service.id}
+                      service={service}
+                      index={offset + i}
+                    />
+                  ))}
                 </div>
               </div>
             )
@@ -126,7 +114,7 @@ export default function Services() {
       </section>
 
       {/* ===== CTA SECTION ===== */}
-      <section className="py-20 page-gradient">
+      <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

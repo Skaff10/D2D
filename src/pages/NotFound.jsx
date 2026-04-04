@@ -10,7 +10,7 @@ export default function NotFound() {
         <title>Page Not Found | Down2Detail</title>
         <meta name="description" content="The page you're looking for doesn't exist." />
       </Helmet>
-      <div className="min-h-screen page-gradient flex items-center justify-center px-4">
+      <div className="min-h-screen flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

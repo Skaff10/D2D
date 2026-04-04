@@ -1,49 +1,50 @@
-import { useState, useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Phone } from 'lucide-react'
-import logo from '../assets/imgi_1_d2dlogo.png'
+import { useState, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Phone } from "lucide-react";
+import logo from "../assets/logo/logo.png";
 
 const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Services', path: '/services' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
-]
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services", end: true },
+  { name: "Ceramic Coating", path: "/services/ceramic-coating" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
-    setIsOpen(false)
-  }, [location])
+    setIsOpen(false);
+  }, [location]);
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'glass-navbar py-3'
-          : 'bg-transparent py-5'
+        scrolled ? "glass-navbar py-5" : "bg-black/50 backdrop-blur-sm py-5"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -58,15 +59,20 @@ export default function Navbar() {
 
         {/* Desktop Nav — Centered pill style like reference */}
         <div className="hidden lg:flex items-center">
-          <div className={`flex items-center gap-1 px-1.5 py-1 rounded-xl transition-all duration-300 ${
-            scrolled ? 'bg-white/[0.04] border border-white/[0.06]' : 'bg-white/[0.03] border border-white/[0.05]'
-          }`}>
+          <div
+            className={`flex items-center gap-1 px-1.5 py-1 rounded-xl transition-all duration-300 ${
+              scrolled
+                ? "bg-white/[0.04] border border-white/[0.06]"
+                : "bg-white/[0.03] border border-white/[0.05]"
+            }`}
+          >
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
+                end={link.end}
                 className={({ isActive }) =>
-                  `nav-pill ${isActive ? 'active' : ''}`
+                  `nav-pill ${isActive ? "active" : ""}`
                 }
               >
                 {link.name}
@@ -84,10 +90,7 @@ export default function Navbar() {
             <Phone size={14} />
             <span className="font-mono text-xs">438-483-8175</span>
           </a>
-          <Link
-            to="/booking"
-            className="btn-outline text-sm"
-          >
+          <Link to="/booking" className="btn-outline text-sm">
             Book Now
           </Link>
         </div>
@@ -107,9 +110,9 @@ export default function Navbar() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="lg:hidden overflow-hidden glass-navbar"
           >
             <div className="px-4 py-6 flex flex-col gap-2">
@@ -125,8 +128,8 @@ export default function Navbar() {
                     className={({ isActive }) =>
                       `block py-3 px-4 rounded-xl text-base font-medium transition-all ${
                         isActive
-                          ? 'bg-white/[0.06] text-white'
-                          : 'text-white/50 hover:bg-white/[0.03] hover:text-white/80'
+                          ? "bg-white/[0.06] text-white"
+                          : "text-white/50 hover:bg-white/[0.03] hover:text-white/80"
                       }`
                     }
                   >
@@ -142,10 +145,7 @@ export default function Navbar() {
                   <Phone size={16} />
                   <span className="font-mono text-sm">438-483-8175</span>
                 </a>
-                <Link
-                  to="/booking"
-                  className="btn-outline text-center py-3"
-                >
+                <Link to="/booking" className="btn-outline text-center py-3">
                   Book Now
                 </Link>
               </div>
@@ -154,5 +154,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
-  )
+  );
 }

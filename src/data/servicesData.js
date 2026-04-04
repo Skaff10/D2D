@@ -12,7 +12,23 @@ export const services = {
   exterior: [
     {
       id: 'exterior-detailing',
+      category: 'Exterior',
       name: 'Exterior Detailing',
+      shortDescription: 'Basic car washes use dirty sponges, harsh chemicals, or automated brushes that leave swirl marks and scratches.',
+      fullDescription: "Basic car washes use dirty sponges, harsh chemicals, or automated brushes that leave swirl marks and scratches. Our service safely cleans every part of your car's exterior using pH-neutral products and precise hand techniques.",
+      features: [
+        'Wheels & tires deep cleaned with pH-balanced wheel cleaner',
+        'Pre-rinse & snow foam application',
+        'Detailed brush cleaning (grille, emblems, trim, fuel cap)',
+        'Door jamb cleaning',
+        'Contact Wash (two-bucket method) with pH-neutral shampoo',
+        'Paint decontamination (iron remover + clay bar/mitt)',
+        'Air blow & microfiber towel drying',
+        'Tire dressing',
+        'Glass cleaning',
+        'Final quality check',
+      ],
+      priceString: 'Contact for Quote',
       price: null, // Call for price
       whyUs:
         "Basic car washes use dirty sponges, harsh chemicals, or automated brushes that leave swirl marks and scratches. Our service safely cleans every part of your car's exterior using pH-neutral products and precise hand techniques.",
@@ -41,7 +57,17 @@ export const services = {
     },
     {
       id: 'paint-decontamination',
+      category: 'Exterior',
       name: 'Paint Decontamination',
+      shortDescription: 'Even after a proper wash, paint can feel rough due to microscopic contaminants.',
+      fullDescription: 'Even after a proper wash, paint can feel rough due to microscopic contaminants like brake dust, industrial fallout, road tar, and tree sap that embed into paint over time.',
+      features: [
+        'Iron Remover (chemical decontamination)',
+        'Tar Remover (spot cleaning)',
+        'Clay Bar/Mitt Treatment (mechanical decontamination)',
+        'Final quality check',
+      ],
+      priceString: 'Contact for Quote',
       price: null,
       whyUs:
         'Even after a proper wash, paint can feel rough due to microscopic contaminants like brake dust, industrial fallout, road tar, and tree sap that embed into paint over time.',
@@ -63,7 +89,21 @@ export const services = {
     },
     {
       id: 'engine-bay-detailing',
+      category: 'Exterior',
       name: 'Engine Bay Detailing',
+      shortDescription: 'One of the most overlooked areas in detailing.',
+      fullDescription: 'One of the most overlooked areas in detailing. We take a safe, meticulous approach without high-pressure water, protecting critical components, removing grime, and finishing with a non-greasy dressing for a clean factory look.',
+      features: [
+        'Full inspection & prep',
+        'Covering of sensitive components (fuse box, alternator, wiring, sensors)',
+        'Degreasing & dirt removal by hand',
+        'Soft brushes for tight spots',
+        'Low-risk cleaning (no pressure washer)',
+        'Non-greasy dressing for shine',
+        'UV protection product application',
+        'Final quality check',
+      ],
+      priceString: 'Starting at $100.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -95,7 +135,21 @@ export const services = {
     },
     {
       id: 'headlight-restoration',
+      category: 'Exterior',
       name: 'Headlight Restoration',
+      shortDescription: 'Faded or hazy headlights reduce night visibility and compromise safety.',
+      fullDescription: 'Faded or hazy headlights reduce night visibility and compromise safety. Our multi-stage sanding and polishing process restores clarity, shine, and light output.',
+      features: [
+        'Full surface prep & masking',
+        'Wet sanding (multi-stage, as needed)',
+        'Machine polishing to restore optical clarity',
+        'UV barrier application',
+        'Light output inspection',
+        'Final quality check',
+        '12–24hr cure time',
+        '2–4 year guarantee',
+      ],
+      priceString: 'Starting at $259.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -127,7 +181,19 @@ export const services = {
     },
     {
       id: 'headlight-taillight-tint',
+      category: 'Exterior',
       name: 'Headlight & Taillight Tint',
+      shortDescription: 'Adds a sleek, custom appearance to headlights and taillights while offering UV, scratch, and oxidation protection.',
+      fullDescription: 'Adds a sleek, custom appearance to headlights and taillights while offering UV, scratch, and oxidation protection. Two bold shades available with a 1-year warranty.',
+      features: [
+        'Full surface prep & cleaning',
+        'Precision-cut tint film in your choice of color',
+        'Professional installation with heat-shrinking for seamless fit',
+        '1-year warranty against bubbling, peeling, or fading',
+        'Alignment check',
+        'Final quality check',
+      ],
+      priceString: 'Starting at $179.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -160,7 +226,21 @@ export const services = {
   interior: [
     {
       id: 'interior-detailing',
+      category: 'Interior',
       name: 'Interior Detailing',
+      shortDescription: 'Quick washes offer rushed wipe-downs that miss vents and tight spaces.',
+      fullDescription: "Quick washes offer rushed wipe-downs that miss vents and tight spaces. We deep clean every accessible area using safe, professional-grade tools and products — it's an art, not a surface-level clean.",
+      features: [
+        'Interior vacuuming (floor, mats, trunk/cargo)',
+        'Dashboard, door panels, & center console wiped and detailed',
+        'Vents, buttons, knobs, & trim cleaned with soft brushes',
+        'Steering wheel deep cleaned to factory matte finish',
+        'Cup holders & compartments cleaned',
+        'Windows & mirrors cleaned from inside',
+        'Steam cleaning of high-touch surfaces',
+        'Headliner spot-cleaning (where applicable)',
+      ],
+      priceString: 'Contact for Quote',
       price: null,
       whyUs:
         "Quick washes offer rushed wipe-downs that miss vents and tight spaces. We deep clean every accessible area using safe, professional-grade tools and products — it's an art, not a surface-level clean.",
@@ -187,7 +267,21 @@ export const services = {
     },
     {
       id: 'floor-carpet-shampoo',
+      category: 'Interior',
       name: 'Floor & Carpet Shampoo',
+      shortDescription: 'Carpets endure daily wear from shoes, spills, and debris.',
+      fullDescription: 'Carpets endure daily wear from shoes, spills, and debris. We use professional-grade extraction equipment and specialized solutions to deep clean and sanitize, restoring like-new condition.',
+      features: [
+        'Pre-treatment of stains and heavily soiled areas',
+        'Hot water extraction with professional equipment',
+        'Steam cleaning for deep sanitization',
+        'Specialized carpet shampoo application',
+        'Thorough vacuuming',
+        'Spot treatment for stubborn stains',
+        'Deodorizing treatment',
+        'Final inspection',
+      ],
+      priceString: 'Contact for Quote',
       price: null,
       whyUs:
         'Carpets endure daily wear from shoes, spills, and debris. We use professional-grade extraction equipment and specialized solutions to deep clean and sanitize, restoring like-new condition.',
@@ -214,7 +308,21 @@ export const services = {
     },
     {
       id: 'pet-hair-removal',
+      category: 'Interior',
       name: 'Pet Hair Removal',
+      shortDescription: 'Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming.',
+      fullDescription: 'Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.',
+      features: [
+        'Specialized pet hair removal tools and brushes',
+        'Deep vacuuming with high-powered equipment',
+        'Fabric brush treatment for embedded hair',
+        'Lint roller treatment for stubborn areas',
+        'Steam cleaning to loosen embedded hair',
+        'Detailed cleaning of all fabric surfaces',
+        'Cargo area and trunk cleaning',
+        'Final inspection',
+      ],
+      priceString: '$129.99 CAD',
       price: { type: 'flat', amount: '$129.99 CAD' },
       whyUs:
         'Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.',
@@ -241,7 +349,21 @@ export const services = {
     },
     {
       id: 'fabric-seat-shampoo',
+      category: 'Interior',
       name: 'Fabric Seat Shampoo',
+      shortDescription: 'Fabric seats absorb spills, stains, and odors over time.',
+      fullDescription: 'Fabric seats absorb spills, stains, and odors over time. We use hot water extraction and specialized solutions to deep clean, sanitize, and restore seats to like-new condition.',
+      features: [
+        'Pre-treatment of stains and soiled areas',
+        'Hot water extraction',
+        'Specialized fabric cleaning solutions',
+        'Steam cleaning for deep sanitization',
+        'Stain treatment for stubborn marks',
+        'Deodorizing treatment',
+        'Fabric protection application',
+        'Final inspection',
+      ],
+      priceString: 'Starting at $69.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -275,7 +397,21 @@ export const services = {
     },
     {
       id: 'leather-seat-treatment',
+      category: 'Interior',
       name: 'Leather Seat Treatment',
+      shortDescription: 'Leather requires special care to maintain its luxurious appearance and prevent cracking or fading.',
+      fullDescription: 'Leather requires special care to maintain its luxurious appearance and prevent cracking or fading. We use premium pH-balanced products to gently clean, nourish, and protect.',
+      features: [
+        'Gentle leather cleaning with pH-balanced products',
+        'Deep cleaning of surfaces and crevices',
+        'Leather conditioning to restore suppleness',
+        'UV protection to prevent fading and cracking',
+        'Stain treatment',
+        'Leather protection application',
+        'Final buffing for luxurious finish',
+        'Quality inspection',
+      ],
+      priceString: 'Starting at $49.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -311,7 +447,20 @@ export const services = {
   'paint-polish': [
     {
       id: 'gloss-enhancer',
+      category: 'Paint Polish',
       name: 'Gloss Enhancer',
+      shortDescription: 'A great option for newer or well-maintained vehicles.',
+      fullDescription: 'A great option for newer or well-maintained vehicles. Deeply cleans paint and boosts shine by removing embedded contaminants. Finished with a fine polish to bring out clarity and gloss.',
+      features: [
+        'Exterior detail wash',
+        'Paint decontamination',
+        'Fine machine polish to boost gloss',
+        'Microfiber hand-buffing for finish',
+        'Inspection for shine & uniformity',
+        '3-month polymer sealant (optional if ceramic coating selected)',
+        'Final quality check',
+      ],
+      priceString: 'Starting at $369.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -341,7 +490,21 @@ export const services = {
     },
     {
       id: 'one-step-polish',
+      category: 'Paint Polish',
       name: 'One-Step Polish',
+      shortDescription: 'Perfect for vehicles that need a quick refresh without extensive correction.',
+      fullDescription: 'Perfect for vehicles that need a quick refresh without extensive correction. Combines light paint correction with gloss enhancement in a single step. Ideal for well-maintained vehicles or minor imperfections.',
+      features: [
+        'Paint surface prep and cleaning',
+        'Single-stage polishing with dual-action compound',
+        'Light swirl mark and scratch removal',
+        'Gloss enhancement',
+        'Paint surface refinement',
+        'Final buffing and inspection',
+        'Optional paint protection application',
+        'Quality check',
+      ],
+      priceString: 'Starting at $599.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -373,7 +536,21 @@ export const services = {
     },
     {
       id: 'paint-correction',
+      category: 'Paint Polish',
       name: 'Paint Correction',
+      shortDescription: 'Our most comprehensive paint restoration service.',
+      fullDescription: 'Our most comprehensive paint restoration service. Eliminates severe swirl marks, scratches, and defects through a multi-stage process using various polishing compounds to achieve a showroom-quality finish.',
+      features: [
+        'Detailed paint condition assessment',
+        'Multi-stage compounding and polishing',
+        'Heavy swirl mark and scratch removal',
+        'Oxidation and defect elimination',
+        'Paint depth restoration and enhancement',
+        'Gloss perfection and clarity improvement',
+        'Paint surface refinement and smoothing',
+        'Final inspection and protection preparation',
+      ],
+      priceString: 'Starting at $749.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
@@ -409,8 +586,24 @@ export const services = {
   protection: [
     {
       id: 'ceramic-coating',
+      category: 'Protection',
       name: 'Ceramic Coating',
-      isFeatured: true,
+      shortDescription: 'Ceramic coating is a liquid polymer made from nanotechnology-based SiO₂ (silicon dioxide).',
+      fullDescription: 'Ceramic coating is a liquid polymer made from nanotechnology-based SiO₂ (silicon dioxide). Once cured, it chemically bonds to the factory paint, creating a hydrophobic, slick, and ultra-durable shield. Unlike traditional waxes or sealants, it provides long-lasting protection that repels dirt, water, road grime, bird droppings, bug splatter, and more.',
+      features: [
+        'Hydrophobic — water beads & slides off',
+        'UV-Resistant — prevents fading, chalking, oxidation',
+        'Scratch Resistant — protects from light abrasions',
+        'Chemical Resistant — defends against acids & brake dust',
+        'Gloss Enhancing — deep mirror-like finish',
+        'Acid Rain Protection',
+        'Bird Droppings Barrier',
+        'Industrial Fallout Defense',
+        'Tree Sap Resistance',
+        'Weather Erosion Guard',
+      ],
+      priceString: 'Starting at $249.99',
+      isFeatured: true, // Keep it true, the UI can ignore it if needed
       intro:
         'Ceramic coating is a liquid polymer made from nanotechnology-based SiO₂ (silicon dioxide). Once cured, it chemically bonds to the factory paint, creating a hydrophobic, slick, and ultra-durable shield. Unlike traditional waxes or sealants, it provides long-lasting protection that repels dirt, water, road grime, bird droppings, bug splatter, and more.',
       keyBenefits: [
@@ -499,7 +692,21 @@ export const services = {
     },
     {
       id: 'paint-sealant',
+      category: 'Protection',
       name: 'Paint Sealant',
+      shortDescription: 'A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants.',
+      fullDescription: 'A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants. Offers 6–12 months of protection while enhancing gloss.',
+      features: [
+        'Paint surface preparation and cleaning',
+        'Professional-grade synthetic sealant application',
+        'Even coverage and proper curing',
+        'Gloss enhancement',
+        'UV and environmental protection',
+        'Quality inspection',
+        'Maintenance instructions',
+        'Follow-up recommendations',
+      ],
+      priceString: '$99.99 CAD',
       price: { type: 'flat', amount: '$99.99 CAD' },
       whyUs:
         'A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants. Offers 6–12 months of protection while enhancing gloss.',
@@ -525,7 +732,21 @@ export const services = {
     },
     {
       id: 'car-wax',
+      category: 'Protection',
       name: 'Car Wax',
+      shortDescription: 'The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss.',
+      fullDescription: 'The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss. Provides 2–4 months of protection with a warm, rich appearance that only wax can achieve.',
+      features: [
+        'Paint surface preparation and cleaning',
+        'Premium carnauba or hybrid wax application',
+        'Hand application for optimal coverage',
+        'Proper curing and buffing',
+        'Gloss enhancement and depth improvement',
+        'UV and environmental protection',
+        'Quality inspection and final buffing',
+        'Maintenance instructions',
+      ],
+      priceString: 'Starting at $49.99 CAD',
       price: {
         type: 'tiered',
         tiers: [
