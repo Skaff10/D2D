@@ -132,15 +132,29 @@ export default function ServiceDetailPage() {
                   {service.fullDescription}
                 </p>
 
-                <h3 className="serif-heading text-xl text-white mb-6">What's Included</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {service.features.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-primary/70 shrink-0 mt-0.5" />
-                      <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+                {!isCeramicCoating && (
+                  <>
+                    <h3 className="serif-heading text-xl text-white mb-6">Service Features</h3>
+                    <div className="grid sm:grid-cols-2 gap-4 mb-10">
+                      {service.features?.map((item, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <CheckCircle2 size={16} className="text-primary/70 shrink-0 mt-0.5" />
+                          <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+
+                    <h3 className="serif-heading text-xl text-white mb-6">The Benefits</h3>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {service.included?.map((item, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <CheckCircle2 size={16} className="text-primary/70 shrink-0 mt-0.5" />
+                          <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
               </motion.div>
 
               {/* Ceramic Coating Specific Content */}

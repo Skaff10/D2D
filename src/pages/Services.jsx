@@ -8,6 +8,12 @@ import ServiceCategoryTabs from "../components/services/ServiceCategoryTabs";
 import ServiceCard from "../components/services/ServiceCard";
 import { categories, services } from "../data/servicesData";
 
+
+
+
+
+
+
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState("exterior");
   const sectionsRef = useRef({});

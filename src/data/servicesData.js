@@ -1,5 +1,72 @@
 // All service data for Down2Detail services page
 // Categories: Exterior, Interior, Paint Polish, Protection
+import ceramic_cover from "../assets/dk/imgi_2_ceramiccoating.webp";
+import ceramic1 from "../assets/dk/imgi_2_ceramiccoating.webp";
+import ceramic2 from "../assets/dk/imgi_3_beforeaftercoating.webp";
+
+import exterior_cover from "../assets/images/services/Exterior Detailing.avif";
+import exterior1 from "../assets/dk/imgi_2_exterior2.jpg";
+import exterior2 from "../assets/images/services/Exterior Detailing.avif";
+
+import paintdec_cover from "../assets/images/services/Paint Decontamination.webp";
+import paintdec1 from "../assets/dk/img32.jpg";
+import paintdec2 from "../assets/images/services/Paint Decontamination.webp";
+
+import enginebay_cover from "../assets/images/services/engine bay detail.jpg";
+import enginebay1 from "../assets/dk/engine2.jpg"
+import enginebay2 from "../assets/images/services/engine bay detail.jpg"
+
+import head_cover from "../assets/images/services/headlight-restoration.webp"
+import head1  from "../assets/dk/imgi_2_headlight-Restoration.png"
+import head2 from "../assets/images/services/headlight-restoration.webp"
+
+import tail_cover from "../assets/dk/imgi_2_headlight-Restoration.png"
+import tail1 from "../assets/images/services/headlight tint.jpg"
+import tail2 from "../assets/dk/imgi_2_headlight-Restoration.png"
+
+import interior_cover from "../assets/images/services/Interior.avif"
+import interior1 from "../assets/dk/imgi_4_Interior.png"
+import interior2 from "../assets/images/services/Interior.avif"
+
+import leather_cover from "../assets/images/services/leather seat treatment.webp"
+import leather1 from "../assets/images/services/leather seat treatment.webp"
+import leather2 from "../assets/images/services/seat shampoo.png"
+
+import fabric_cover  from "../assets/images/services/seat shampoo.png"
+import fabric1 from "../assets/images/services/leather seat treatment.webp"
+import fabric2 from "../assets/images/services/seat shampoo.png"
+
+import pet_cover from "../assets/dk/pet1.jpg"
+import pet1 from "../assets/images/services/pet1.jpg"
+import pet2 from "../assets/images/services/pet2.jpg"
+
+import floor_cover from "../assets/images/services/floor shampoo.jpg"
+import floor1 from "../assets/dk/floor1.jpg"
+import floor2 from "../assets/images/services/floor shampoo.jpg"  
+
+import glass_cover from "../assets/images/services/gloss enhancer.jpg"
+import glass1 from "../assets/dk/gloss2.jpg"
+import glass2 from "../assets/images/services/gloss enhancer.jpg"
+
+import onestep_cover from "../assets/images/services/Single Stage Paint Correction.jpg"
+import onestep1  from "../assets/dk/onestep1.jpg"
+import onestep2 from "../assets/images/services/Single Stage Paint Correction.jpg"
+
+import twostep_cover from "../assets/dk/twostepcover.jpg"
+import twostep1 from "../assets/dk/twostep1.avif"
+import twostep2 from "../assets/dk/twostepcover.jpg"
+
+import threestep_cover from "../assets/dk/threestepcover.jpg"
+import threestep1 from "../assets/dk/threestep1.webp"
+import threestep2 from "../assets/dk/threestep2.jpg"
+
+import sealant_cover from "../assets/dk/sealant.jpg"
+import sealant1 from "../assets/dk/sealant1.jpg"
+import sealant2 from "../assets/dk/sealant.jpg"
+
+import wax_cover from "../assets/dk/carwax.webp"
+import wax1 from "../assets/dk/carwax1.jpg"
+import wax2 from "../assets/dk/carwax2.webp"
 
 export const categories = [
   { id: "exterior", label: "Exterior" },
@@ -35,9 +102,9 @@ export const services = {
       whyUs:
         "Basic car washes use dirty sponges, harsh chemicals, or automated brushes that leave swirl marks and scratches. Our service safely cleans every part of your car's exterior using pH-neutral products and precise hand techniques.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: exterior_cover,
+      pic1: exterior1,
+      pic2: exterior2,
       included: [
         "Improves exterior appearance",
         "Prevents swirl marks & micro-scratches",
@@ -68,9 +135,9 @@ export const services = {
       whyUs:
         "Even after a proper wash, paint can feel rough due to microscopic contaminants like brake dust, industrial fallout, road tar, and tree sap that embed into paint over time.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: paintdec_cover,
+      pic1: paintdec1,
+      pic2: paintdec2,
       included: [
         "Improves exterior appearance",
         "Restores paint smoothness",
@@ -110,9 +177,9 @@ export const services = {
       whyUs:
         "One of the most overlooked areas in detailing. We take a safe, meticulous approach without high-pressure water, protecting critical components, removing grime, and finishing with a non-greasy dressing for a clean factory look.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: enginebay_cover,
+      pic1: enginebay1,
+      pic2: enginebay2,
       included: [
         "Improves engine bay appearance",
         "Removes built-up grease, oil, & debris",
@@ -152,9 +219,9 @@ export const services = {
       whyUs:
         "Faded or hazy headlights reduce night visibility and compromise safety. Our multi-stage sanding and polishing process restores clarity, shine, and light output.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: head_cover,
+      pic1: head1,
+      pic2: head2,
       included: [
         "Improves appearance",
         "Restores nighttime visibility & safety",
@@ -192,9 +259,9 @@ export const services = {
       whyUs:
         "Adds a sleek, custom appearance to headlights and taillights while offering UV, scratch, and oxidation protection. Two bold shades available with a 1-year warranty.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: tail_cover,
+      pic1: tail1,
+      pic2: tail2,
       included: [
         "Achieves blacked-out, sporty look",
         "Shields lights from UV, fading, & scratching",
@@ -230,9 +297,9 @@ export const services = {
       whyUs:
         "Quick washes offer rushed wipe-downs that miss vents and tight spaces. We deep clean every accessible area using safe, professional-grade tools and products — it's an art, not a surface-level clean.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: interior_cover,
+      pic1: interior1,
+      pic2: interior2,
       included: [
         "Improves appearance and cleanliness",
         "Removes embedded dirt, dust, and grime",
@@ -267,9 +334,9 @@ export const services = {
       whyUs:
         "Carpets endure daily wear from shoes, spills, and debris. We use professional-grade extraction equipment and specialized solutions to deep clean and sanitize, restoring like-new condition.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: floor_cover,
+      pic1: floor1,
+      pic2: floor2,
       included: [
         "Removes embedded dirt, stains, and odors",
         "Sanitizes carpets for better hygiene",
@@ -304,9 +371,9 @@ export const services = {
       whyUs:
         "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: pet_cover,
+      pic1: pet1,
+      pic2: pet2,
       included: [
         "Completely removes all pet hair",
         "Eliminates allergens and pet dander",
@@ -348,9 +415,9 @@ export const services = {
       whyUs:
         "Fabric seats absorb spills, stains, and odors over time. We use hot water extraction and specialized solutions to deep clean, sanitize, and restore seats to like-new condition.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: fabric_cover,
+      pic1: fabric1,
+      pic2: fabric2,
       included: [
         "Removes embedded dirt, stains, and odors",
         "Sanitizes fabric",
@@ -392,9 +459,9 @@ export const services = {
       whyUs:
         "Leather requires special care to maintain its luxurious appearance and prevent cracking or fading. We use premium pH-balanced products to gently clean, nourish, and protect.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: leather_cover,
+      pic1: leather1,
+      pic2: leather2,
       included: [
         "Restores natural suppleness",
         "Prevents cracking and premature aging",
@@ -429,9 +496,9 @@ export const services = {
       whyUs:
         "A great option for newer or well-maintained vehicles. Deeply cleans paint and boosts shine by removing embedded contaminants. Finished with a fine polish to bring out clarity and gloss.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: glass_cover,
+      pic1: glass1,
+      pic2: glass2,
       included: [
         "Contaminants can dull paint even without scratches",
         "Revives shine without harsh polishing",
@@ -463,9 +530,9 @@ export const services = {
       whyUs:
         "Perfect for vehicles that need a quick refresh without extensive correction. Combines light paint correction with gloss enhancement in a single step. Ideal for well-maintained vehicles or minor imperfections.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: onestep_cover,
+      pic1: onestep1,
+      pic2: onestep2,
       included: [
         "Faster than multi-stage correction",
         "Removes light swirl marks and minor scratches",
@@ -498,9 +565,9 @@ export const services = {
       price: null,
       whyUs:
         "Ideal for vehicles with moderate swirl marks, light scratches, and dull paint that need more than a single-stage refresh. A dedicated cutting stage removes defects, followed by a finishing polish that maximizes gloss and paint clarity.",
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: twostep_cover,
+      pic1: twostep1,
+      pic2: twostep2,
       included: [
         "Removes moderate swirl marks and scratches",
         "Two dedicated stages for superior results vs one-step",
@@ -536,9 +603,9 @@ export const services = {
       price: null,
       whyUs:
         "Our most comprehensive paint restoration service for severely neglected or heavily scratched paint. Three dedicated stages — heavy cutting, medium correction, and fine finishing — work progressively to eliminate deep defects and deliver a flawless, showroom-quality result.",
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: threestep_cover,
+      pic1: threestep1,
+      pic2: threestep2,
       included: [
         "Eliminates severe swirl marks, deep scratches & oxidation",
         "Three progressive stages for the highest correction level",
@@ -641,6 +708,9 @@ export const services = {
           price: "$199.99",
         },
       ],
+      cover_pic: ceramic_cover,
+      pic1: ceramic1,
+      pic2: ceramic2,
       faq: [
         {
           q: "Does ceramic coating require maintenance?",
@@ -683,9 +753,9 @@ export const services = {
       whyUs:
         "A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants. Offers 6–12 months of protection while enhancing gloss.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: sealant_cover,
+      pic1: sealant1,
+      pic2: sealant2,
       included: [
         "6–12 months of durable protection",
         "Enhanced gloss and shine",
@@ -726,9 +796,9 @@ export const services = {
       whyUs:
         "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss. Provides 2–4 months of protection with a warm, rich appearance that only wax can achieve.",
 
-      cover_pic: null,
-      pic1: null,
-      pic2: null,
+      cover_pic: wax_cover,
+      pic1: wax1,
+      pic2: wax2,
       included: [
         "Classic warm, rich gloss appearance",
         "2–4 months of reliable protection",
