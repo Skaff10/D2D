@@ -14,8 +14,7 @@ export default function ServiceCard({ service, index }) {
       <div className="dark-card overflow-hidden card-hover h-full flex flex-col">
         {/* Top 40% — Image area */}
         <div className="aspect-[4/3] bg-zinc-800 border-b border-zinc-700 relative flex items-center justify-center">
-          {/* TODO: Replace with service image */}
-          <span className="text-zinc-600 text-xs font-mono uppercase tracking-widest hidden group-hover:block transition-all">Placeholder</span>
+          <img src={service.cover_pic} alt={service.title} className="w-full h-full object-cover" />
         </div>
 
         {/* Bottom 60% — Info area */}

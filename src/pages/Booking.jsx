@@ -1,41 +1,85 @@
-import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
-import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { CalendarDays, Clock, User, Phone, Mail, FileText, Car, AlertCircle } from 'lucide-react'
-import { collection, addDoc, getDocs, query, where, Timestamp } from 'firebase/firestore'
-import { db } from '../firebase/config'
-import emailjs from '@emailjs/browser'
-import SectionHeading from '../components/ui/SectionHeading'
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import {
+  CalendarDays,
+  Clock,
+  User,
+  Phone,
+  Mail,
+  FileText,
+  Car,
+  AlertCircle,
+} from "lucide-react";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  Timestamp,
+} from "firebase/firestore";
+import { db } from "../firebase/config";
+import emailjs from "@emailjs/browser";
+import SectionHeading from "../components/ui/SectionHeading";
 
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
-const vehicleTypes = ['Sedan', 'SUV', 'Truck', 'Van']
+const vehicleTypes = ["Sedan", "SUV", "Truck", "Van"];
 
 const timeSlots = [
-  '8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
-  '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM',
-  '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM',
-  '5:00 PM',
-]
+  "8:00 AM",
+  "8:30 AM",
+  "9:00 AM",
+  "9:30 AM",
+  "10:00 AM",
+  "10:30 AM",
+  "11:00 AM",
+  "11:30 AM",
+  "12:00 PM",
+  "12:30 PM",
+  "1:00 PM",
+  "1:30 PM",
+  "2:00 PM",
+  "2:30 PM",
+  "3:00 PM",
+  "3:30 PM",
+  "4:00 PM",
+  "4:30 PM",
+  "5:00 PM",
+];
 
 const fallbackServices = [
-  { id: '1', name: 'Exterior Detailing' },
-  { id: '2', name: 'Interior Detailing' },
-  { id: '3', name: 'Paint Correction' },
-  { id: '4', name: 'Ceramic Coating' },
-]
+  { id: "1", name: "Exterior Detailing" },
+  { id: "2", name: "Paint Decontamination" },
+  { id: "3", name: "Engine Bay Detailing" },
+  { id: "4", name: "Headlight Restoration" },
+  { id: "5", name: "Headlight & Taillight Tint" },
+  { id: "6", name: "Interior Detailing" },
+  { id: "7", name: "Floor & Carpet Shampoo" },
+  { id: "8", name: "Pet Hair Removal" },
+  { id: "9", name: "Fabric Seat Shampoo" },
+  { id: "10", name: "Leather Seat Treatment" },
+  { id: "11", name: "Gloss Enhancer" },
+  { id: "12", name: "One-Step Polish" },
+  { id: "13", name: "Two-Step Polish" },
+  { id: "14", name: "Three-Step Polish" },
+  { id: "15", name: "Ceramic Coating" },
+  { id: "16", name: "Paint Sealant" },
+  { id: "17", name: "Car Wax" },
+];
 
 export default function Booking() {
-  const [searchParams] = useSearchParams()
-  const [services, setServices] = useState(fallbackServices)
-  const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const preselectedService = searchParams.get('service') || ''
+  const [searchParams] = useSearchParams();
+  const [services, setServices] = useState(fallbackServices);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const preselectedService = searchParams.get("service") || "";
 
   const {
     register,
@@ -45,39 +89,47 @@ export default function Booking() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      customerName: '',
-      phone: '',
-      email: '',
-      vehicleType: '',
+      customerName: "",
+      phone: "",
+      email: "",
+      vehicleType: "",
       serviceName: preselectedService,
-      date: '',
-      time: '',
-      notes: '',
+      date: "",
+      time: "",
+      notes: "",
     },
-  })
+  });
 
-  const selectedService = watch('serviceName')
-  const isCeramicCoating = selectedService?.toLowerCase().includes('ceramic')
-
+  const selectedService = watch("serviceName");
+  const showPricingNote =
+    selectedService === "Gloss Enhancer" ||
+    selectedService === "One-Step Polish" ||
+    selectedService === "Two-Step Polish" ||
+    selectedService === "Three-Step Polish";
   useEffect(() => {
     async function fetchServices() {
       try {
-        const q = query(collection(db, 'services'), where('isActive', '==', true))
-        const snapshot = await getDocs(q)
+        const q = query(
+          collection(db, "services"),
+          where("isActive", "==", true),
+        );
+        const snapshot = await getDocs(q);
         if (!snapshot.empty) {
-          setServices(snapshot.docs.map(doc => ({ id: doc.id, name: doc.data().name })))
+          setServices(
+            snapshot.docs.map((doc) => ({ id: doc.id, name: doc.data().name })),
+          );
         }
       } catch (err) {
-        console.log('Using fallback services for dropdown')
+        console.log("Using fallback services for dropdown");
       }
     }
-    fetchServices()
-  }, [])
+    fetchServices();
+  }, []);
 
   const onSubmit = async (data) => {
-    setSubmitting(true)
+    setSubmitting(true);
     try {
-      await addDoc(collection(db, 'bookings'), {
+      await addDoc(collection(db, "bookings"), {
         customerName: data.customerName,
         phone: data.phone,
         email: data.email,
@@ -85,41 +137,52 @@ export default function Booking() {
         serviceName: data.serviceName,
         date: data.date,
         time: data.time,
-        notes: data.notes || '',
-        status: 'Pending',
+        notes: data.notes || "",
+        status: "Pending",
         createdAt: Timestamp.now(),
-      })
+      });
 
       try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          customer_name: data.customerName,
-          customer_phone: data.phone,
-          customer_email: data.email,
-          vehicle_type: data.vehicleType,
-          service_name: data.serviceName,
-          booking_date: data.date,
-          booking_time: data.time,
-          notes: data.notes || 'None',
-        }, EMAILJS_PUBLIC_KEY)
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            customer_name: data.customerName,
+            customer_phone: data.phone,
+            customer_email: data.email,
+            vehicle_type: data.vehicleType,
+            service_name: data.serviceName,
+            booking_date: data.date,
+            booking_time: data.time,
+            notes: data.notes || "None",
+          },
+          EMAILJS_PUBLIC_KEY,
+        );
       } catch (emailErr) {
-        console.log('EmailJS notification skipped:', emailErr.message)
+        console.log("EmailJS notification skipped:", emailErr.message);
       }
 
-      toast.success('Booking submitted successfully! We\'ll contact you shortly to confirm.')
-      setSubmitted(true)
-      reset()
+      toast.success(
+        "Booking submitted successfully! We'll contact you shortly to confirm.",
+      );
+      setSubmitted(true);
+      reset();
     } catch (err) {
-      console.error('Booking error:', err)
-      toast.error('Something went wrong. Please try calling us at 438-483-8175.')
+      console.error("Booking error:", err);
+      toast.error(
+        "Something went wrong. Please try calling us at 438-483-8175.",
+      );
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
-  const today = new Date().toISOString().split('T')[0]
+  const today = new Date().toISOString().split("T")[0];
 
-  const inputClasses = 'w-full bg-[#161616] border border-white/[0.06] rounded-xl px-4 py-3.5 text-white placeholder-white/20 text-sm transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15'
-  const labelClasses = 'flex items-center gap-2 text-xs font-medium text-text-secondary mb-2'
+  const inputClasses =
+    "w-full bg-[#161616] border border-white/[0.06] rounded-xl px-4 py-3.5 text-white placeholder-white/20 text-sm transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15";
+  const labelClasses =
+    "flex items-center gap-2 text-xs font-medium text-text-secondary mb-2";
 
   if (submitted) {
     return (
@@ -136,27 +199,32 @@ export default function Booking() {
             <div className="shield-badge w-20 h-20 rounded-2xl mx-auto mb-6">
               <CalendarDays size={32} className="text-primary/60" />
             </div>
-            <h1 className="serif-heading text-3xl text-white mb-4">Booking Received!</h1>
+            <h1 className="serif-heading text-3xl text-white mb-4">
+              Booking Received!
+            </h1>
             <p className="text-text-secondary mb-8">
-              Thank you for choosing Down2Detail. We'll call you shortly to confirm your appointment.
+              Thank you for choosing Down2Detail. We'll call you shortly to
+              confirm your appointment.
             </p>
-            <button
-              onClick={() => setSubmitted(false)}
-              className="btn-filled"
-            >
+            <button onClick={() => setSubmitted(false)} className="btn-filled">
               Book Another Service
             </button>
           </motion.div>
         </div>
       </>
-    )
+    );
   }
 
   return (
     <>
       <Helmet>
-        <title>Book Auto Detailing in Montreal & Saint-Hubert | Down2Detail</title>
-        <meta name="description" content="Book your professional auto detailing appointment with Down2Detail. Serving Montreal, Saint-Hubert & the Greater Montreal Area. Easy online booking." />
+        <title>
+          Book Auto Detailing in Montreal & Saint-Hubert | Down2Detail
+        </title>
+        <meta
+          name="description"
+          content="Book your professional auto detailing appointment with Down2Detail. Serving Montreal, Saint-Hubert & the Greater Montreal Area. Easy online booking."
+        />
       </Helmet>
 
       <section className="pt-32 pb-20 min-h-screen">
@@ -184,9 +252,15 @@ export default function Booking() {
                   type="text"
                   placeholder="John Doe"
                   className={inputClasses}
-                  {...register('customerName', { required: 'Name is required' })}
+                  {...register("customerName", {
+                    required: "Name is required",
+                  })}
                 />
-                {errors.customerName && <p className="text-red-400 text-xs mt-1">{errors.customerName.message}</p>}
+                {errors.customerName && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.customerName.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className={labelClasses}>
@@ -196,9 +270,13 @@ export default function Booking() {
                   type="tel"
                   placeholder="(438) 000-0000"
                   className={inputClasses}
-                  {...register('phone', { required: 'Phone is required' })}
+                  {...register("phone", { required: "Phone is required" })}
                 />
-                {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone.message}</p>}
+                {errors.phone && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -212,12 +290,16 @@ export default function Booking() {
                   type="email"
                   placeholder="john@example.com"
                   className={inputClasses}
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' },
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: { value: /^\S+@\S+$/i, message: "Invalid email" },
                   })}
                 />
-                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className={labelClasses}>
@@ -225,16 +307,25 @@ export default function Booking() {
                 </label>
                 <select
                   className={inputClasses}
-                  {...register('vehicleType', { required: 'Vehicle type is required' })}
+                  {...register("vehicleType", {
+                    required: "Vehicle type is required",
+                  })}
                 >
                   <option value="">Select vehicle type</option>
-                  {vehicleTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
+                  {vehicleTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
-                {errors.vehicleType && <p className="text-red-400 text-xs mt-1">{errors.vehicleType.message}</p>}
+                {errors.vehicleType && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.vehicleType.message}
+                  </p>
+                )}
               </div>
             </div>
+
 
             {/* Service */}
             <div>
@@ -243,22 +334,36 @@ export default function Booking() {
               </label>
               <select
                 className={inputClasses}
-                {...register('serviceName', { required: 'Please select a service' })}
+                {...register("serviceName", {
+                  required: "Please select a service",
+                })}
               >
                 <option value="">Select a service</option>
-                {services.map(s => (
-                  <option key={s.id} value={s.name}>{s.name}</option>
+                {services.map((s) => (
+                  <option key={s.id} value={s.name}>
+                    {s.name}
+                  </option>
                 ))}
               </select>
-              {errors.serviceName && <p className="text-red-400 text-xs mt-1">{errors.serviceName.message}</p>}
-              {isCeramicCoating && (
+              {errors.serviceName && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.serviceName.message}
+                </p>
+              )}
+              {showPricingNote && (
                 <div className="flex items-start gap-2 mt-2 dark-card p-3 bg-primary/[0.04] border-primary/10">
-                  <AlertCircle size={14} className="text-primary/60 shrink-0 mt-0.5" />
+                  <AlertCircle
+                    size={14}
+                    className="text-primary/60 shrink-0 mt-0.5"
+                  />
                   <p className="text-primary/70 text-xs">
-                    Contact for pricing — Ceramic coating pricing varies based on vehicle size and condition. We'll provide a custom quote after inspection.
+                    Contact for pricing — Pricing varies based on vehicle size
+                    and paint condition. We'll provide a custom quote after
+                    inspection.
                   </p>
                 </div>
               )}
+              
             </div>
 
             {/* Date & Time */}
@@ -271,9 +376,13 @@ export default function Booking() {
                   type="date"
                   min={today}
                   className={inputClasses}
-                  {...register('date', { required: 'Date is required' })}
+                  {...register("date", { required: "Date is required" })}
                 />
-                {errors.date && <p className="text-red-400 text-xs mt-1">{errors.date.message}</p>}
+                {errors.date && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.date.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className={labelClasses}>
@@ -281,14 +390,20 @@ export default function Booking() {
                 </label>
                 <select
                   className={inputClasses}
-                  {...register('time', { required: 'Time is required' })}
+                  {...register("time", { required: "Time is required" })}
                 >
                   <option value="">Select a time</option>
-                  {timeSlots.map(t => (
-                    <option key={t} value={t}>{t}</option>
+                  {timeSlots.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
                   ))}
                 </select>
-                {errors.time && <p className="text-red-400 text-xs mt-1">{errors.time.message}</p>}
+                {errors.time && (
+                  <p className="text-red-400 text-xs mt-1">
+                    {errors.time.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -301,7 +416,7 @@ export default function Booking() {
                 rows={4}
                 placeholder="Any special requests or details about your vehicle..."
                 className={`${inputClasses} resize-none`}
-                {...register('notes')}
+                {...register("notes")}
               />
             </div>
 
@@ -309,7 +424,7 @@ export default function Booking() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full btn-filled py-4 justify-center text-base"
+              className="w-full btn-filled py-4 justify-center text-base cursor-pointer"
             >
               {submitting ? (
                 <>
@@ -331,5 +446,5 @@ export default function Booking() {
         </div>
       </section>
     </>
-  )
+  );
 }

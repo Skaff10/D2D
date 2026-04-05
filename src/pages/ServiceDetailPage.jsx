@@ -98,8 +98,7 @@ export default function ServiceDetailPage() {
               transition={{ duration: 0.5 }}
               className="aspect-[4/3] bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
             >
-              {/* TODO: Replace with service image */}
-              <span className="text-zinc-600 text-sm font-mono uppercase tracking-widest group-hover:text-zinc-500 transition-colors">Image Placeholder</span>
+              <img src={service.pic1} className="w-full h-full object-cover rounded-xl" />
             </motion.div>
             
             <motion.div
@@ -109,8 +108,7 @@ export default function ServiceDetailPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="aspect-[4/3] bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
             >
-              {/* TODO: Replace with service image */}
-              <span className="text-zinc-600 text-sm font-mono uppercase tracking-widest group-hover:text-zinc-500 transition-colors">Image Placeholder</span>
+              <img src={service.pic2} className="w-full h-full object-cover rounded-xl" />
             </motion.div>
           </div>
         </div>

@@ -1,46 +1,46 @@
-import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
-import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from 'lucide-react'
-import { FaInstagram, FaFacebookF } from 'react-icons/fa'
-import emailjs from '@emailjs/browser'
-import SectionHeading from '../components/ui/SectionHeading'
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import SectionHeading from "../components/ui/SectionHeading";
 
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
 const contactInfo = [
   {
     icon: Phone,
-    title: 'Phone',
-    value: '+1 438 483 8175',
-    href: 'tel:+14384838175',
-    desc: 'Call us anytime during business hours',
+    title: "Phone",
+    value: "+1 438 483 8175",
+    href: "tel:+14384838175",
+    desc: "Call us anytime during business hours",
   },
   {
     icon: Mail,
-    title: 'Email',
-    value: 'down2detail.ca@gmail.com',
-    href: 'mailto:down2detail.ca@gmail.com',
-    desc: 'We respond within 24 hours',
+    title: "Email",
+    value: "down2detail.ca@gmail.com",
+    href: "mailto:down2detail.ca@gmail.com",
+    desc: "We respond within 24 hours",
   },
   {
     icon: MapPin,
-    title: 'Location',
-    value: '4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5',
-    href: 'https://maps.google.com/?q=4500+Bd+Kimber+Saint-Hubert+QC+J3Y+8K5',
-    desc: 'Serving Greater Montreal Area',
+    title: "Location",
+    value: "4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5",
+    href: "https://maps.google.com/?q=4500+Bd+Kimber+Saint-Hubert+QC+J3Y+8K5",
+    desc: "Serving Greater Montreal Area",
   },
   {
     icon: Clock,
-    title: 'Hours',
-    value: 'Mon – Sun: 8AM – 6PM',
+    title: "Hours",
+    value: "Mon – Sun: 8AM – 6PM",
     href: null,
-    desc: 'Open 7 days a week',
+    desc: "Open 7 days a week",
   },
-]
+];
 
 export default function Contact() {
   const {
@@ -48,31 +48,42 @@ export default function Contact() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        from_name: data.name,
-        from_email: data.email,
-        phone: data.phone,
-        message: data.message,
-      }, EMAILJS_PUBLIC_KEY)
-      toast.success('Message sent! We\'ll get back to you shortly.')
-      reset()
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          phone: data.phone,
+          message: data.message,
+        },
+        EMAILJS_PUBLIC_KEY,
+      );
+      toast.success("Message sent! We'll get back to you shortly.");
+      reset();
     } catch (err) {
-      console.error('Contact form error:', err)
-      toast.error('Failed to send. Please call us at 438-483-8175.')
+      console.error("Contact form error:", err);
+      toast.error("Failed to send. Please call us at 438-483-8175.");
     }
-  }
+  };
 
-  const inputClasses = 'w-full bg-[#161616] border border-white/[0.06] rounded-xl px-4 py-3.5 text-white placeholder-white/20 text-sm transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15'
+  const inputClasses =
+    "w-full bg-[#161616] border border-white/[0.06] rounded-xl px-4 py-3.5 text-white placeholder-white/20 text-sm transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15";
 
   return (
     <>
       <Helmet>
-        <title>Contact Down2Detail | Auto Detailing in Montreal & Saint-Hubert</title>
-        <meta name="description" content="Contact Down2Detail for professional auto detailing in Montreal & Saint-Hubert. Call +1 438 483 8175 or email us. Open 7 days a week." />
+        <title>
+          Contact Down2Detail | Auto Detailing in Montreal & Saint-Hubert
+        </title>
+        <meta
+          name="description"
+          content="Contact Down2Detail for professional auto detailing in Montreal & Saint-Hubert. Call +1 438 483 8175 or email us. Open 7 days a week."
+        />
       </Helmet>
 
       <section className="pt-32 pb-16">
@@ -101,13 +112,22 @@ export default function Contact() {
                 <div className="shield-badge mx-auto mb-3 w-11 h-11 rounded-xl">
                   <info.icon size={18} className="text-primary/60" />
                 </div>
-                <h3 className="serif-heading text-base text-white mb-1">{info.title}</h3>
+                <h3 className="serif-heading text-base text-white mb-1">
+                  {info.title}
+                </h3>
                 {info.href ? (
-                  <a href={info.href} target={info.title === 'Location' ? '_blank' : undefined} rel="noopener noreferrer" className="text-primary/80 text-sm font-medium hover:text-primary transition-colors">
+                  <a
+                    href={info.href}
+                    target={info.title === "Location" ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="text-primary/80 text-sm font-medium hover:text-primary transition-colors"
+                  >
                     {info.value}
                   </a>
                 ) : (
-                  <p className="text-primary/80 text-sm font-medium">{info.value}</p>
+                  <p className="text-primary/80 text-sm font-medium">
+                    {info.value}
+                  </p>
                 )}
                 <p className="text-text-muted text-xs mt-1">{info.desc}</p>
               </motion.div>
@@ -127,52 +147,79 @@ export default function Contact() {
                 <div className="shield-badge w-9 h-9 rounded-lg">
                   <MessageSquare size={15} className="text-primary/60" />
                 </div>
-                <h2 className="serif-heading text-2xl text-white">Send Us a Message</h2>
+                <h2 className="serif-heading text-2xl text-white">
+                  Send Us a Message
+                </h2>
               </div>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="text-xs font-medium text-text-secondary mb-2 block">Name *</label>
+                    <label className="text-xs font-medium text-text-secondary mb-2 block">
+                      Name *
+                    </label>
                     <input
                       type="text"
                       placeholder="Your name"
                       className={inputClasses}
-                      {...register('name', { required: 'Name is required' })}
+                      {...register("name", { required: "Name is required" })}
                     />
-                    {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
+                    {errors.name && (
+                      <p className="text-red-400 text-xs mt-1">
+                        {errors.name.message}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-text-secondary mb-2 block">Phone</label>
+                    <label className="text-xs font-medium text-text-secondary mb-2 block">
+                      Phone
+                    </label>
                     <input
                       type="tel"
                       placeholder="(438) 000-0000"
                       className={inputClasses}
-                      {...register('phone')}
+                      {...register("phone")}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-text-secondary mb-2 block">Email *</label>
+                  <label className="text-xs font-medium text-text-secondary mb-2 block">
+                    Email *
+                  </label>
                   <input
                     type="email"
                     placeholder="your@email.com"
                     className={inputClasses}
-                    {...register('email', {
-                      required: 'Email is required',
-                      pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' },
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^\S+@\S+$/i,
+                        message: "Invalid email",
+                      },
                     })}
                   />
-                  {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-text-secondary mb-2 block">Message *</label>
+                  <label className="text-xs font-medium text-text-secondary mb-2 block">
+                    Message *
+                  </label>
                   <textarea
                     rows={5}
                     placeholder="How can we help you?"
                     className={`${inputClasses} resize-none`}
-                    {...register('message', { required: 'Message is required' })}
+                    {...register("message", {
+                      required: "Message is required",
+                    })}
                   />
-                  {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
+                  {errors.message && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
                 <button
                   type="submit"
@@ -194,10 +241,20 @@ export default function Contact() {
               <div className="mt-8 pt-6 border-t border-white/[0.06]">
                 <span className="section-tag block mb-3">SOCIAL MEDIA →</span>
                 <div className="flex gap-3">
-                  <a href="https://www.instagram.com/down2detail.ca/" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <a
+                    href="https://www.instagram.com/down2detail.ca/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon"
+                  >
                     <FaInstagram size={16} />
                   </a>
-                  <a href="https://www.facebook.com/people/Down2Detail/61577327687487/" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <a
+                    href="https://www.facebook.com/people/Down2Detail/61577327687487/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon"
+                  >
                     <FaFacebookF size={14} />
                   </a>
                 </div>
@@ -220,10 +277,13 @@ export default function Contact() {
               </div>
               <div className="rounded-2xl overflow-hidden border border-white/[0.06] h-[calc(100%-3.5rem)]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805.4!2d-73.5051!3d45.5369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc904f0!2s4500+Bd+Kimber%2C+Saint-Hubert%2C+QC+J3Y+8K5!5e0!3m2!1sen!2sca!4v1"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.6157556086496!2d-73.444142!3d45.497681899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2756a366baaf79b5%3A0xfd7844584126e21a!2sDown2Detail%20Premium%20Auto%20Detailing!5e0!3m2!1sen!2sbd!4v1775407393365!5m2!1sen!2sbd"
                   width="100%"
                   height="100%"
-                  style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg)' }}
+                  style={{
+                    border: 0,
+                    filter: "invert(0.9) hue-rotate(180deg)",
+                  }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -235,5 +295,5 @@ export default function Contact() {
         </div>
       </section>
     </>
-  )
+  );
 }

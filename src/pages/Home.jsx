@@ -68,23 +68,30 @@ const services = [
     description:
       "Deep interior cleaning — vacuuming, dashboard detailing, steam cleaning, steering wheel restoration, and fragrance application.",
     image: interiorImg,
-    price: "Package Pricing",
+    price: "From $69.99",
   },
   {
-    title: "Paint Correction",
+    title: "Paint Polish",
     description:
       "Multi-stage machine polishing to remove up to 90% of swirls, oxidation, and scratches for a mirror-like showroom finish.",
     image: paintImg,
-    price: "From $749",
+    price: "Contact Us",
   },
   {
-    title: "Ceramic Coating",
+    title: "Protection Services",
     description:
       "SiO₂ nanotechnology protection against road salt, calcium, UV damage. 2-5 year warranty included.",
     image: ceramicImg,
-    price: "Contact Us",
+    price: "From $99.99",
   },
 ];
+
+const serviceAnchors = {
+  "Exterior Detailing": "/services#section-exterior",
+  "Interior Detailing": "/services#section-interior",
+  "Paint Polish": "/services#section-paint-polish",
+  "Protection Services": "/services#section-protection",
+};
 
 const whyChooseUs = [
   {
@@ -297,7 +304,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-              <Link to="/booking" className="btn-filled">
+              <Link to="/booking" className="btn-filled_2">
                 Book Us
               </Link>
               <Link to="/contact" className="btn-filled">
@@ -329,9 +336,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== ABOUT PREVIEW — Reference "Your Car Deserves More" section ===== */}
-
-      {/* ===== SERVICES SECTION — Reference style with monospace labels ===== */}
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
@@ -353,11 +357,12 @@ export default function Home() {
                 {/* Service label */}
                 <div className="flex items-center justify-between mb-3">
                   <span className="section-tag">
-                    [SERVICE] [{String(i + 1).padStart(2, "0")}] /{" "}
                     {service.title.toUpperCase()}
                   </span>
                   <div className="expand-btn opacity-60 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 size={14} className="text-white/50" />
+                    <Link to={serviceAnchors[service.title]}>
+                      <Maximize2 size={14} className="text-white/50" />
+                    </Link>
                   </div>
                 </div>
 
@@ -434,7 +439,7 @@ export default function Home() {
                   To ensure your car looks stunning —{" "}
                   <span className="text-white font-medium">Down2Detail</span>
                 </p>
-                
+
                 <div className="relative rounded-xl overflow-hidden img-zoom mt-4">
                   <img
                     src={beforeAfterImg}

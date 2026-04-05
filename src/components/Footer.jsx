@@ -69,9 +69,11 @@ export default function Footer() {
               <div className="grid grid-cols-3 gap-3">
                 <div className="footer-link-card">
                   <h4>Service</h4>
-                  <Link to="/services">Exterior Wash</Link>
-                  <Link to="/services">Interior Wash</Link>
-                  <Link to="/services">Painting & Coating</Link>
+                  <Link to="/services#section-exterior">Exterior Services</Link>
+                  <Link to="/services#section-interior">Interior Services</Link>
+                  <Link to="/services#section-paint-polish">Paint Services</Link>
+                  <Link to="/services#section-protection">Protection Services</Link>
+
                 </div>
                 <div className="footer-link-card">
                   <h4>Official</h4>
