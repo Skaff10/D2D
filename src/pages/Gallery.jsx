@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn } from 'lucide-react'
+import { useLang } from '../context/LanguageContext'
+import { translations } from '../translations'
 import SectionHeading from '../components/ui/SectionHeading'
 
 import img1 from '../assets/dk/imgi_2_ceramiccoating.webp'
@@ -38,9 +40,21 @@ const galleryImages = [
   { src: img15, alt: 'Cadillac detailing', category: 'Exterior' },
 ]
 
-const categories = ['All', 'Exterior', 'Interior', 'Ceramic Coating', 'Paint Correction']
+const baseCategories = ['All', 'Exterior', 'Interior', 'Ceramic Coating', 'Paint Correction']
 
 export default function Gallery() {
+  const { lang } = useLang();
+  const t = translations[lang].gallery;
+
+  const categories = baseCategories.map(cat => ({
+    id: cat,
+    label: cat === 'All' ? t.categories.all :
+           cat === 'Exterior' ? t.categories.exterior :
+           cat === 'Interior' ? t.categories.interior :
+           cat === 'Ceramic Coating' ? t.categories.ceramicCoating :
+           cat === 'Paint Correction' ? t.categories.paintCorrection : cat
+  }));
+
   const [activeCategory, setActiveCategory] = useState('All')
   const [lightbox, setLightbox] = useState(null)
 
@@ -58,9 +72,9 @@ export default function Gallery() {
       <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            subtitle="Our Work"
-            title="Detailing Gallery"
-            description="See the results for yourself. Every vehicle receives our full attention and expertise."
+            subtitle={t.ourWork}
+            title={t.detailingGallery}
+            description={t.galleryDescription}
           />
         </div>
       </section>
@@ -71,15 +85,15 @@ export default function Gallery() {
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map(cat => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
                 className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                  activeCategory === cat
+                  activeCategory === cat.id
                     ? 'bg-white/[0.1] text-white border border-white/[0.12]'
                     : 'bg-transparent text-white/40 hover:text-white/70 border border-white/[0.04] hover:border-white/[0.08]'
                 }`}
               >
-                {cat}
+                {cat.label}
               </button>
             ))}
           </div>
@@ -112,7 +126,12 @@ export default function Gallery() {
                     <ZoomIn size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="section-tag text-white/70">{img.category}</span>
+                    <span className="section-tag text-white/70">
+                      {img.category === 'Exterior' ? t.categories.exterior :
+                       img.category === 'Interior' ? t.categories.interior :
+                       img.category === 'Ceramic Coating' ? t.categories.ceramicCoating :
+                       img.category === 'Paint Correction' ? t.categories.paintCorrection : img.category}
+                    </span>
                   </div>
                 </motion.div>
               ))}

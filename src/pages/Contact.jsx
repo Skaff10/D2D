@@ -5,44 +5,49 @@ import toast from "react-hot-toast";
 import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
-const contactInfo = [
-  {
-    icon: Phone,
-    title: "Phone",
-    value: "+1 438 483 8175",
-    href: "tel:+14384838175",
-    desc: "Call us anytime during business hours",
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    value: "down2detail.ca@gmail.com",
-    href: "mailto:down2detail.ca@gmail.com",
-    desc: "We respond within 24 hours",
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    value: "4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5",
-    href: "https://maps.google.com/?q=4500+Bd+Kimber+Saint-Hubert+QC+J3Y+8K5",
-    desc: "Serving Greater Montreal Area",
-  },
-  {
-    icon: Clock,
-    title: "Hours",
-    value: "Mon – Sun: 8AM – 6PM",
-    href: null,
-    desc: "Open 7 days a week",
-  },
-];
-
 export default function Contact() {
+  const { lang } = useLang();
+  const t = translations[lang].contact;
+  const f = translations[lang].footer;
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: t.phone,
+      value: "+1 438 483 8175",
+      href: "tel:+14384838175",
+      desc: f.callUsAnytime,
+    },
+    {
+      icon: Mail,
+      title: t.email,
+      value: "down2detail.ca@gmail.com",
+      href: "mailto:down2detail.ca@gmail.com",
+      desc: f.weRespondWithin24h,
+    },
+    {
+      icon: MapPin,
+      title: t.location,
+      value: "4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5",
+      href: "https://maps.google.com/?q=4500+Bd+Kimber+Saint-Hubert+QC+J3Y+8K5",
+      desc: f.servingGreaterMontreal,
+    },
+    {
+      icon: Clock,
+      title: t.hours,
+      value: "Mon – Sun: 8AM – 6PM",
+      href: null,
+      desc: f.open7Days,
+    },
+  ];
   const {
     register,
     handleSubmit,
@@ -89,9 +94,9 @@ export default function Contact() {
       <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            subtitle="Get in Touch"
-            title="Contact Us"
-            description="Have questions? We'd love to hear from you. Reach out by phone, email, or fill out the form below."
+            subtitle={t.getInTouch}
+            title={t.contactUs}
+            description={t.contactDescription}
           />
         </div>
       </section>
@@ -148,18 +153,18 @@ export default function Contact() {
                   <MessageSquare size={15} className="text-primary/60" />
                 </div>
                 <h2 className="serif-heading text-2xl text-white">
-                  Send Us a Message
+                  {t.sendMessage}
                 </h2>
               </div>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="text-xs font-medium text-text-secondary mb-2 block">
-                      Name *
+                      {t.name} *
                     </label>
                     <input
                       type="text"
-                      placeholder="Your name"
+                      placeholder={t.namePlaceholder}
                       className={inputClasses}
                       {...register("name", { required: "Name is required" })}
                     />
@@ -171,11 +176,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <label className="text-xs font-medium text-text-secondary mb-2 block">
-                      Phone
+                      {t.phone}
                     </label>
                     <input
                       type="tel"
-                      placeholder="(438) 000-0000"
+                      placeholder={t.phonePlaceholder}
                       className={inputClasses}
                       {...register("phone")}
                     />
@@ -183,11 +188,11 @@ export default function Contact() {
                 </div>
                 <div>
                   <label className="text-xs font-medium text-text-secondary mb-2 block">
-                    Email *
+                    {t.email} *
                   </label>
                   <input
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={t.emailPlaceholder}
                     className={inputClasses}
                     {...register("email", {
                       required: "Email is required",
@@ -205,11 +210,11 @@ export default function Contact() {
                 </div>
                 <div>
                   <label className="text-xs font-medium text-text-secondary mb-2 block">
-                    Message *
+                    {t.message} *
                   </label>
                   <textarea
                     rows={5}
-                    placeholder="How can we help you?"
+                    placeholder={t.messagePlaceholder}
                     className={`${inputClasses} resize-none`}
                     {...register("message", {
                       required: "Message is required",
@@ -231,7 +236,7 @@ export default function Contact() {
                   ) : (
                     <>
                       <Send size={14} />
-                      Send Message
+                      {lang === 'fr' ? 'Envoyer' : 'Send Message'}
                     </>
                   )}
                 </button>
@@ -239,7 +244,7 @@ export default function Contact() {
 
               {/* Social Links */}
               <div className="mt-8 pt-6 border-t border-white/[0.06]">
-                <span className="section-tag block mb-3">SOCIAL MEDIA →</span>
+                <span className="section-tag block mb-3">{t.socialMedia} →</span>
                 <div className="flex gap-3">
                   <a
                     href="https://www.instagram.com/down2detail.ca/"
@@ -273,7 +278,7 @@ export default function Contact() {
                 <div className="shield-badge w-9 h-9 rounded-lg">
                   <MapPin size={15} className="text-primary/60" />
                 </div>
-                <h2 className="serif-heading text-2xl text-white">Find Us</h2>
+                <h2 className="serif-heading text-2xl text-white">{t.findUs}</h2>
               </div>
               <div className="rounded-2xl overflow-hidden border border-white/[0.06] h-[calc(100%-3.5rem)]">
                 <iframe

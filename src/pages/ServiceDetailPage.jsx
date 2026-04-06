@@ -1,42 +1,60 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useParams, Link, Navigate } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
-import { ArrowLeft, CheckCircle2, Shield, ArrowRight } from 'lucide-react'
-import { categories, services } from '../data/servicesData'
-import FAQAccordion from '../components/services/FAQAccordion'
-
+import { useEffect, useMemo, useState } from "react";
+import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { categories, services } from "../data/servicesData";
+import FAQAccordion from "../components/services/FAQAccordion";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../translations";
+import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, ArrowLeft} from "lucide-react";
+import { Shield } from "lucide-react";
 export default function ServiceDetailPage() {
-  const { serviceSlug } = useParams()
+  const { lang } = useLang();
+  const tGlobal = translations[lang];
+  const t = tGlobal.serviceDetails;
+  const { serviceSlug } = useParams();
 
   // Find the requested service
   const service = useMemo(() => {
     for (const cat of categories) {
-      const found = services[cat.id]?.find((s) => s.id === serviceSlug)
-      if (found) return found
+      const found = services[cat.id]?.find((s) => s.id === serviceSlug);
+      if (found) return found;
     }
-    return null
-  }, [serviceSlug])
+    return null;
+  }, [serviceSlug]);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [serviceSlug])
+    window.scrollTo(0, 0);
+  }, [serviceSlug]);
 
   if (!service) {
-    return <Navigate to="/services" replace />
+    return <Navigate to="/services" replace />;
   }
 
-  const isCeramicCoating = service.id === 'ceramic-coating'
+  const isCeramicCoating = service.id === "ceramic-coating";
+
+  const serviceTrans = tGlobal.servicesList[service.id] || {};
+  const displayName = serviceTrans.name || service.name;
+  const displayShortDesc =
+    serviceTrans.shortDescription || service.shortDescription;
+  const displayPrice =
+    service.priceString === "Contact for Quote" ||
+    service.priceString === "Contact for Pricing"
+      ? tGlobal.contactForPricing
+      : service.priceString;
 
   return (
     <>
       <Helmet>
-        <title>{service.name} | Down2Detail Detailing</title>
-        <meta name="description" content={service.shortDescription} />
+        <title>{displayName} | Down2Detail Detailing</title>
+        <meta name="description" content={displayShortDesc} />
       </Helmet>
 
       {/* ===== HERO SECTION ===== */}
-      <section className={`pt-32 pb-16 relative ${isCeramicCoating ? '' : 'page-gradient'}`}>
+      <section
+        className={`pt-32 pb-16 relative ${isCeramicCoating ? "" : "page-gradient"}`}
+      >
         {isCeramicCoating && (
           <>
             <div className="absolute inset-0 -z-20" />
@@ -51,35 +69,43 @@ export default function ServiceDetailPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className={`max-w-3xl ${isCeramicCoating ? 'mx-auto text-center' : ''}`}
+            className={`max-w-3xl ${isCeramicCoating ? "mx-auto text-center" : ""}`}
           >
             {isCeramicCoating ? (
               <div className="flex items-center justify-center gap-3 mb-6">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/25">
                   <Shield size={13} className="text-primary" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-semibold">Premium Protection</span>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-semibold">
+                    {t.premiumProtection}
+                  </span>
                 </div>
               </div>
             ) : (
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-[1px] bg-primary/40" />
-                <span className="section-tag text-primary/80">{service.category}</span>
+                <span className="section-tag text-primary/80">
+                  {service.category}
+                </span>
                 <div className="w-8 h-[1px] bg-primary/40" />
               </div>
             )}
 
-            <h1 className={`serif-heading ${isCeramicCoating ? 'text-4xl sm:text-5xl lg:text-6xl text-white mb-6' : 'text-3xl sm:text-4xl text-white mb-4'}`}>
-              {service.name}
+            <h1
+              className={`serif-heading ${isCeramicCoating ? "text-4xl sm:text-5xl lg:text-6xl text-white mb-6" : "text-3xl sm:text-4xl text-white mb-4"}`}
+            >
+              {displayName}
             </h1>
-            
-            <p className={`text-text-secondary ${isCeramicCoating ? 'text-lg max-w-2xl mx-auto' : 'text-base mb-6'} leading-relaxed`}>
-              {service.shortDescription}
+
+            <p
+              className={`text-text-secondary ${isCeramicCoating ? "text-lg max-w-2xl mx-auto" : "text-base mb-6"} leading-relaxed`}
+            >
+              {displayShortDesc}
             </p>
 
             {!isCeramicCoating && (
               <div className="mt-4">
                 <p className="price-mono text-primary text-xl font-medium">
-                  {service.priceString}
+                  {displayPrice}
                 </p>
               </div>
             )}
@@ -98,9 +124,12 @@ export default function ServiceDetailPage() {
               transition={{ duration: 0.5 }}
               className="aspect-[4/3] bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
             >
-              <img src={service.pic1} className="w-full h-full object-cover rounded-xl" />
+              <img
+                src={service.pic1}
+                className="w-full h-full object-cover rounded-xl"
+              />
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -108,7 +137,10 @@ export default function ServiceDetailPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="aspect-[4/3] bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
             >
-              <img src={service.pic2} className="w-full h-full object-cover rounded-xl" />
+              <img
+                src={service.pic2}
+                className="w-full h-full object-cover rounded-xl"
+              />
             </motion.div>
           </div>
         </div>
@@ -118,7 +150,6 @@ export default function ServiceDetailPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
-            
             {/* Left Col: Description & Features */}
             <div className="lg:col-span-2">
               <motion.div
@@ -127,29 +158,45 @@ export default function ServiceDetailPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="serif-heading text-2xl text-white mb-6">Overview</h2>
+                <h2 className="serif-heading text-2xl text-white mb-6">
+                  {t.overview}
+                </h2>
                 <p className="text-text-secondary text-base leading-relaxed mb-10 whitespace-pre-line">
                   {service.fullDescription}
                 </p>
 
                 {!isCeramicCoating && (
                   <>
-                    <h3 className="serif-heading text-xl text-white mb-6">Service Features</h3>
+                    <h3 className="serif-heading text-xl text-white mb-6">
+                      {t.serviceFeatures}
+                    </h3>
                     <div className="grid sm:grid-cols-2 gap-4 mb-10">
                       {service.features?.map((item, i) => (
                         <div key={i} className="flex items-start gap-3">
-                          <CheckCircle2 size={16} className="text-primary/70 shrink-0 mt-0.5" />
-                          <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+                          <CheckCircle2
+                            size={16}
+                            className="text-primary/70 shrink-0 mt-0.5"
+                          />
+                          <span className="text-text-secondary text-sm leading-relaxed">
+                            {item}
+                          </span>
                         </div>
                       ))}
                     </div>
 
-                    <h3 className="serif-heading text-xl text-white mb-6">The Benefits</h3>
+                    <h3 className="serif-heading text-xl text-white mb-6">
+                      {t.theBenefits}
+                    </h3>
                     <div className="grid sm:grid-cols-2 gap-4">
                       {service.included?.map((item, i) => (
                         <div key={i} className="flex items-start gap-3">
-                          <CheckCircle2 size={16} className="text-primary/70 shrink-0 mt-0.5" />
-                          <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+                          <CheckCircle2
+                            size={16}
+                            className="text-primary/70 shrink-0 mt-0.5"
+                          />
+                          <span className="text-text-secondary text-sm leading-relaxed">
+                            {item}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -166,7 +213,9 @@ export default function ServiceDetailPage() {
                   transition={{ duration: 0.5 }}
                   className="mt-16"
                 >
-                  <h3 className="serif-heading text-xl text-white mb-6">Is It Worth It?</h3>
+                  <h3 className="serif-heading text-xl text-white mb-6">
+                    {t.isItWorthIt}
+                  </h3>
                   <div className="flex flex-wrap gap-3 mb-10">
                     {service.worthIt.map((item, i) => (
                       <span
@@ -179,7 +228,9 @@ export default function ServiceDetailPage() {
                     ))}
                   </div>
 
-                  <h3 className="serif-heading text-xl text-white mb-6">Can Be Applied To</h3>
+                  <h3 className="serif-heading text-xl text-white mb-6">
+                    {t.canBeAppliedTo}
+                  </h3>
                   <div className="flex flex-wrap gap-2 mb-10">
                     {service.surfaces.map((surface, i) => (
                       <span
@@ -193,8 +244,12 @@ export default function ServiceDetailPage() {
 
                   {/* FAQ Section */}
                   <div className="mb-6">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-2">FAQ</span>
-                    <h4 className="serif-heading text-xl text-white">Frequently Asked Questions</h4>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-2">
+                      {t.faq}
+                    </span>
+                    <h4 className="serif-heading text-xl text-white">
+                      {t.frequentlyAskedQuestions}
+                    </h4>
                   </div>
                   <FAQAccordion items={service.faq} />
                 </motion.div>
@@ -212,56 +267,79 @@ export default function ServiceDetailPage() {
               >
                 {!isCeramicCoating ? (
                   <>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-2">Pricing</span>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-2">
+                      {t.pricing}
+                    </span>
                     <div className="mb-8">
-                      {service.price && service.price.type === 'tiered' ? (
+                      {service.price && service.price.type === "tiered" ? (
                         <div className="space-y-3">
                           {service.price.tiers.map((tier, idx) => (
-                            <div key={idx} className="flex justify-between items-center pb-3 border-b border-white/[0.05] last:border-0 last:pb-0">
-                              <span className="text-white/70 text-sm">{tier.label}</span>
-                              <span className="price-mono text-primary font-medium">{tier.price}</span>
+                            <div
+                              key={idx}
+                              className="flex justify-between items-center pb-3 border-b border-white/[0.05] last:border-0 last:pb-0"
+                            >
+                              <span className="text-white/70 text-sm">
+                                {tier.label}
+                              </span>
+                              <span className="price-mono text-primary font-medium">
+                                {tier.price}
+                              </span>
                             </div>
                           ))}
                         </div>
                       ) : (
                         <div className="text-3xl text-white serif-heading">
-                          {service.price?.amount || service.priceString}
+                          {service.price?.amount || displayPrice}
                         </div>
                       )}
                     </div>
                   </>
                 ) : (
                   <>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-1">Paint Coating</span>
-                    <h4 className="serif-heading text-xl text-white mb-6">Protection Levels</h4>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-1">
+                      {t.paintCoating}
+                    </span>
+                    <h4 className="serif-heading text-xl text-white mb-6">
+                      {t.protectionLevels}
+                    </h4>
                     <div className="space-y-3 mb-8">
                       {service.pricingTiers.map((tier, i) => (
                         <div
                           key={i}
                           className={`relative p-4 rounded-xl border transition-all duration-300 ${
                             i === 2
-                              ? 'bg-primary/[0.06] border-primary/20'
-                              : 'bg-white/[0.02] border-white/[0.06]'
+                              ? "bg-primary/[0.06] border-primary/20"
+                              : "bg-white/[0.02] border-white/[0.06]"
                           }`}
                         >
                           {i === 2 && (
                             <span className="absolute -top-2.5 right-4 px-2 py-0.5 rounded-md bg-primary text-black text-[9px] font-mono font-bold uppercase tracking-wider">
-                              Best Value
+                              {t.bestValue}
                             </span>
                           )}
                           <div className="flex items-center justify-between gap-4">
                             <div>
-                               <p className="text-white font-medium text-sm mb-0.5">{tier.level}</p>
-                               <p className="text-white/40 text-xs">{tier.durability}</p>
+                              <p className="text-white font-medium text-sm mb-0.5">
+                                {tier.level}
+                              </p>
+                              <p className="text-white/40 text-xs">
+                                {tier.durability}
+                              </p>
                             </div>
-                            <span className="price-mono text-primary text-base font-bold">{tier.price}</span>
+                            <span className="price-mono text-primary text-base font-bold">
+                              {tier.price}
+                            </span>
                           </div>
                         </div>
                       ))}
                     </div>
 
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-1">Add-On</span>
-                    <h4 className="serif-heading text-xl text-white mb-6">Additional Surfaces</h4>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-1">
+                      {t.addOn}
+                    </span>
+                    <h4 className="serif-heading text-xl text-white mb-6">
+                      {t.additionalSurfaces}
+                    </h4>
                     <div className="space-y-3 mb-8">
                       {service.additionalSurfaces.map((item, i) => (
                         <div
@@ -269,10 +347,16 @@ export default function ServiceDetailPage() {
                           className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]"
                         >
                           <div className="flex items-center justify-between gap-4 mb-1">
-                            <p className="text-white font-medium text-sm">{item.surface}</p>
-                            <span className="price-mono text-primary text-sm font-semibold">{item.price}</span>
+                            <p className="text-white font-medium text-sm">
+                              {item.surface}
+                            </p>
+                            <span className="price-mono text-primary text-sm font-semibold">
+                              {item.price}
+                            </span>
                           </div>
-                          <p className="text-white/35 text-xs">{item.durability}</p>
+                          <p className="text-white/35 text-xs">
+                            {item.durability}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -284,7 +368,7 @@ export default function ServiceDetailPage() {
                     to={`/booking?service=${encodeURIComponent(service.name)}`}
                     className="btn-filled w-full justify-center"
                   >
-                    Book This Service
+                    {t.bookThisService}
                     <ArrowRight size={14} />
                   </Link>
 
@@ -293,15 +377,14 @@ export default function ServiceDetailPage() {
                     className="flex justify-center items-center gap-2 text-white/50 hover:text-white/90 text-sm py-3 transition-colors"
                   >
                     <ArrowLeft size={14} />
-                    Back to Services
+                    {t.backToServices}
                   </Link>
                 </div>
               </motion.div>
             </div>
-            
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }

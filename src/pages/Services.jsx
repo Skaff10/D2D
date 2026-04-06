@@ -7,6 +7,8 @@ import SectionHeading from "../components/ui/SectionHeading";
 import ServiceCategoryTabs from "../components/services/ServiceCategoryTabs";
 import ServiceCard from "../components/services/ServiceCard";
 import { categories, services } from "../data/servicesData";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../translations";
 
 
 
@@ -15,6 +17,9 @@ import { categories, services } from "../data/servicesData";
 
 
 export default function Services() {
+  const { lang } = useLang();
+  const t = translations[lang].services;
+
   const [activeCategory, setActiveCategory] = useState("exterior");
   const sectionsRef = useRef({});
   const { hash } = useLocation();
@@ -70,9 +75,9 @@ export default function Services() {
       <section className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            subtitle="Our Services"
-            title="Professional Detailing Services Tailored for Your Vehicle"
-            description="From exterior washes to ceramic coatings — every service is performed with precision, premium products, and a genuine passion for perfection."
+            subtitle={t.ourServices}
+            title={t.tailoredForVehicle}
+            description={t.servicesDescription}
           />
         </div>
       </section>
@@ -113,12 +118,12 @@ export default function Services() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-[1px] bg-primary/40" />
                     <span className="section-tag text-primary/80">
-                      {category.label}
+                      {t[category.id === 'paint-polish' ? 'paintPolish' : category.id] || category.label}
                     </span>
                     <div className="flex-1 h-[1px] bg-white/[0.04]" />
                   </div>
                   <h2 className="serif-heading text-2xl sm:text-3xl text-white">
-                    {category.label} Services
+                    {t[category.id === 'paint-polish' ? 'paintPolish' : category.id] || category.label} Services
                   </h2>
                 </motion.div>
 
@@ -148,22 +153,21 @@ export default function Services() {
             transition={{ duration: 0.6 }}
           >
             <span className="section-tag inline-block mb-4">
-              Ready to Book?
+              {t.readyToBook}
             </span>
             <h2 className="serif-heading text-3xl md:text-4xl mb-4">
-              Not Sure Which Service You Need?
+              {t.notSureHelp}
             </h2>
             <p className="text-text-secondary text-lg mb-8">
-              Contact us for a free consultation and we'll recommend the perfect
-              service for your vehicle.
+              {t.consultation}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/booking" className="btn-filled">
-                Book a Service
+                {t.bookAService}
                 <ArrowRight size={14} />
               </Link>
               <Link to="/contact" className="btn-outline">
-                Get a Free Quote
+                {t.getAFreeQuote}
               </Link>
               <a href="tel:+14384838175" className="btn-outline">
                 <Phone size={14} />

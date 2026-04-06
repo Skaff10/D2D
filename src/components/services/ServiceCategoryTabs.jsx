@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { useLang } from '../../context/LanguageContext'
+import { translations } from '../../translations'
 
 const categoryIcons = {
   exterior: (
@@ -24,6 +26,9 @@ const categoryIcons = {
 }
 
 export default function ServiceCategoryTabs({ categories, activeCategory, onCategoryChange }) {
+  const { lang } = useLang();
+  const t = translations[lang].services;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -49,7 +54,9 @@ export default function ServiceCategoryTabs({ categories, activeCategory, onCate
           <span className={activeCategory === cat.id ? 'text-primary' : 'text-white/40'}>
             {categoryIcons[cat.id]}
           </span>
-          <span className="font-mono text-xs tracking-wider uppercase">{cat.label}</span>
+          <span className="font-mono text-xs tracking-wider uppercase">
+            {t[cat.id === 'paint-polish' ? 'paintPolish' : cat.id] || cat.label}
+          </span>
           {activeCategory === cat.id && (
             <motion.div
               layoutId="activeTab"

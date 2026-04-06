@@ -24,6 +24,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 import emailjs from "@emailjs/browser";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
@@ -75,6 +77,9 @@ const fallbackServices = [
 ];
 
 export default function Booking() {
+  const { lang } = useLang();
+  const t = translations[lang].booking;
+  
   const [searchParams] = useSearchParams();
   const [services, setServices] = useState(fallbackServices);
   const [submitting, setSubmitting] = useState(false);
@@ -163,7 +168,7 @@ export default function Booking() {
       }
 
       toast.success(
-        "Booking submitted successfully! We'll contact you shortly to confirm.",
+        t.thankYou
       );
       setSubmitted(true);
       reset();
@@ -200,14 +205,13 @@ export default function Booking() {
               <CalendarDays size={32} className="text-primary/60" />
             </div>
             <h1 className="serif-heading text-3xl text-white mb-4">
-              Booking Received!
+              {t.bookingReceived}
             </h1>
             <p className="text-text-secondary mb-8">
-              Thank you for choosing Down2Detail. We'll call you shortly to
-              confirm your appointment.
+              {t.thankYou}
             </p>
             <button onClick={() => setSubmitted(false)} className="btn-filled">
-              Book Another Service
+              {t.bookAnother}
             </button>
           </motion.div>
         </div>
@@ -230,9 +234,9 @@ export default function Booking() {
       <section className="pt-32 pb-20 min-h-screen">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            subtitle="Book an Appointment"
-            title="Schedule Your Detailing"
-            description="Fill out the form below and we'll get back to you to confirm your booking."
+            subtitle={t.bookAppointment}
+            title={t.scheduleDetailing}
+            description={t.bookingDescription}
           />
 
           <motion.form
@@ -246,7 +250,7 @@ export default function Booking() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className={labelClasses}>
-                  <User size={12} /> Full Name *
+                  <User size={12} /> {t.fullName} *
                 </label>
                 <input
                   type="text"
@@ -264,7 +268,7 @@ export default function Booking() {
               </div>
               <div>
                 <label className={labelClasses}>
-                  <Phone size={12} /> Phone Number *
+                  <Phone size={12} /> {t.phoneNumber} *
                 </label>
                 <input
                   type="tel"
@@ -284,7 +288,7 @@ export default function Booking() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className={labelClasses}>
-                  <Mail size={12} /> Email *
+                  <Mail size={12} /> {t.email} *
                 </label>
                 <input
                   type="email"
@@ -303,7 +307,7 @@ export default function Booking() {
               </div>
               <div>
                 <label className={labelClasses}>
-                  <Car size={12} /> Vehicle Type *
+                  <Car size={12} /> {t.vehicleType} *
                 </label>
                 <select
                   className={inputClasses}
@@ -311,7 +315,7 @@ export default function Booking() {
                     required: "Vehicle type is required",
                   })}
                 >
-                  <option value="">Select vehicle type</option>
+                  <option value="">{t.selectVehicle}</option>
                   {vehicleTypes.map((type) => (
                     <option key={type} value={type}>
                       {type}
@@ -330,7 +334,7 @@ export default function Booking() {
             {/* Service */}
             <div>
               <label className={labelClasses}>
-                <FileText size={12} /> Service *
+                <FileText size={12} /> {t.service} *
               </label>
               <select
                 className={inputClasses}
@@ -338,7 +342,7 @@ export default function Booking() {
                   required: "Please select a service",
                 })}
               >
-                <option value="">Select a service</option>
+                <option value="">{t.selectService}</option>
                 {services.map((s) => (
                   <option key={s.id} value={s.name}>
                     {s.name}
@@ -357,9 +361,7 @@ export default function Booking() {
                     className="text-primary/60 shrink-0 mt-0.5"
                   />
                   <p className="text-primary/70 text-xs">
-                    Contact for pricing — Pricing varies based on vehicle size
-                    and paint condition. We'll provide a custom quote after
-                    inspection.
+                    {t.pricingNote}
                   </p>
                 </div>
               )}
@@ -370,7 +372,7 @@ export default function Booking() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className={labelClasses}>
-                  <CalendarDays size={12} /> Preferred Date *
+                  <CalendarDays size={12} /> {t.preferredDate} *
                 </label>
                 <input
                   type="date"
@@ -386,13 +388,13 @@ export default function Booking() {
               </div>
               <div>
                 <label className={labelClasses}>
-                  <Clock size={12} /> Preferred Time *
+                  <Clock size={12} /> {t.preferredTime} *
                 </label>
                 <select
                   className={inputClasses}
                   {...register("time", { required: "Time is required" })}
                 >
-                  <option value="">Select a time</option>
+                  <option value="">{t.selectTime}</option>
                   {timeSlots.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -410,7 +412,7 @@ export default function Booking() {
             {/* Notes */}
             <div>
               <label className={labelClasses}>
-                <FileText size={12} /> Additional Notes (Optional)
+                <FileText size={12} /> {t.additionalNotes}
               </label>
               <textarea
                 rows={4}
@@ -429,18 +431,18 @@ export default function Booking() {
               {submitting ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Submitting...
+                  {t.submitting}
                 </>
               ) : (
                 <>
                   <CalendarDays size={16} />
-                  Submit Booking
+                  {t.submitBooking}
                 </>
               )}
             </button>
 
             <p className="text-text-muted text-xs text-center font-mono">
-              We'll contact you within 24 hours to confirm your appointment.
+              {t.confirmationNote}
             </p>
           </motion.form>
         </div>

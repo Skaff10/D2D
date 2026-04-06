@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Phone } from 'lucide-react'
+import { useLang } from '../../context/LanguageContext'
+import { translations } from '../../translations'
 
 export default function PricingDisplay({ price }) {
+  const { lang } = useLang()
+  const t = translations[lang].serviceDetails
+
   // Call for Price
   if (!price) {
     return (
@@ -10,7 +15,7 @@ export default function PricingDisplay({ price }) {
         className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-semibold tracking-wide hover:bg-primary/20 hover:border-primary/30 transition-all duration-300"
       >
         <Phone size={12} />
-        Call for Price
+        {t.callForPrice}
       </Link>
     )
   }

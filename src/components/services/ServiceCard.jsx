@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { useLang } from '../../context/LanguageContext'
+import { translations } from '../../translations'
 
 export default function ServiceCard({ service, index }) {
+  const { lang } = useLang()
+  const t = translations[lang].serviceDetails
+  const tGlobal = translations[lang]
+  const serviceTrans = tGlobal.servicesList[service.id] || {}
+  
+  const displayPrice = (service.priceString === 'Contact for Quote' || service.priceString === 'Contact for Pricing') 
+    ? tGlobal.contactForPricing 
+    : service.priceString
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -21,13 +32,13 @@ export default function ServiceCard({ service, index }) {
         <div className="p-5 flex flex-col flex-1">
           <div className="flex-1 mb-4">
             <h3 className="serif-heading text-lg sm:text-xl text-white group-hover:text-primary/90 transition-colors mb-2">
-              {service.name}
+              {serviceTrans.name || service.name}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed line-clamp-1 mb-3">
-              {service.shortDescription}
+              {serviceTrans.shortDescription || service.shortDescription}
             </p>
             <p className="price-mono text-primary text-sm font-semibold">
-              {service.priceString}
+              {displayPrice}
             </p>
           </div>
 
@@ -35,7 +46,7 @@ export default function ServiceCard({ service, index }) {
             to={`/services/${service.id}`}
             className="btn-filled w-full justify-center text-sm mt-auto"
           >
-            Learn More
+            {t.learnMore}
             <ArrowRight size={14} />
           </Link>
         </div>

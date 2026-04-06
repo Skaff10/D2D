@@ -16,6 +16,8 @@ import {
   Leaf,
 } from "lucide-react";
 import SectionHeading from "../components/ui/SectionHeading";
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../translations";
 
 import heroImg from "../assets/dk/imgi_3_shutHero.jpg";
 import ceramicImg from "../assets/dk/imgi_2_ceramiccoating.webp";
@@ -55,144 +57,172 @@ const brandLogos = [
   { src: miniImg, alt: "Mini" },
 ];
 
-const services = [
-  {
-    title: "Exterior Detailing",
-    description:
-      "Complete exterior cleaning with snow foam, two-bucket wash, paint decontamination, clay bar treatment, and tire dressing.",
-    image: exteriorImg,
-    price: "Package Pricing",
-  },
-  {
-    title: "Interior Detailing",
-    description:
-      "Deep interior cleaning — vacuuming, dashboard detailing, steam cleaning, steering wheel restoration, and fragrance application.",
-    image: interiorImg,
-    price: "From $69.99",
-  },
-  {
-    title: "Paint Polish",
-    description:
-      "Multi-stage machine polishing to remove up to 90% of swirls, oxidation, and scratches for a mirror-like showroom finish.",
-    image: paintImg,
-    price: "Contact Us",
-  },
-  {
-    title: "Protection Services",
-    description:
-      "SiO₂ nanotechnology protection against road salt, calcium, UV damage. 2-5 year warranty included.",
-    image: ceramicImg,
-    price: "From $99.99",
-  },
-];
-
-const serviceAnchors = {
-  "Exterior Detailing": "/services#section-exterior",
-  "Interior Detailing": "/services#section-interior",
-  "Paint Polish": "/services#section-paint-polish",
-  "Protection Services": "/services#section-protection",
-};
-
-const whyChooseUs = [
-  {
-    icon: Shield,
-    title: "Premium Products",
-    desc: "Professional-grade detailing products only",
-  },
-  {
-    icon: Sparkles,
-    title: "Expert Detail",
-    desc: "Meticulous attention to every surface",
-  },
-  {
-    icon: Clock,
-    title: "Reliable Service",
-    desc: "On-time, every time — 7 days a week",
-  },
-  {
-    icon: Award,
-    title: "Guaranteed Quality",
-    desc: "100% satisfaction on every job",
-  },
-];
-
-const stats = [
-  { value: "500+", label: "Cars Detailed" },
-  { value: "4.9", label: "Star Rating" },
-  { value: "100%", label: "Satisfaction" },
-  { value: "7/7", label: "Days Open" },
-];
-
-const testimonials = [
-  {
-    name: "Sholmi Konfino",
-    text: "I own a 2021 Ford F-150, and I decided to go ALL IN on a full detailing package at Down2Detail — paint correction, 5–7 year ceramic coating, full engine bay detailing, complete interior detailing with a 2-year ceramic protection on all plastics, fabric sealant on the seats, and a ceramic coating on the front windshield. Let me tell you… I was absolutely blown away. The truck looks....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/bkxbKsKHSZyQBxr88",
-  },
-  {
-    name: "Manouchka Guirand",
-    text: "I had an incredible experience with DownToDetail! The service was not only fast but also extremely thorough …every small detail was carefully taken care of. The ceramic coating on my car looks amazing, and I couldn't be more satisfied with the results. The customer service was outstanding; they truly went above and beyond and made the whole process smooth and trustworthy. I'm so impressed that I'll be....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/VBdXNusJQgfbjkkD7",
-  },
-  {
-    name: "Shaz Ali",
-    text: "I had a first stage paint correction and a 4 year ceramic coating applied on my 2012 E92 335i xDrive, and the results were outstanding. The finish is incredibly glossy, smooth, and well-protected. It truly elevates the overall look of the car. The level of professionalism, care, and attention to detail throughout the process was excellent. Everything was clearly explained, timelines were respected, and the workmanship speaks....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/6oAsh95oLJdHh3jJ9",
-  },
-  {
-    name: "Mehedi Hasan Asfi",
-    text: "I had a full interior detailing done, and the results were excellent. The interior came back looking like showroom condition—very clean, fresh, and well-finished. You can tell they take their time and pay attention to details. The price is a bit higher than regular car wash services, but for a premium service, it's definitely worth it. This is professional detailing, not a quick clean. I would recommend....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/55fVMMMXCbFcQkU99",
-  },
-  {
-    name: "Ferdous Ahmed",
-    text: "I'm absolutely thrilled with the work Down2Detail did on my car. They were extraordinary and the results are amazing. My car needed a deep cleaning and paint correction, and when the job was done, it looked and felt brand new inside and out. The attention to detail and care they put into their work truly stand out. I highly recommend Down2Detail to anyone looking for professional, dedicated,....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/KeCTG5GubGKoCsKp8",
-  },
-  {
-    name: "Jobair Ahmed Jisan",
-    text: "Took their 2 step paint correction with 7 year paint protection and the result is mind blowing tbh. The black paint is restored and when you touch the paint it's so smooth. The paint rejects the water just like water with oil. Highly recommended!!!!",
-    rating: 5,
-    url: "https://maps.app.goo.gl/vBqDTWExouE8VYis8",
-  },
-  {
-    name: "Nathaniel Great",
-    text: "I really wanted to get my engine bay detailed and I booked an appointment with Down2Detail and the outcome is fabulous. They absolutely nailed it! My car looks brand new. Both inside and outside. Professional, thorough, and worth every penny. Best detailing service in Montreal. You should definitely check em out!",
-    rating: 5,
-    url: "https://maps.app.goo.gl/Zk5RQmpWSHfyvh9x9",
-  },
-  {
-    name: "Daksh Garg",
-    text: "Got my 2025 F-150 ceramic coated and I couldn't be happier. The quality of work is top-notch, the attention to detail is insane, and the truck looks better than brand new. Super professional, no shortcuts, no nonsense. Highly recommend if you want your vehicle done right.",
-    rating: 5,
-    url: "https://maps.app.goo.gl/VdA5XnKdNoCXVNY89",
-  },
-  {
-    name: "Shahriar Mahmud",
-    text: "Initially, it seemed somewhat suspicious that they had only five-star reviews. Over the years, my car's paint had deteriorated, and there were swirl marks and scratches all over. I decided to take a chance and entrust my Porsche to them for paint correction. Upon picking up my car, I was astonished! It felt as though I was receiving a brand-new Cayenne! The paint had an incredibly smooth....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/kmBkL4QMCAhgHJCBA",
-  },
-  {
-    name: "Su Sohan",
-    text: "I recently got my Tesla detailed by Down2Detail and I couldn't be more impressed! From start to finish, the experience was smooth and professional. The team did an absolutely amazing job — the paint looks flawless, the shine is perfect, and every inch of the car is spotless. Which makes my money worth it. Highly recommend Down2Detail to anyone who wants top-quality work with great customer service.....",
-    rating: 5,
-    url: "https://maps.app.goo.gl/xgcgPu9rsHA5C5nL6",
-  },
-  {
-    name: "Abdel Saidi",
-    text: "Very satisfied with the car wash. They did an amazing job. The car looks brand new now. I totally recommend this car wash 100%.",
-    rating: 5,
-    url: "https://maps.app.goo.gl/oAMphBPWHYq3kdph9",
-  },
-];
-
 export default function Home() {
+  const { lang } = useLang();
+  const t = translations[lang].home;
+  const th = translations[lang].hero;
+  const tn = translations[lang].navbar;
+
+  const services = [
+    {
+      title: lang === "en" ? "Exterior Detailing" : "Esthétique Extérieure",
+      description:
+        lang === "en"
+          ? "Complete exterior cleaning with snow foam, two-bucket wash, paint decontamination, clay bar treatment, and tire dressing."
+          : "Nettoyage extérieur complet avec mousse de neige, lavage à deux seaux, décontamination de la peinture, traitement à la barre d'argile et lustrage des pneus.",
+      image: exteriorImg,
+      price: lang === "en" ? "Package Pricing" : "Prix par forfait",
+    },
+    {
+      title: lang === "en" ? "Interior Detailing" : "Esthétique Intérieure",
+      description:
+        lang === "en"
+          ? "Deep interior cleaning — vacuuming, dashboard detailing, steam cleaning, steering wheel restoration, and fragrance application."
+          : "Nettoyage intérieur en profondeur — aspiration, détails du tableau de bord, nettoyage à la vapeur, restauration du volant et application de parfum.",
+      image: interiorImg,
+      price: lang === "en" ? "From $69.99" : "À partir de 69,99 $",
+    },
+    {
+      title: lang === "en" ? "Paint Polish" : "Polissage de Peinture",
+      description:
+        lang === "en"
+          ? "Multi-stage machine polishing to remove up to 90% of swirls, oxidation, and scratches for a mirror-like showroom finish."
+          : "Polissage à la machine à plusieurs étapes pour éliminer jusqu'à 90 % des tourbillons, de l'oxydation et des rayures pour une finition miroir de salle d'exposition.",
+      image: paintImg,
+      price: lang === "en" ? "Contact Us" : "Contactez-nous",
+    },
+    {
+      title: lang === "en" ? "Protection Services" : "Services de Protection",
+      description:
+        lang === "en"
+          ? "SiO₂ nanotechnology protection against road salt, calcium, UV damage. 2-5 year warranty included."
+          : "Protection par nanotechnologie SiO₂ contre le sel de voirie, le calcium, les dommages causés par les UV. Garantie de 2 à 5 ans incluse.",
+      image: ceramicImg,
+      price: lang === "en" ? "From $99.99" : "À partir de 99,99 $",
+    },
+  ];
+
+  const serviceAnchors = {
+    [lang === "en" ? "Exterior Detailing" : "Esthétique Extérieure"]:
+      "/services#section-exterior",
+    [lang === "en" ? "Interior Detailing" : "Esthétique Intérieure"]:
+      "/services#section-interior",
+    [lang === "en" ? "Paint Polish" : "Polissage de Peinture"]:
+      "/services#section-paint-polish",
+    [lang === "en" ? "Protection Services" : "Services de Protection"]:
+      "/services#section-protection",
+  };
+
+  const whyChooseUs = [
+    {
+      icon: Shield,
+      title: lang === "en" ? "Premium Products" : "Produits Premium",
+      desc:
+        lang === "en"
+          ? "Professional-grade detailing products only"
+          : "Produits d'esthétique de qualité professionnelle uniquement",
+    },
+    {
+      icon: Sparkles,
+      title: lang === "en" ? "Expert Detail" : "Détails Experts",
+      desc:
+        lang === "en"
+          ? "Meticulous attention to every surface"
+          : "Attention méticuleuse à chaque surface",
+    },
+    {
+      icon: Clock,
+      title: lang === "en" ? "Reliable Service" : "Service Fiable",
+      desc:
+        lang === "en"
+          ? "On-time, every time — 7 days a week"
+          : "À l'heure, à chaque fois — 7 jours sur 7",
+    },
+    {
+      icon: Award,
+      title: lang === "en" ? "Guaranteed Quality" : "Qualité Garantie",
+      desc:
+        lang === "en"
+          ? "100% satisfaction on every job"
+          : "100 % de satisfaction sur chaque travail",
+    },
+  ];
+
+  const stats = [
+    { value: "500+", label: t.carsDetailed },
+    { value: "4.9", label: t.averageRating },
+    { value: "100%", label: "Satisfaction" },
+    { value: "7/7", label: lang === "en" ? "Days Open" : "Jours Ouverts" },
+  ];
+  const testimonials = [
+    {
+      name: "Sholmi Konfino",
+      text: "I own a 2021 Ford F-150, and I decided to go ALL IN on a full detailing package at Down2Detail — paint correction, 5–7 year ceramic coating, full engine bay detailing, complete interior detailing with a 2-year ceramic protection on all plastics, fabric sealant on the seats, and a ceramic coating on the front windshield. Let me tell you… I was absolutely blown away. The truck looks....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/bkxbKsKHSZyQBxr88",
+    },
+    {
+      name: "Manouchka Guirand",
+      text: "I had an incredible experience with DownToDetail! The service was not only fast but also extremely thorough …every small detail was carefully taken care of. The ceramic coating on my car looks amazing, and I couldn't be more satisfied with the results. The customer service was outstanding; they truly went above and beyond and made the whole process smooth and trustworthy. I'm so impressed that I'll be....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/VBdXNusJQgfbjkkD7",
+    },
+    {
+      name: "Shaz Ali",
+      text: "I had a first stage paint correction and a 4 year ceramic coating applied on my 2012 E92 335i xDrive, and the results were outstanding. The finish is incredibly glossy, smooth, and well-protected. It truly elevates the overall look of the car. The level of professionalism, care, and attention to detail throughout the process was excellent. Everything was clearly explained, timelines were respected, and the workmanship speaks....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/6oAsh95oLJdHh3jJ9",
+    },
+    {
+      name: "Mehedi Hasan Asfi",
+      text: "I had a full interior detailing done, and the results were excellent. The interior came back looking like showroom condition—very clean, fresh, and well-finished. You can tell they take their time and pay attention to details. The price is a bit higher than regular car wash services, but for a premium service, it's definitely worth it. This is professional detailing, not a quick clean. I would recommend....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/55fVMMMXCbFcQkU99",
+    },
+    {
+      name: "Ferdous Ahmed",
+      text: "I'm absolutely thrilled with the work Down2Detail did on my car. They were extraordinary and the results are amazing. My car needed a deep cleaning and paint correction, and when the job was done, it looked and felt brand new inside and out. The attention to detail and care they put into their work truly stand out. I highly recommend Down2Detail to anyone looking for professional, dedicated,....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/KeCTG5GubGKoCsKp8",
+    },
+    {
+      name: "Jobair Ahmed Jisan",
+      text: "Took their 2 step paint correction with 7 year paint protection and the result is mind blowing tbh. The black paint is restored and when you touch the paint it's so smooth. The paint rejects the water just like water with oil. Highly recommended!!!!",
+      rating: 5,
+      url: "https://maps.app.goo.gl/vBqDTWExouE8VYis8",
+    },
+    {
+      name: "Nathaniel Great",
+      text: "I really wanted to get my engine bay detailed and I booked an appointment with Down2Detail and the outcome is fabulous. They absolutely nailed it! My car looks brand new. Both inside and outside. Professional, thorough, and worth every penny. Best detailing service in Montreal. You should definitely check em out!",
+      rating: 5,
+      url: "https://maps.app.goo.gl/Zk5RQmpWSHfyvh9x9",
+    },
+    {
+      name: "Daksh Garg",
+      text: "Got my 2025 F-150 ceramic coated and I couldn't be happier. The quality of work is top-notch, the attention to detail is insane, and the truck looks better than brand new. Super professional, no shortcuts, no nonsense. Highly recommend if you want your vehicle done right.",
+      rating: 5,
+      url: "https://maps.app.goo.gl/VdA5XnKdNoCXVNY89",
+    },
+    {
+      name: "Shahriar Mahmud",
+      text: "Initially, it seemed somewhat suspicious that they had only five-star reviews. Over the years, my car's paint had deteriorated, and there were swirl marks and scratches all over. I decided to take a chance and entrust my Porsche to them for paint correction. Upon picking up my car, I was astonished! It felt as though I was receiving a brand-new Cayenne! The paint had an incredibly smooth....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/kmBkL4QMCAhgHJCBA",
+    },
+    {
+      name: "Su Sohan",
+      text: "I recently got my Tesla detailed by Down2Detail and I couldn't be more impressed! From start to finish, the experience was smooth and professional. The team did an absolutely amazing job — the paint looks flawless, the shine is perfect, and every inch of the car is spotless. Which makes my money worth it. Highly recommend Down2Detail to anyone who wants top-quality work with great customer service.....",
+      rating: 5,
+      url: "https://maps.app.goo.gl/xgcgPu9rsHA5C5nL6",
+    },
+    {
+      name: "Abdel Saidi",
+      text: "Very satisfied with the car wash. They did an amazing job. The car looks brand new now. I totally recommend this car wash 100%.",
+      rating: 5,
+      url: "https://maps.app.goo.gl/oAMphBPWHYq3kdph9",
+    },
+  ];
+
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(3);
 
@@ -274,7 +304,7 @@ export default function Home() {
                 color: "#e46904ff",
               }}
             >
-              Trusted by Montreal Car Owners
+              {th.tag}
             </span>
 
             <h1
@@ -287,7 +317,7 @@ export default function Home() {
                 fontFamily: "var(--font-family-heading)",
               }}
             >
-              Your Car Deserves More Than a Wash.
+              {th.title}
             </h1>
 
             <p
@@ -299,16 +329,15 @@ export default function Home() {
                 lineHeight: 1.7,
               }}
             >
-              Professional detailing, paint correction, and ceramic coating. See
-              the difference precision makes — right here in Montreal.
+              {th.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <Link to="/booking" className="btn-filled_2">
-                Book Us
+                {th.bookUs}
               </Link>
               <Link to="/contact" className="btn-filled">
-                Contact Us
+                {th.contactUs}
               </Link>
             </div>
           </motion.div>
@@ -318,9 +347,7 @@ export default function Home() {
       {/* ===== BRAND LOGOS ===== */}
       <section className="py-12  border-white/[0.04] overflow-hidden">
         <div className="max-w-full mx-auto">
-          <p className="text-center section-tag mb-8 px-4">
-            Trusted by owners of
-          </p>
+          <p className="text-center section-tag mb-8 px-4">{t.trustedBy}</p>
           <div className="relative md:w-1/2 mx-auto overflow-hidden group">
             <div className="animate-marquee flex items-center gap-12 md:gap-20 px-6 md:px-10">
               {[...brandLogos, ...brandLogos].map((brand, idx) => (
@@ -339,9 +366,9 @@ export default function Home() {
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            subtitle="What We Offer"
-            title="From a Simple Wash to Comprehensive Detailing"
-            description="We offer a range of premium services to keep your car looking and feeling its best year-round."
+            subtitle={t.whatWeOffer}
+            title={t.simpleToComprehensive}
+            description={t.offerDescription}
           />
 
           <div className="grid sm:grid-cols-2 gap-6">
@@ -402,7 +429,7 @@ export default function Home() {
                       to="/booking"
                       className="btn-outline text-xs py-2 px-4"
                     >
-                      Book Now
+                      {tn.bookNow}
                     </Link>
                   </div>
                 </div>
@@ -412,7 +439,7 @@ export default function Home() {
 
           <div className="text-center mt-10">
             <Link to="/services" className="btn-outline">
-              View All Services
+              {t.viewAllServices}
               <ArrowRight size={14} />
             </Link>
           </div>
@@ -421,9 +448,9 @@ export default function Home() {
 
       <section className="py-5 lg:py-15">
         <SectionHeading
-          subtitle="Why Down2Detail"
-          title="The Down2Detail Difference"
-          description="We don't cut corners. Every detail matters to us — that's what sets us apart."
+          subtitle={t.whyDown2Detail}
+          title={t.theD2Ddifference}
+          description={t.dontCutCorners}
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -457,8 +484,12 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-6">
-                Your Car Deserves More than an{" "}
-                <span className="serif-heading-italic">Ordinary Wash</span>
+                {lang === "en"
+                  ? "Your Car Deserves More than an"
+                  : "Votre voiture mérite plus qu'un lavage"}{" "}
+                <span className="serif-heading-italic">
+                  {lang === "en" ? "Ordinary Wash" : "Ordinaire"}
+                </span>
               </h2>
               <div className="flex gap-3 mb-8">
                 <Link to="/booking" className="btn-filled">
@@ -469,11 +500,9 @@ export default function Home() {
                 </Link>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed">
-                At Down2Detail, we believe auto detailing is an art, not just a
-                service. Based in Saint-Hubert and serving the Greater Montreal
-                Area, we combine premium products with meticulous hand
-                techniques to deliver results that basic car washes simply can't
-                match.
+                {lang === "en"
+                  ? "At Down2Detail, we believe auto detailing is an art, not just a service. Based in Saint-Hubert and serving the Greater Montreal Area, we combine premium products with meticulous hand techniques to deliver results that basic car washes simply can't match."
+                  : "Chez Down2Detail, nous croyons que l'esthétique automobile est un art, pas seulement un service. Basés à Saint-Hubert et au service de la région du Grand Montréal, nous combinons des produits premium avec des techniques manuelles méticuleuses pour livrer des résultats que les lavages de voiture de base ne peuvent tout simplement pas égaler."}
               </p>
             </motion.div>
           </div>
@@ -499,12 +528,10 @@ export default function Home() {
                   </div>
                 </div>
                 <h3 className="serif-heading text-2xl text-white mb-3">
-                  Professional-Grade Products & Technology
+                  {t.professionalGrade}
                 </h3>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  We use only industry-grade detailing products — no supermarket
-                  shortcuts. Every solution we apply is selected for your
-                  paint's long-term protection and shine.
+                  {t.professionalGradeDesc}
                 </p>
               </div>
             </motion.div>
@@ -524,11 +551,10 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="serif-heading text-xl text-white mb-2">
-                Safe Paint-Friendly Process
+                {t.safePaintFriendly}
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed">
-                Every technique is tested to be swirl-mark and scratch-free —
-                your finish is protected, not just cleaned.
+                {t.safePaintFriendlyDesc}
               </p>
             </motion.div>
 
@@ -547,11 +573,10 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="serif-heading text-xl text-white mb-2">
-                Mobile & In-Shop
+                {t.mobileInShop}
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed">
-                We come to your home or office — full mobile detailing with zero
-                quality compromise. Or visit us in-shop, your call.
+                {t.mobileInShopDesc}
               </p>
             </motion.div>
 
@@ -561,10 +586,10 @@ export default function Home() {
           {/* Stats row */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4 pt-5">
             {[
-              { num: "1000+", label: "Cars Detailed" },
-              { num: "4.9★", label: "Average Rating" },
-              { num: "400+", label: "Happy Clients" },
-              { num: "100%", label: "Satisfaction Rate" },
+              { num: "1000+", label: t.carsDetailed },
+              { num: "4.9★", label: t.averageRating },
+              { num: "400+", label: t.happyClients },
+              { num: "100%", label: t.satisfactionRate },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -598,10 +623,10 @@ export default function Home() {
                 transition={{ duration: 0.6 }}
               >
                 <span className="section-tag inline-block mb-4">
-                  Testimonials
+                  {t.testimonials}
                 </span>
                 <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl text-white">
-                  What Our Clients Say
+                  {t.whatOurClientsSay}
                 </h2>
               </motion.div>
             </div>
@@ -665,7 +690,7 @@ export default function Home() {
                     <div>
                       <p className="text-white font-medium text-sm">{t.name}</p>
                       <p className="text-text-muted text-xs">
-                        Verified Customer
+                        {t.verifiedCustomer}
                       </p>
                     </div>
                   </div>
@@ -687,14 +712,14 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-6">
-                Book Your Premium Car Wash Today
+                {t.bookYourPremiumToday}
               </h2>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link to="/booking" className="btn-filled">
-                  Book Now
+                  {tn.bookNow}
                 </Link>
                 <Link to="/contact" className="btn-outline">
-                  Contact Us
+                  {th.contactUs}
                 </Link>
               </div>
             </motion.div>
@@ -709,7 +734,7 @@ export default function Home() {
               <div className="rounded-2xl overflow-hidden">
                 <img
                   src={exteriorImg}
-                  alt="Premium car detailing"
+                  alt={t.premiumCarDetailing}
                   className="w-full h-[400px] object-cover rounded-2xl"
                 />
               </div>
@@ -723,7 +748,7 @@ export default function Home() {
               >
                 <img
                   src={interiorImg}
-                  alt="Interior detail"
+                  alt={t.interiorDetail}
                   className="w-full h-full object-cover"
                   style={{ border: "2px solid rgba(249, 115, 22, 0.3)" }}
                 />

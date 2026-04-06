@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
+import { useLang } from "../context/LanguageContext";
 import { Phone, Mail, MapPin, Clock, ArrowUp } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import logo from "../assets/logo/logo.png";
+import { translations } from "../translations";
 
 export default function Footer() {
+  const { lang } = useLang();
+  const t = translations[lang].footer;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -23,7 +28,7 @@ export default function Footer() {
 
             {/* Email */}
             <div>
-              <span className="section-tag block mb-3">EMAIL →</span>
+              <span className="section-tag block mb-3">{t.email} →</span>
               <a href="mailto:down2detail.ca@gmail.com" className="social-icon">
                 <MdOutlineEmail size={18} />
               </a>
@@ -31,7 +36,7 @@ export default function Footer() {
 
             {/* Social Media */}
             <div>
-              <span className="section-tag block mb-4">SOCIAL MEDIA →</span>
+              <span className="section-tag block mb-4">{t.socialMedia} →</span>
               <div className="flex gap-3">
                 <a
                   href="https://www.instagram.com/down2detail.ca/"
@@ -65,30 +70,30 @@ export default function Footer() {
 
             {/* Quick Links Cards — like reference */}
             <div>
-              <span className="section-tag block mb-4">QUICK LINK →</span>
+              <span className="section-tag block mb-4">{t.quickLink} →</span>
               <div className="grid grid-cols-3 gap-3">
                 <div className="footer-link-card">
-                  <h4>Service</h4>
-                  <Link to="/services#section-exterior">Exterior Services</Link>
-                  <Link to="/services#section-interior">Interior Services</Link>
+                  <h4>{t.service}</h4>
+                  <Link to="/services#section-exterior">{t.exteriorServices}</Link>
+                  <Link to="/services#section-interior">{t.interiorServices}</Link>
                   <Link to="/services#section-paint-polish">
-                    Paint Services
+                    {t.paintServices}
                   </Link>
                   <Link to="/services#section-protection">
-                    Protection Services
+                    {t.protectionServices}
                   </Link>
                 </div>
                 <div className="footer-link-card">
-                  <h4>Official</h4>
+                  <h4>{t.official}</h4>
                   <p>Saint-Hubert, QC</p>
                   <a href="tel:+14384838175">438-483-8175</a>
                   <p>08:00 - 18:00</p>
                 </div>
                 <div className="footer-link-card">
-                  <h4>Booking</h4>
-                  <Link to="/booking">See Schedule</Link>
-                  <Link to="/about">About Us</Link>
-                  <Link to="/contact">Contact</Link>
+                  <h4>{t.booking}</h4>
+                  <Link to="/booking">{t.seeSchedule}</Link>
+                  <Link to="/about">{t.aboutUs}</Link>
+                  <Link to="/contact">{t.contact}</Link>
                 </div>
               </div>
             </div>
@@ -97,7 +102,7 @@ export default function Footer() {
           {/* Right Column — Contact Info */}
           <div className="space-y-8">
             <div>
-              <span className="section-tag block mb-4">CONTACT →</span>
+              <span className="section-tag block mb-4">{t.contact.toUpperCase()} →</span>
               <div className="space-y-5">
                 <a
                   href="tel:+14384838175"
@@ -114,7 +119,7 @@ export default function Footer() {
                       +1 438 483 8175
                     </p>
                     <p className="text-text-muted text-xs mt-0.5">
-                      Call us anytime during business hours
+                      {t.callUsAnytime}
                     </p>
                   </div>
                 </a>
@@ -134,7 +139,7 @@ export default function Footer() {
                       down2detail.ca@gmail.com
                     </p>
                     <p className="text-text-muted text-xs mt-0.5">
-                      We respond within 24 hours
+                      {t.weRespondWithin24h}
                     </p>
                   </div>
                 </a>
@@ -148,7 +153,7 @@ export default function Footer() {
                       4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5
                     </p>
                     <p className="text-text-muted text-xs mt-0.5">
-                      Serving Greater Montreal Area
+                      {t.servingGreaterMontreal}
                     </p>
                   </div>
                 </div>
@@ -162,7 +167,7 @@ export default function Footer() {
                       Mon – Sun: 8AM – 6PM
                     </p>
                     <p className="text-text-muted text-xs mt-0.5">
-                      Open 7 days a week
+                      {t.open7Days}
                     </p>
                   </div>
                 </div>
@@ -172,17 +177,17 @@ export default function Footer() {
             {/* CTA */}
             <div className="dark-card p-6 mt-6">
               <h3 className="serif-heading text-xl text-white mb-3">
-                Ready to get started?
+                {t.readyToGetStarted}
               </h3>
               <p className="text-text-secondary text-sm mb-5">
-                Book your premium car detailing appointment today.
+                {t.bookYourPremium}
               </p>
               <div className="flex gap-3">
                 <Link to="/booking" className="btn-filled text-sm">
-                  Book Now
+                  {t.bookNow}
                 </Link>
                 <a href="tel:+14384838175" className="btn-outline text-sm">
-                  Call Us
+                  {t.callUs}
                 </a>
               </div>
             </div>
@@ -194,14 +199,14 @@ export default function Footer() {
       <div className="border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-text-muted text-xs font-mono">
-            © {new Date().getFullYear()} Down2Detail. Developed by{" "}
+            © {new Date().getFullYear()} Down2Detail. {t.developedBy}{" "}
             <a href="https://www.instagram.com/skafff_10/">Skaf</a>
           </p>
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 text-text-muted hover:text-white text-xs transition-colors font-mono"
           >
-            Back to top
+            {t.backToTop}
             <ArrowUp size={12} />
           </button>
         </div>

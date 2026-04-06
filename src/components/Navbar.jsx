@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Globe } from "lucide-react";
 import logo from "../assets/logo/logo.png";
-
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Services", path: "/services", end: true },
-  { name: "Ceramic Coating", path: "/services/ceramic-coating" },
-  { name: "Gallery", path: "/gallery" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-];
+import { useLang } from "../context/LanguageContext";
+import { translations } from "../translations";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { lang, toggle } = useLang();
+  const t = translations[lang].navbar;
+
+  const navLinks = [
+    { name: t.home, path: "/" },
+    { name: t.services, path: "/services", end: true },
+    { name: t.ceramicCoating, path: "/services/ceramic-coating" },
+    { name: t.gallery, path: "/gallery" },
+    { name: t.about, path: "/about" },
+    { name: t.contact, path: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,6 +87,13 @@ export default function Navbar() {
 
         {/* Desktop CTA — Right side */}
         <div className="hidden lg:flex items-center gap-4">
+          <button
+            onClick={toggle}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 text-xs font-medium text-white/70 hover:text-white hover:bg-white/5 transition-all"
+          >
+            <Globe size={14} />
+            <span>{lang === "en" ? "FR" : "EN"}</span>
+          </button>
           <a
             href="tel:+14384838175"
             className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors"
@@ -91,18 +102,26 @@ export default function Navbar() {
             <span className="font-mono text-xs"></span>
           </a>
           <Link to="/booking" className="btn-outline text-sm">
-            Book Now
+            {t.bookNow}
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-white/70 p-2 hover:text-white transition-colors"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-3 lg:hidden">
+          <button
+            onClick={toggle}
+            className="text-white/70 p-2 hover:text-white transition-colors border border-white/10 rounded-lg text-xs font-medium"
+          >
+            {lang === "en" ? "FR" : "EN"}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white/70 p-2 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -146,7 +165,7 @@ export default function Navbar() {
                   <span className="font-mono text-sm">438-483-8175</span>
                 </a>
                 <Link to="/booking" className="btn-outline text-center py-3">
-                  Book Now
+                  {t.bookNow}
                 </Link>
               </div>
             </div>
