@@ -3,8 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Shield, Sparkles, Heart, Award, Users, Car, Star, ArrowRight } from 'lucide-react'
 import SectionHeading from '../components/ui/SectionHeading'
-import ceramicImg from '../assets/dk/imgi_2_ceramiccoating.webp'
-import beforeAfterImg from '../assets/dk/imgi_3_beforeaftercoating.webp'
+import ceramicImg from '../assets/dk/down2detail.png'
 
 const values = [
   {
@@ -30,7 +29,7 @@ const values = [
 ]
 
 const stats = [
-  { icon: Car, value: '500+', label: 'Cars Detailed' },
+  { icon: Car, value: '3yrs', label: 'In Business' },
   { icon: Star, value: '4.9', label: 'Star Rating' },
   { icon: Users, value: '400+', label: 'Happy Clients' },
   { icon: Award, value: '100%', label: 'Satisfaction Rate' },
@@ -66,7 +65,7 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <div className="relative">
-                <div className="rounded-2xl overflow-hidden img-zoom">
+                <div className="rounded-2xl overflow-hidden ">
                   <img
                     src={ceramicImg}
                     alt="Down2Detail team at work"
@@ -74,7 +73,7 @@ export default function About() {
                   />
                 </div>
                 <div className="absolute -bottom-5 -right-5 glass rounded-xl p-4 hidden md:block">
-                  <p className="price-mono text-primary text-xl">500+</p>
+                  <p className="price-mono text-primary text-xl">1000+</p>
                   <p className="text-text-secondary text-xs mt-1">Cars Detailed</p>
                 </div>
               </div>

@@ -88,7 +88,7 @@ export default function Navbar() {
             className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors"
           >
             <Phone size={14} />
-            <span className="font-mono text-xs">438-483-8175</span>
+            <span className="font-mono text-xs"></span>
           </a>
           <Link to="/booking" className="btn-outline text-sm">
             Book Now

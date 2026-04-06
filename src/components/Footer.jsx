@@ -71,9 +71,12 @@ export default function Footer() {
                   <h4>Service</h4>
                   <Link to="/services#section-exterior">Exterior Services</Link>
                   <Link to="/services#section-interior">Interior Services</Link>
-                  <Link to="/services#section-paint-polish">Paint Services</Link>
-                  <Link to="/services#section-protection">Protection Services</Link>
-
+                  <Link to="/services#section-paint-polish">
+                    Paint Services
+                  </Link>
+                  <Link to="/services#section-protection">
+                    Protection Services
+                  </Link>
                 </div>
                 <div className="footer-link-card">
                   <h4>Official</h4>
@@ -191,8 +194,8 @@ export default function Footer() {
       <div className="border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-text-muted text-xs font-mono">
-            © {new Date().getFullYear()} Down2Detail. All rights reserved.
-            Developed by <a href="https://github.com/Skaff10">Skaf</a>
+            © {new Date().getFullYear()} Down2Detail. Developed by{" "}
+            <a href="https://www.instagram.com/skafff_10/">Skaf</a>
           </p>
           <button
             onClick={scrollToTop}

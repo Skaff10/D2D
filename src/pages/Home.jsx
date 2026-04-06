@@ -561,9 +561,9 @@ export default function Home() {
           {/* Stats row */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4 pt-5">
             {[
-              { num: "500+", label: "Cars Detailed" },
+              { num: "1000+", label: "Cars Detailed" },
               { num: "4.9★", label: "Average Rating" },
-              { num: "3 yrs", label: "In Business" },
+              { num: "400+", label: "Happy Clients" },
               { num: "100%", label: "Satisfaction Rate" },
             ].map((stat, i) => (
               <motion.div
