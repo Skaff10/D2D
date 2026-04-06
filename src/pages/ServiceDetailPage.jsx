@@ -7,7 +7,7 @@ import FAQAccordion from "../components/services/FAQAccordion";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import { CheckCircle2 } from "lucide-react";
-import { ArrowRight, ArrowLeft} from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Shield } from "lucide-react";
 export default function ServiceDetailPage() {
   const { lang } = useLang();
@@ -61,6 +61,8 @@ export default function ServiceDetailPage() {
             {/* Animated shimmer/glow for premium feel */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -z-10" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -z-10" />
+            {/* Second glow — bottom-right */}
+            <div className="pointer-events-none absolute bottom-0 right-0 w-[450px] h-[450px] bg-amber-700/8 rounded-full blur-[120px] -z-10" />
           </>
         )}
 

@@ -236,7 +236,7 @@ export default function Contact() {
                   ) : (
                     <>
                       <Send size={14} />
-                      {lang === 'fr' ? 'Envoyer' : 'Send Message'}
+                      {lang === "fr" ? "Envoyer" : "Send Message"}
                     </>
                   )}
                 </button>
@@ -244,7 +244,9 @@ export default function Contact() {
 
               {/* Social Links */}
               <div className="mt-8 pt-6 border-t border-white/[0.06]">
-                <span className="section-tag block mb-3">{t.socialMedia} →</span>
+                <span className="section-tag block mb-3">
+                  {t.socialMedia} →
+                </span>
                 <div className="flex gap-3">
                   <a
                     href="https://www.instagram.com/down2detail.ca/"
@@ -278,7 +280,9 @@ export default function Contact() {
                 <div className="shield-badge w-9 h-9 rounded-lg">
                   <MapPin size={15} className="text-primary/60" />
                 </div>
-                <h2 className="serif-heading text-2xl text-white">{t.findUs}</h2>
+                <h2 className="serif-heading text-2xl text-white">
+                  {t.findUs}
+                </h2>
               </div>
               <div className="rounded-2xl overflow-hidden border border-white/[0.06] h-[calc(100%-3.5rem)]">
                 <iframe

@@ -10,12 +10,6 @@ import { categories, services } from "../data/servicesData";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 
-
-
-
-
-
-
 export default function Services() {
   const { lang } = useLang();
   const t = translations[lang].services;
@@ -118,12 +112,21 @@ export default function Services() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-8 h-[1px] bg-primary/40" />
                     <span className="section-tag text-primary/80">
-                      {t[category.id === 'paint-polish' ? 'paintPolish' : category.id] || category.label}
+                      {t[
+                        category.id === "paint-polish"
+                          ? "paintPolish"
+                          : category.id
+                      ] || category.label}
                     </span>
                     <div className="flex-1 h-[1px] bg-white/[0.04]" />
                   </div>
                   <h2 className="serif-heading text-2xl sm:text-3xl text-white">
-                    {t[category.id === 'paint-polish' ? 'paintPolish' : category.id] || category.label} Services
+                    {t[
+                      category.id === "paint-polish"
+                        ? "paintPolish"
+                        : category.id
+                    ] || category.label}{" "}
+                    Services
                   </h2>
                 </motion.div>
 
@@ -158,9 +161,7 @@ export default function Services() {
             <h2 className="serif-heading text-3xl md:text-4xl mb-4">
               {t.notSureHelp}
             </h2>
-            <p className="text-text-secondary text-lg mb-8">
-              {t.consultation}
-            </p>
+            <p className="text-text-secondary text-lg mb-8">{t.consultation}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/booking" className="btn-filled">
                 {t.bookAService}

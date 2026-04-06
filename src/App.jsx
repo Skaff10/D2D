@@ -25,11 +25,39 @@ import AdminServices from "./admin/AdminServices";
 
 function PublicLayout({ children }) {
   return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </>
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* Layer 1: Ambient glow left side */}
+      <div className="pointer-events-none fixed top-[20%] -left-32 w-[500px] h-[500px] rounded-full bg-amber-600/10 blur-[120px] z-0" />
+
+      {/* Layer 2: Ambient glow right side */}
+      <div className="pointer-events-none fixed top-[50%] -right-32 w-[500px] h-[500px] rounded-full bg-amber-800/10 blur-[120px] z-0" />
+
+      {/* Layer 3: Subtle noise texture overlay */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '200px 200px'
+        }}
+      />
+
+      {/* Layer 4: Faint diagonal lines on far sides only */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 opacity-[0.025]"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(135deg, #b45309 0px, #b45309 1px, transparent 0px, transparent 50%)',
+          backgroundSize: '30px 30px'
+        }}
+      />
+
+      {/* All existing page content sits above */}
+      <div className="relative z-10">
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
