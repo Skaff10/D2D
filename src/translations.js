@@ -140,6 +140,17 @@ export const translations = {
       },
     },
     booking: {
+      validation: {
+        nameRequired: "Name is required",
+        phoneRequired: "Phone is required",
+        emailRequired: "Email is required",
+        invalidEmail: "Invalid email",
+        vehicleRequired: "Vehicle type is required",
+        serviceRequired: "Please select a service",
+        dateRequired: "Date is required",
+        timeRequired: "Time is required",
+        genericError: "Something went wrong. Please try calling us at 438-483-8175."
+      },
       bookAppointment: "Book an Appointment",
       scheduleDetailing: "Schedule Your Detailing",
       bookingDescription: "Fill out the form below and we'll get back to you to confirm your booking.",
@@ -161,6 +172,18 @@ export const translations = {
       selectService: "Select a service",
       selectTime: "Select a time",
       pricingNote: "Contact for pricing — Pricing varies based on vehicle size and paint condition. We'll provide a custom quote after inspection.",
+      placeholders: {
+        name: "John Doe",
+        phone: "(438) 000-0000",
+        email: "john@example.com",
+        notes: "Any special requests or details about your vehicle..."
+      },
+      vehicleTypes: {
+        sedan: "Sedan",
+        suv: "SUV",
+        truck: "Truck",
+        van: "Van"
+      }
     },
     serviceDetails: {
       premiumProtection: "Premium Protection",
@@ -344,6 +367,17 @@ export const translations = {
       },
     },
     booking: {
+      validation: {
+        nameRequired: "Le nom est requis",
+        phoneRequired: "Le téléphone est requis",
+        emailRequired: "L'e-mail est requis",
+        invalidEmail: "E-mail invalide",
+        vehicleRequired: "Le type de véhicule est requis",
+        serviceRequired: "Veuillez sélectionner un service",
+        dateRequired: "La date est requise",
+        timeRequired: "L'heure est requise",
+        genericError: "Une erreur s'est produite. Veuillez nous appeler au 438-483-8175."
+      },
       bookAppointment: "Réserver un Rendez-vous",
       scheduleDetailing: "Planifiez votre Esthétique",
       bookingDescription: "Remplissez le formulaire ci-dessous et nous vous recontacterons pour confirmer votre réservation.",
@@ -365,6 +399,18 @@ export const translations = {
       selectService: "Sélectionnez un service",
       selectTime: "Sélectionnez une heure",
       pricingNote: "Contactez-nous pour les tarifs — Les prix varient selon la taille du véhicule et l'état de la peinture. Nous fournirons un devis personnalisé après inspection.",
+      placeholders: {
+        name: "Jean Dupont",
+        phone: "(438) 000-0000",
+        email: "jean@exemple.com",
+        notes: "Toutes demandes spéciales ou détails sur votre véhicule..."
+      },
+      vehicleTypes: {
+        sedan: "Berline",
+        suv: "VUS",
+        truck: "Camion",
+        van: "Fourgonnette"
+      }
     },
     serviceDetails: {
       premiumProtection: "Protection Premium",
@@ -387,23 +433,23 @@ export const translations = {
       learnMore: "En Savoir Plus",
     },
     servicesList: {
-      "exterior-detailing": { name: "Lavage Extérieur", shortDescription: "Les lavages de base utilisent des éponges sales, des produits chimiques agressifs ou des brosses automatisées qui laissent des marques et des rayures." },
-      "paint-decontamination": { name: "Décontamination de la Peinture", shortDescription: "Même après un bon lavage, la peinture peut sembler rugueuse à cause de contaminants microscopiques." },
-      "engine-bay-detailing": { name: "Nettoyage du Compartiment Moteur", shortDescription: "L'une des zones les plus négligées lors du nettoyage automobile." },
-      "headlight-restoration": { name: "Restauration des Phares", shortDescription: "Les phares ternis ou flous réduisent la visibilité nocturne et compromettent la sécurité." },
-      "headlight-taillight-tint": { name: "Teinte des Phares et Feux Arrière", shortDescription: "Ajoute une apparence élégante et personnalisée tout en offrant une protection contre les UV, les rayures et l'oxydation." },
-      "interior-detailing": { name: "Nettoyage Intérieur", shortDescription: "Les lavages rapides offrent des essuyages précipités qui manquent les bouches d'aération et les espaces restreints." },
-      "floor-carpet-shampoo": { name: "Shampoing des Tapis et Planchers", shortDescription: "Les tapis subissent l'usure quotidienne des chaussures, des déversements et des débris." },
-      "pet-hair-removal": { name: "Élimination des Poils d'Animaux", shortDescription: "Les poils d'animaux s'incrustent profondément dans les fibres des tissus et sont presque impossibles à enlever avec un aspirateur ordinaire." },
-      "fabric-seat-shampoo": { name: "Shampoing des Sièges en Tissu", shortDescription: "Les sièges en tissu absorbent les déversements, les taches et les odeurs avec le temps." },
-      "leather-seat-treatment": { name: "Traitement des Sièges en Cuir", shortDescription: "Le cuir nécessite des soins particuliers pour conserver son apparence luxueuse et prévenir les craquelures ou la décoloration." },
-      "gloss-enhancer": { name: "Rehausseur de Brillance", shortDescription: "Une excellente option pour les véhicules récents ou bien entretenus." },
-      "one-step-polish": { name: "Polissage en Une Étape", shortDescription: "Parfait pour les véhicules qui ont besoin d'un rafraîchissement rapide sans correction approfondie." },
-      "two-step-polish": { name: "Polissage en Deux Étapes", shortDescription: "Idéal pour les véhicules présentant des marques de tourbillon modérées, de légères rayures et une peinture terne." },
-      "three-step-polish": { name: "Polissage en Trois Étapes", shortDescription: "Notre service de restauration de peinture le plus complet pour les peintures gravement négligées ou fortement rayées." },
-      "ceramic-coating": { name: "Revêtement Céramique", shortDescription: "Le revêtement céramique est un polymère liquide à base de nanotechnologie (SiO₂)." },
-      "paint-sealant": { name: "Scellant à Peinture", shortDescription: "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable." },
-      "car-wax": { name: "Cire Automobile", shortDescription: "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde." },
+      "exterior-detailing": { name: "Lavage Extérieur", shortDescription: "Les lavages de base utilisent des éponges sales, des produits chimiques agressifs ou des brosses automatisées qui laissent des marques et des rayures.", features: ["Jantes et pneus nettoyés en profondeur", "Pré-rinçage et mousse active", "Nettoyage détaillé au pinceau", "Nettoyage des seuils de porte", "Lavage à la main (méthode de 2 seaux)", "Décontamination de la peinture", "Séchage soigné au jet d'air", "Lustrant pour pneus", "Nettoyage des vitres", "Vérification finale"], included: ["Améliore l'apparence", "Préserve contre les micro-rayures", "Sécuritaire pour la céramique et les cires", "Nettoie ce que les lavages de base ignorent", "Prépare pour le polissage", "Maintient la peinture", "pH neutre", "Booste la valeur de revente"] },
+      "paint-decontamination": { name: "Décontamination de la Peinture", shortDescription: "Même après un bon lavage, la peinture peut sembler rugueuse à cause de contaminants microscopiques.", features: ["Dégoudronnant chimique", "Nettoyage des taches difficiles", "Traitement mécanique à la barre d'argile", "Vérification de la douceur"], included: ["Rend la peinture soyeuse", "Améliore la clarté et brillance", "Prépare pour la cire ou céramique", "Prolonge la durée de vie de la protection"] },
+      "engine-bay-detailing": { name: "Nettoyage du Compartiment Moteur", shortDescription: "L'une des zones les plus négligées lors du nettoyage automobile.", features: ["Inspection et préparation", "Protection des composants sensibles", "Dégraissage minutieux", "Brosses douces pour accès difficiles", "Nettoyage sécuritaire sans haute pression", "Finition esthétique non grasse", "Protection anti-UV"], included: ["Nettoie l'accumulation d'huile", "Prévient la corrosion", "Maintient un fonctionnement optimal", "Présentation valorisante"] },
+      "headlight-restoration": { name: "Restauration des Phares", shortDescription: "Les phares ternis ou flous réduisent la visibilité nocturne et compromettent la sécurité.", features: ["Masquage et préparation complète", "Ponçage humide", "Polissage machine pour clarté optique", "Application de barrière UV", "Inspection", "Garantie prolongée"], included: ["Améliore l'apparence", "Sécurité nocturne améliorée", "Évite le remplacement", "Protège des dommages futurs"] },
+      "headlight-taillight-tint": { name: "Teinte des Phares et Feux Arrière", shortDescription: "Ajoute une apparence élégante et personnalisée tout en offrant une protection contre les UV, les rayures et l'oxydation.", features: ["Préparation complète", "Film teinté coupé avec précision", "Installation experte", "Garantie contre les bulles", "Vérification des normes"], included: ["Look sportif et distinctif", "Protège contre les éclats", "Assurance de durabilité", "Maintient la transparence lumineuse", "Aucun résidu à l'enlèvement"] },
+      "interior-detailing": { name: "Nettoyage Intérieur", shortDescription: "Les lavages rapides offrent des essuyages précipités qui manquent les bouches d'aération et les espaces restreints.", features: ["Passage d'aspirateur approfondi", "Détail du tableau de bord et portes", "Nettoyage de ventilation au pinceau", "Restauration du volant au fini mat", "Porte-gobelets et consoles vidés et lavés", "Nettoyage interne des vitres", "Assainissement à la vapeur", "Traitement du ciel de toit"], included: ["Améliore l'hygiène globale", "Élimine la saleté incrustée", "Assainit les zones de contact", "Restaure une odeur de neuf", "Protège contre l'usure", "Environnement sain et respirable"] },
+      "floor-carpet-shampoo": { name: "Shampoing des Tapis et Planchers", shortDescription: "Les tapis subissent l'usure quotidienne des chaussures, des déversements et des débris.", features: ["Prétraitement des taches", "Extraction à l'eau chaude", "Désinfection à la vapeur", "Shampoing spécialisé", "Aspiration minutieuse", "Désodorisation", "Séchage ventilé"], included: ["Supprime les taches profondes", "Élimine les mauvaises odeurs", "Ravive les couleurs d'origine", "Prolonge la vie des tissus"] },
+      "pet-hair-removal": { name: "Élimination des Poils d'Animaux", shortDescription: "Les poils d'animaux s'incrustent profondément dans les fibres des tissus et sont presque impossibles à enlever avec un aspirateur ordinaire.", features: ["Brosses spéciales pour poils", "Extraction puissante", "Brossage des tissus", "Rouleaux spécialisés", "Détachement à la vapeur"], included: ["Retire l'intégralité des poils", "Élimine les allergènes", "Redonne une apparence propre", "Évite la propagation des poils"] },
+      "fabric-seat-shampoo": { name: "Shampoing des Sièges en Tissu", shortDescription: "Les sièges en tissu absorbent les déversements, les taches et les odeurs avec le temps.", features: ["Prétraitement des sièges", "Extraction à l'eau chaude", "Assainissement des coussins à la vapeur", "Séchage actif", "Traitement antitaches et odeurs"], included: ["Ramène les tissus à la vie", "Nettoie en profondeur", "Évite la prolifération des bactéries", "Aspect luxueux rétabli"] },
+      "leather-seat-treatment": { name: "Traitement des Sièges en Cuir", shortDescription: "Le cuir nécessite des soins particuliers pour conserver son apparence luxueuse et prévenir les craquelures ou la décoloration.", features: ["Lavage doux au pH neutre", "Nettoyage des pores du cuir", "Conditionneur pour redonner la souplesse", "Barrière protectrice anti-UV", "Polissage final"], included: ["Prévient le craquèlement", "Protège de la chaleur extrême", "Conserve un toucher lisse", "Odeur naturelle prolongée"] },
+      "gloss-enhancer": { name: "Rehausseur de Brillance", shortDescription: "Une excellente option pour les véhicules récents ou bien entretenus.", features: ["Lavage extérieur au complet", "Décontamination", "Polissage fin", "Essuyage manuel", "Application scellant polymère protecteur"], included: ["Brillance explosive", "Soin doux amical avec le vernis", "Protection hydrofuge", "Garde un éclat constant"] },
+      "one-step-polish": { name: "Polissage en Une Étape", shortDescription: "Parfait pour les véhicules qui ont besoin d'un rafraîchissement rapide sans correction approfondie.", features: ["Nettoyage et préparation de la surface", "Composé de polissage unique (action double)", "Retrait léger de rayures", "Polissage de finition", "Scellant polymère optionnel"], included: ["Gain de temps et d'argent", "Supprime les micro-rayures", "Augmente nettement l'éclat global", "Préparation avant protection"] },
+      "two-step-polish": { name: "Polissage en Deux Étapes", shortDescription: "Idéal pour les véhicules présentant des marques de tourbillon modérées, de légères rayures et une peinture terne.", features: ["Préparation exhaustive et décontamination", "Étape 1 : Coupe abrasive pour rayures et cernes", "Étape 2 : Polissage de finition lustrant", "Inspection régulière", "Finition et inspection finale"], included: ["Correction de tourbillons et cernes d'eau", "Fini exceptionnellement brillant", "Étape intermédiaire efficace", "Excellent avant pose de céramique"] },
+      "three-step-polish": { name: "Polissage en Trois Étapes", shortDescription: "Notre service de restauration de peinture le plus complet pour les peintures gravement négligées ou fortement rayées.", features: ["Analyse absolue de l'état du vernis", "Étape 1 : Coupe abrasive intensive", "Étape 2 : Lissage et correction modérée", "Étape 3 : Bijoutage ultra fin", "Contrôles assidus", "Lustrage miroir"], included: ["Restauration ultime du vernis", "Enlève les égratignures graves et toiles d'araignées", "Éclat concours", "Meilleure valeur à la revente"] },
+      "ceramic-coating": { name: "Revêtement Céramique", shortDescription: "Le revêtement céramique est un polymère liquide à base de nanotechnologie (SiO₂).", fullDescription: "Le revêtement céramique est un polymère liquide composé de nanotechnologie à base de SiO₂ (dioxyde de silicium). Une fois durci, il se lie chimiquement à la peinture d'usine, créant un bouclier hydrophobe, lisse et ultra-durable.\n\nContrairement aux cires ou scellants traditionnels, il offre une protection longue durée qui repousse la saleté, l'eau, la crasse routière, les fientes d'oiseaux, les éclaboussures d'insectes, et bien plus encore.", features: ["Hydrophobe - L'eau glisse facilement", "Résistant aux UV", "Anti-micro-rayures", "Résistant aux acides et produits", "Finition miroir protectrice", "Protection Pluies Acides", "Barrière Déjections d'Oiseaux", "Protection Contaminants", "Écran Résine des Arbres", "Protection Érosion Métérologique"], worthIt: ["Protection durable", "Lavages faciles et rapides", "Augmente la valeur", "Apparence magnifique longue durée", "Évite les polissages fréquents"], pricingTiers: [{level: "Niveau 1", durability: "Jusqu'à 1 an ou 20 000 km", price: "249,99 $"}, {level: "Niveau 2", durability: "Jusqu'à 4 ans ou 60 000 km", price: "499,99 $"}, {level: "Niveau 3", durability: "Jusqu'à 5 ans ou 80 000 km", price: "599,99 $"}], surfaces: ["Peinture", "Jantes", "Vitres", "Plastiques", "Cuirs"], additionalSurfaces: [{surface: "Jantes / Étriers", durability: "Jusqu'à 2 ans", price: "199,99 $"}, {surface: "Vitres", durability: "Jusqu'à 12 mois", price: "229,99 $"}, {surface: "Plastiques", durability: "Jusqu'à 2 ans", price: "149,99 $"}, {surface: "Cuir", durability: "Jusqu'à 2 ans", price: "199,99 $"}], faq: [{q: "Le revêtement nécessite-t-il de l'entretien ?", a: "Oui, un lavage de détail est recommandé chaque 4-6 mois pour préserver la protection."}, {q: "Est-ce mieux qu'une cire traditionnelle ?", a: "Absolument. C'est plus durable et robuste contre les éléments."}, {q: "Peut-on laver de manière automatique ?", a: "Non, un lavage doux à la main ou chez un professionnel préservera l'intégrité."}, {q: "Est-ce à l'épreuve des grosses rayures ?", a: "Non, il protège des micro-abrasions mais n'est pas indestructible."}] },
+      "paint-sealant": { name: "Scellant à Peinture", shortDescription: "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable.", features: ["Lavage minutieux", "Décontamination avant pose", "Application synthétique pro", "Lissage homogène", "Protection de longue haleine"], included: ["Durabilité de 6 à 12 mois", "Éclat très clair", "Protège adéquatement le vernis d'été ou d'hiver", "Alternative abordable"] },
+      "car-wax": { name: "Cire Automobile", shortDescription: "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde.", features: ["Lavage et préparation", "Application manuelle Carnauba", "Lustrage à la main", "Polissage délicat en finition"], included: ["Esthétique classique et chaude", "Protège contre les UV et l'oxydation", "Option purement esthétique abordable", "Brillance riche"] },
     },
     contactForPricing: 'Contact pour devis',
   },

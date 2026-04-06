@@ -74,8 +74,12 @@ export default function Footer() {
               <div className="grid grid-cols-3 gap-3">
                 <div className="footer-link-card">
                   <h4>{t.service}</h4>
-                  <Link to="/services#section-exterior">{t.exteriorServices}</Link>
-                  <Link to="/services#section-interior">{t.interiorServices}</Link>
+                  <Link to="/services#section-exterior">
+                    {t.exteriorServices}
+                  </Link>
+                  <Link to="/services#section-interior">
+                    {t.interiorServices}
+                  </Link>
                   <Link to="/services#section-paint-polish">
                     {t.paintServices}
                   </Link>
@@ -102,7 +106,9 @@ export default function Footer() {
           {/* Right Column — Contact Info */}
           <div className="space-y-8">
             <div>
-              <span className="section-tag block mb-4">{t.contact.toUpperCase()} →</span>
+              <span className="section-tag block mb-4">
+                {t.contact.toUpperCase()} →
+              </span>
               <div className="space-y-5">
                 <a
                   href="tel:+14384838175"
@@ -182,13 +188,15 @@ export default function Footer() {
               <p className="text-text-secondary text-sm mb-5">
                 {t.bookYourPremium}
               </p>
-              <div className="flex gap-3">
-                <Link to="/booking" className="btn-filled text-sm">
-                  {t.bookNow}
-                </Link>
-                <a href="tel:+14384838175" className="btn-outline text-sm">
-                  {t.callUs}
-                </a>
+              <div className="flex justify-end">
+                <div className="flex gap-3">
+                  <Link to="/booking" className="btn-filled text-sm">
+                    {t.bookNow}
+                  </Link>
+                  <a href="tel:+14384838175" className="btn-outline text-sm">
+                    {t.callUs}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
