@@ -39,7 +39,7 @@ export const translations = {
       bookNow: "Book Now",
       callUs: "Call Us",
       backToTop: "Back to top",
-      developedBy: "Developed by Skaf",
+      developedBy: "Developed by",
     },
     home: {
       trustedBy: "Trusted by owners of",
@@ -266,7 +266,7 @@ export const translations = {
       bookNow: "Réserver",
       callUs: "Appelez-nous",
       backToTop: "Retour en haut",
-      developedBy: "Développé par Skaf",
+      developedBy: "Développé par",
     },
     home: {
       trustedBy: "Approuvé par les propriétaires de",

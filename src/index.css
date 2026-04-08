@@ -38,7 +38,7 @@ body {
     #120800 75%,
     #0a0a0a 100%
   );
-  
+
   background-attachment: fixed;
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
@@ -82,10 +82,11 @@ h6 {
 }
 
 .glass-navbar {
-  background: rgba(10, 10, 10, 0.9);
+  background: rgba(43, 33, 22, 0.9);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* ========== REFERENCE DESIGN UTILITIES ========== */
@@ -125,15 +126,23 @@ h6 {
 
 /* Dark card — matching reference rounded dark cards */
 .dark-card {
-  background: #161616;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 1.25rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark-card:hover {
-  background: #1c1c1c;
-  border-color: rgba(255, 255, 255, 0.1);
+  
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* Outlined button — matching reference bordered pill buttons */
@@ -415,10 +424,23 @@ textarea:focus {
 
 /* Footer quick link cards */
 .footer-link-card {
-  background: #1a1a1a;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 0.75rem;
   padding: 1rem;
   text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.footer-link-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .footer-link-card h4 {

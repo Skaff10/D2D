@@ -81,12 +81,9 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
             >
-              {/* Decorative amber glow behind left column */}
-              <div className="pointer-events-none absolute -inset-10 rounded-full bg-amber-700/10 blur-[80px] z-0" />
-              <div className="relative z-10">
-              <div className="rounded-2xl overflow-hidden ">
+              <div className="relative">
+                <div className="rounded-2xl overflow-hidden ">
                   <img
                     src={ceramicImg}
                     alt="Down2Detail team at work"

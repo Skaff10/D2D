@@ -170,7 +170,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">
-                      Mon – Sun: 8AM – 6PM
+                      Mon – Sun: 9AM – 9PM
                     </p>
                     <p className="text-text-muted text-xs mt-0.5">
                       {t.open7Days}
@@ -181,8 +181,8 @@ export default function Footer() {
             </div>
 
             {/* CTA */}
-            <div className="dark-card p-6 mt-6">
-              <h3 className="serif-heading text-xl text-white mb-3">
+            <div className="bg-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 backdrop-blur-md p-6 mt-6 rounded-2xl">
+              <h3 className="serif-heading text-xl text-white mb-3 ">
                 {t.readyToGetStarted}
               </h3>
               <p className="text-text-secondary text-sm mb-5">
