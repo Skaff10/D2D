@@ -16,6 +16,7 @@ import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Booking from "./pages/Booking";
+import Packages from "./pages/Packages";
 import NotFound from "./pages/NotFound";
 
 import AdminLayout from "./admin/AdminLayout";
@@ -116,6 +117,14 @@ export default function App() {
                 element={
                   <PublicLayout>
                     <Booking />
+                  </PublicLayout>
+                }
+              />
+              <Route
+                path="/packages"
+                element={
+                  <PublicLayout>
+                    <Packages />
                   </PublicLayout>
                 }
               />
