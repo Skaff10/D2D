@@ -16,7 +16,10 @@ import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Booking from "./pages/Booking";
-import Packages from "./pages/Packages";
+import PackagesOverview from "./pages/PackagesOverview";
+import PackagesDetail from "./pages/PackagesDetail";
+import PackagesPaint from "./pages/PackagesPaint";
+import PackagesMonthly from "./pages/PackagesMonthly";
 import NotFound from "./pages/NotFound";
 
 import AdminLayout from "./admin/AdminLayout";
@@ -24,6 +27,8 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminBookings from "./admin/AdminBookings";
 import AdminServices from "./admin/AdminServices";
+import AdminPricing from "./admin/AdminPricing";
+import AdminGallery from "./admin/AdminGallery";
 
 function PublicLayout({ children }) {
   return (
@@ -124,7 +129,31 @@ export default function App() {
                 path="/packages"
                 element={
                   <PublicLayout>
-                    <Packages />
+                    <PackagesOverview />
+                  </PublicLayout>
+                }
+              />
+              <Route
+                path="/packages/detail"
+                element={
+                  <PublicLayout>
+                    <PackagesDetail />
+                  </PublicLayout>
+                }
+              />
+              <Route
+                path="/packages/paint"
+                element={
+                  <PublicLayout>
+                    <PackagesPaint />
+                  </PublicLayout>
+                }
+              />
+              <Route
+                path="/packages/monthly"
+                element={
+                  <PublicLayout>
+                    <PackagesMonthly />
                   </PublicLayout>
                 }
               />
@@ -143,6 +172,8 @@ export default function App() {
                 <Route path="dashboard" element={<AdminDashboard />} />
                 <Route path="bookings" element={<AdminBookings />} />
                 <Route path="services" element={<AdminServices />} />
+                <Route path="pricing" element={<AdminPricing />} />
+                <Route path="gallery" element={<AdminGallery />} />
               </Route>
 
               {/* 404 */}

@@ -16,6 +16,7 @@ export default function Navbar() {
   const navLinks = [
     { name: t.home, path: "/" },
     { name: t.services, path: "/services", end: true },
+    { name: lang === "en" ? "Packages" : "Forfaits", path: "/packages" },
     { name: t.ceramicCoating, path: "/services/ceramic-coating" },
     { name: t.gallery, path: "/gallery" },
     { name: t.about, path: "/about" },

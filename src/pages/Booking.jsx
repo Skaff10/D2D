@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
@@ -13,6 +13,7 @@ import {
   FileText,
   Car,
   AlertCircle,
+  Package,
 } from "lucide-react";
 import {
   collection,
@@ -76,29 +77,46 @@ const fallbackServices = [
   { id: "17", name: "Car Wax" },
 ];
 
+const defaultPackageMap = {
+  detail: "Essential ",
+  paint: "Silver",
+  monthly: "Monthly Refresh ",
+};
+
 export default function Booking() {
   const { lang } = useLang();
   const t = translations[lang].booking;
-  
+
   const [searchParams] = useSearchParams();
   const [services, setServices] = useState(fallbackServices);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
   const preselectedService = searchParams.get("service") || "";
+  const categoryParam = searchParams.get("category") || "";
+  const preselectedPackage = defaultPackageMap[categoryParam] || "";
+
+  // Default to "package" mode if a category query param is present
+  const [bookingType, setBookingType] = useState(
+    categoryParam ? "package" : "service",
+  );
 
   const {
     register,
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
+      selectedPackage: preselectedPackage,
       customerName: "",
       phone: "",
       email: "",
       vehicleType: "",
-      serviceName: preselectedService,
+      vehicleModel: "",
+      serviceName: categoryParam ? "" : preselectedService,
       date: "",
       time: "",
       notes: "",
@@ -111,6 +129,18 @@ export default function Booking() {
     selectedService === "One-Step Polish" ||
     selectedService === "Two-Step Polish" ||
     selectedService === "Three-Step Polish";
+
+  // Clear the opposite field when toggling booking type
+  const handleToggle = (type) => {
+    if (type === bookingType) return;
+    setBookingType(type);
+    if (type === "service") {
+      setValue("selectedPackage", "");
+    } else {
+      setValue("serviceName", "");
+    }
+  };
+
   useEffect(() => {
     async function fetchServices() {
       try {
@@ -139,10 +169,13 @@ export default function Booking() {
         phone: data.phone,
         email: data.email,
         vehicleType: data.vehicleType,
-        serviceName: data.serviceName,
+        vehicleModel: data.vehicleModel,
+        bookingType,
+        serviceName: bookingType === "service" ? data.serviceName : "",
         date: data.date,
         time: data.time,
         notes: data.notes || "",
+        selectedPackage: bookingType === "package" ? data.selectedPackage : "",
         status: "Pending",
         createdAt: Timestamp.now(),
       });
@@ -156,10 +189,15 @@ export default function Booking() {
             customer_phone: data.phone,
             customer_email: data.email,
             vehicle_type: data.vehicleType,
-            service_name: data.serviceName,
+            vehicle_model: data.vehicleModel,
+            booking_type: bookingType,
+            service_name:
+              bookingType === "service" ? data.serviceName : "None",
             booking_date: data.date,
             booking_time: data.time,
             notes: data.notes || "None",
+            selected_package:
+              bookingType === "package" ? data.selectedPackage : "None",
           },
           EMAILJS_PUBLIC_KEY,
         );
@@ -167,9 +205,7 @@ export default function Booking() {
         console.log("EmailJS notification skipped:", emailErr.message);
       }
 
-      toast.success(
-        t.thankYou
-      );
+      toast.success(t.thankYou);
       setSubmitted(true);
       reset();
     } catch (err) {
@@ -189,6 +225,13 @@ export default function Booking() {
   const labelClasses =
     "flex items-center gap-2 text-xs font-medium text-text-secondary mb-2";
 
+  const pillBase =
+    "flex-1 py-3 px-4 rounded-xl text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer text-center";
+  const pillActive =
+    "bg-[#C9A84C] text-[#1a1a1a] shadow-[0_0_20px_rgba(201,168,76,0.25)]";
+  const pillInactive =
+    "bg-[#161616] text-white/40 border border-white/[0.06] hover:text-white/60 hover:border-white/10";
+
   if (submitted) {
     return (
       <>
@@ -207,9 +250,7 @@ export default function Booking() {
             <h1 className="serif-heading text-3xl text-white mb-4">
               {t.bookingReceived}
             </h1>
-            <p className="text-text-secondary mb-8">
-              {t.thankYou}
-            </p>
+            <p className="text-text-secondary mb-8">{t.thankYou}</p>
             <button onClick={() => setSubmitted(false)} className="btn-filled">
               {t.bookAnother}
             </button>
@@ -246,6 +287,24 @@ export default function Booking() {
             onSubmit={handleSubmit(onSubmit)}
             className="dark-card p-6 md:p-8 space-y-6"
           >
+            {/* Booking Type Toggle */}
+            <div className="flex gap-3">
+              <button
+                type="button"
+                className={`${pillBase} ${bookingType === "service" ? pillActive : pillInactive}`}
+                onClick={() => handleToggle("service")}
+              >
+                {lang === "en" ? "Book a Service" : "Réserver un service"}
+              </button>
+              <button
+                type="button"
+                className={`${pillBase} ${bookingType === "package" ? pillActive : pillInactive}`}
+                onClick={() => handleToggle("package")}
+              >
+                {lang === "en" ? "Book a Package" : "Réserver un forfait"}
+              </button>
+            </div>
+
             {/* Name & Phone */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -330,43 +389,164 @@ export default function Booking() {
               </div>
             </div>
 
-
-            {/* Service */}
+            {/* Vehicle Model & Year */}
             <div>
               <label className={labelClasses}>
-                <FileText size={12} /> {t.service} *
+                <Car size={12} /> {t.vehicleModel} *
               </label>
-              <select
+              <input
+                type="text"
+                placeholder={t.placeholders.vehicleModel}
                 className={inputClasses}
-                {...register("serviceName", {
-                  required: "Please select a service",
+                {...register("vehicleModel", {
+                  required: t.validation.vehicleModelRequired,
                 })}
-              >
-                <option value="">{t.selectService}</option>
-                {services.map((s) => (
-                  <option key={s.id} value={s.name}>
-                    {s.name}
-                  </option>
-                ))}
-              </select>
-              {errors.serviceName && (
+              />
+              {errors.vehicleModel && (
                 <p className="text-red-400 text-xs mt-1">
-                  {errors.serviceName.message}
+                  {errors.vehicleModel.message}
                 </p>
               )}
-              {showPricingNote && (
-                <div className="flex items-start gap-2 mt-2 dark-card p-3 bg-primary/[0.04] border-primary/10">
-                  <AlertCircle
-                    size={14}
-                    className="text-primary/60 shrink-0 mt-0.5"
-                  />
-                  <p className="text-primary/70 text-xs">
-                    {t.pricingNote}
-                  </p>
-                </div>
-              )}
-              
             </div>
+
+            {/* Service / Package — conditional */}
+            <AnimatePresence mode="wait">
+              {bookingType === "service" && (
+                <motion.div
+                  key="service"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <label className={labelClasses}>
+                    <FileText size={12} /> {t.service} *
+                  </label>
+                  <select
+                    className={inputClasses}
+                    {...register("serviceName", {
+                      validate: (v) =>
+                        bookingType !== "service" ||
+                        !!v ||
+                        "Please select a service",
+                    })}
+                  >
+                    <option value="">{t.selectService}</option>
+                    {services.map((s) => (
+                      <option key={s.id} value={s.name}>
+                        {s.name}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.serviceName && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {errors.serviceName.message}
+                    </p>
+                  )}
+                  {showPricingNote && (
+                    <div className="flex items-start gap-2 mt-2 dark-card p-3 bg-primary/[0.04] border-primary/10">
+                      <AlertCircle
+                        size={14}
+                        className="text-primary/60 shrink-0 mt-0.5"
+                      />
+                      <p className="text-primary/70 text-xs">
+                        {t.pricingNote}
+                      </p>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+
+              {bookingType === "package" && (
+                <motion.div
+                  key="package"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <label className={labelClasses}>
+                    <Package size={12} />{" "}
+                    {lang === "en" ? "Package" : "Forfait"} *
+                  </label>
+                  <select
+                    className={inputClasses}
+                    {...register("selectedPackage", {
+                      validate: (v) =>
+                        bookingType !== "package" ||
+                        !!v ||
+                        (lang === "en"
+                          ? "Please select a package"
+                          : "Veuillez sélectionner un forfait"),
+                    })}
+                  >
+                    <option value="">
+                      {lang === "en"
+                        ? "Select a package"
+                        : "Sélectionnez un forfait"}
+                    </option>
+                    <optgroup
+                      label={
+                        lang === "en"
+                          ? "Exterior & Interior Detail"
+                          : "Détail Extérieur & Intérieur"
+                      }
+                    >
+                      <option value="Essential ">
+                        {lang === "en" ? "Essential" : "Essentiel"}
+                      </option>
+                      <option value="Signature ">
+                        {lang === "en" ? "Signature" : "Signature"}
+                      </option>
+                      <option value="Elite ">
+                        {lang === "en" ? "Elite" : "Élite"}
+                      </option>
+                    </optgroup>
+                    <optgroup
+                      label={
+                        lang === "en"
+                          ? "Paint Polish & Protection"
+                          : "Polissage & Protection de Peinture"
+                      }
+                    >
+                      <option value="Silver">
+                        {lang === "en" ? "Silver" : "Argent"}
+                      </option>
+                      <option value="Gold ">
+                        {lang === "en" ? "Gold" : "Or"}
+                      </option>
+                      <option value="Platinum ">
+                        {lang === "en" ? "Platinum" : "Platine"}
+                      </option>
+                      <option value="Diamond ">
+                        {lang === "en" ? "Diamond" : "Diamant"}
+                      </option>
+                    </optgroup>
+                    <optgroup
+                      label={
+                        lang === "en" ? "Monthly Plans" : "Plans Mensuels"
+                      }
+                    >
+                      <option value="Monthly Refresh ">
+                        {lang === "en"
+                          ? "Monthly Refresh"
+                          : "Actualisation Mensuelle"}
+                      </option>
+                      <option value="Ceramic Refresh ">
+                        {lang === "en"
+                          ? "Ceramic Refresh"
+                          : "Actualisation Céramique"}
+                      </option>
+                    </optgroup>
+                  </select>
+                  {errors.selectedPackage && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {errors.selectedPackage.message}
+                    </p>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Date & Time */}
             <div className="grid md:grid-cols-2 gap-6">

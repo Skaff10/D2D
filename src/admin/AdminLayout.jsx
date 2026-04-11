@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { LayoutDashboard, CalendarDays, Wrench, LogOut, Menu, X } from 'lucide-react'
+import { LayoutDashboard, CalendarDays, Wrench, DollarSign, Image as ImageIcon, LogOut, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import logo from "../assets/logo/logo.png"
 
@@ -8,6 +8,8 @@ const sidebarLinks = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Bookings', path: '/admin/bookings', icon: CalendarDays },
   { name: 'Services', path: '/admin/services', icon: Wrench },
+  { name: 'Pricing', path: '/admin/pricing', icon: DollarSign },
+  { name: 'Gallery', path: '/admin/gallery', icon: ImageIcon },
 ]
 
 export default function AdminLayout() {

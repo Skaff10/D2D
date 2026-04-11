@@ -12,98 +12,43 @@ import { defaultPrices } from "../data/defaultPrices";
 // ─────────────────────────────────────────────────────────────────────────────
 const translations = {
   en: {
-    // Meta
-    pageTitle: "Packages & Pricing | Down2Detail Auto Detailing",
+    pageTitle: "Paint Polish & Protection Packages | Down2Detail",
     metaDesc:
-      "View all auto detailing packages from Down2Detail. Transparent pricing for Exterior & Interior Detail, Paint Polish & Protection, and Monthly Plans.",
-    // Hero
-    heroBadge: "TRANSPARENT PRICING",
-    heroTitle: "Our Packages",
+      "View our Paint Polish & Protection packages — Silver, Gold, Platinum, and Diamond — with honest pricing for sedan, SUV, and truck.",
+    heroBadge: "[02]",
+    heroTitle: "Paint Polish & Protection",
     heroSub:
-      "Professional auto detailing with honest, upfront pricing — no hidden fees.",
-    // Vehicle labels
+      "Professional paint correction and protection services for a showroom finish.",
+    backToPackages: "← Back to Packages",
+    breadcrumbPackages: "Packages",
+    breadcrumbCurrent: "Paint Polish & Protection",
     sedan: "Sedan",
     midSuv: "Mid SUV",
     truck: "Truck",
-    sedanCoupeXover: "Sedan / Coupe / Crossover",
-    compactMidSuv: "Compact / Mid-Size SUV",
-    fullSizePickup: "Full-Size SUV / Pickup",
-    // Section headings
-    detailHeading: "Exterior & Interior Detail",
-    paintHeading: "Paint Polish & Protection",
-    monthlyHeading: "Monthly Plans",
-    monthlySub: "Exclusive for loyal customers",
-    // Package names
-    essential: "Essential",
-    signature: "Signature",
-    elite: "Elite",
     silver: "Silver",
     gold: "Gold",
     platinum: "Platinum",
     diamond: "Diamond",
-    monthlyRefresh: "Monthly Refresh",
-    ceramicRefresh: "Ceramic Refresh",
-    // Badges
-    bestValue: "Best Value",
     mostPopular: "Most Popular",
-    everyFourSix: "Every 4–6 Months",
-    // Includes line prefix
-    includes: "Includes",
-    // Services – Essential
-    essential_s1: "Wheel & Tire Cleaning",
-    essential_s2: "Hand Wash",
-    essential_s3: "Door Jamb Cleaning",
-    essential_s4: "Interior Vacuum",
-    essential_s5: "Interior Wipe Down",
-    essential_s6: "Winter Mats Cleaning",
-    essential_s7: "Windows & Glass Cleaning",
-    // Services – Signature additions
-    signature_s1: "Detailed Brush Cleaning",
-    signature_s2: "Tire Dressing",
-    signature_s3: "Floor & Carpet Shampoo",
-    // Services – Elite additions
-    elite_s1: "Pre Rinse & Snow Foam Application",
-    elite_s2: "Engine Bay Detail",
-    elite_s3: "Fabric Seat Shampoo / Leather Seat Treatment",
-    // Services – Silver
     silver_s1: "Hand Wash",
     silver_s2: "Paint Decontamination",
     silver_s3: "Gloss Enhancer (Fine Machine Polish)",
     silver_s4: "Paint Sealant (up to 3 months)",
-    // Services – Gold
     gold_s1: "Hand Wash",
     gold_s2: "Paint Decontamination",
     gold_s3: "One-Step Polish (Light Swirls Removed ~50–60% defect removal)",
     gold_s4: "Paint Sealant (up to 3 months)",
-    // Services – Platinum
     platinum_s1: "Hand Wash",
     platinum_s2: "Paint Decontamination",
     platinum_s3:
       "2-Step Paint Correction (Rotary + Wool Pad, DA + Foam Pad — ~90% defect removal)",
     platinum_s4: "Paint Sealant (up to 3 months)",
-    // Services – Diamond
     diamond_s1: "Hand Wash",
     diamond_s2: "Paint Decontamination",
     diamond_s3:
       "3-Step Paint Correction (Rotary + Wool Pad, DA + Microfibre, DA + Foam — ~95–99% defect removal)",
     diamond_s4: "1-Year Paint Ceramic Coating",
-    // Services – Monthly Refresh
-    monthlyRefresh_s1: "Basic Exterior Package",
-    monthlyRefresh_s2: "Standard Interior Package",
-    monthlyRefresh_s3: "Summer Carpet / Winter Mat Detailing",
-    // Services – Ceramic Refresh
-    ceramicRefresh_s1: "Advanced Exterior Package",
-    ceramicRefresh_s2: "Standard Interior Package",
-    ceramicRefresh_s3: "Ceramic Coating Topper",
-    // Add-ons – Detail
     addonTitle: "Available Add-Ons",
-    addon_odor: "Odor Treatment",
-    addon_pet: "Pet Hair Removal",
-    addon_fabric: "Fabric & Textile Sealant",
-    addon_leather: "Leather & Synthetic Ceramic Coating",
-    addon_clay: "Paint Decontamination (Clay Treatment)",
-    addon_sealant: "Paint Sealant (up to 3 months)",
-    // Add-ons – Paint
     addon_ceramic1y: "1-Year Paint Ceramic Coating",
     addon_ceramic2y: "2-Year Paint Ceramic Coating",
     addon_ceramic3y: "3-Year Paint Ceramic Coating",
@@ -116,55 +61,29 @@ const translations = {
     addon_upgrade3y: "3-Year Ceramic Coating Upgrade",
     addon_upgrade8y: "8-Year Ceramic Coating Upgrade",
     contactForPricing: "Contact for pricing",
-    // CTA
     ctaTitle: "Ready to book?",
-    ctaSub: "Contact us to schedule your detail.",
-    ctaBtn: "Get a Quote",
+    ctaSub: "Contact us to schedule your paint correction.",
+    bookThisPackage: "Book This Package",
   },
   fr: {
-    pageTitle: "Forfaits & Tarifs | Down2Detail Esthétique Auto",
+    pageTitle: "Forfaits Polissage & Protection de Peinture | Down2Detail",
     metaDesc:
-      "Consultez tous nos forfaits d'esthétique automobile chez Down2Detail. Tarifs transparents pour le détail extérieur & intérieur, le polissage & la protection, et les plans mensuels.",
-    heroBadge: "TARIFICATION TRANSPARENTE",
-    heroTitle: "Nos Forfaits",
+      "Consultez nos forfaits polissage et protection — Argent, Or, Platine et Diamant — avec tarification transparente.",
+    heroBadge: "[02]",
+    heroTitle: "Polissage & Protection de Peinture",
     heroSub:
-      "Esthétique automobile professionnelle avec des prix honnêtes et clairs — sans frais cachés.",
+      "Services professionnels de correction et protection de peinture.",
+    backToPackages: "← Retour aux forfaits",
+    breadcrumbPackages: "Forfaits",
+    breadcrumbCurrent: "Polissage & Protection de Peinture",
     sedan: "Berline",
     midSuv: "VUS Intermédiaire",
     truck: "Camion",
-    sedanCoupeXover: "Berline / Coupé / Multisegment",
-    compactMidSuv: "VUS Compact / Intermédiaire",
-    fullSizePickup: "Grand VUS / Camionnette",
-    detailHeading: "Détail Extérieur & Intérieur",
-    paintHeading: "Polissage & Protection de Peinture",
-    monthlyHeading: "Plans Mensuels",
-    monthlySub: "Exclusif pour nos clients fidèles",
-    essential: "Essentiel",
-    signature: "Signature",
-    elite: "Élite",
     silver: "Argent",
     gold: "Or",
     platinum: "Platine",
     diamond: "Diamant",
-    monthlyRefresh: "Actualisation Mensuelle",
-    ceramicRefresh: "Actualisation Céramique",
-    bestValue: "Meilleure Valeur",
     mostPopular: "Le Plus Populaire",
-    everyFourSix: "Aux 4–6 Mois",
-    includes: "Inclut",
-    essential_s1: "Nettoyage roues & pneus",
-    essential_s2: "Lavage à la main",
-    essential_s3: "Nettoyage joints de portes",
-    essential_s4: "Aspirateur intérieur",
-    essential_s5: "Essuyage intérieur",
-    essential_s6: "Nettoyage tapis d'hiver",
-    essential_s7: "Nettoyage vitres & glaces",
-    signature_s1: "Nettoyage détaillé à la brosse",
-    signature_s2: "Application brillant pneus",
-    signature_s3: "Shampooing tapis & plancher",
-    elite_s1: "Pré-rinçage & mousse neigeuse",
-    elite_s2: "Détail compartiment moteur",
-    elite_s3: "Shampooing tissu / Traitement cuir",
     silver_s1: "Lavage à la main",
     silver_s2: "Décontamination peinture",
     silver_s3: "Rehausseur de brillance (polissage fin)",
@@ -183,19 +102,7 @@ const translations = {
     diamond_s3:
       "Correction 3 étapes (Rotatif + Laine, DA + Microfibre, DA + Mousse — ~95–99% défauts retirés)",
     diamond_s4: "Revêtement céramique peinture 1 an",
-    monthlyRefresh_s1: "Forfait extérieur de base",
-    monthlyRefresh_s2: "Forfait intérieur standard",
-    monthlyRefresh_s3: "Entretien tapis été / tapis d'hiver",
-    ceramicRefresh_s1: "Forfait extérieur avancé",
-    ceramicRefresh_s2: "Forfait intérieur standard",
-    ceramicRefresh_s3: "Applicateur de revêtement céramique",
     addonTitle: "Suppléments Disponibles",
-    addon_odor: "Traitement des odeurs",
-    addon_pet: "Retrait poils d'animaux",
-    addon_fabric: "Scellant tissu & textile",
-    addon_leather: "Revêtement céramique cuir & synthétique",
-    addon_clay: "Décontamination peinture (argile)",
-    addon_sealant: "Scellant peinture (3 mois)",
     addon_ceramic1y: "Revêtement céramique peinture 1 an",
     addon_ceramic2y: "Revêtement céramique peinture 2 ans",
     addon_ceramic3y: "Revêtement céramique peinture 3 ans",
@@ -209,8 +116,8 @@ const translations = {
     addon_upgrade8y: "Mise à niveau céramique 8 ans",
     contactForPricing: "Contactez-nous",
     ctaTitle: "Prêt à réserver?",
-    ctaSub: "Contactez-nous pour planifier votre détail.",
-    ctaBtn: "Obtenir un devis",
+    ctaSub: "Contactez-nous pour planifier votre correction de peinture.",
+    bookThisPackage: "Réserver ce forfait",
   },
 };
 
@@ -236,7 +143,6 @@ const sectionVariants = {
 // SUB-COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Skeleton shimmer shown on price slot while data is loading */
 function PriceSkeleton() {
   return (
     <div className="animate-pulse">
@@ -246,7 +152,6 @@ function PriceSkeleton() {
   );
 }
 
-/** Animated price display */
 function PriceDisplay({ value, vehicleLabel, loading }) {
   if (loading) return <PriceSkeleton />;
   return (
@@ -258,9 +163,7 @@ function PriceDisplay({ value, vehicleLabel, loading }) {
         exit={{ opacity: 0, scale: 0.92 }}
         transition={{ duration: 0.22 }}
       >
-        <p className="price-mono text-3xl font-bold text-white">
-          ${value}
-        </p>
+        <p className="price-mono text-3xl font-bold text-white">${value}</p>
         <p className="text-xs text-neutral-500 mt-1 uppercase tracking-widest">
           {vehicleLabel}
         </p>
@@ -269,7 +172,6 @@ function PriceDisplay({ value, vehicleLabel, loading }) {
   );
 }
 
-/** Pill vehicle toggle */
 function VehicleToggle({ options, active, onChange }) {
   return (
     <div className="flex flex-wrap gap-2 justify-center mb-10">
@@ -290,23 +192,12 @@ function VehicleToggle({ options, active, onChange }) {
   );
 }
 
-/** Single service list item */
 function ServiceItem({ text }) {
   return (
     <li className="flex items-start gap-2 text-sm text-neutral-300">
       <Check size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
       <span>{text}</span>
     </li>
-  );
-}
-
-/** Add-on chip */
-function AddonChip({ name, price }) {
-  return (
-    <div className="flex items-center justify-between gap-2 bg-neutral-800/60 border border-neutral-700 rounded-lg px-3 py-2">
-      <span className="text-sm text-neutral-300">{name}</span>
-      <span className="text-xs font-semibold text-[#C9A84C] whitespace-nowrap">{price}</span>
-    </div>
   );
 }
 
@@ -323,35 +214,18 @@ function AddonRow({ name, price }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
-export default function Packages() {
+export default function PackagesPaint() {
   const { lang } = useLang();
   const t = translations[lang];
   const { prices, loading } = usePackagePrices();
+  const [activeVehicle, setActiveVehicle] = useState("sedan");
 
-  // Independent vehicle toggles per section
-  const [activeDetailVehicle, setActiveDetailVehicle] = useState("sedan");
-  const [activePaintVehicle, setActivePaintVehicle] = useState("sedan");
-  const [activeMonthlyVehicle, setActiveMonthlyVehicle] = useState("sedanCoupeXover");
-
-  const detailVehicles = [
-    { key: "sedan",  label: t.sedan  },
+  const vehicles = [
+    { key: "sedan", label: t.sedan },
     { key: "midSuv", label: t.midSuv },
-    { key: "truck",  label: t.truck  },
+    { key: "truck", label: t.truck },
   ];
 
-  const paintVehicles = [
-    { key: "sedan",  label: t.sedan  },
-    { key: "midSuv", label: t.midSuv },
-    { key: "truck",  label: t.truck  },
-  ];
-
-  const monthlyVehicles = [
-    { key: "sedanCoupeXover", label: t.sedanCoupeXover    },
-    { key: "compactMidSuv",   label: t.compactMidSuv      },
-    { key: "fullSizePickup",  label: t.fullSizePickup      },
-  ];
-
-  // Safe price getter
   function getPrice(pkg, vehicle) {
     return prices?.[pkg]?.[vehicle] ?? defaultPrices[pkg][vehicle];
   }
@@ -364,10 +238,9 @@ export default function Packages() {
       </Helmet>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* 1 · HERO BANNER                                                    */}
+      {/* HERO BANNER                                                       */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[55vh] flex flex-col items-center justify-center overflow-hidden">
-        {/* Layered dark gradient background */}
+      <section className="relative min-h-[40vh] flex flex-col items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -375,7 +248,6 @@ export default function Packages() {
               "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249,115,22,0.12) 0%, transparent 70%), linear-gradient(180deg, #0a0a0a 0%, #120800 50%, #0a0a0a 100%)",
           }}
         />
-        {/* Ambient grid lines */}
         <div
           className="absolute inset-0 z-0 opacity-[0.03]"
           style={{
@@ -386,7 +258,7 @@ export default function Packages() {
         />
 
         <motion.div
-          className="relative z-10 text-center px-4 py-32"
+          className="relative z-10 text-center px-4 py-28"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -422,7 +294,6 @@ export default function Packages() {
           </p>
         </motion.div>
 
-        {/* Animated scroll chevron */}
         <motion.div
           className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
           animate={{ y: [0, 8, 0] }}
@@ -433,163 +304,36 @@ export default function Packages() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* 2 · EXTERIOR & INTERIOR DETAIL                                     */}
+      {/* BACK LINK + BREADCRUMB                                            */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center mb-4"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <Link
+          to="/packages"
+          className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-white transition-colors"
+        >
+          {t.backToPackages}
+        </Link>
+        <div className="flex items-center gap-2 text-xs text-neutral-600 mt-2">
+          <Link
+            to="/packages"
+            className="text-neutral-500 hover:text-white transition-colors"
           >
-            <span className="section-tag block mb-3" style={{ color: "#e46904ff" }}>
-              [01]
-            </span>
-            <h2 className="serif-heading text-3xl md:text-4xl text-white mb-10">
-              {t.detailHeading}
-            </h2>
-          </motion.div>
-
-          <VehicleToggle
-            options={detailVehicles}
-            active={activeDetailVehicle}
-            onChange={setActiveDetailVehicle}
-          />
-
-          {/* Cards */}
-          <motion.div
-            className="grid md:grid-cols-3 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {/* ── Essential ── */}
-            <motion.div
-              variants={cardVariants}
-              className="relative dark-card p-6 flex flex-col"
-            >
-              <span className="section-tag block mb-2">{t.essential}</span>
-              <div className="mb-5">
-                <PriceDisplay
-                  value={getPrice("essential", activeDetailVehicle)}
-                  vehicleLabel={t[activeDetailVehicle]}
-                  loading={loading}
-                />
-              </div>
-              <ul className="space-y-2 flex-1">
-                {[
-                  t.essential_s1, t.essential_s2, t.essential_s3,
-                  t.essential_s4, t.essential_s5, t.essential_s6, t.essential_s7,
-                ].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* ── Signature ── */}
-            <motion.div
-              variants={cardVariants}
-              className="relative dark-card border-amber-700/40 p-6 flex flex-col"
-              style={{ borderColor: "rgba(180,130,50,0.4)" }}
-            >
-              <span className="section-tag block mb-2">{t.signature}</span>
-              <div className="mb-5">
-                <PriceDisplay
-                  value={getPrice("signature", activeDetailVehicle)}
-                  vehicleLabel={t[activeDetailVehicle]}
-                  loading={loading}
-                />
-              </div>
-              <p className="text-xs text-neutral-500 italic mb-3">
-                {t.includes} {t.essential} +
-              </p>
-              <ul className="space-y-2 flex-1">
-                {[t.signature_s1, t.signature_s2, t.signature_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* ── Elite ── */}
-            <motion.div
-              variants={cardVariants}
-              className="relative dark-card p-6 flex flex-col"
-              style={{ borderColor: "#C9A84C" }}
-            >
-              {/* Best Value badge */}
-              <span className="absolute top-3 right-3 bg-[#C9A84C] text-black text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-                {t.bestValue}
-              </span>
-              <span className="section-tag block mb-2">{t.elite}</span>
-              <div className="mb-5">
-                <PriceDisplay
-                  value={getPrice("elite", activeDetailVehicle)}
-                  vehicleLabel={t[activeDetailVehicle]}
-                  loading={loading}
-                />
-              </div>
-              <p className="text-xs text-neutral-500 italic mb-3">
-                {t.includes} {t.signature} +
-              </p>
-              <ul className="space-y-2 flex-1">
-                {[t.elite_s1, t.elite_s2, t.elite_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
-
-          {/* Detail Add-Ons */}
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mt-12"
-          >
-            <p className="section-tag text-center mb-5">{t.addonTitle}</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              <AddonChip name={t.addon_odor}    price="+$29"       />
-              <AddonChip name={t.addon_pet}     price="$59–$129"   />
-              <AddonChip name={t.addon_fabric}  price="+$49"       />
-              <AddonChip name={t.addon_leather} price="+$149"      />
-              <AddonChip name={t.addon_clay}    price="+$25"       />
-              <AddonChip name={t.addon_sealant} price="+$25"       />
-            </div>
-          </motion.div>
+            {t.breadcrumbPackages}
+          </Link>
+          <span>&gt;</span>
+          <span className="text-neutral-400">{t.breadcrumbCurrent}</span>
         </div>
-      </section>
-
-      {/* Divider */}
-      <div className="divider mx-auto max-w-7xl px-4" />
+      </div>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* 3 · PAINT POLISH & PROTECTION                                      */}
+      {/* PACKAGES                                                          */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-28">
+      <section className="py-12 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center mb-4"
-          >
-            <span className="section-tag block mb-3" style={{ color: "#e46904ff" }}>
-              [02]
-            </span>
-            <h2 className="serif-heading text-3xl md:text-4xl text-white mb-10">
-              {t.paintHeading}
-            </h2>
-          </motion.div>
-
           <VehicleToggle
-            options={paintVehicles}
-            active={activePaintVehicle}
-            onChange={setActivePaintVehicle}
+            options={vehicles}
+            active={activeVehicle}
+            onChange={setActiveVehicle}
           />
 
           {/* Cards Row 1 — Silver & Gold */}
@@ -605,8 +349,8 @@ export default function Packages() {
               <span className="section-tag block mb-2">{t.silver}</span>
               <div className="mb-5">
                 <PriceDisplay
-                  value={getPrice("silver", activePaintVehicle)}
-                  vehicleLabel={t[activePaintVehicle]}
+                  value={getPrice("silver", activeVehicle)}
+                  vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
@@ -622,8 +366,8 @@ export default function Packages() {
               <span className="section-tag block mb-2">{t.gold}</span>
               <div className="mb-5">
                 <PriceDisplay
-                  value={getPrice("gold", activePaintVehicle)}
-                  vehicleLabel={t[activePaintVehicle]}
+                  value={getPrice("gold", activeVehicle)}
+                  vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
@@ -655,8 +399,8 @@ export default function Packages() {
               <span className="section-tag block mb-2">{t.platinum}</span>
               <div className="mb-5">
                 <PriceDisplay
-                  value={getPrice("platinum", activePaintVehicle)}
-                  vehicleLabel={t[activePaintVehicle]}
+                  value={getPrice("platinum", activeVehicle)}
+                  vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
@@ -676,8 +420,8 @@ export default function Packages() {
               <span className="section-tag block mb-2">{t.diamond}</span>
               <div className="mb-5">
                 <PriceDisplay
-                  value={getPrice("diamond", activePaintVehicle)}
-                  vehicleLabel={t[activePaintVehicle]}
+                  value={getPrice("diamond", activeVehicle)}
+                  vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
@@ -701,12 +445,12 @@ export default function Packages() {
             <div className="grid sm:grid-cols-2 gap-x-10">
               <div>
                 {[
-                  { name: t.addon_ceramic1y,  price: "+$99"              },
-                  { name: t.addon_ceramic2y,  price: "+$149"             },
-                  { name: t.addon_ceramic3y,  price: "+$249"             },
-                  { name: t.addon_ceramic8y,  price: "+$499"             },
+                  { name: t.addon_ceramic1y,    price: "+$99"              },
+                  { name: t.addon_ceramic2y,    price: "+$149"             },
+                  { name: t.addon_ceramic3y,    price: "+$249"             },
+                  { name: t.addon_ceramic8y,    price: "+$499"             },
                   { name: t.addon_wheelCaliper, price: t.contactForPricing },
-                  { name: t.addon_glass,      price: "+$149"             },
+                  { name: t.addon_glass,        price: "+$149"             },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
                 ))}
@@ -727,89 +471,8 @@ export default function Packages() {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="divider mx-auto max-w-7xl px-4" />
-
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* 4 · MONTHLY PLANS                                                  */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center mb-4"
-          >
-            <span className="section-tag block mb-3" style={{ color: "#e46904ff" }}>
-              [03]
-            </span>
-            <h2 className="serif-heading text-3xl md:text-4xl text-white mb-2">
-              {t.monthlyHeading}
-            </h2>
-            <p className="text-neutral-500 text-sm mb-10">{t.monthlySub}</p>
-          </motion.div>
-
-          <VehicleToggle
-            options={monthlyVehicles}
-            active={activeMonthlyVehicle}
-            onChange={setActiveMonthlyVehicle}
-          />
-
-          <motion.div
-            className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {/* Monthly Refresh */}
-            <motion.div variants={cardVariants} className="dark-card p-6 flex flex-col">
-              <span className="section-tag block mb-1">{t.monthlyRefresh}</span>
-              <div className="mb-5">
-                <PriceDisplay
-                  value={getPrice("monthlyRefresh", activeMonthlyVehicle)}
-                  vehicleLabel={t[activeMonthlyVehicle]}
-                  loading={loading}
-                />
-              </div>
-              <ul className="space-y-2 flex-1">
-                {[t.monthlyRefresh_s1, t.monthlyRefresh_s2, t.monthlyRefresh_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Ceramic Refresh */}
-            <motion.div
-              variants={cardVariants}
-              className="relative dark-card p-6 flex flex-col"
-              style={{ borderColor: "#C9A84C" }}
-            >
-              <span className="absolute top-3 right-3 bg-[#C9A84C] text-black text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-                {t.everyFourSix}
-              </span>
-              <span className="section-tag block mb-1">{t.ceramicRefresh}</span>
-              <div className="mb-5">
-                <PriceDisplay
-                  value={getPrice("ceramicRefresh", activeMonthlyVehicle)}
-                  vehicleLabel={t[activeMonthlyVehicle]}
-                  loading={loading}
-                />
-              </div>
-              <ul className="space-y-2 flex-1">
-                {[t.ceramicRefresh_s1, t.ceramicRefresh_s2, t.ceramicRefresh_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* 5 · CTA BANNER                                                     */}
+      {/* CTA                                                               */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 text-center">
@@ -823,7 +486,6 @@ export default function Packages() {
               className="dark-card p-12 relative overflow-hidden"
               style={{ borderColor: "rgba(249,115,22,0.25)" }}
             >
-              {/* Glow accent */}
               <div
                 className="absolute inset-0 opacity-10 pointer-events-none"
                 style={{
@@ -834,9 +496,14 @@ export default function Packages() {
               <h2 className="serif-heading text-3xl md:text-4xl text-white mb-3 relative z-10">
                 {t.ctaTitle}
               </h2>
-              <p className="text-neutral-400 mb-8 relative z-10">{t.ctaSub}</p>
-              <Link to="/contact" className="btn-filled_2 relative z-10">
-                {t.ctaBtn}
+              <p className="text-neutral-400 mb-8 relative z-10">
+                {t.ctaSub}
+              </p>
+              <Link
+                to="/booking?category=paint"
+                className="btn-filled_2 relative z-10"
+              >
+                {t.bookThisPackage}
                 <ArrowRight size={16} />
               </Link>
             </div>

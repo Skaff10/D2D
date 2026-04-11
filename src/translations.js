@@ -146,6 +146,7 @@ export const translations = {
         emailRequired: "Email is required",
         invalidEmail: "Invalid email",
         vehicleRequired: "Vehicle type is required",
+        vehicleModelRequired: "Vehicle model & year is required",
         serviceRequired: "Please select a service",
         dateRequired: "Date is required",
         timeRequired: "Time is required",
@@ -158,6 +159,7 @@ export const translations = {
       phoneNumber: "Phone Number",
       email: "Email",
       vehicleType: "Vehicle Type",
+      vehicleModel: "Vehicle Model & Year",
       service: "Service",
       preferredDate: "Preferred Date",
       preferredTime: "Preferred Time",
@@ -176,6 +178,7 @@ export const translations = {
         name: "John Doe",
         phone: "(438) 000-0000",
         email: "john@example.com",
+        vehicleModel: "e.g. Honda Civic 2013",
         notes: "Any special requests or details about your vehicle..."
       },
       vehicleTypes: {
@@ -373,6 +376,7 @@ export const translations = {
         emailRequired: "L'e-mail est requis",
         invalidEmail: "E-mail invalide",
         vehicleRequired: "Le type de véhicule est requis",
+        vehicleModelRequired: "Le modèle et l'année du véhicule sont requis",
         serviceRequired: "Veuillez sélectionner un service",
         dateRequired: "La date est requise",
         timeRequired: "L'heure est requise",
@@ -385,6 +389,7 @@ export const translations = {
       phoneNumber: "Numéro de Téléphone",
       email: "E-mail",
       vehicleType: "Type de Véhicule",
+      vehicleModel: "Modèle et Année du Véhicule",
       service: "Service",
       preferredDate: "Date Préférée",
       preferredTime: "Heure Préférée",
@@ -403,6 +408,7 @@ export const translations = {
         name: "Jean Dupont",
         phone: "(438) 000-0000",
         email: "jean@exemple.com",
+        vehicleModel: "ex. Honda Civic 2013",
         notes: "Toutes demandes spéciales ou détails sur votre véhicule..."
       },
       vehicleTypes: {

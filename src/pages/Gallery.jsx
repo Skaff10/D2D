@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn } from 'lucide-react'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../firebase/config'
 import { useLang } from '../context/LanguageContext'
 import { translations } from '../translations'
 import SectionHeading from '../components/ui/SectionHeading'
@@ -22,7 +24,7 @@ import img13 from '../assets/dk/imgi_7_gloss-enhancer.webp'
 import img14 from '../assets/dk/imgi_2_ceramic.png'
 import img15 from '../assets/images/brand/imgi_10_cadillac.webp'
 
-const galleryImages = [
+const staticGalleryImages = [
   { src: img4, alt: 'Before and after ceramic coating', category: 'Ceramic Coating' },
   { src: img1, alt: 'Ceramic coating application', category: 'Ceramic Coating' },
   { src: img2, alt: 'Exterior detailing result', category: 'Exterior' },
@@ -55,8 +57,28 @@ export default function Gallery() {
            cat === 'Paint Correction' ? t.categories.paintCorrection : cat
   }));
 
+  const [galleryImages, setGalleryImages] = useState(staticGalleryImages)
   const [activeCategory, setActiveCategory] = useState('All')
   const [lightbox, setLightbox] = useState(null)
+
+  // Fetch from Firestore — if docs exist, use them; otherwise keep static fallback
+  useEffect(() => {
+    async function fetchGallery() {
+      try {
+        const snapshot = await getDocs(collection(db, 'gallery'))
+        if (!snapshot.empty) {
+          const firestoreImages = snapshot.docs.map(d => {
+            const data = d.data()
+            return { src: data.url, alt: data.alt || '', category: data.category || 'Exterior' }
+          })
+          setGalleryImages(firestoreImages)
+        }
+      } catch (err) {
+        console.log('Gallery: using static fallback images')
+      }
+    }
+    fetchGallery()
+  }, [])
 
   const filtered = activeCategory === 'All'
     ? galleryImages

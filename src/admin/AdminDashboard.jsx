@@ -13,7 +13,7 @@ const statusColors = {
 }
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({ total: 0, pending: 0, confirmed: 0, completed: 0 })
+  const [stats, setStats] = useState({ total: 0, pending: 0, confirmed: 0, completed: 0, cancelled: 0 })
   const [recentBookings, setRecentBookings] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -28,6 +28,7 @@ export default function AdminDashboard() {
           pending: bookings.filter(b => b.status === 'Pending').length,
           confirmed: bookings.filter(b => b.status === 'Confirmed').length,
           completed: bookings.filter(b => b.status === 'Completed').length,
+          cancelled: bookings.filter(b => b.status === 'Cancelled').length,
         })
 
         const sorted = bookings.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0))
@@ -46,6 +47,7 @@ export default function AdminDashboard() {
     { label: 'Pending', value: stats.pending, icon: Clock, color: 'text-yellow-400' },
     { label: 'Confirmed', value: stats.confirmed, icon: CheckCircle, color: 'text-blue-400' },
     { label: 'Completed', value: stats.completed, icon: CheckCircle, color: 'text-green-400' },
+    { label: 'Cancelled', value: stats.cancelled, icon: XCircle, color: 'text-red-400' },
   ]
 
   return (
@@ -53,7 +55,7 @@ export default function AdminDashboard() {
       <h2 className="font-heading text-2xl font-bold text-white mb-6">Dashboard</h2>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         {statCards.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -105,7 +107,8 @@ export default function AdminDashboard() {
               <thead>
                 <tr>
                   <th>Customer</th>
-                  <th>Service</th>
+                  <th>Type</th>
+                  <th>Service / Package</th>
                   <th>Date</th>
                   <th>Status</th>
                 </tr>
@@ -114,7 +117,12 @@ export default function AdminDashboard() {
                 {recentBookings.map(b => (
                   <tr key={b.id}>
                     <td className="text-white font-medium">{b.customerName}</td>
-                    <td className="text-text-secondary">{b.serviceName}</td>
+                    <td>
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide border ${b.bookingType === 'package' ? 'bg-purple-500/10 text-purple-400 border-purple-500/30' : 'bg-blue-500/10 text-blue-400 border-blue-500/30'}`}>
+                        {b.bookingType || 'service'}
+                      </span>
+                    </td>
+                    <td className="text-text-secondary">{b.bookingType === 'package' ? (b.selectedPackage || '—') : (b.serviceName || '—')}</td>
                     <td className="text-text-secondary">{b.date}</td>
                     <td>
                       <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium border ${statusColors[b.status] || 'text-text-secondary'}`}>

@@ -49,9 +49,12 @@ export default function AdminBookings() {
   }
 
   const filtered = bookings.filter(b => {
-    const matchSearch = b.customerName?.toLowerCase().includes(search.toLowerCase()) ||
-      b.email?.toLowerCase().includes(search.toLowerCase()) ||
-      b.serviceName?.toLowerCase().includes(search.toLowerCase())
+    const q = search.toLowerCase()
+    const matchSearch = b.customerName?.toLowerCase().includes(q) ||
+      b.email?.toLowerCase().includes(q) ||
+      b.serviceName?.toLowerCase().includes(q) ||
+      b.selectedPackage?.toLowerCase().includes(q) ||
+      b.vehicleModel?.toLowerCase().includes(q)
     const matchStatus = filterStatus === 'All' || b.status === filterStatus
     return matchSearch && matchStatus
   })
@@ -98,8 +101,10 @@ export default function AdminBookings() {
                 <tr>
                   <th>Customer</th>
                   <th>Phone</th>
-                  <th>Service</th>
+                  <th>Type</th>
+                  <th>Service / Package</th>
                   <th>Vehicle</th>
+                  <th>Model</th>
                   <th>Date</th>
                   <th>Time</th>
                   <th>Status</th>
@@ -118,8 +123,14 @@ export default function AdminBookings() {
                     <td className="text-text-secondary">
                       <a href={`tel:${b.phone}`} className="hover:text-primary transition-colors">{b.phone}</a>
                     </td>
-                    <td className="text-text-secondary">{b.serviceName}</td>
+                    <td>
+                      <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide border ${b.bookingType === 'package' ? 'bg-purple-500/10 text-purple-400 border-purple-500/30' : 'bg-blue-500/10 text-blue-400 border-blue-500/30'}`}>
+                        {b.bookingType || 'service'}
+                      </span>
+                    </td>
+                    <td className="text-text-secondary">{b.bookingType === 'package' ? (b.selectedPackage || '—') : (b.serviceName || '—')}</td>
                     <td className="text-text-secondary">{b.vehicleType || '—'}</td>
+                    <td className="text-text-secondary">{b.vehicleModel || '—'}</td>
                     <td className="text-text-secondary whitespace-nowrap">{b.date}</td>
                     <td className="text-text-secondary">{b.time}</td>
                     <td>
