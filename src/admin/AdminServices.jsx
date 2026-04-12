@@ -27,11 +27,7 @@ export default function AdminServices() {
     }
   }
 
-  const openAdd = () => {
-    setEditing(null)
-    setForm(emptyService)
-    setShowForm(true)
-  }
+
 
   const openEdit = (service) => {
     setEditing(service.id)
@@ -76,9 +72,6 @@ export default function AdminServices() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h2 className="font-heading text-2xl font-bold text-white">Services</h2>
-        <button onClick={openAdd} className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-black font-semibold px-4 py-2.5 rounded-lg transition-all text-sm">
-          <Plus size={16} /> Add Service
-        </button>
       </div>
 
       {/* Form Modal */}
@@ -87,7 +80,7 @@ export default function AdminServices() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4" onClick={() => setShowForm(false)}>
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-card border border-border-warm rounded-2xl p-6 w-full max-w-lg" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-5">
-                <h3 className="font-heading text-lg font-bold text-white">{editing ? 'Edit Service' : 'Add Service'}</h3>
+                <h3 className="font-heading text-lg font-bold text-white">Edit Service</h3>
                 <button onClick={() => setShowForm(false)} className="text-text-muted hover:text-white"><X size={20} /></button>
               </div>
               <div className="space-y-4">
@@ -115,7 +108,7 @@ export default function AdminServices() {
                 </label>
                 <div className="flex gap-3 pt-2">
                   <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-black font-semibold py-2.5 rounded-lg transition-all text-sm">
-                    <Save size={16} /> {editing ? 'Update' : 'Add'} Service
+                    <Save size={16} /> Update Service
                   </button>
                   <button onClick={() => setShowForm(false)} className="px-4 py-2.5 border border-border-warm rounded-lg text-text-secondary hover:text-white transition-all text-sm">Cancel</button>
                 </div>
@@ -130,8 +123,7 @@ export default function AdminServices() {
         <div className="text-center text-text-muted py-12">Loading services...</div>
       ) : services.length === 0 ? (
         <div className="bg-card rounded-xl border border-border-warm/50 p-12 text-center">
-          <p className="text-text-muted mb-4">No services yet. Add your first service to get started.</p>
-          <button onClick={openAdd} className="text-primary font-medium text-sm hover:text-primary-light">+ Add Service</button>
+          <p className="text-text-muted mb-4">No services available.</p>
         </div>
       ) : (
         <div className="grid gap-4">

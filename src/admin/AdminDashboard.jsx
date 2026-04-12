@@ -85,7 +85,7 @@ export default function AdminDashboard() {
         <Link to="/admin/services" className="bg-card hover:bg-card-hover rounded-xl p-5 border border-border-warm/50 flex items-center justify-between transition-all group">
           <div>
             <p className="text-white font-semibold">Manage Services</p>
-            <p className="text-text-muted text-sm">Add, edit, or remove services</p>
+            <p className="text-text-muted text-sm">Edit or remove services</p>
           </div>
           <ArrowRight size={18} className="text-text-muted group-hover:text-primary transition-colors" />
         </Link>
