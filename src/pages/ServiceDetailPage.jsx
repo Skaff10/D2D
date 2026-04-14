@@ -9,6 +9,7 @@ import { translations } from "../translations";
 import { CheckCircle2 } from "lucide-react";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Shield } from "lucide-react";
+import { useServicePrices } from "../hooks/useServicePrices";
 export default function ServiceDetailPage() {
   const { lang } = useLang();
   const tGlobal = translations[lang];
@@ -32,17 +33,32 @@ export default function ServiceDetailPage() {
     return <Navigate to="/services" replace />;
   }
 
+  const { prices } = useServicePrices();
+  const customPricing = service ? prices[service.id] : null;
+
   const isCeramicCoating = service.id === "ceramic-coating";
 
   const serviceTrans = tGlobal.servicesList[service.id] || {};
   const displayName = serviceTrans.name || service.name;
   const displayShortDesc =
     serviceTrans.shortDescription || service.shortDescription;
-  const displayPrice =
+  
+  let displayPrice =
     service.priceString === "Contact for Quote" ||
     service.priceString === "Contact for Pricing"
       ? tGlobal.contactForPricing
       : service.priceString;
+
+  if (customPricing) {
+    if (typeof customPricing === 'string') {
+      displayPrice = customPricing;
+    } else if (typeof customPricing === 'object' && !isCeramicCoating) {
+      const vals = Object.values(customPricing).filter(v => typeof v === 'string' && v.match(/\d/));
+      if (vals.length > 0) {
+        displayPrice = vals[0].toLowerCase().includes('starting') ? vals[0] : `Starting at ${vals[0]}`;
+      }
+    }
+  }
 
   return (
     <>
@@ -273,23 +289,26 @@ export default function ServiceDetailPage() {
                     <div className="mb-8">
                       {service.price && service.price.type === "tiered" ? (
                         <div className="space-y-3">
-                          {service.price.tiers.map((tier, idx) => (
-                            <div
-                              key={idx}
-                              className="flex justify-between items-center pb-3 border-b border-white/[0.05] last:border-0 last:pb-0"
-                            >
-                              <span className="text-white/70 text-sm">
-                                {tier.label}
-                              </span>
-                              <span className="price-mono text-primary font-medium">
-                                {tier.price}
-                              </span>
-                            </div>
-                          ))}
+                          {service.price.tiers.map((tier, idx) => {
+                            const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[tier.label] : undefined;
+                            return (
+                              <div
+                                key={idx}
+                                className="flex justify-between items-center pb-3 border-b border-white/[0.05] last:border-0 last:pb-0"
+                              >
+                                <span className="text-white/70 text-sm">
+                                  {tier.label}
+                                </span>
+                                <span className="price-mono text-primary font-medium">
+                                  {overriddenPrice !== undefined ? overriddenPrice : tier.price}
+                                </span>
+                              </div>
+                            );
+                          })}
                         </div>
                       ) : (
                         <div className="text-3xl text-white serif-heading">
-                          {service.price?.amount || displayPrice}
+                          { (typeof customPricing === 'string') ? customPricing : (service.price?.amount || displayPrice) }
                         </div>
                       )}
                     </div>
@@ -303,35 +322,39 @@ export default function ServiceDetailPage() {
                       {t.protectionLevels}
                     </h4>
                     <div className="space-y-3 mb-8">
-                      {service.pricingTiers.map((tier, i) => (
-                        <div
-                          key={i}
-                          className={`relative p-4 rounded-xl border transition-all duration-300 ${
-                            i === 2
-                              ? "bg-primary/[0.06] border-primary/20"
-                              : "bg-white/[0.02] border-white/[0.06]"
-                          }`}
-                        >
-                          {i === 2 && (
-                            <span className="absolute -top-2.5 right-4 px-2 py-0.5 rounded-md bg-primary text-black text-[9px] font-mono font-bold uppercase tracking-wider">
-                              {t.bestValue}
-                            </span>
-                          )}
-                          <div className="flex items-center justify-between gap-4">
-                            <div>
-                              <p className="text-white font-medium text-sm mb-0.5">
-                                {tier.level}
-                              </p>
-                              <p className="text-white/40 text-xs">
-                                {tier.durability}
-                              </p>
+                      {service.pricingTiers.map((tier, i) => {
+                        const key = `tier_${tier.level.replace(/\s+/g, '')}`;
+                        const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[key] : undefined;
+                        return (
+                          <div
+                            key={i}
+                            className={`relative p-4 rounded-xl border transition-all duration-300 ${
+                              i === 2
+                                ? "bg-primary/[0.06] border-primary/20"
+                                : "bg-white/[0.02] border-white/[0.06]"
+                            }`}
+                          >
+                            {i === 2 && (
+                              <span className="absolute -top-2.5 right-4 px-2 py-0.5 rounded-md bg-primary text-black text-[9px] font-mono font-bold uppercase tracking-wider">
+                                {t.bestValue}
+                              </span>
+                            )}
+                            <div className="flex items-center justify-between gap-4">
+                              <div>
+                                <p className="text-white font-medium text-sm mb-0.5">
+                                  {tier.level}
+                                </p>
+                                <p className="text-white/40 text-xs">
+                                  {tier.durability}
+                                </p>
+                              </div>
+                              <span className="price-mono text-primary text-base font-bold">
+                                {overriddenPrice !== undefined ? overriddenPrice : tier.price}
+                              </span>
                             </div>
-                            <span className="price-mono text-primary text-base font-bold">
-                              {tier.price}
-                            </span>
                           </div>
-                        </div>
-                      ))}
+                        )
+                      })}
                     </div>
 
                     <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-1">
@@ -341,24 +364,28 @@ export default function ServiceDetailPage() {
                       {t.additionalSurfaces}
                     </h4>
                     <div className="space-y-3 mb-8">
-                      {service.additionalSurfaces.map((item, i) => (
-                        <div
-                          key={i}
-                          className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]"
-                        >
-                          <div className="flex items-center justify-between gap-4 mb-1">
-                            <p className="text-white font-medium text-sm">
-                              {item.surface}
+                      {service.additionalSurfaces.map((item, i) => {
+                        const key = `surface_${item.surface.replace(/\s+/g, '')}`;
+                        const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[key] : undefined;
+                        return (
+                          <div
+                            key={i}
+                            className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]"
+                          >
+                            <div className="flex items-center justify-between gap-4 mb-1">
+                              <p className="text-white font-medium text-sm">
+                                {item.surface}
+                              </p>
+                              <span className="price-mono text-primary text-sm font-semibold">
+                                {overriddenPrice !== undefined ? overriddenPrice : item.price}
+                              </span>
+                            </div>
+                            <p className="text-white/35 text-xs">
+                              {item.durability}
                             </p>
-                            <span className="price-mono text-primary text-sm font-semibold">
-                              {item.price}
-                            </span>
                           </div>
-                          <p className="text-white/35 text-xs">
-                            {item.durability}
-                          </p>
-                        </div>
-                      ))}
+                        )
+                      })}
                     </div>
                   </>
                 )}

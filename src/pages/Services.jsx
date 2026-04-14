@@ -9,10 +9,13 @@ import ServiceCard from "../components/services/ServiceCard";
 import { categories, services } from "../data/servicesData";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
+import { useServicePrices } from "../hooks/useServicePrices";
 
 export default function Services() {
   const { lang } = useLang();
   const t = translations[lang].services;
+
+  const { prices: servicePrices } = useServicePrices();
 
   const [activeCategory, setActiveCategory] = useState("exterior");
   const sectionsRef = useRef({});
@@ -137,6 +140,7 @@ export default function Services() {
                       key={service.id}
                       service={service}
                       index={offset + i}
+                      customPricing={servicePrices[service.id]}
                     />
                   ))}
                 </div>

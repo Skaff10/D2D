@@ -168,7 +168,7 @@ export default function AdminPricing() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="font-heading text-2xl font-bold text-white">Package Pricing</h2>
           <p className="text-text-muted text-sm mt-1">Edit prices for all packages. Changes are reflected on the public site immediately after saving.</p>
@@ -196,83 +196,73 @@ export default function AdminPricing() {
               {group.title}
             </h3>
 
-            <div className="bg-card rounded-xl border border-border-warm/50 overflow-hidden">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th>Package</th>
-                    {group.packages[0].vehicles.map(v => (
-                      <th key={v}>{vehicleLabels[v]}</th>
-                    ))}
-                    <th className="text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {group.packages.map(pkg => {
-                    const isDirty = dirtyKeys.has(pkg.key)
-                    return (
-                      <tr key={pkg.key}>
-                        <td>
-                          <div className="flex items-center gap-2">
-                            <span className="text-white font-medium">{pkg.label}</span>
-                            {isDirty && (
-                              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" title="Unsaved changes" />
-                            )}
-                          </div>
-                        </td>
-                        {pkg.vehicles.map(v => (
-                          <td key={v}>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-sm">$</span>
-                              <input
-                                type="text"
-                                inputMode="decimal"
-                                value={prices[pkg.key]?.[v] ?? ''}
-                                onChange={e => handlePriceChange(pkg.key, v, e.target.value)}
-                                className="w-full bg-black/50 border border-border-warm rounded-lg pl-7 pr-3 py-2 text-white text-sm font-mono focus:border-primary transition-all"
-                              />
+            <div className="bg-card rounded-xl border border-border-warm/50 overflow-hidden w-full">
+              <div className="overflow-x-auto w-full">
+                <table className="admin-table w-full">
+                  <thead>
+                    <tr>
+                      <th className="min-w-[150px]">Package</th>
+                      {group.packages[0].vehicles.map(v => (
+                        <th key={v} className="min-w-[140px]">{vehicleLabels[v]}</th>
+                      ))}
+                      <th className="text-right min-w-[120px]">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {group.packages.map(pkg => {
+                      const isDirty = dirtyKeys.has(pkg.key)
+                      return (
+                        <tr key={pkg.key}>
+                          <td>
+                            <div className="flex items-center gap-2">
+                              <span className="text-white font-medium">{pkg.label}</span>
+                              {isDirty && (
+                                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" title="Unsaved changes" />
+                              )}
                             </div>
                           </td>
-                        ))}
-                        <td>
-                          <div className="flex items-center justify-end gap-2">
-                            <button
-                              onClick={() => handleReset(pkg.key)}
-                              disabled={!isDirty}
-                              className="p-2 rounded-lg text-text-muted hover:text-white hover:bg-white/5 disabled:opacity-30 transition-all"
-                              title="Reset"
-                            >
-                              <RotateCcw size={14} />
-                            </button>
-                            <button
-                              onClick={() => handleSave(pkg.key)}
-                              disabled={saving || !isDirty}
-                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-30 transition-all"
-                            >
-                              <Save size={13} /> Save
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
+                          {pkg.vehicles.map(v => (
+                            <td key={v}>
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-sm">$</span>
+                                <input
+                                  type="text"
+                                  inputMode="decimal"
+                                  value={prices[pkg.key]?.[v] ?? ''}
+                                  onChange={e => handlePriceChange(pkg.key, v, e.target.value)}
+                                  className="w-full bg-black/50 border border-border-warm rounded-lg pl-7 pr-3 py-2 text-white text-sm font-mono focus:border-primary transition-all"
+                                />
+                              </div>
+                            </td>
+                          ))}
+                          <td>
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                onClick={() => handleReset(pkg.key)}
+                                disabled={!isDirty}
+                                className="p-2 rounded-lg text-text-muted hover:text-white hover:bg-white/5 disabled:opacity-30 transition-all"
+                                title="Reset"
+                              >
+                                <RotateCcw size={14} />
+                              </button>
+                              <button
+                                onClick={() => handleSave(pkg.key)}
+                                disabled={saving || !isDirty}
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 disabled:opacity-30 transition-all"
+                              >
+                                <Save size={13} /> Save
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </motion.div>
         ))}
-      </div>
-
-      {/* Info notice */}
-      <div className="mt-8 bg-blue-500/5 border border-blue-500/20 rounded-xl p-4 flex items-start gap-3">
-        <DollarSign size={18} className="text-blue-400 shrink-0 mt-0.5" />
-        <div>
-          <p className="text-blue-400 text-sm font-medium">How pricing works</p>
-          <p className="text-text-muted text-xs mt-1 leading-relaxed">
-            Prices saved here are stored in Firestore and immediately shown on the public packages pages.
-            If a price is not set in Firestore, the built-in default price is used as a fallback.
-          </p>
-        </div>
       </div>
     </div>
   )

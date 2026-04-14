@@ -25,8 +25,8 @@ export default function AdminLayout() {
   return (
     <div className="min-h-screen bg-black flex">
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 border-r border-border-warm transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="flex flex-col h-full">
+      <aside className={`fixed lg:sticky top-0 self-start h-screen left-0 z-50 w-64 bg-black/95 lg:bg-transparent backdrop-blur-md border-r border-border-warm transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="flex flex-col h-full overflow-y-auto">
           <div className="p-5 border-b border-border-warm flex items-center justify-between">
             <img src={logo} alt="Down2Detail" className="h-8" />
             <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-white"><X size={20} /></button>

@@ -182,7 +182,7 @@ export default function App() {
           </Router>
         </AuthProvider>
       </HelmetProvider>
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
     </>
   );
 }

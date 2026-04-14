@@ -1,20 +1,35 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '../../context/LanguageContext'
 import { translations } from '../../translations'
 
-export default function ServiceCard({ service, index }) {
+export default function ServiceCard({ service, index, customPricing }) {
   const { lang } = useLang()
+  const navigate = useNavigate()
   const t = translations[lang].serviceDetails
   const tGlobal = translations[lang]
   const serviceTrans = tGlobal.servicesList[service.id] || {}
 
-  const displayPrice =
+  let displayPrice =
+
     service.priceString === 'Contact for Quote' ||
     service.priceString === 'Contact for Pricing'
       ? tGlobal.contactForPricing
       : service.priceString
+
+  if (customPricing) {
+    if (typeof customPricing === 'string') {
+      displayPrice = customPricing;
+    } else if (typeof customPricing === 'object') {
+      // For tiered prices, show the first available price as a starting point.
+      // E.g., { "Sedan...": "$100" } => "Starting at $100"
+      const vals = Object.values(customPricing).filter(v => typeof v === 'string' && v.match(/\d/));
+      if (vals.length > 0) {
+        displayPrice = vals[0].toLowerCase().includes('starting') ? vals[0] : `Starting at ${vals[0]}`;
+      }
+    }
+  }
 
   return (
     <motion.div
@@ -25,6 +40,7 @@ export default function ServiceCard({ service, index }) {
       className="group h-full"
     >
       <div
+        onClick={() => navigate(`/services/${service.id}`)}
         className="
           relative h-full flex flex-col overflow-hidden rounded-2xl
           bg-white/5 backdrop-blur-md
@@ -33,7 +49,7 @@ export default function ServiceCard({ service, index }) {
           transition-all duration-500
           hover:bg-white/10 hover:border-white/20
           hover:shadow-[0_16px_48px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.15)]
-          hover:-translate-y-1
+          hover:-translate-y-1 cursor-pointer
         "
       >
         {/* Shimmer overlay on hover */}
@@ -73,20 +89,26 @@ export default function ServiceCard({ service, index }) {
             </p>
           </div>
 
-          <Link
-            to={`/services/${service.id}`}
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              navigate(`/booking?service=${service.id}`)
+            }}
             className="
               flex items-center justify-center gap-2 w-full mt-auto
               py-2.5 px-4 rounded-xl text-sm font-medium
-              bg-white/10 border border-white/15 text-white
+              bg-primary border border-primary/50 text-white
               backdrop-blur-sm
               transition-all duration-300
-              hover:bg-white/20 hover:border-white/30 hover:gap-3
+              hover:bg-primary/90 hover:shadow-[0_0_15px_rgba(220,38,38,0.4)]
+              hover:gap-3 z-20 relative
+              cursor-pointer
+              
             "
           >
-            {t.learnMore}
+            {tGlobal.navbar.bookNow}
             <ArrowRight size={14} />
-          </Link>
+          </button>
         </div>
       </div>
     </motion.div>

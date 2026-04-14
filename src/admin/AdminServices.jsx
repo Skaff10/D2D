@@ -131,10 +131,7 @@ export default function AdminServices() {
           <h2 className="font-heading text-2xl font-bold text-white mb-1">{t.title}</h2>
           <p className="text-text-muted text-sm">{t.subtitle}</p>
         </div>
-        <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg flex items-center gap-2 border border-primary/20 shrink-0 self-start md:self-auto">
-          <DollarSign size={18} />
-          <span className="font-semibold text-sm">{t.overriddenBadge}</span>
-        </div>
+       
       </div>
 
       <div className="space-y-12">

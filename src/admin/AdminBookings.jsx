@@ -95,20 +95,20 @@ export default function AdminBookings() {
         ) : filtered.length === 0 ? (
           <div className="p-12 text-center text-text-muted">No bookings found</div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="admin-table">
+          <div className="overflow-x-auto w-full">
+            <table className="admin-table w-full whitespace-nowrap min-w-max">
               <thead>
                 <tr>
-                  <th>Customer</th>
+                  <th className="min-w-[150px]">Customer</th>
                   <th>Phone</th>
                   <th>Type</th>
-                  <th>Service / Package</th>
+                  <th className="min-w-[150px]">Service / Package</th>
                   <th>Vehicle</th>
                   <th>Model</th>
                   <th>Date</th>
                   <th>Time</th>
-                  <th>Status</th>
-                  <th>Notes</th>
+                  <th className="min-w-[120px]">Status</th>
+                  <th className="max-w-[150px]">Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -128,16 +128,16 @@ export default function AdminBookings() {
                         {b.bookingType || 'service'}
                       </span>
                     </td>
-                    <td className="text-text-secondary">{b.bookingType === 'package' ? (b.selectedPackage || '—') : (b.serviceName || '—')}</td>
+                    <td className="text-text-secondary w-[200px] truncate">{b.bookingType === 'package' ? (b.selectedPackage || '—') : (b.serviceName || '—')}</td>
                     <td className="text-text-secondary">{b.vehicleType || '—'}</td>
-                    <td className="text-text-secondary">{b.vehicleModel || '—'}</td>
-                    <td className="text-text-secondary whitespace-nowrap">{b.date}</td>
+                    <td className="text-text-secondary w-[150px] truncate">{b.vehicleModel || '—'}</td>
+                    <td className="text-text-secondary">{b.date}</td>
                     <td className="text-text-secondary">{b.time}</td>
                     <td>
                       <select
                         value={b.status}
                         onChange={e => handleStatusChange(b.id, e.target.value)}
-                        className={`text-xs font-medium px-2 py-1 rounded-full border appearance-none cursor-pointer ${statusColors[b.status] || ''} bg-transparent`}
+                        className={`text-xs font-medium px-2 py-1 rounded-full border appearance-none cursor-pointer ${statusColors[b.status] || ''} bg-transparent outline-none ring-0`}
                       >
                         {statusOptions.map(s => <option key={s} value={s} className="bg-card text-white">{s}</option>)}
                       </select>
