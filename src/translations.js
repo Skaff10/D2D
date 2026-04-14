@@ -228,6 +228,19 @@ export const translations = {
       "car-wax": { name: "Car Wax", shortDescription: "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss." },
     },
     contactForPricing: 'Contact for Pricing',
+    adminServices: {
+      fetchError: "Failed to fetch pricing from Firestore",
+      saved: "Saved!",
+      saveError: "Failed to save prices",
+      title: "Services & Pricing",
+      subtitle: "Manage dynamic pricing for all available detailing services.",
+      overriddenBadge: "Prices Overridden via Firestore",
+      pricingLabel: "Pricing",
+      tiersLabel: "Pricing Tiers",
+      placeholderFormat: "e.g. Contact for Quote / $129.99 CAD",
+      saveBtn: "Save Pricing",
+      savingBtn: "Saving to Firestore..."
+    }
   },
   fr: {
     navbar: {
@@ -458,5 +471,18 @@ export const translations = {
       "car-wax": { name: "Cire Automobile", shortDescription: "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde.", features: ["Lavage et préparation", "Application manuelle Carnauba", "Lustrage à la main", "Polissage délicat en finition"], included: ["Esthétique classique et chaude", "Protège contre les UV et l'oxydation", "Option purement esthétique abordable", "Brillance riche"] },
     },
     contactForPricing: 'Contact pour devis',
+    adminServices: {
+      fetchError: "Échec de la récupération des prix depuis Firestore",
+      saved: "Sauvegardé !",
+      saveError: "Échec de la sauvegarde des prix",
+      title: "Services et Tarification",
+      subtitle: "Gérer la tarification dynamique pour tous les services d'esthétique.",
+      overriddenBadge: "Prix Remplacés via Firestore",
+      pricingLabel: "Tarification",
+      tiersLabel: "Niveaux de Tarification",
+      placeholderFormat: "ex. Contactez pour obtenir un devis / 129,99 $ CA",
+      saveBtn: "Sauvegarder la Tarification",
+      savingBtn: "Sauvegarde dans Firestore..."
+    }
   },
 };

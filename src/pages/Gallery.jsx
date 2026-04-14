@@ -42,23 +42,11 @@ const staticGalleryImages = [
   { src: img15, alt: 'Cadillac detailing', category: 'Exterior' },
 ]
 
-const baseCategories = ['All', 'Exterior', 'Interior', 'Ceramic Coating', 'Paint Correction']
-
 export default function Gallery() {
   const { lang } = useLang();
   const t = translations[lang].gallery;
 
-  const categories = baseCategories.map(cat => ({
-    id: cat,
-    label: cat === 'All' ? t.categories.all :
-           cat === 'Exterior' ? t.categories.exterior :
-           cat === 'Interior' ? t.categories.interior :
-           cat === 'Ceramic Coating' ? t.categories.ceramicCoating :
-           cat === 'Paint Correction' ? t.categories.paintCorrection : cat
-  }));
-
   const [galleryImages, setGalleryImages] = useState(staticGalleryImages)
-  const [activeCategory, setActiveCategory] = useState('All')
   const [lightbox, setLightbox] = useState(null)
 
   // Fetch from Firestore — if docs exist, use them; otherwise keep static fallback
@@ -80,10 +68,6 @@ export default function Gallery() {
     fetchGallery()
   }, [])
 
-  const filtered = activeCategory === 'All'
-    ? galleryImages
-    : galleryImages.filter(img => img.category === activeCategory)
-
   return (
     <>
       <Helmet>
@@ -103,27 +87,10 @@ export default function Gallery() {
 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                  activeCategory === cat.id
-                    ? 'bg-white/[0.1] text-white border border-white/[0.12]'
-                    : 'bg-transparent text-white/40 hover:text-white/70 border border-white/[0.04] hover:border-white/[0.08]'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
           {/* Grid */}
           <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             <AnimatePresence mode="popLayout">
-              {filtered.map((img, i) => (
+              {galleryImages.map((img, i) => (
                 <motion.div
                   key={img.src}
                   layout
@@ -146,14 +113,6 @@ export default function Gallery() {
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
                     <ZoomIn size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="section-tag text-white/70">
-                      {img.category === 'Exterior' ? t.categories.exterior :
-                       img.category === 'Interior' ? t.categories.interior :
-                       img.category === 'Ceramic Coating' ? t.categories.ceramicCoating :
-                       img.category === 'Paint Correction' ? t.categories.paintCorrection : img.category}
-                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -178,15 +137,19 @@ export default function Gallery() {
             >
               <X size={24} />
             </button>
-            <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              src={lightbox.src}
-              alt={lightbox.alt}
-              className="max-w-full max-h-[85vh] object-contain rounded-2xl"
-              onClick={e => e.stopPropagation()}
-            />
+            <div className="flex flex-col items-center" onClick={e => e.stopPropagation()}>
+              <motion.img
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                src={lightbox.src}
+                alt={lightbox.alt}
+                className="max-w-full max-h-[85vh] object-contain rounded-2xl"
+              />
+              {lightbox.alt && (
+                <p className="text-white mt-4 text-center">{lightbox.alt}</p>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

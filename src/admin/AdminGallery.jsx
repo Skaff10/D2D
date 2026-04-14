@@ -6,7 +6,6 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import { db, storage } from '../firebase/config'
 import toast from 'react-hot-toast'
 
-const categories = ['Exterior', 'Interior', 'Ceramic Coating', 'Paint Correction']
 
 export default function AdminGallery() {
   const [images, setImages] = useState([])
@@ -14,7 +13,7 @@ export default function AdminGallery() {
   const [uploading, setUploading] = useState(false)
   const [showUpload, setShowUpload] = useState(false)
   const [preview, setPreview] = useState(null)
-  const [uploadForm, setUploadForm] = useState({ file: null, alt: '', category: 'Exterior' })
+  const [uploadForm, setUploadForm] = useState({ file: null, alt: '' })
   const [deleting, setDeleting] = useState(null)
   const fileRef = useRef(null)
 
@@ -73,14 +72,13 @@ export default function AdminGallery() {
         url,
         storagePath: `gallery/${timestamp}_${safeName}`,
         alt: uploadForm.alt || uploadForm.file.name,
-        category: uploadForm.category,
         createdAt: Timestamp.now(),
       }
       const docRef = await addDoc(collection(db, 'gallery'), docData)
       setImages(prev => [{ id: docRef.id, ...docData }, ...prev])
 
       // Reset form
-      setUploadForm({ file: null, alt: '', category: 'Exterior' })
+      setUploadForm({ file: null, alt: '' })
       setPreview(null)
       setShowUpload(false)
       if (fileRef.current) fileRef.current.value = ''
@@ -146,7 +144,7 @@ export default function AdminGallery() {
             <div className="bg-card rounded-xl border border-border-warm/50 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-heading text-base font-bold text-white">Upload New Image</h3>
-                <button onClick={() => { setShowUpload(false); setPreview(null); setUploadForm({ file: null, alt: '', category: 'Exterior' }) }} className="text-text-muted hover:text-white">
+                <button onClick={() => { setShowUpload(false); setPreview(null); setUploadForm({ file: null, alt: '' }) }} className="text-text-muted hover:text-white">
                   <X size={18} />
                 </button>
               </div>
@@ -191,16 +189,6 @@ export default function AdminGallery() {
                       value={uploadForm.alt}
                       onChange={e => setUploadForm(prev => ({ ...prev, alt: e.target.value }))}
                     />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-text-secondary mb-1.5 block">Category</label>
-                    <select
-                      className={inputClasses}
-                      value={uploadForm.category}
-                      onChange={e => setUploadForm(prev => ({ ...prev, category: e.target.value }))}
-                    >
-                      {categories.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
                   </div>
                   <button
                     onClick={handleUpload}
@@ -261,9 +249,6 @@ export default function AdminGallery() {
                   </button>
                 </div>
                 <div>
-                  <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide bg-primary/20 text-primary border border-primary/30 mb-1">
-                    {img.category}
-                  </span>
                   <p className="text-white text-xs truncate">{img.alt}</p>
                 </div>
               </div>

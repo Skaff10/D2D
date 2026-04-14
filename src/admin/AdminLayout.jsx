@@ -8,7 +8,7 @@ const sidebarLinks = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Bookings', path: '/admin/bookings', icon: CalendarDays },
   { name: 'Services', path: '/admin/services', icon: Wrench },
-  { name: 'Pricing', path: '/admin/pricing', icon: DollarSign },
+  { name: 'Packages', path: '/admin/pricing', icon: DollarSign },
   { name: 'Gallery', path: '/admin/gallery', icon: ImageIcon },
 ]
 
