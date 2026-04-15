@@ -59,22 +59,16 @@ const timeSlots = [
 
 const fallbackServices = [
   { id: "1", name: "Exterior Detailing" },
-  { id: "2", name: "Paint Decontamination" },
-  { id: "3", name: "Engine Bay Detailing" },
-  { id: "4", name: "Headlight Restoration" },
-  { id: "5", name: "Headlight & Taillight Tint" },
-  { id: "6", name: "Interior Detailing" },
-  { id: "7", name: "Floor & Carpet Shampoo" },
-  { id: "8", name: "Pet Hair Removal" },
-  { id: "9", name: "Fabric Seat Shampoo" },
-  { id: "10", name: "Leather Seat Treatment" },
-  { id: "11", name: "Gloss Enhancer" },
-  { id: "12", name: "One-Step Polish" },
-  { id: "13", name: "Two-Step Polish" },
-  { id: "14", name: "Three-Step Polish" },
-  { id: "15", name: "Ceramic Coating" },
-  { id: "16", name: "Paint Sealant" },
-  { id: "17", name: "Car Wax" },
+  { id: "2", name: "Engine Bay Detailing" },
+  { id: "3", name: "Headlight Restoration" },
+  { id: "4", name: "Headlight & Taillight Tint" },
+  { id: "5", name: "Interior Detailing" },
+  { id: "6", name: "Leather Seat Treatment" },
+  { id: "7", name: "Gloss Enhancer" },
+  { id: "8", name: "One-Step Polish" },
+  { id: "9", name: "Two-Step Polish" },
+  { id: "10", name: "Three-Step Polish" },
+  { id: "11", name: "Ceramic Coating" },
 ];
 
 const defaultPackageMap = {
@@ -191,8 +185,7 @@ export default function Booking() {
             vehicle_type: data.vehicleType,
             vehicle_model: data.vehicleModel,
             booking_type: bookingType,
-            service_name:
-              bookingType === "service" ? data.serviceName : "None",
+            service_name: bookingType === "service" ? data.serviceName : "None",
             booking_date: data.date,
             booking_time: data.time,
             notes: data.notes || "None",
@@ -449,9 +442,7 @@ export default function Booking() {
                         size={14}
                         className="text-primary/60 shrink-0 mt-0.5"
                       />
-                      <p className="text-primary/70 text-xs">
-                        {t.pricingNote}
-                      </p>
+                      <p className="text-primary/70 text-xs">{t.pricingNote}</p>
                     </div>
                   )}
                 </motion.div>
@@ -523,9 +514,7 @@ export default function Booking() {
                       </option>
                     </optgroup>
                     <optgroup
-                      label={
-                        lang === "en" ? "Monthly Plans" : "Plans Mensuels"
-                      }
+                      label={lang === "en" ? "Monthly Plans" : "Plans Mensuels"}
                     >
                       <option value="Monthly Refresh ">
                         {lang === "en"

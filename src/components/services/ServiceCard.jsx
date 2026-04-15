@@ -11,14 +11,25 @@ export default function ServiceCard({ service, index, customPricing }) {
   const tGlobal = translations[lang]
   const serviceTrans = tGlobal.servicesList[service.id] || {}
 
-  let displayPrice =
+  const packageIncludedServices = [
+    'paint-decontamination',
+    'floor-carpet-shampoo',
+    'pet-hair-removal',
+    'fabric-seat-shampoo',
+    'paint-sealant',
+    'car-wax'
+  ]
+  const isPackageIncluded = packageIncludedServices.includes(service.id)
 
+  let displayPrice =
     service.priceString === 'Contact for Quote' ||
     service.priceString === 'Contact for Pricing'
       ? tGlobal.contactForPricing
       : service.priceString
 
-  if (customPricing) {
+  if (isPackageIncluded) {
+    displayPrice = lang === 'fr' ? 'Inclus dans les forfaits' : 'Included in Packages'
+  } else if (customPricing) {
     if (typeof customPricing === 'string') {
       displayPrice = customPricing;
     } else if (typeof customPricing === 'object') {
@@ -28,6 +39,19 @@ export default function ServiceCard({ service, index, customPricing }) {
       if (vals.length > 0) {
         displayPrice = vals[0].toLowerCase().includes('starting') ? vals[0] : `Starting at ${vals[0]}`;
       }
+    }
+  }
+
+  const buttonText = isPackageIncluded
+    ? (lang === 'fr' ? 'Voir les forfaits' : 'View Packages')
+    : tGlobal.navbar.bookNow
+
+  const handleButtonClick = (e) => {
+    e.stopPropagation()
+    if (isPackageIncluded) {
+      navigate('/packages')
+    } else {
+      navigate(`/booking?service=${service.id}`)
     }
   }
 
@@ -90,10 +114,7 @@ export default function ServiceCard({ service, index, customPricing }) {
           </div>
 
           <button
-            onClick={(e) => {
-              e.stopPropagation()
-              navigate(`/booking?service=${service.id}`)
-            }}
+            onClick={handleButtonClick}
             className="
               flex items-center justify-center gap-2 w-full mt-auto
               py-2.5 px-4 rounded-xl text-sm font-medium
@@ -106,7 +127,7 @@ export default function ServiceCard({ service, index, customPricing }) {
               
             "
           >
-            {tGlobal.navbar.bookNow}
+            {buttonText}
             <ArrowRight size={14} />
           </button>
         </div>

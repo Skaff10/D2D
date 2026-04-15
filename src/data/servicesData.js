@@ -672,17 +672,17 @@ export const services = {
       pricingTiers: [
         {
           level: "Level 1",
-          durability: "Up to 1 year or 20,000 km",
+          durability: "Up to 1 year",
           price: "$249.99",
         },
         {
           level: "Level 2",
-          durability: "Up to 4 years or 60,000 km",
+          durability: "Up to 3-4 years or 50,000 km",
           price: "$499.99",
         },
         {
           level: "Level 3",
-          durability: "Up to 5 years or 80,000 km",
+          durability: "Up to 4-5 years or 75,000 km",
           price: "$599.99",
         },
       ],

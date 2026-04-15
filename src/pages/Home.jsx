@@ -42,19 +42,19 @@ import heroVideo from "../assets/videos/hero.mp4";
 import heroPoster from "../assets/videos/hero-poster.jpg";
 
 const brandLogos = [
-  { src: cadillacImg, alt: "Cadillac" },
-  { src: chevroletImg, alt: "Chevrolet" },
-  { src: hondaImg, alt: "Honda" },
-  { src: toyotaImg, alt: "Toyota" },
-  { src: acuraImg, alt: "Acura" },
-  { src: lexusImg, alt: "Lexus" },
   { src: ferrariImg, alt: "Ferrari" },
   { src: lamborghiniImg, alt: "Lamborghini" },
   { src: porscheImg, alt: "Porsche" },
   { src: rollsRoyceImg, alt: "Rolls Royce" },
   { src: mercedesImg, alt: "Mercedes" },
   { src: bmwImg, alt: "BMW" },
+  { src: cadillacImg, alt: "Cadillac" },
   { src: miniImg, alt: "Mini" },
+  { src: lexusImg, alt: "Lexus" },
+  { src: acuraImg, alt: "Acura" },
+  { src: chevroletImg, alt: "Chevrolet" },
+  { src: hondaImg, alt: "Honda" },
+  { src: toyotaImg, alt: "Toyota" },
 ];
 
 export default function Home() {
