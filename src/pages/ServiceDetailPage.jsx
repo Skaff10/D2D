@@ -42,6 +42,16 @@ export default function ServiceDetailPage() {
   const displayName = serviceTrans.name || service.name;
   const displayShortDesc =
     serviceTrans.shortDescription || service.shortDescription;
+
+  const packageIncludedServices = [
+    'paint-decontamination',
+    'floor-carpet-shampoo',
+    'pet-hair-removal',
+    'fabric-seat-shampoo',
+    'paint-sealant',
+    'car-wax'
+  ];
+  const isPackageIncluded = packageIncludedServices.includes(service.id);
   
   let displayPrice =
     service.priceString === "Contact for Quote" ||
@@ -49,7 +59,9 @@ export default function ServiceDetailPage() {
       ? tGlobal.contactForPricing
       : service.priceString;
 
-  if (customPricing) {
+  if (isPackageIncluded) {
+    displayPrice = lang === 'fr' ? 'Inclus dans les forfaits' : 'Included in Packages';
+  } else if (customPricing) {
     if (typeof customPricing === 'string') {
       displayPrice = customPricing;
     } else if (typeof customPricing === 'object' && !isCeramicCoating) {
@@ -287,7 +299,7 @@ export default function ServiceDetailPage() {
                       {t.pricing}
                     </span>
                     <div className="mb-8">
-                      {service.price && service.price.type === "tiered" ? (
+                      {service.price && service.price.type === "tiered" && !isPackageIncluded ? (
                         <div className="space-y-3">
                           {service.price.tiers.map((tier, idx) => {
                             const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[tier.label] : undefined;
@@ -308,7 +320,7 @@ export default function ServiceDetailPage() {
                         </div>
                       ) : (
                         <div className="text-3xl text-white serif-heading">
-                          { (typeof customPricing === 'string') ? customPricing : (service.price?.amount || displayPrice) }
+                          { isPackageIncluded ? displayPrice : ((typeof customPricing === 'string') ? customPricing : (service.price?.amount || displayPrice)) }
                         </div>
                       )}
                     </div>
@@ -392,10 +404,10 @@ export default function ServiceDetailPage() {
 
                 <div className="flex flex-col gap-3">
                   <Link
-                    to={`/booking?service=${encodeURIComponent(service.name)}`}
+                    to={isPackageIncluded ? '/packages' : `/booking?service=${encodeURIComponent(service.name)}`}
                     className="btn-filled w-full justify-center"
                   >
-                    {t.bookThisService}
+                    {isPackageIncluded ? (lang === 'fr' ? 'Voir les forfaits' : 'View Packages') : t.bookThisService}
                     <ArrowRight size={14} />
                   </Link>
 

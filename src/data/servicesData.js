@@ -514,15 +514,15 @@ export const services = {
       shortDescription:
         "Perfect for vehicles that need a quick refresh without extensive correction.",
       fullDescription:
-        "Perfect for vehicles that need a quick refresh without extensive correction. Combines light paint correction with gloss enhancement in a single step. Ideal for well-maintained vehicles or minor imperfections.",
+        "Perfect for vehicles that need a quick refresh without extensive correction. Removing up to 50% of paint defects in a single step. Ideal for well-maintained vehicles or minor imperfections.",
       features: [
+        "Removes up to 50% of paint defects.",
         "Paint surface prep and cleaning",
         "Single-stage polishing with dual-action compound",
-        "Light swirl mark and scratch removal",
+        "Light swirls removal",
         "Gloss enhancement",
         "Paint surface refinement",
         "Final buffing and inspection",
-        "Optional paint protection application",
         "Quality check",
       ],
       priceString: "Contact for Quote",
@@ -534,8 +534,8 @@ export const services = {
       pic1: onestep1,
       pic2: onestep2,
       included: [
-        "Faster than multi-stage correction",
-        "Removes light swirl marks and minor scratches",
+        "Faster than 2 Step Paint Correction",
+        "Eliminates light swirls",
         "Significantly enhances gloss and shine",
         "Perfect for well-maintained vehicles",
         "Cost-effective paint enhancement",
@@ -549,16 +549,16 @@ export const services = {
       shortDescription:
         "Ideal for vehicles with moderate swirl marks, light scratches, and dull paint that need more than a single-stage refresh.",
       fullDescription:
-        "Ideal for vehicles with moderate swirl marks, light scratches, and dull paint that need more than a single-stage refresh. A dedicated cutting stage removes defects, followed by a finishing polish that maximizes gloss and paint clarity.",
-      features: [
+        "This level represents the true entry point into professional paint correction, where we move beyond simple polishing to fundamentally restore the surface of your vehicle.This service bridges the gap between a basic polish and a full restoration, delivering a dramatic transformation for paint that has lost its 'pop'.",
+   features: [
         "Paint surface prep and cleaning",
         "Paint decontamination",
         "Stage 1 — Cutting compound to remove moderate swirls & scratches",
         "Stage 2 — Fine finishing polish for gloss & clarity",
+        "80%–90% Defect Removal",
         "Dual-action machine polishing throughout",
         "Paint depth inspection between stages",
         "Final hand-buff and inspection",
-        "Optional paint protection application",
         "Quality check",
       ],
       priceString: "Contact for Quote",
@@ -569,6 +569,7 @@ export const services = {
       pic1: twostep1,
       pic2: twostep2,
       included: [
+        "Showroom Results",
         "Removes moderate swirl marks and scratches",
         "Two dedicated stages for superior results vs one-step",
         "Significantly enhances gloss and paint depth",
@@ -585,18 +586,18 @@ export const services = {
       shortDescription:
         "Our most comprehensive paint restoration service for severely neglected or heavily scratched paint.",
       fullDescription:
-        "Our most comprehensive paint restoration service for severely neglected or heavily scratched paint. Three dedicated stages — heavy cutting, medium correction, and fine finishing — work progressively to eliminate deep defects and deliver a flawless, showroom-quality result.",
-      features: [
+        "This is our superior level of paint correction and finishing. Designed specifically for the most discerning owners and 'picky' enthusiasts, this 3-stage process is for vehicles with heavy scratches, deep swirl marks, and severe oxidation. We push the limits of your clear coat to achieve the absolute maximum level of restoration possible",
+        features: [
         "Detailed paint condition assessment",
         "Paint surface prep, wash & decontamination",
         "Stage 1 — Heavy cutting compound for deep scratches & oxidation",
         "Stage 2 — Medium polishing compound for defect refinement",
         "Stage 3 — Fine finishing polish for maximum gloss & clarity",
+        "90%–95% Defect Removal",
         "Dual-action and rotary machine polishing as needed",
         "Paint thickness measurement throughout",
         "Panel-by-panel inspection between stages",
         "Final hand-buff and showroom inspection",
-        "Optional paint protection application",
         "Quality check",
       ],
       priceString: "Contact for Quote",
