@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Goldman:wght@400;700&family=Oxanium:wght@200..800&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -16,10 +17,11 @@
   --color-status-confirmed: #3b82f6;
   --color-status-completed: #22c55e;
   --color-status-cancelled: #ef4444;
-  --font-family-heading: "DM Serif Display", Georgia, serif;
-  --font-family-body: "Inter", sans-serif;
-  --font-family-mono: "Space Mono", monospace;
+  --font-family-heading: "Goldman", sans-serif;
+  --font-family-body: "Oxanium", sans-serif;
+  --font-family-mono: "Exo", sans-serif;
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -55,8 +57,7 @@ h6 {
   font-weight: 400;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
+ ::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -138,7 +139,6 @@ h6 {
 }
 
 .dark-card:hover {
-  
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.4),

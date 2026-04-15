@@ -301,23 +301,26 @@ export default function Home() {
             <span
               className="mb-4 block uppercase section-tag font-medium"
               style={{
-                color: "#e46904ff",
+              color: "#e46904ff",
+              fontWeight: "bold",
+                 // color: "#FFFFFF",
+                fontSize: "1rem",
+                textShadow: "0px 2px 12px rgba(10, 9, 9, 0.99)",
               }}
             >
               {th.tag}
             </span>
 
             <h1
-              className="mb-6 font-bold"
+              className="mb-6 goldman-regular font-bold"
               style={{
-                color: "#FFFFFF",
-                fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-                fontWeight: 700,
-                textShadow: "0px 2px 12px rgba(0,0,0,0.4)",
-                fontFamily: "var(--font-family-heading)",
+               color: "#FFFFFF",//
+                // color: "#e46904ff",
+                fontSize: "5rem",
+                textShadow: "0px 2px 12px rgba(10, 9, 9, 0.99)",
               }}
             >
-              {th.title}
+              Paint Correction
             </h1>
 
             <p
@@ -329,7 +332,7 @@ export default function Home() {
                 lineHeight: 1.7,
               }}
             >
-              {th.description}
+              {/* {th.description} */}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
