@@ -40,6 +40,7 @@ import bmwImg from "../assets/images/brand/imgi_8_BMW.png";
 import miniImg from "../assets/images/brand/imgi_9_mini.png";
 import heroVideo from "../assets/videos/hero.mp4";
 import heroPoster from "../assets/videos/hero-poster.jpg";
+import { HeroTypewriter } from "../components/ui/HeroTypewriter";
 
 const brandLogos = [
   { src: ferrariImg, alt: "Ferrari" },
@@ -301,27 +302,16 @@ export default function Home() {
             <span
               className="mb-4 block uppercase section-tag font-medium"
               style={{
-              color: "#e46904ff",
-              fontWeight: "bold",
-                 // color: "#FFFFFF",
-                fontSize: "1rem",
+                color: "#e46904ff",
+                fontWeight: "bold",
+                fontSize: "clamp(0.7rem, 2.5vw, 1rem)",
                 textShadow: "0px 2px 12px rgba(10, 9, 9, 0.99)",
               }}
             >
               {th.tag}
             </span>
 
-            <h1
-              className="mb-6 goldman-regular font-bold"
-              style={{
-               color: "#FFFFFF",//
-                // color: "#e46904ff",
-                fontSize: "5rem",
-                textShadow: "0px 2px 12px rgba(10, 9, 9, 0.99)",
-              }}
-            >
-              Paint Correction
-            </h1>
+            <HeroTypewriter />
 
             <p
               className="mb-8"
@@ -332,7 +322,7 @@ export default function Home() {
                 lineHeight: 1.7,
               }}
             >
-              {/* {th.description} */}
+              {th.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">

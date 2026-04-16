@@ -164,9 +164,7 @@ function PriceDisplay({ value, vehicleLabel, loading }) {
         transition={{ duration: 0.22 }}
       >
         <p className="price-mono text-3xl font-bold text-white">${value}</p>
-        <p className="text-xs text-neutral-500 mt-1 uppercase tracking-widest">
-          {vehicleLabel}
-        </p>
+
       </motion.div>
     </AnimatePresence>
   );
@@ -263,12 +261,6 @@ export default function PackagesPaint() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span
-            className="section-tag block mb-5"
-            style={{ color: "#e46904ff" }}
-          >
-            {t.heroBadge}
-          </span>
           <h1
             className="mb-5 font-bold"
             style={{

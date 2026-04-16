@@ -19,6 +19,7 @@ import ceramicImg from "../assets/dk/down2detail.png";
 export default function About() {
   const { lang } = useLang();
   const t = translations[lang].about;
+  const h = translations[lang].home;
 
   const values = [
     {
@@ -93,7 +94,7 @@ export default function About() {
                 <div className="absolute -bottom-5 -right-5 glass rounded-xl p-4 hidden md:block">
                   <p className="price-mono text-primary text-xl">1000+</p>
                   <p className="text-text-secondary text-xs mt-1">
-                    {t.happyClients}
+                    {h.carsDetailed}
                   </p>
                 </div>
               </div>
