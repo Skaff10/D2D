@@ -51,7 +51,7 @@ const translations = {
     backToPackages: "← Retour aux forfaits",
     breadcrumbPackages: "Forfaits",
     breadcrumbCurrent: "Plans Mensuels",
-    sedanCoupeXover: "Berline / Coupé / Multisegment",
+    sedanCoupeXover: "Berline / Coupé / Crossover",
     compactMidSuv: "VUS Compact / Intermédiaire",
     fullSizePickup: "Grand VUS / Camionnette",
     monthlyRefresh: "Actualisation Mensuelle",
@@ -112,7 +112,6 @@ function PriceDisplay({ value, vehicleLabel, loading }) {
         transition={{ duration: 0.22 }}
       >
         <p className="price-mono text-3xl font-bold text-white">${value}</p>
-        
       </motion.div>
     </AnimatePresence>
   );
@@ -138,10 +137,14 @@ function VehicleToggle({ options, active, onChange }) {
   );
 }
 
-function ServiceItem({ text }) {
+function ServiceItem({ text, checkColor = "#C9A84C" }) {
   return (
     <li className="flex items-start gap-2 text-sm text-neutral-300">
-      <Check size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
+      <Check
+        size={14}
+        style={{ color: checkColor }}
+        className="mt-0.5 shrink-0"
+      />
       <span>{text}</span>
     </li>
   );
@@ -158,8 +161,8 @@ export default function PackagesMonthly() {
 
   const vehicles = [
     { key: "sedanCoupeXover", label: t.sedanCoupeXover },
-    { key: "compactMidSuv",   label: t.compactMidSuv   },
-    { key: "fullSizePickup",  label: t.fullSizePickup   },
+    { key: "compactMidSuv", label: t.compactMidSuv },
+    { key: "fullSizePickup", label: t.fullSizePickup },
   ];
 
   function getPrice(pkg, vehicle) {
@@ -269,50 +272,106 @@ export default function PackagesMonthly() {
 
           <motion.div
             className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+            style={{ alignItems: "start" }}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
             {/* Monthly Refresh */}
-            <motion.div variants={cardVariants} className="dark-card p-6 flex flex-col">
-              <span className="section-tag block mb-1">{t.monthlyRefresh}</span>
-              <div className="mb-5">
+            <motion.div
+              variants={cardVariants}
+              className="relative dark-card p-6 flex flex-col"
+              style={{ borderColor: "rgba(205,127,50,0.3)" }}
+            >
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "#CD7F32",
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-family-mono)",
+                  marginBottom: "1rem",
+                }}
+              >
+                {t.monthlyRefresh}
+              </h3>
+              <ul className="space-y-2 pb-14">
+                {[
+                  t.monthlyRefresh_s1,
+                  t.monthlyRefresh_s2,
+                  t.monthlyRefresh_s3,
+                ].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#CD7F32" />
+                ))}
+              </ul>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1rem",
+                  right: "1.25rem",
+                }}
+              >
                 <PriceDisplay
                   value={getPrice("monthlyRefresh", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[t.monthlyRefresh_s1, t.monthlyRefresh_s2, t.monthlyRefresh_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
 
             {/* Ceramic Refresh */}
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ borderColor: "#C9A84C" }}
+              style={{
+                borderColor: "rgba(168,216,234,0.4)",
+              }}
             >
-              <span className="absolute top-3 right-3 bg-[#C9A84C] text-black text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+              <span
+                className="absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide"
+                style={{ background: "#A8D8EA", color: "#0a1a20" }}
+              >
                 {t.everyFourSix}
               </span>
-              <span className="section-tag block mb-1">{t.ceramicRefresh}</span>
-              <div className="mb-5">
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "#A8D8EA",
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-family-mono)",
+                  marginBottom: "1rem",
+                }}
+              >
+                {t.ceramicRefresh}
+              </h3>
+              <ul className="space-y-2 flex-1 pb-14">
+                {[
+                  t.ceramicRefresh_s1,
+                  t.ceramicRefresh_s2,
+                  t.ceramicRefresh_s3,
+                ].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#A8D8EA" />
+                ))}
+              </ul>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1rem",
+                  right: "1.25rem",
+                }}
+              >
                 <PriceDisplay
                   value={getPrice("ceramicRefresh", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[t.ceramicRefresh_s1, t.ceramicRefresh_s2, t.ceramicRefresh_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
           </motion.div>
         </div>
@@ -343,9 +402,7 @@ export default function PackagesMonthly() {
               <h2 className="serif-heading text-3xl md:text-4xl text-white mb-3 relative z-10">
                 {t.ctaTitle}
               </h2>
-              <p className="text-neutral-400 mb-8 relative z-10">
-                {t.ctaSub}
-              </p>
+              <p className="text-neutral-400 mb-8 relative z-10">{t.ctaSub}</p>
               <Link
                 to="/booking?category=monthly"
                 className="btn-filled_2 relative z-10"

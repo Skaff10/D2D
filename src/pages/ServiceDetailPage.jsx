@@ -7,9 +7,43 @@ import FAQAccordion from "../components/services/FAQAccordion";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import { CheckCircle2 } from "lucide-react";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, AlertTriangle } from "lucide-react";
 import { Shield } from "lucide-react";
 import { useServicePrices } from "../hooks/useServicePrices";
+
+// Curated related services map: serviceId -> [relatedId, relatedId, relatedId]
+const relatedServicesMap = {
+  "exterior-detailing":       ["paint-decontamination", "engine-bay-detailing", "ceramic-coating"],
+  "paint-decontamination":    ["exterior-detailing", "ceramic-coating", "two-step-polish"],
+  "engine-bay-detailing":     ["exterior-detailing", "interior-detailing", "headlight-restoration"],
+  "headlight-restoration":    ["headlight-taillight-tint", "exterior-detailing", "engine-bay-detailing"],
+  "headlight-taillight-tint": ["headlight-restoration", "exterior-detailing", "paint-decontamination"],
+  "interior-detailing":       ["floor-carpet-shampoo", "fabric-seat-shampoo", "leather-seat-treatment"],
+  "floor-carpet-shampoo":     ["interior-detailing", "fabric-seat-shampoo", "pet-hair-removal"],
+  "pet-hair-removal":         ["interior-detailing", "floor-carpet-shampoo", "fabric-seat-shampoo"],
+  "fabric-seat-shampoo":      ["interior-detailing", "pet-hair-removal", "leather-seat-treatment"],
+  "leather-seat-treatment":   ["interior-detailing", "fabric-seat-shampoo", "ceramic-coating"],
+  "gloss-enhancer":           ["one-step-polish", "paint-decontamination", "paint-sealant"],
+  "one-step-polish":          ["two-step-polish", "gloss-enhancer", "ceramic-coating"],
+  "two-step-polish":          ["three-step-polish", "one-step-polish", "ceramic-coating"],
+  "three-step-polish":        ["two-step-polish", "ceramic-coating", "paint-decontamination"],
+  "ceramic-coating":          ["paint-decontamination", "two-step-polish", "paint-sealant"],
+  "paint-sealant":            ["ceramic-coating", "car-wax", "paint-decontamination"],
+  "car-wax":                  ["paint-sealant", "ceramic-coating", "gloss-enhancer"],
+};
+
+// Flat lookup: serviceId -> service object
+function buildServiceLookup() {
+  const lookup = {};
+  for (const cat of categories) {
+    for (const svc of (services[cat.id] || [])) {
+      lookup[svc.id] = svc;
+    }
+  }
+  return lookup;
+}
+const serviceLookup = buildServiceLookup();
+
 export default function ServiceDetailPage() {
   const { lang } = useLang();
   const tGlobal = translations[lang];
@@ -42,6 +76,16 @@ export default function ServiceDetailPage() {
   const displayName = serviceTrans.name || service.name;
   const displayShortDesc =
     serviceTrans.shortDescription || service.shortDescription;
+  const displayFullDesc = serviceTrans.fullDescription || service.fullDescription;
+  const displayFeatures = serviceTrans.features || service.features;
+  const displayIncluded = serviceTrans.included || service.included;
+  
+  // Ceramic Coating specific overrides
+  const displayWorthIt = serviceTrans.worthIt || service.worthIt;
+  const displaySurfaces = serviceTrans.surfaces || service.surfaces;
+  const displayFaq = serviceTrans.faq || service.faq;
+  const displayPricingTiers = serviceTrans.pricingTiers || service.pricingTiers;
+  const displayAdditionalSurfaces = serviceTrans.additionalSurfaces || service.additionalSurfaces;
 
   const packageIncludedServices = [
     'paint-decontamination',
@@ -190,7 +234,7 @@ export default function ServiceDetailPage() {
                   {t.overview}
                 </h2>
                 <p className="text-text-secondary text-base leading-relaxed mb-10 whitespace-pre-line">
-                  {service.fullDescription}
+                  {displayFullDesc}
                 </p>
 
                 {!isCeramicCoating && (
@@ -199,7 +243,7 @@ export default function ServiceDetailPage() {
                       {t.serviceFeatures}
                     </h3>
                     <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                      {service.features?.map((item, i) => (
+                      {displayFeatures?.map((item, i) => (
                         <div key={i} className="flex items-start gap-3">
                           <CheckCircle2
                             size={16}
@@ -216,7 +260,7 @@ export default function ServiceDetailPage() {
                       {t.theBenefits}
                     </h3>
                     <div className="grid sm:grid-cols-2 gap-4">
-                      {service.included?.map((item, i) => (
+                      {displayIncluded?.map((item, i) => (
                         <div key={i} className="flex items-start gap-3">
                           <CheckCircle2
                             size={16}
@@ -245,7 +289,7 @@ export default function ServiceDetailPage() {
                     {t.isItWorthIt}
                   </h3>
                   <div className="flex flex-wrap gap-3 mb-10">
-                    {service.worthIt.map((item, i) => (
+                    {displayWorthIt?.map((item, i) => (
                       <span
                         key={i}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/8 border border-primary/15 text-sm text-primary/90 font-medium"
@@ -260,7 +304,7 @@ export default function ServiceDetailPage() {
                     {t.canBeAppliedTo}
                   </h3>
                   <div className="flex flex-wrap gap-2 mb-10">
-                    {service.surfaces.map((surface, i) => (
+                    {displaySurfaces?.map((surface, i) => (
                       <span
                         key={i}
                         className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-sm text-white/70"
@@ -272,14 +316,28 @@ export default function ServiceDetailPage() {
 
                   {/* FAQ Section */}
                   <div className="mb-6">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/30 block mb-2">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-white/30 block mb-2">
                       {t.faq}
                     </span>
                     <h4 className="serif-heading text-xl text-white">
                       {t.frequentlyAskedQuestions}
                     </h4>
                   </div>
-                  <FAQAccordion items={service.faq} />
+                  <FAQAccordion items={displayFaq || []} />
+
+                  {/* Paint Decontamination Notice — Task 2 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
+                    className="mt-10 flex items-start gap-4 p-5 rounded-xl border border-amber-500/40 bg-amber-500/[0.07] backdrop-blur-sm"
+                  >
+                    <AlertTriangle size={20} className="text-amber-400 shrink-0 mt-0.5" />
+                    <p className="text-amber-200/90 text-sm leading-relaxed font-medium">
+                      {t.ceramicCoatingNote}
+                    </p>
+                  </motion.div>
                 </motion.div>
               )}
             </div>
@@ -334,7 +392,7 @@ export default function ServiceDetailPage() {
                       {t.protectionLevels}
                     </h4>
                     <div className="space-y-3 mb-8">
-                      {service.pricingTiers.map((tier, i) => {
+                      {displayPricingTiers?.map((tier, i) => {
                         const key = `tier_${tier.level.replace(/\s+/g, '')}`;
                         const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[key] : undefined;
                         return (
@@ -376,7 +434,7 @@ export default function ServiceDetailPage() {
                       {t.additionalSurfaces}
                     </h4>
                     <div className="space-y-3 mb-8">
-                      {service.additionalSurfaces.map((item, i) => {
+                      {displayAdditionalSurfaces?.map((item, i) => {
                         const key = `surface_${item.surface.replace(/\s+/g, '')}`;
                         const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[key] : undefined;
                         return (
@@ -421,6 +479,74 @@ export default function ServiceDetailPage() {
                 </div>
               </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== RELATED SERVICES SECTION — Task 1 ===== */}
+      <section className="py-16 border-t border-white/[0.06]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-10"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-[1px] bg-primary/40" />
+              <span className="section-tag text-primary/80">Explore</span>
+              <div className="w-8 h-[1px] bg-primary/40" />
+            </div>
+            <h2 className="serif-heading text-2xl sm:text-3xl text-white">
+              {t.relatedServices}
+            </h2>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {(relatedServicesMap[service.id] || []).map((relId, idx) => {
+              const relSvc = serviceLookup[relId];
+              if (!relSvc) return null;
+              const relTrans = tGlobal.servicesList[relId] || {};
+              const relName = relTrans.name || relSvc.name;
+              const relDesc = relTrans.shortDescription || relSvc.shortDescription;
+              return (
+                <motion.div
+                  key={relId}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                >
+                  <Link
+                    to={`/services/${relId}`}
+                    className="block group dark-card overflow-hidden card-hover h-full"
+                  >
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={relSvc.cover_pic}
+                        alt={relName}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-5">
+                      <span className="text-[11px] font-mono uppercase tracking-widest text-primary/70 block mb-2">
+                        {relSvc.category}
+                      </span>
+                      <h3 className="serif-heading text-lg text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                        {relName}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed line-clamp-2 mb-4">
+                        {relDesc}
+                      </p>
+                      <span className="inline-flex items-center gap-1.5 text-primary text-[13px] font-medium">
+                        {t.learnMore} <ArrowRight size={13} />
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

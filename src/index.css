@@ -95,7 +95,7 @@ h6 {
 /* Monospace label — for [01], [SERVICE], etc. */
 .mono-label {
   font-family: var(--font-family-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #777;
@@ -104,7 +104,7 @@ h6 {
 /* Section tag — the bracketed labels */
 .section-tag {
   font-family: var(--font-family-mono);
-  font-size: 0.7rem;
+  font-size: 0.775rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #666;
@@ -287,6 +287,7 @@ h6 {
 /* Price mono styling */
 .price-mono {
   font-family: var(--font-family-mono);
+  font-size: 1.05em;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -418,7 +419,7 @@ textarea:focus {
 /* Arrow indicator */
 .arrow-indicator {
   font-family: var(--font-family-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #666;
 }
 
@@ -510,4 +511,10 @@ textarea:focus {
 
 .group:hover .animate-marquee {
   animation-play-state: paused;
+}
+
+/* ===== Global mono font size bump (Exo / --font-family-mono) ===== */
+/* Tailwind's font-mono utility used inline in JSX gets a slight size boost */
+.font-mono {
+  font-size: 1.08em;
 }

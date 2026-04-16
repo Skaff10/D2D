@@ -379,11 +379,6 @@ export default function Home() {
                   <span className="section-tag">
                     {service.title.toUpperCase()}
                   </span>
-                  <div className="expand-btn opacity-60 group-hover:opacity-100 transition-opacity">
-                    <Link to={serviceAnchors[service.title]}>
-                      <Maximize2 size={14} className="text-white/50" />
-                    </Link>
-                  </div>
                 </div>
 
                 <div className="dark-card overflow-hidden">
@@ -391,9 +386,7 @@ export default function Home() {
                   <div className="p-5 pb-3">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <span className="section-tag block mb-1">
-                          [SERVICE] [{String(i + 1).padStart(2, "0")}]
-                        </span>
+                        
                         <p className="price-mono text-white text-lg mt-2">
                           {service.price}
                         </p>
@@ -403,21 +396,26 @@ export default function Home() {
 
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden mx-4 rounded-xl mb-4">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 rounded-xl"
-                    />
+                    <Link to={serviceAnchors[service.title]}>
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 rounded-xl"
+                      />
+                    </Link>
                   </div>
 
                   {/* Content */}
                   <div className="px-5 pb-5">
-                    <h3 className="serif-heading text-xl text-white mb-2 group-hover:text-primary/90 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed mb-4 line-clamp-2">
-                      {service.description}
-                    </p>
+                    <Link to={serviceAnchors[service.title]}>
+                      <h3 className="serif-heading text-xl text-white mb-2 group-hover:text-primary/90 transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-4 line-clamp-2">
+                        {service.description}
+                      </p>
+                    </Link>
+
                     <Link
                       to="/booking"
                       className="btn-outline text-xs py-2 px-4"

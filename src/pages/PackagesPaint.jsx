@@ -22,9 +22,9 @@ const translations = {
     backToPackages: "← Back to Packages",
     breadcrumbPackages: "Packages",
     breadcrumbCurrent: "Paint Polish & Protection",
-    sedan: "Sedan",
-    midSuv: "Mid SUV",
-    truck: "Truck",
+    sedan: "Sedan / Coupe / Crossover",
+    midSuv: "Compact / Mid-Size SUV",
+    truck: "Full-Size SUV / Pickup",
     silver: "Silver",
     gold: "Gold",
     platinum: "Platinum",
@@ -76,9 +76,9 @@ const translations = {
     backToPackages: "← Retour aux forfaits",
     breadcrumbPackages: "Forfaits",
     breadcrumbCurrent: "Polissage & Protection de Peinture",
-    sedan: "Berline",
-    midSuv: "VUS Intermédiaire",
-    truck: "Camion",
+    sedan: "Berline / Coupé / Crossover",
+    midSuv: "VUS Compact / Intermédiaire",
+    truck: "Grand VUS / Camionnette",
     silver: "Argent",
     gold: "Or",
     platinum: "Platine",
@@ -190,10 +190,10 @@ function VehicleToggle({ options, active, onChange }) {
   );
 }
 
-function ServiceItem({ text }) {
+function ServiceItem({ text, checkColor = "#C9A84C" }) {
   return (
     <li className="flex items-start gap-2 text-sm text-neutral-300">
-      <Check size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
+      <Check size={14} style={{ color: checkColor }} className="mt-0.5 shrink-0" />
       <span>{text}</span>
     </li>
   );
@@ -331,49 +331,82 @@ export default function PackagesPaint() {
           {/* Cards Row 1 — Silver & Gold */}
           <motion.div
             className="grid md:grid-cols-2 gap-6 mb-6"
+            style={{alignItems: "start" }}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
             {/* Silver */}
-            <motion.div variants={cardVariants} className="dark-card p-6 flex flex-col">
-              <span className="section-tag block mb-2">{t.silver}</span>
-              <div className="mb-5">
+            <motion.div
+            
+              variants={cardVariants}
+              className="relative dark-card p-6 flex flex-col"
+              style={{ borderColor: "rgba(192,192,192,0.25)" }}
+            >
+              <h3 style={{
+                textAlign: "center",
+                color: "#C0C0C0",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.silver}
+              </h3>
+              <ul className="space-y-2 pb-14">
+                {[t.silver_s1, t.silver_s2, t.silver_s3, t.silver_s4].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#C0C0C0" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("silver", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[t.silver_s1, t.silver_s2, t.silver_s3, t.silver_s4].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
 
             {/* Gold */}
-            <motion.div variants={cardVariants} className="dark-card p-6 flex flex-col">
-              <span className="section-tag block mb-2">{t.gold}</span>
-              <div className="mb-5">
+            <motion.div
+              variants={cardVariants}
+              className="relative dark-card p-6 flex flex-col"
+              style={{ borderColor: "rgba(201,168,76,0.35)" }}
+            >
+              <h3 style={{
+                textAlign: "center",
+                color: "#C9A84C",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.gold}
+              </h3>
+              <ul className="space-y-2 pb-14">
+                {[t.gold_s1, t.gold_s2, t.gold_s3, t.gold_s4].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#C9A84C" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("gold", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[t.gold_s1, t.gold_s2, t.gold_s3, t.gold_s4].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
           </motion.div>
 
           {/* Cards Row 2 — Platinum & Diamond */}
           <motion.div
             className="grid md:grid-cols-2 gap-6"
+            style={{alignItems: "start" }}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -383,45 +416,68 @@ export default function PackagesPaint() {
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ borderColor: "rgba(59,130,246,0.4)" }}
+              style={{ borderColor: "rgba(168,216,234,0.35)" }}
             >
-              <span className="absolute top-3 right-3 bg-blue-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+              <span className="absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide"
+                style={{ background: "#A8D8EA", color: "#0a1a20" }}>
                 {t.mostPopular}
               </span>
-              <span className="section-tag block mb-2">{t.platinum}</span>
-              <div className="mb-5">
+              <h3 style={{
+                textAlign: "center",
+                color: "#A8D8EA",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.platinum}
+              </h3>
+              <ul className="space-y-2 pb-14">
+                {[t.platinum_s1, t.platinum_s2, t.platinum_s3, t.platinum_s4].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#A8D8EA" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("platinum", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[t.platinum_s1, t.platinum_s2, t.platinum_s3, t.platinum_s4].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
 
             {/* Diamond */}
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ borderColor: "#C9A84C" }}
+              style={{  borderColor: "rgba(229,229,229,0.3)" }}
             >
-              <span className="section-tag block mb-2">{t.diamond}</span>
-              <div className="mb-5">
+              <h3 style={{
+                textAlign: "center",
+                color: "#E5E5E5",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.diamond}
+              </h3>
+              <ul className="space-y-2 pb-14">
+                {[t.diamond_s1, t.diamond_s2, t.diamond_s3, t.diamond_s4].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#E5E5E5" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("diamond", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[t.diamond_s1, t.diamond_s2, t.diamond_s3, t.diamond_s4].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
           </motion.div>
 

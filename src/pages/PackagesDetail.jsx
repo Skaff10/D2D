@@ -22,9 +22,9 @@ const translations = {
     backToPackages: "← Back to Packages",
     breadcrumbPackages: "Packages",
     breadcrumbCurrent: "Exterior & Interior Detail",
-    sedan: "Sedan",
-    midSuv: "Mid SUV",
-    truck: "Truck",
+    sedan: "Sedan / Coupe / Crossover",
+    midSuv: "Compact / Mid-Size SUV",
+    truck: "Full-Size SUV / Pickup",
     essential: "Essential",
     signature: "Signature",
     elite: "Elite",
@@ -65,9 +65,9 @@ const translations = {
     backToPackages: "← Retour aux forfaits",
     breadcrumbPackages: "Forfaits",
     breadcrumbCurrent: "Détail Extérieur & Intérieur",
-    sedan: "Berline",
-    midSuv: "VUS Intermédiaire",
-    truck: "Camion",
+    sedan: "Berline / Coupé / Crossover",
+    midSuv: "VUS Compact / Intermédiaire",
+    truck: "Grand VUS / Camionnette",
     essential: "Essentiel",
     signature: "Signature",
     elite: "Élite",
@@ -174,10 +174,10 @@ function VehicleToggle({ options, active, onChange }) {
 }
 
 /** Single service list item */
-function ServiceItem({ text }) {
+function ServiceItem({ text, checkColor = "#C9A84C" }) {
   return (
     <li className="flex items-start gap-2 text-sm text-neutral-300">
-      <Check size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
+      <Check size={14} style={{ color: checkColor }} className="mt-0.5 shrink-0" />
       <span>{text}</span>
     </li>
   );
@@ -324,75 +324,109 @@ export default function PackagesDetail() {
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
+              style={{ minHeight: "320px", borderColor: "rgba(205,127,50,0.3)" }}
             >
-              <span className="section-tag block mb-2">{t.essential}</span>
-              <div className="mb-5">
+              <h3 style={{
+                textAlign: "center",
+                color: "#CD7F32",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.essential}
+              </h3>
+              <ul className="space-y-2 flex-1 pb-14">
+                {[
+                  t.essential_s1, t.essential_s2, t.essential_s3,
+                  t.essential_s4, t.essential_s5, t.essential_s6, t.essential_s7,
+                ].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#CD7F32" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("essential", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <ul className="space-y-2 flex-1">
-                {[
-                  t.essential_s1, t.essential_s2, t.essential_s3,
-                  t.essential_s4, t.essential_s5, t.essential_s6, t.essential_s7,
-                ].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
 
             {/* ── Signature ── */}
             <motion.div
               variants={cardVariants}
-              className="relative dark-card border-amber-700/40 p-6 flex flex-col"
-              style={{ borderColor: "rgba(180,130,50,0.4)" }}
+              className="relative dark-card p-6 flex flex-col"
+              style={{ minHeight: "320px", borderColor: "rgba(192,192,192,0.25)" }}
             >
-              <span className="section-tag block mb-2">{t.signature}</span>
-              <div className="mb-5">
+              <h3 style={{
+                textAlign: "center",
+                color: "#C0C0C0",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.signature}
+              </h3>
+              <p className="text-xs text-neutral-500 italic mb-3">
+                {t.includes} {t.essential} +
+              </p>
+              <ul className="space-y-2 flex-1 pb-14">
+                {[t.signature_s1, t.signature_s2, t.signature_s3].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#C0C0C0" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("signature", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <p className="text-xs text-neutral-500 italic mb-3">
-                {t.includes} {t.essential} +
-              </p>
-              <ul className="space-y-2 flex-1">
-                {[t.signature_s1, t.signature_s2, t.signature_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
 
             {/* ── Elite ── */}
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ borderColor: "#C9A84C" }}
+              style={{ minHeight: "320px", borderColor: "rgba(201,168,76,0.5)" }}
             >
               {/* Best Value badge */}
               <span className="absolute top-3 right-3 bg-[#C9A84C] text-black text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
                 {t.bestValue}
               </span>
-              <span className="section-tag block mb-2">{t.elite}</span>
-              <div className="mb-5">
+              <h3 style={{
+                textAlign: "center",
+                color: "#C9A84C",
+                fontSize: "13.5px",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-family-mono)",
+                marginBottom: "1rem",
+              }}>
+                {t.elite}
+              </h3>
+              <p className="text-xs text-neutral-500 italic mb-3">
+                {t.includes} {t.signature} +
+              </p>
+              <ul className="space-y-2 flex-1 pb-14">
+                {[t.elite_s1, t.elite_s2, t.elite_s3].map((s) => (
+                  <ServiceItem key={s} text={s} checkColor="#C9A84C" />
+                ))}
+              </ul>
+              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
                 <PriceDisplay
                   value={getPrice("elite", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
                   loading={loading}
                 />
               </div>
-              <p className="text-xs text-neutral-500 italic mb-3">
-                {t.includes} {t.signature} +
-              </p>
-              <ul className="space-y-2 flex-1">
-                {[t.elite_s1, t.elite_s2, t.elite_s3].map((s) => (
-                  <ServiceItem key={s} text={s} />
-                ))}
-              </ul>
             </motion.div>
           </motion.div>
 

@@ -230,6 +230,8 @@ export const translations = {
       backToServices: "Back to Services",
       callForPrice: "Call for Price",
       learnMore: "Learn More",
+      relatedServices: "Related Services You Might Be Interested In",
+      ceramicCoatingNote: "All Paint Coating packages require prior Paint Decontamination & Polishing (additional cost if not already performed).",
     },
     servicesList: {
       "exterior-detailing": {
@@ -566,12 +568,15 @@ export const translations = {
       backToServices: "Retour Aux Services",
       callForPrice: "Appeler pour le Prix",
       learnMore: "En Savoir Plus",
+      relatedServices: "Services Connexes Qui Pourraient Vous Intéresser",
+      ceramicCoatingNote: "Tous les forfaits de revêtement de peinture nécessitent une décontamination et un polissage préalables de la peinture (coût supplémentaire si pas déjà effectué).",
     },
     servicesList: {
       "exterior-detailing": {
         name: "Lavage Extérieur",
         shortDescription:
           "Les lavages de base utilisent des éponges sales, des produits chimiques agressifs ou des brosses automatisées qui laissent des marques et des rayures.",
+        fullDescription: "Les lavages de base utilisent des éponges sales, des produits chimiques agressifs ou des brosses automatisées qui laissent des marques et des rayures. Notre service nettoie en toute sécurité chaque partie de l'extérieur de votre voiture en utilisant des produits au pH neutre et des techniques manuelles précises.",
         features: [
           "Jantes et pneus nettoyés en profondeur",
           "Pré-rinçage et mousse active",
@@ -599,6 +604,7 @@ export const translations = {
         name: "Décontamination de la Peinture",
         shortDescription:
           "Même après un bon lavage, la peinture peut sembler rugueuse à cause de contaminants microscopiques.",
+        fullDescription: "Même après un bon lavage, la peinture peut sembler rugueuse à cause de contaminants microscopiques comme la poussière de freins, les retombées industrielles, le goudron et la sève qui s'incrustent avec le temps.",
         features: [
           "Dégoudronnant chimique",
           "Nettoyage des taches difficiles",
@@ -616,6 +622,7 @@ export const translations = {
         name: "Nettoyage du Compartiment Moteur",
         shortDescription:
           "L'une des zones les plus négligées lors du nettoyage automobile.",
+        fullDescription: "L'une des zones les plus négligées lors du nettoyage automobile. Nous adoptons une approche sécuritaire et méticuleuse sans haute pression, en protégeant les composants critiques, en éliminant la crasse et en appliquant une finition non grasse pour un aspect d'origine propre.",
         features: [
           "Inspection et préparation",
           "Protection des composants sensibles",
@@ -636,6 +643,7 @@ export const translations = {
         name: "Restauration des Phares",
         shortDescription:
           "Les phares ternis ou flous réduisent la visibilité nocturne et compromettent la sécurité.",
+        fullDescription: "Les phares ternis ou flous réduisent la visibilité nocturne et compromettent la sécurité. Notre processus de ponçage et de polissage à plusieurs étapes restaure la clarté, la brillance et la puissance d'éclairage.",
         features: [
           "Masquage et préparation complète",
           "Ponçage humide",
@@ -655,6 +663,7 @@ export const translations = {
         name: "Teinte des Phares et Feux Arrière",
         shortDescription:
           "Ajoute une apparence élégante et personnalisée tout en offrant une protection contre les UV, les rayures et l'oxydation.",
+        fullDescription: "Ajoute une apparence élégante et personnalisée tout en offrant une protection contre les UV, les rayures et l'oxydation. Deux teintes audacieuses disponibles avec une garantie d'un an.",
         features: [
           "Préparation complète",
           "Film teinté coupé avec précision",
@@ -674,6 +683,7 @@ export const translations = {
         name: "Nettoyage Intérieur",
         shortDescription:
           "Les lavages rapides offrent des essuyages précipités qui manquent les bouches d'aération et les espaces restreints.",
+        fullDescription: "Les lavages rapides offrent des essuyages précipités qui manquent les bouches d'aération et les espaces restreints. Nous nettoyons en profondeur chaque zone accessible en utilisant des outils et produits professionnels sécuritaires — c'est un art, pas un nettoyage en surface.",
         features: [
           "Passage d'aspirateur approfondi",
           "Détail du tableau de bord et portes",
@@ -697,6 +707,7 @@ export const translations = {
         name: "Shampoing des Tapis et Planchers",
         shortDescription:
           "Les tapis subissent l'usure quotidienne des chaussures, des déversements et des débris.",
+        fullDescription: "Les tapis subissent l'usure quotidienne des chaussures, des déversements et des débris. Nous utilisons un équipement d'extraction professionnel et des solutions spécialisées pour nettoyer en profondeur et désinfecter, redonnant un aspect neuf.",
         features: [
           "Prétraitement des taches",
           "Extraction à l'eau chaude",
@@ -717,6 +728,7 @@ export const translations = {
         name: "Élimination des Poils d'Animaux",
         shortDescription:
           "Les poils d'animaux s'incrustent profondément dans les fibres des tissus et sont presque impossibles à enlever avec un aspirateur ordinaire.",
+        fullDescription: "Les poils d'animaux s'incrustent profondément dans les fibres des tissus et sont presque impossibles à enlever avec un aspirateur ordinaire. Nous utilisons des outils et techniques professionnels pour les éliminer complètement.",
         features: [
           "Brosses spéciales pour poils",
           "Extraction puissante",
@@ -735,6 +747,7 @@ export const translations = {
         name: "Shampoing des Sièges en Tissu",
         shortDescription:
           "Les sièges en tissu absorbent les déversements, les taches et les odeurs avec le temps.",
+        fullDescription: "Les sièges en tissu absorbent les déversements, les taches et les odeurs avec le temps. Nous utilisons l'extraction à l'eau chaude et des solutions spécialisées pour nettoyer en profondeur, assainir et restaurer les sièges à l'état neuf.",
         features: [
           "Prétraitement des sièges",
           "Extraction à l'eau chaude",
@@ -753,6 +766,7 @@ export const translations = {
         name: "Traitement des Sièges en Cuir",
         shortDescription:
           "Le cuir nécessite des soins particuliers pour conserver son apparence luxueuse et prévenir les craquelures ou la décoloration.",
+        fullDescription: "Le cuir nécessite des soins particuliers pour conserver son apparence luxueuse et prévenir les craquelures ou la décoloration. Nous utilisons des produits premium au pH équilibré pour nettoyer, nourrir et protéger en douceur.",
         features: [
           "Lavage doux au pH neutre",
           "Nettoyage des pores du cuir",
@@ -771,6 +785,7 @@ export const translations = {
         name: "Rehausseur de Brillance",
         shortDescription:
           "Une excellente option pour les véhicules récents ou bien entretenus.",
+        fullDescription: "Une excellente option pour les véhicules récents ou bien entretenus. Nettoie la peinture en profondeur et rehausse la brillance en éliminant les contaminants incrustés. Fini avec un polissage fin pour faire ressortir la clarté et l'éclat.",
         features: [
           "Lavage extérieur au complet",
           "Décontamination",
@@ -789,6 +804,7 @@ export const translations = {
         name: "Polissage en Une Étape",
         shortDescription:
           "Parfait pour les véhicules qui ont besoin d'un rafraîchissement rapide sans correction approfondie.",
+        fullDescription: "Parfait pour les véhicules qui ont besoin d'un rafraîchissement rapide sans correction approfondie. Élimine jusqu'à 50% des défauts de peinture en une seule étape. Idéal pour les véhicules bien entretenus ou avec des imperfections mineures.",
         features: [
           "Nettoyage et préparation de la surface",
           "Composé de polissage unique (action double)",
@@ -807,6 +823,7 @@ export const translations = {
         name: "Polissage en Deux Étapes",
         shortDescription:
           "Idéal pour les véhicules présentant des marques de tourbillon modérées, de légères rayures et une peinture terne.",
+        fullDescription: "Ce niveau représente le véritable point de départ de la correction de peinture professionnelle, où nous allons au-delà d'un simple polissage pour restaurer fondamentalement la surface de votre véhicule. Ce service comble le fossé entre un polissage basique et une restauration complète, offrant une transformation spectaculaire pour une peinture qui a perdu son éclat.",
         features: [
           "Préparation exhaustive et décontamination",
           "Étape 1 : Coupe abrasive pour rayures et cernes",
@@ -825,6 +842,7 @@ export const translations = {
         name: "Polissage en Trois Étapes",
         shortDescription:
           "Notre service de restauration de peinture le plus complet pour les peintures gravement négligées ou fortement rayées.",
+        fullDescription: "C'est notre niveau supérieur de correction et de finition de peinture. Conçu spécifiquement pour les propriétaires les plus exigeants, ce processus en 3 étapes est destiné aux véhicules présentant des rayures profondes, des marques de tourbillon importantes et une oxydation sévère. Nous repoussons les limites de votre vernis pour atteindre le niveau maximum de restauration possible.",
         features: [
           "Analyse absolue de l'état du vernis",
           "Étape 1 : Coupe abrasive intensive",
@@ -920,6 +938,7 @@ export const translations = {
         name: "Scellant à Peinture",
         shortDescription:
           "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable.",
+        fullDescription: "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable contre les contaminants environnementaux. Offre 6 à 12 mois de protection tout en rehaussant la brillance.",
         features: [
           "Lavage minutieux",
           "Décontamination avant pose",
@@ -938,6 +957,7 @@ export const translations = {
         name: "Cire Automobile",
         shortDescription:
           "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde.",
+        fullDescription: "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde. Fournit 2 à 4 mois de protection avec une apparence riche et chaleureuse que seule la cire peut offrir.",
         features: [
           "Lavage et préparation",
           "Application manuelle Carnauba",
