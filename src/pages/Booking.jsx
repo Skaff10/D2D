@@ -36,8 +36,6 @@ const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 const vehicleTypes = ["Sedan", "SUV", "Truck", "Van"];
 
 const timeSlots = [
-  "8:00 AM",
-  "8:30 AM",
   "9:00 AM",
   "9:30 AM",
   "10:00 AM",
@@ -55,6 +53,14 @@ const timeSlots = [
   "4:00 PM",
   "4:30 PM",
   "5:00 PM",
+  "5:30 PM",
+  "6:00 PM",
+  "6:30 PM",
+  "7:00 PM",
+  "7:30 PM",
+  "8:00 PM",
+  "8:30 PM",
+  "9:00 PM",
 ];
 
 const fallbackServices = [

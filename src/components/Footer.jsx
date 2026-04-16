@@ -27,17 +27,18 @@ export default function Footer() {
             </Link>
 
             {/* Email */}
-            <div>
-              <span className="section-tag block mb-3">{t.email} →</span>
-              <a href="mailto:down2detail.ca@gmail.com" className="social-icon">
-                <MdOutlineEmail size={18} />
-              </a>
-            </div>
+            <div></div>
 
             {/* Social Media */}
             <div>
               <span className="section-tag block mb-4">{t.socialMedia} →</span>
               <div className="flex gap-3">
+                <a
+                  href="mailto:down2detail.ca@gmail.com"
+                  className="social-icon"
+                >
+                  <MdOutlineEmail size={18} />
+                </a>
                 <a
                   href="https://www.instagram.com/down2detail.ca/"
                   target="_blank"

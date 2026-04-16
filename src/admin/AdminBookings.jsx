@@ -36,6 +36,7 @@ export default function AdminBookings() {
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
   const [activeNote, setActiveNote] = useState(null);
+  const [editingAdminNote, setEditingAdminNote] = useState("");
 
   useEffect(() => {
     fetchBookings();
@@ -68,6 +69,22 @@ export default function AdminBookings() {
       toast.success(`Status updated to ${newStatus}`);
     } catch (err) {
       toast.error("Failed to update status");
+    }
+  };
+
+  const handleSaveAdminNote = async (bookingId, noteText) => {
+    try {
+      await updateDoc(doc(db, "bookings", bookingId), { adminNotes: noteText });
+      setBookings((prev) =>
+        prev.map((b) =>
+          b.id === bookingId ? { ...b, adminNotes: noteText } : b
+        )
+      );
+      toast.success("Admin notes saved successfully");
+      setActiveNote(null);
+    } catch (err) {
+      console.error("Save note error:", err);
+      toast.error("Failed to save admin note");
     }
   };
 
@@ -152,7 +169,8 @@ export default function AdminBookings() {
                   <th>Date</th>
                   <th>Time</th>
                   <th className="min-w-[120px]">Status</th>
-                  <th className="max-w-[150px]">Notes</th>
+                  <th className="max-w-[150px]">Customer Notes</th>
+                  <th className="max-w-[150px]">Admin Notes</th>
                 </tr>
               </thead>
 
@@ -230,11 +248,11 @@ export default function AdminBookings() {
                       </select>
                     </td>
 
-                    {/* CLICKABLE NOTES */}
+                    {/* CUSTOMER NOTES */}
                     <td className="text-text-muted text-xs max-w-[150px]">
                       {b.notes ? (
                         <button
-                          onClick={() => setActiveNote(b.notes)}
+                          onClick={() => setActiveNote({ type: 'customer', text: b.notes })}
                           className="text-left truncate w-full hover:text-primary transition-colors"
                           title="Click to view full note"
                         >
@@ -243,6 +261,20 @@ export default function AdminBookings() {
                       ) : (
                         "—"
                       )}
+                    </td>
+
+                    {/* ADMIN NOTES */}
+                    <td className="text-text-muted text-xs max-w-[150px]">
+                      <button
+                        onClick={() => {
+                          setActiveNote({ type: 'admin', text: b.adminNotes || "", bookingId: b.id });
+                          setEditingAdminNote(b.adminNotes || "");
+                        }}
+                        className={`text-left truncate w-full hover:text-primary transition-colors ${!b.adminNotes ? 'text-primary/50 italic font-medium' : ''}`}
+                        title="Click to view/edit admin note"
+                      >
+                        {b.adminNotes || "+ Add Note"}
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -264,7 +296,7 @@ export default function AdminBookings() {
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-white text-lg font-semibold">
-                Booking Note
+                {activeNote.type === 'customer' ? "Customer Note" : "Admin Additional Notes"}
               </h3>
               <button
                 onClick={() => setActiveNote(null)}
@@ -274,10 +306,34 @@ export default function AdminBookings() {
               </button>
             </div>
 
-            <div className="max-h-[70vh] overflow-y-auto rounded-lg bg-black/20 p-4 text-sm text-white whitespace-pre-wrap leading-relaxed">
-              {activeNote}
-            </div>
-
+            {activeNote.type === 'customer' ? (
+              <div className="max-h-[70vh] overflow-y-auto rounded-lg bg-black/20 p-4 text-sm text-white whitespace-pre-wrap leading-relaxed">
+                {activeNote.text}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <textarea
+                  value={editingAdminNote}
+                  onChange={(e) => setEditingAdminNote(e.target.value)}
+                  placeholder="Type additional notes here that are only visible to admins..."
+                  className="w-full h-40 bg-black/20 border border-border-warm rounded-lg p-4 text-sm text-white placeholder-text-muted focus:border-primary outline-none resize-none transition-colors"
+                />
+                <div className="flex justify-end gap-3 mt-2">
+                  <button 
+                    onClick={() => setActiveNote(null)}
+                    className="px-4 py-2 bg-transparent text-text-muted hover:text-white font-semibold rounded-lg transition-colors text-sm"
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    onClick={() => handleSaveAdminNote(activeNote.bookingId, editingAdminNote)}
+                    className="px-4 py-2 bg-primary text-secondary font-semibold rounded-lg hover:bg-primary/90 transition-colors text-sm"
+                  >
+                    Save Notes
+                  </button>
+                </div>
+              </div>
+            )}
             
           </div>
         </div>
