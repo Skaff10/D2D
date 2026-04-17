@@ -33,11 +33,20 @@ export default function ServiceCard({ service, index, customPricing }) {
     if (typeof customPricing === 'string') {
       displayPrice = customPricing;
     } else if (typeof customPricing === 'object') {
-      // For tiered prices, show the first available price as a starting point.
-      // E.g., { "Sedan...": "$100" } => "Starting at $100"
-      const vals = Object.values(customPricing).filter(v => typeof v === 'string' && v.match(/\d/));
-      if (vals.length > 0) {
-        displayPrice = vals[0].toLowerCase().includes('starting') ? vals[0] : `Starting at ${vals[0]}`;
+      const validVals = Object.values(customPricing).filter(v => typeof v === 'string' && v.match(/\d/));
+      if (validVals.length > 0) {
+        let minValStr = validVals[0];
+        let minNum = Infinity;
+        
+        validVals.forEach(val => {
+          const num = parseFloat(val.replace(/[^0-9.]/g, ''));
+          if (!isNaN(num) && num < minNum) {
+            minNum = num;
+            minValStr = val;
+          }
+        });
+
+        displayPrice = minValStr.toLowerCase().includes('starting') ? minValStr : `Starting at ${minValStr}`;
       }
     }
   }
