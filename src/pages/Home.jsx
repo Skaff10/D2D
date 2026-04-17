@@ -169,6 +169,19 @@ export default function Home() {
       url: "https://maps.app.goo.gl/VBdXNusJQgfbjkkD7",
     },
     {
+      name: "Nathaniel Great",
+      text: "I really wanted to get my engine bay detailed and I booked an appointment with Down2Detail and the outcome is fabulous. They absolutely nailed it! My car looks brand new. Both inside and outside. Professional, thorough, and worth every penny. Best detailing service in Montreal. You should definitely check em out!",
+      rating: 5,
+      url: "https://maps.app.goo.gl/Zk5RQmpWSHfyvh9x9",
+    },
+
+    {
+      name: "Daksh Garg",
+      text: "Got my 2025 F-150 ceramic coated and I couldn't be happier. The quality of work is top-notch, the attention to detail is insane, and the truck looks better than brand new. Super professional, no shortcuts, no nonsense. Highly recommend if you want your vehicle done right.",
+      rating: 5,
+      url: "https://maps.app.goo.gl/VdA5XnKdNoCXVNY89",
+    },
+    {
       name: "Shaz Ali",
       text: "I had a first stage paint correction and a 4 year ceramic coating applied on my 2012 E92 335i xDrive, and the results were outstanding. The finish is incredibly glossy, smooth, and well-protected. It truly elevates the overall look of the car. The level of professionalism, care, and attention to detail throughout the process was excellent. Everything was clearly explained, timelines were respected, and the workmanship speaks....",
       rating: 5,
@@ -192,18 +205,7 @@ export default function Home() {
       rating: 5,
       url: "https://maps.app.goo.gl/vBqDTWExouE8VYis8",
     },
-    {
-      name: "Nathaniel Great",
-      text: "I really wanted to get my engine bay detailed and I booked an appointment with Down2Detail and the outcome is fabulous. They absolutely nailed it! My car looks brand new. Both inside and outside. Professional, thorough, and worth every penny. Best detailing service in Montreal. You should definitely check em out!",
-      rating: 5,
-      url: "https://maps.app.goo.gl/Zk5RQmpWSHfyvh9x9",
-    },
-    {
-      name: "Daksh Garg",
-      text: "Got my 2025 F-150 ceramic coated and I couldn't be happier. The quality of work is top-notch, the attention to detail is insane, and the truck looks better than brand new. Super professional, no shortcuts, no nonsense. Highly recommend if you want your vehicle done right.",
-      rating: 5,
-      url: "https://maps.app.goo.gl/VdA5XnKdNoCXVNY89",
-    },
+
     {
       name: "Shahriar Mahmud",
       text: "Initially, it seemed somewhat suspicious that they had only five-star reviews. Over the years, my car's paint had deteriorated, and there were swirl marks and scratches all over. I decided to take a chance and entrust my Porsche to them for paint correction. Upon picking up my car, I was astonished! It felt as though I was receiving a brand-new Cayenne! The paint had an incredibly smooth....",
@@ -386,7 +388,6 @@ export default function Home() {
                   <div className="p-5 pb-3">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        
                         <p className="price-mono text-white text-lg mt-2">
                           {service.price}
                         </p>
@@ -631,14 +632,14 @@ export default function Home() {
             >
               <button
                 onClick={prevTestimonials}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-primary hover:text-primary transition-colors bg-[#161616]"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-primary hover:text-primary transition-colors bg-white/5 backdrop-blur-md"
                 title="Previous Testimonials"
               >
                 <ChevronLeft size={20} />
               </button>
               <button
                 onClick={nextTestimonials}
-                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-primary hover:text-primary transition-colors bg-[#161616]"
+                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white hover:border-primary hover:text-primary transition-colors bg-white/5 backdrop-blur-md"
                 title="Next Testimonials"
               >
                 <ChevronRight size={20} />

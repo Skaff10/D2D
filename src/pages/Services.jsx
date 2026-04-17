@@ -3,13 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
-import SectionHeading from "../components/ui/SectionHeading";
 import ServiceCategoryTabs from "../components/services/ServiceCategoryTabs";
 import ServiceCard from "../components/services/ServiceCard";
 import { categories, services } from "../data/servicesData";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import { useServicePrices } from "../hooks/useServicePrices";
+import {HeroTypewriter2} from "../components/ui/HeroTypewriter2";
 
 export default function Services() {
   const { lang } = useLang();
@@ -70,12 +70,10 @@ export default function Services() {
 
       {/* ===== PAGE HERO ===== */}
       <section className="pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            subtitle={t.ourServices}
-            title={t.tailoredForVehicle}
-            description={t.servicesDescription}
-          />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center font-bold text-primary text-md mb-4">{t.ourServices}</p>
+          <HeroTypewriter2 />
+          <p className="text-text-secondary text-lg mb-8 text-center">{t.servicesDescription}</p>
         </div>
       </section>
 

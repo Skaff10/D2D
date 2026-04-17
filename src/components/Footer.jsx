@@ -75,24 +75,27 @@ export default function Footer() {
               <div className="grid grid-cols-3 gap-3">
                 <div className="footer-link-card">
                   <h4>{t.service}</h4>
-                  <Link to="/services#section-exterior">
-                    {t.exteriorServices}
-                  </Link>
-                  <Link to="/services#section-interior">
-                    {t.interiorServices}
-                  </Link>
+
                   <Link to="/services#section-paint-polish">
                     {t.paintServices}
                   </Link>
                   <Link to="/services#section-protection">
                     {t.protectionServices}
                   </Link>
+                  <Link to="/services#section-exterior">
+                    {t.exteriorServices}
+                  </Link>
+                  <Link to="/services#section-interior">
+                    {t.interiorServices}
+                  </Link>
                 </div>
                 <div className="footer-link-card">
                   <h4>{t.official}</h4>
-                  <p>Saint-Hubert, QC</p>
+                  <a href="https://www.google.com/maps?cid=18264423434641924634&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=BD&source=embed">
+                    Saint-Hubert, QC
+                  </a>
                   <a href="tel:+14384838175">438-483-8175</a>
-                  <p>08:00 - 18:00</p>
+                  <p>08:00 - 21:00</p>
                 </div>
                 <div className="footer-link-card">
                   <h4>{t.booking}</h4>
@@ -150,20 +153,27 @@ export default function Footer() {
                     </p>
                   </div>
                 </a>
-
-                <div className="flex items-start gap-3 text-text-secondary">
-                  <div className="shield-badge mt-0.5">
-                    <MapPin size={13} className="text-white/40" />
+                <a
+                  href="https://www.google.com/maps?cid=18264423434641924634&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=BD&source=embed"
+                  className="flex items-start gap-3 text-text-secondary hover:text-white transition-colors group"
+                >
+                  <div className="flex items-start gap-3 text-text-secondary">
+                    <div className="shield-badge mt-0.5">
+                      <MapPin
+                        size={13}
+                        className="text-white/40 group-hover:text-primary transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-medium">
+                        4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5
+                      </p>
+                      <p className="text-text-muted text-xs mt-0.5">
+                        {t.servingGreaterMontreal}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-white text-sm font-medium">
-                      4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5
-                    </p>
-                    <p className="text-text-muted text-xs mt-0.5">
-                      {t.servingGreaterMontreal}
-                    </p>
-                  </div>
-                </div>
+                </a>
 
                 <div className="flex items-start gap-3 text-text-secondary">
                   <div className="shield-badge mt-0.5">
@@ -171,7 +181,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-white text-sm font-medium">
-                      Mon – Sun: 9AM – 9PM
+                      Mon – Sun: 8AM – 9PM
                     </p>
                     <p className="text-text-muted text-xs mt-0.5">
                       {t.open7Days}

@@ -24,18 +24,17 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
-import emailjs from "@emailjs/browser";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
-const vehicleTypes = ["Sedan", "SUV", "Truck", "Van"];
+
+const vehicleTypes = ["Sedan/Coupe/Crossover", "Compact/Mid-size SUV", "Full-size SUV/Truck"];
 
 const timeSlots = [
+  "8:00 AM",
+  "8:30 AM",
   "9:00 AM",
   "9:30 AM",
   "10:00 AM",
@@ -180,29 +179,24 @@ export default function Booking() {
         createdAt: Timestamp.now(),
       });
 
-      try {
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          {
-            customer_name: data.customerName,
-            customer_phone: data.phone,
-            customer_email: data.email,
-            vehicle_type: data.vehicleType,
-            vehicle_model: data.vehicleModel,
-            booking_type: bookingType,
-            service_name: bookingType === "service" ? data.serviceName : "None",
-            booking_date: data.date,
-            booking_time: data.time,
-            notes: data.notes || "None",
-            selected_package:
-              bookingType === "package" ? data.selectedPackage : "None",
-          },
-          EMAILJS_PUBLIC_KEY,
-        );
-      } catch (emailErr) {
-        console.log("EmailJS notification skipped:", emailErr.message);
-      }
+      await addDoc(collection(db, "mail"), {
+        to: "down2detail.ca@gmail.com",
+        message: {
+          subject: `New Booking — ${data.customerName} (${data.date} at ${data.time})`,
+          html: `
+          <h2>New Booking Request</h2>
+          <p><strong>Name:</strong> ${data.customerName}</p>
+          <p><strong>Phone:</strong> ${data.phone}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Vehicle:</strong> ${data.vehicleType} — ${data.vehicleModel}</p>
+          <p><strong>Booking Type:</strong> ${bookingType}</p>
+          <p><strong>${bookingType === "service" ? "Service" : "Package"}:</strong> ${bookingType === "service" ? data.serviceName : data.selectedPackage}</p>
+          <p><strong>Date:</strong> ${data.date}</p>
+          <p><strong>Time:</strong> ${data.time}</p>
+          <p><strong>Notes:</strong> ${data.notes || "None"}</p>
+        `,
+        },
+      });
 
       toast.success(t.thankYou);
       setSubmitted(true);
