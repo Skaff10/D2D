@@ -31,7 +31,7 @@ export const translations = {
       contact: "Contact",
       callUsAnytime: "Call us anytime during business hours",
       weRespondWithin24h: "We respond within 24 hours",
-      servingGreaterMontreal: "Serving Greater Montreal Area",
+      servingGreaterMontreal: "Serving Greater Montreal & Nearby Areas",
       open7Days: "Open 7 days a week",
       readyToGetStarted: "Ready to get started?",
       bookYourPremium: "Book your premium car detailing appointment today.",
@@ -368,7 +368,7 @@ export const translations = {
       callUsAnytime:
         "Appelez-nous à tout moment pendant les heures d'ouverture",
       weRespondWithin24h: "Nous répondons dans les 24 heures",
-      servingGreaterMontreal: "Servant la région du Grand Montréal",
+      servingGreaterMontreal: "Desservant le Grand Montréal et les environs",
       open7Days: "Ouvert 7 jours sur 7",
       readyToGetStarted: "Prêt à commencer ?",
       bookYourPremium:
