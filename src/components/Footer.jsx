@@ -216,17 +216,17 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/[0.04]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-text-muted text-xs font-mono">
+        <div className="max-w-7xl  px-4 sm:px-6 lg:px-8 py-2 flex flex-row items-center justify-between gap-2">
+          <p className="text-text-muted text-[5px] sm:text-[2px] font-mono leading-none">
             © {new Date().getFullYear()} Down2Detail. {t.developedBy}{" "}
             <a href="https://www.instagram.com/skafff_10/">Skaf</a>
           </p>
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-text-muted hover:text-white text-xs transition-colors font-mono"
+            className="flex items-center gap-1 text-text-muted hover:text-white text-[8px] sm:text-xs transition-colors font-mono shrink-0 leading-none"
           >
             {t.backToTop}
-            <ArrowUp size={12} />
+            <ArrowUp size={8} />
           </button>
         </div>
       </div>

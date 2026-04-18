@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight,
   Shield,
@@ -228,11 +228,16 @@ export default function Home() {
 
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(3);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
       setItemsToShow(window.innerWidth < 768 ? 1 : 3);
     };
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
     handleResize(); // Initial check
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -282,6 +287,7 @@ export default function Home() {
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop

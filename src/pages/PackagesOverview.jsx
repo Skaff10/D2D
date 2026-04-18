@@ -8,7 +8,9 @@ import imgDetail from "../assets/images/services/Exterior Detailing.avif";
 import imgPaint from "../assets/images/services/Paint Polish Services.webp";
 import imgMonthly from "../assets/images/services/Ceramic Coating.jpg";
 
-import vid from "../assets/videos/d2dpackagevid.mov";
+import posterPackage from "../assets/videos/poster.jpg";
+import vid from "../assets/videos/d2dpackagevid.mp4";
+import { useEffect, useRef } from "react";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -78,7 +80,14 @@ export default function PackagesOverview() {
   const { lang } = useLang();
   const t = translations[lang];
   const navigate = useNavigate();
+  const videoRef = useRef(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
   const categories = [
     {
       title: t.card1Title,
@@ -113,19 +122,20 @@ export default function PackagesOverview() {
       <section className="relative min-h-[55vh] flex flex-col items-center justify-center overflow-hidden">
         {/* Background Video */}
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
+          poster={posterPackage}
         >
           <source src={vid} type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
 
         {/* Dark overlay (important for readability) */}
         <div className="absolute inset-0 bg-black/60 z-0" />
-
 
         <motion.div
           className="relative z-10 text-center px-4 py-32"
