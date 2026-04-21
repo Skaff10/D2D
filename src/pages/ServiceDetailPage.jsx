@@ -13,30 +13,82 @@ import { useServicePrices } from "../hooks/useServicePrices";
 
 // Curated related services map: serviceId -> [relatedId, relatedId, relatedId]
 const relatedServicesMap = {
-  "exterior-detailing":       ["paint-decontamination", "engine-bay-detailing", "ceramic-coating"],
-  "paint-decontamination":    ["ceramic-coating", "paint-sealant", "car-wax"],
-  "engine-bay-detailing":     ["exterior-detailing", "interior-detailing", "headlight-restoration"],
-  "headlight-restoration":    ["headlight-taillight-tint", "exterior-detailing", "engine-bay-detailing"],
-  "headlight-taillight-tint": ["headlight-restoration", "exterior-detailing", "paint-decontamination"],
-  "interior-detailing":       ["floor-carpet-shampoo", "fabric-seat-shampoo", "leather-seat-treatment"],
-  "floor-carpet-shampoo":     ["interior-detailing", "fabric-seat-shampoo", "pet-hair-removal"],
-  "pet-hair-removal":         ["interior-detailing", "floor-carpet-shampoo", "fabric-seat-shampoo"],
-  "fabric-seat-shampoo":      ["interior-detailing", "pet-hair-removal", "leather-seat-treatment"],
-  "leather-seat-treatment":   ["floor-carpet-shampoo"],
-  "gloss-enhancer":           ["one-step-polish", "two-step-polish", "three-step-polish"],
-  "one-step-polish":          ["two-step-polish", "three-step-polish", "ceramic-coating"],
-  "two-step-polish":          ["one-step-polish", "three-step-polish", "ceramic-coating"],
-  "three-step-polish":        ["one-step-polish", "two-step-polish", "ceramic-coating"],
-  "ceramic-coating":          ["one-step-polish", "two-step-polish", "three-step-polish"],
-  "paint-sealant":            ["paint-decontamination", "ceramic-coating", "car-wax"],
-  "car-wax":                  ["paint-decontamination", "paint-sealant", "ceramic-coating"],
+  "exterior-detailing": [
+    "paint-decontamination",
+    "engine-bay-detailing",
+    "ceramic-coating",
+  ],
+  "paint-decontamination": ["ceramic-coating", "paint-sealant", "car-wax"],
+  "engine-bay-detailing": [
+    "exterior-detailing",
+    "interior-detailing",
+    "headlight-restoration",
+  ],
+  "headlight-restoration": [
+    "headlight-taillight-tint",
+    "exterior-detailing",
+    "engine-bay-detailing",
+  ],
+  "headlight-taillight-tint": [
+    "headlight-restoration",
+    "exterior-detailing",
+    "paint-decontamination",
+  ],
+  "interior-detailing": [
+    "floor-carpet-shampoo",
+    "fabric-seat-shampoo",
+    "leather-seat-treatment",
+  ],
+  "floor-carpet-shampoo": [
+    "interior-detailing",
+    "fabric-seat-shampoo",
+    "pet-hair-removal",
+  ],
+  "pet-hair-removal": [
+    "interior-detailing",
+    "floor-carpet-shampoo",
+    "fabric-seat-shampoo",
+  ],
+  "fabric-seat-shampoo": [
+    "interior-detailing",
+    "pet-hair-removal",
+    "leather-seat-treatment",
+  ],
+  "leather-seat-treatment": [
+    "fabric-seat-shampoo",
+    "floor-carpet-shampoo",
+    "interior-detailing",
+  ],
+  "gloss-enhancer": ["one-step-polish", "two-step-polish", "three-step-polish"],
+  "one-step-polish": [
+    "two-step-polish",
+    "three-step-polish",
+    "ceramic-coating",
+  ],
+  "two-step-polish": [
+    "one-step-polish",
+    "three-step-polish",
+    "ceramic-coating",
+  ],
+  "three-step-polish": [
+    "one-step-polish",
+    "two-step-polish",
+    "ceramic-coating",
+  ],
+  "ceramic-coating": [
+    "one-step-polish",
+    "two-step-polish",
+    "three-step-polish",
+  ],
+  "paint-sealant": ["paint-decontamination", "ceramic-coating", "car-wax"],
+  "car-wax": ["paint-decontamination", "paint-sealant", "ceramic-coating"],
 };
 
 // Flat lookup: serviceId -> service object
 function buildServiceLookup() {
   const lookup = {};
   for (const cat of categories) {
-    for (const svc of (services[cat.id] || [])) {
+    for (const svc of services[cat.id] || []) {
       lookup[svc.id] = svc;
     }
   }
@@ -76,27 +128,29 @@ export default function ServiceDetailPage() {
   const displayName = serviceTrans.name || service.name;
   const displayShortDesc =
     serviceTrans.shortDescription || service.shortDescription;
-  const displayFullDesc = serviceTrans.fullDescription || service.fullDescription;
+  const displayFullDesc =
+    serviceTrans.fullDescription || service.fullDescription;
   const displayFeatures = serviceTrans.features || service.features;
   const displayIncluded = serviceTrans.included || service.included;
-  
+
   // Ceramic Coating specific overrides
   const displayWorthIt = serviceTrans.worthIt || service.worthIt;
   const displaySurfaces = serviceTrans.surfaces || service.surfaces;
   const displayFaq = serviceTrans.faq || service.faq;
   const displayPricingTiers = serviceTrans.pricingTiers || service.pricingTiers;
-  const displayAdditionalSurfaces = serviceTrans.additionalSurfaces || service.additionalSurfaces;
+  const displayAdditionalSurfaces =
+    serviceTrans.additionalSurfaces || service.additionalSurfaces;
 
   const packageIncludedServices = [
-    'paint-decontamination',
-    'floor-carpet-shampoo',
-    'pet-hair-removal',
-    'fabric-seat-shampoo',
-    'paint-sealant',
-    'car-wax'
+    "paint-decontamination",
+    "floor-carpet-shampoo",
+    "pet-hair-removal",
+    "fabric-seat-shampoo",
+    "paint-sealant",
+    "car-wax",
   ];
   const isPackageIncluded = packageIncludedServices.includes(service.id);
-  
+
   let displayPrice =
     service.priceString === "Contact for Quote" ||
     service.priceString === "Contact for Pricing"
@@ -104,14 +158,19 @@ export default function ServiceDetailPage() {
       : service.priceString;
 
   if (isPackageIncluded) {
-    displayPrice = lang === 'fr' ? 'Inclus dans les forfaits' : 'Included in Packages';
+    displayPrice =
+      lang === "fr" ? "Inclus dans les forfaits" : "Included in Packages";
   } else if (customPricing) {
-    if (typeof customPricing === 'string') {
+    if (typeof customPricing === "string") {
       displayPrice = customPricing;
-    } else if (typeof customPricing === 'object' && !isCeramicCoating) {
-      const vals = Object.values(customPricing).filter(v => typeof v === 'string' && v.match(/\d/));
+    } else if (typeof customPricing === "object" && !isCeramicCoating) {
+      const vals = Object.values(customPricing).filter(
+        (v) => typeof v === "string" && v.match(/\d/),
+      );
       if (vals.length > 0) {
-        displayPrice = vals[0].toLowerCase().includes('starting') ? vals[0] : `Starting at ${vals[0]}`;
+        displayPrice = vals[0].toLowerCase().includes("starting")
+          ? vals[0]
+          : `Starting at ${vals[0]}`;
       }
     }
   }
@@ -333,7 +392,10 @@ export default function ServiceDetailPage() {
                     transition={{ duration: 0.4 }}
                     className="mt-10 flex items-start gap-4 p-5 rounded-xl border border-amber-500/40 bg-amber-500/[0.07] backdrop-blur-sm"
                   >
-                    <AlertTriangle size={20} className="text-amber-400 shrink-0 mt-0.5" />
+                    <AlertTriangle
+                      size={20}
+                      className="text-amber-400 shrink-0 mt-0.5"
+                    />
                     <p className="text-amber-200/90 text-sm leading-relaxed font-medium">
                       {t.ceramicCoatingNote}
                     </p>
@@ -357,10 +419,15 @@ export default function ServiceDetailPage() {
                       {t.pricing}
                     </span>
                     <div className="mb-8">
-                      {service.price && service.price.type === "tiered" && !isPackageIncluded ? (
+                      {service.price &&
+                      service.price.type === "tiered" &&
+                      !isPackageIncluded ? (
                         <div className="space-y-3">
                           {service.price.tiers.map((tier, idx) => {
-                            const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[tier.label] : undefined;
+                            const overriddenPrice =
+                              customPricing && typeof customPricing === "object"
+                                ? customPricing[tier.label]
+                                : undefined;
                             return (
                               <div
                                 key={idx}
@@ -370,7 +437,9 @@ export default function ServiceDetailPage() {
                                   {tier.label}
                                 </span>
                                 <span className="price-mono text-primary font-medium">
-                                  {overriddenPrice !== undefined ? overriddenPrice : tier.price}
+                                  {overriddenPrice !== undefined
+                                    ? overriddenPrice
+                                    : tier.price}
                                 </span>
                               </div>
                             );
@@ -378,7 +447,11 @@ export default function ServiceDetailPage() {
                         </div>
                       ) : (
                         <div className="text-3xl text-white serif-heading">
-                          { isPackageIncluded ? displayPrice : ((typeof customPricing === 'string') ? customPricing : (service.price?.amount || displayPrice)) }
+                          {isPackageIncluded
+                            ? displayPrice
+                            : typeof customPricing === "string"
+                              ? customPricing
+                              : service.price?.amount || displayPrice}
                         </div>
                       )}
                     </div>
@@ -393,8 +466,11 @@ export default function ServiceDetailPage() {
                     </h4>
                     <div className="space-y-3 mb-8">
                       {displayPricingTiers?.map((tier, i) => {
-                        const key = `tier_${tier.level.replace(/\s+/g, '')}`;
-                        const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[key] : undefined;
+                        const key = `tier_${tier.level.replace(/\s+/g, "")}`;
+                        const overriddenPrice =
+                          customPricing && typeof customPricing === "object"
+                            ? customPricing[key]
+                            : undefined;
                         return (
                           <div
                             key={i}
@@ -419,11 +495,13 @@ export default function ServiceDetailPage() {
                                 </p>
                               </div>
                               <span className="price-mono text-primary text-base font-bold">
-                                {overriddenPrice !== undefined ? overriddenPrice : tier.price}
+                                {overriddenPrice !== undefined
+                                  ? overriddenPrice
+                                  : tier.price}
                               </span>
                             </div>
                           </div>
-                        )
+                        );
                       })}
                     </div>
 
@@ -435,8 +513,11 @@ export default function ServiceDetailPage() {
                     </h4>
                     <div className="space-y-3 mb-8">
                       {displayAdditionalSurfaces?.map((item, i) => {
-                        const key = `surface_${item.surface.replace(/\s+/g, '')}`;
-                        const overriddenPrice = customPricing && typeof customPricing === 'object' ? customPricing[key] : undefined;
+                        const key = `surface_${item.surface.replace(/\s+/g, "")}`;
+                        const overriddenPrice =
+                          customPricing && typeof customPricing === "object"
+                            ? customPricing[key]
+                            : undefined;
                         return (
                           <div
                             key={i}
@@ -447,14 +528,16 @@ export default function ServiceDetailPage() {
                                 {item.surface}
                               </p>
                               <span className="price-mono text-primary text-sm font-semibold">
-                                {overriddenPrice !== undefined ? overriddenPrice : item.price}
+                                {overriddenPrice !== undefined
+                                  ? overriddenPrice
+                                  : item.price}
                               </span>
                             </div>
                             <p className="text-white/35 text-xs">
                               {item.durability}
                             </p>
                           </div>
-                        )
+                        );
                       })}
                     </div>
                   </>
@@ -462,10 +545,18 @@ export default function ServiceDetailPage() {
 
                 <div className="flex flex-col gap-3">
                   <Link
-                    to={isPackageIncluded ? '/packages' : `/booking?service=${encodeURIComponent(service.name)}`}
+                    to={
+                      isPackageIncluded
+                        ? "/packages"
+                        : `/booking?service=${encodeURIComponent(service.name)}`
+                    }
                     className="btn-filled w-full justify-center"
                   >
-                    {isPackageIncluded ? (lang === 'fr' ? 'Voir les forfaits' : 'View Packages') : t.bookThisService}
+                    {isPackageIncluded
+                      ? lang === "fr"
+                        ? "Voir les forfaits"
+                        : "View Packages"
+                      : t.bookThisService}
                     <ArrowRight size={14} />
                   </Link>
 
@@ -509,7 +600,8 @@ export default function ServiceDetailPage() {
               if (!relSvc) return null;
               const relTrans = tGlobal.servicesList[relId] || {};
               const relName = relTrans.name || relSvc.name;
-              const relDesc = relTrans.shortDescription || relSvc.shortDescription;
+              const relDesc =
+                relTrans.shortDescription || relSvc.shortDescription;
               return (
                 <motion.div
                   key={relId}

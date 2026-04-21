@@ -45,7 +45,7 @@ export default function About() {
   ];
 
   const stats = [
-    { icon: Car, value: "3yrs", label: t.inBusiness },
+    { icon: Car, value: "6yrs", label: t.inBusiness },
     { icon: Star, value: "4.9", label: t.starRating },
     { icon: Users, value: "400+", label: t.happyClients },
     { icon: Award, value: "100%", label: t.satisfactionRate },

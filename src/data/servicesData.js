@@ -13,60 +13,60 @@ import paintdec1 from "../assets/dk/img32.jpg";
 import paintdec2 from "../assets/images/services/Paint Decontamination.webp";
 
 import enginebay_cover from "../assets/images/services/engine bay detail.jpg";
-import enginebay1 from "../assets/dk/engine2.jpg"
-import enginebay2 from "../assets/images/services/engine bay detail.jpg"
+import enginebay1 from "../assets/dk/engine2.jpg";
+import enginebay2 from "../assets/images/services/engine bay detail.jpg";
 
-import head_cover from "../assets/images/services/headlight-restoration.webp"
-import head1  from "../assets/dk/imgi_2_headlight-Restoration.png"
-import head2 from "../assets/images/services/headlight-restoration.webp"
+import head_cover from "../assets/images/services/headlight-restoration.webp";
+import head1 from "../assets/dk/imgi_2_headlight-Restoration.png";
+import head2 from "../assets/images/services/headlight-restoration.webp";
 
-import tail_cover from "../assets/dk/imgi_2_headlight-Restoration.png"
-import tail1 from "../assets/images/services/headlight tint.jpg"
-import tail2 from "../assets/dk/imgi_2_headlight-Restoration.png"
+import tail_cover from "../assets/dk/imgi_2_headlight-Restoration.png";
+import tail1 from "../assets/images/services/headlight tint.jpg";
+import tail2 from "../assets/dk/imgi_2_headlight-Restoration.png";
 
-import interior_cover from "../assets/images/services/Interior.avif"
-import interior1 from "../assets/dk/imgi_4_Interior.png"
-import interior2 from "../assets/images/services/Interior.avif"
+import interior_cover from "../assets/images/services/Interior.avif";
+import interior1 from "../assets/dk/imgi_4_Interior.png";
+import interior2 from "../assets/images/services/Interior.avif";
 
-import leather_cover from "../assets/images/services/leather seat treatment.webp"
-import leather1 from "../assets/images/services/leather seat treatment.webp"
-import leather2 from "../assets/images/services/seat shampoo.png"
+import leather_cover from "../assets/images/services/leather seat treatment.webp";
+import leather1 from "../assets/images/services/leather seat treatment.webp";
+import leather2 from "../assets/images/services/seat shampoo.png";
 
-import fabric_cover  from "../assets/images/services/seat shampoo.png"
-import fabric1 from "../assets/images/services/leather seat treatment.webp"
-import fabric2 from "../assets/images/services/seat shampoo.png"
+import fabric_cover from "../assets/images/services/seat shampoo.png";
+import fabric1 from "../assets/images/services/leather seat treatment.webp";
+import fabric2 from "../assets/images/services/seat shampoo.png";
 
-import pet_cover from "../assets/dk/pet1.jpg"
-import pet1 from "../assets/images/services/pet1.jpg"
-import pet2 from "../assets/images/services/pet2.jpg"
+import pet_cover from "../assets/dk/pet1.jpg";
+import pet1 from "../assets/images/services/pet1.jpg";
+import pet2 from "../assets/images/services/pet2.jpg";
 
-import floor_cover from "../assets/images/services/floor shampoo.jpg"
-import floor1 from "../assets/dk/floor1.jpg"
-import floor2 from "../assets/images/services/floor shampoo.jpg"  
+import floor_cover from "../assets/images/services/floor shampoo.jpg";
+import floor1 from "../assets/dk/floor1.jpg";
+import floor2 from "../assets/images/services/floor shampoo.jpg";
 
-import glass_cover from "../assets/images/services/gloss enhancer.jpg"
-import glass1 from "../assets/dk/gloss2.jpg"
-import glass2 from "../assets/images/services/gloss enhancer.jpg"
+import glass_cover from "../assets/images/services/gloss enhancer.jpg";
+import glass1 from "../assets/dk/gloss2.jpg";
+import glass2 from "../assets/images/services/gloss enhancer.jpg";
 
-import onestep_cover from "../assets/images/services/Single Stage Paint Correction.jpg"
-import onestep1  from "../assets/dk/onestep1.jpg"
-import onestep2 from "../assets/images/services/Single Stage Paint Correction.jpg"
+import onestep_cover from "../assets/images/services/Single Stage Paint Correction.jpg";
+import onestep1 from "../assets/dk/onestep1.jpg";
+import onestep2 from "../assets/images/services/Single Stage Paint Correction.jpg";
 
-import twostep_cover from "../assets/dk/twostepcover.jpg"
-import twostep1 from "../assets/dk/twostep1.avif"
-import twostep2 from "../assets/dk/twostepcover.jpg"
+import twostep_cover from "../assets/dk/twostepcover.jpg";
+import twostep1 from "../assets/dk/twostep1.avif";
+import twostep2 from "../assets/dk/twostepcover.jpg";
 
-import threestep_cover from "../assets/dk/threestepcover.jpg"
-import threestep1 from "../assets/dk/threestep1.webp"
-import threestep2 from "../assets/dk/threestep2.jpg"
+import threestep_cover from "../assets/dk/threestepcover.jpg";
+import threestep1 from "../assets/dk/threestep1.webp";
+import threestep2 from "../assets/dk/threestep2.jpg";
 
-import sealant_cover from "../assets/dk/sealant.jpg"
-import sealant1 from "../assets/dk/sealant1.jpg"
-import sealant2 from "../assets/dk/sealant.jpg"
+import sealant_cover from "../assets/dk/sealant.jpg";
+import sealant1 from "../assets/dk/sealant1.jpg";
+import sealant2 from "../assets/dk/sealant.jpg";
 
-import wax_cover from "../assets/dk/carwax.webp"
-import wax1 from "../assets/dk/carwax1.jpg"
-import wax2 from "../assets/dk/carwax2.webp"
+import wax_cover from "../assets/dk/carwax.webp";
+import wax1 from "../assets/dk/carwax1.jpg";
+import wax2 from "../assets/dk/carwax2.webp";
 
 export const categories = [
   { id: "exterior", label: "Exterior" },
@@ -370,7 +370,6 @@ export const services = {
       price: { type: "flat", amount: "Starting at $59" },
       whyUs:
         "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
-
       cover_pic: pet_cover,
       pic1: pet1,
       pic2: pet2,
@@ -550,7 +549,7 @@ export const services = {
         "Ideal for vehicles with moderate swirl marks, light scratches, and dull paint that need more than a single-stage refresh.",
       fullDescription:
         "This level represents the true entry point into professional paint correction, where we move beyond simple polishing to fundamentally restore the surface of your vehicle.This service bridges the gap between a basic polish and a full restoration, delivering a dramatic transformation for paint that has lost its 'pop'.",
-   features: [
+      features: [
         "Paint surface prep and cleaning",
         "Paint decontamination",
         "Stage 1 — Cutting compound to remove moderate swirls & scratches",
@@ -587,7 +586,7 @@ export const services = {
         "Our most comprehensive paint restoration service for severely neglected or heavily scratched paint.",
       fullDescription:
         "This is our superior level of paint correction and finishing. Designed specifically for the most discerning owners and 'picky' enthusiasts, this 3-stage process is for vehicles with heavy scratches, deep swirl marks, and severe oxidation. We push the limits of your clear coat to achieve the absolute maximum level of restoration possible",
-        features: [
+      features: [
         "Detailed paint condition assessment",
         "Paint surface prep, wash & decontamination",
         "Stage 1 — Heavy cutting compound for deep scratches & oxidation",

@@ -498,7 +498,7 @@ export default function PackagesPaint() {
                   { name: t.addon_ceramic2y,    price: "+$149"   },
                   { name: t.addon_ceramic3y,    price: "+$249"   },
                   { name: t.addon_ceramic8y,    price: "+$499"   },
-                  { name: t.addon_wheelCaliper, price: "$199.99" },
+                  { name: t.addon_wheelCaliper, price: "+$199.99" },
                   { name: t.addon_glass,        price: "+$149"   },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
@@ -506,8 +506,8 @@ export default function PackagesPaint() {
               </div>
               <div>
                 {[
-                  { name: t.addon_plastics,       price: "$149.99" },
-                  { name: t.addon_leatherCeramic, price: "$199.99" },
+                  { name: t.addon_plastics,       price: "+$149.99" },
+                  { name: t.addon_leatherCeramic, price: "+$199.99" },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
                 ))}

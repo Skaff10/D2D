@@ -1,76 +1,89 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import { useLang } from '../../context/LanguageContext'
-import { translations } from '../../translations'
-import { pushToDataLayer } from '../../utils/dataLayer'
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useLang } from "../../context/LanguageContext";
+import { translations } from "../../translations";
+import { pushToDataLayer } from "../../utils/dataLayer";
 
 export default function ServiceCard({ service, index, customPricing }) {
-  const { lang } = useLang()
-  const navigate = useNavigate()
-  const t = translations[lang].serviceDetails
-  const tGlobal = translations[lang]
-  const serviceTrans = tGlobal.servicesList[service.id] || {}
+  const { lang } = useLang();
+  const navigate = useNavigate();
+  const t = translations[lang].serviceDetails;
+  const tGlobal = translations[lang];
+  const serviceTrans = tGlobal.servicesList[service.id] || {};
 
   const packageIncludedServices = [
-    'paint-decontamination',
-    'floor-carpet-shampoo',
-    'pet-hair-removal',
-    'fabric-seat-shampoo',
-    'paint-sealant',
-    'car-wax'
-  ]
-  const isPackageIncluded = packageIncludedServices.includes(service.id)
+    "paint-decontamination",
+    "floor-carpet-shampoo",
+    "pet-hair-removal",
+    "fabric-seat-shampoo",
+    "paint-sealant",
+    "car-wax",
+  ];
+  const isPackageIncluded = packageIncludedServices.includes(service.id);
 
   let displayPrice =
-    service.priceString === 'Contact for Quote' ||
-    service.priceString === 'Contact for Pricing'
+    service.priceString === "Contact for Quote" ||
+    service.priceString === "Contact for Pricing"
       ? tGlobal.contactForPricing
-      : service.priceString
+      : service.priceString;
 
   if (isPackageIncluded) {
-    displayPrice = lang === 'fr' ? 'Inclus dans les forfaits' : 'Included in Packages'
+    displayPrice =
+      lang === "fr" ? "Inclus dans les forfaits" : "Included in Packages";
   } else if (customPricing) {
-    if (typeof customPricing === 'string') {
+    if (typeof customPricing === "string") {
       displayPrice = customPricing;
-    } else if (typeof customPricing === 'object') {
-      const validVals = Object.values(customPricing).filter(v => typeof v === 'string' && v.match(/\d/));
+    } else if (typeof customPricing === "object") {
+      const validVals = Object.values(customPricing).filter(
+        (v) => typeof v === "string" && v.match(/\d/),
+      );
       if (validVals.length > 0) {
         let minValStr = validVals[0];
         let minNum = Infinity;
-        
-        validVals.forEach(val => {
-          const num = parseFloat(val.replace(/[^0-9.]/g, ''));
+
+        validVals.forEach((val) => {
+          const num = parseFloat(val.replace(/[^0-9.]/g, ""));
           if (!isNaN(num) && num < minNum) {
             minNum = num;
             minValStr = val;
           }
         });
 
-        displayPrice = minValStr.toLowerCase().includes('starting') ? minValStr : `Starting at ${minValStr}`;
+        displayPrice = minValStr.toLowerCase().includes("starting")
+          ? minValStr
+          : `Starting at ${minValStr}`;
       }
     }
   }
 
   const buttonText = isPackageIncluded
-    ? (lang === 'fr' ? 'Voir les forfaits' : 'View Packages')
-    : tGlobal.navbar.bookNow
+    ? lang === "fr"
+      ? "Voir les forfaits"
+      : "View Packages"
+    : tGlobal.navbar.bookNow;
 
   const handleButtonClick = (e) => {
-    e.stopPropagation()
-    pushToDataLayer({ event: "cta_click", buttonText, component: "ServiceCard", pageLocation: window.location.pathname, serviceName: serviceTrans.name || service.name })
+    e.stopPropagation();
+    pushToDataLayer({
+      event: "cta_click",
+      buttonText,
+      component: "ServiceCard",
+      pageLocation: window.location.pathname,
+      serviceName: serviceTrans.name || service.name,
+    });
     if (isPackageIncluded) {
-      navigate('/packages')
+      navigate("/packages");
     } else {
-      navigate(`/booking?service=${service.id}`)
+      navigate(`/booking?service=${service.id}`);
     }
-  }
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: (index % 10) * 0.08 }}
       className="group h-full"
     >
@@ -144,5 +157,5 @@ export default function ServiceCard({ service, index, customPricing }) {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }

@@ -29,9 +29,11 @@ import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 import { pushToDataLayer } from "../utils/dataLayer";
 
-
-
-const vehicleTypes = ["Sedan/Coupe/Crossover", "Compact/Mid-size SUV", "Full-size SUV/Truck"];
+const vehicleTypes = [
+  "Sedan/Coupe/Crossover",
+  "Compact/Mid-size SUV",
+  "Full-size SUV/Truck",
+];
 
 const timeSlots = [
   "8:00 AM",
@@ -199,7 +201,11 @@ export default function Booking() {
         },
       });
 
-      pushToDataLayer({ event: "form_submit", formName: "booking_form", pageLocation: window.location.pathname });
+      pushToDataLayer({
+        event: "form_submit",
+        formName: "booking_form",
+        pageLocation: window.location.pathname,
+      });
 
       toast.success(t.thankYou);
       setSubmitted(true);
@@ -508,9 +514,7 @@ export default function Booking() {
                           : "Actualisation Mensuelle"}
                       </option>
                       <option value="Ceramic Care ">
-                        {lang === "en"
-                          ? "Ceramic Care"
-                          : "Soins Céramique"}
+                        {lang === "en" ? "Ceramic Care" : "Soins Céramique"}
                       </option>
                     </optgroup>
                   </select>

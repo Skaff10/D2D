@@ -69,8 +69,12 @@ export default function Contact() {
         },
         EMAILJS_PUBLIC_KEY,
       );
-      
-      pushToDataLayer({ event: "form_submit", formName: "contact_form", pageLocation: window.location.pathname });
+
+      pushToDataLayer({
+        event: "form_submit",
+        formName: "contact_form",
+        pageLocation: window.location.pathname,
+      });
 
       toast.success("Message sent! We'll get back to you shortly.");
       reset();
