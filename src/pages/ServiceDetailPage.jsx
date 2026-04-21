@@ -14,7 +14,7 @@ import { useServicePrices } from "../hooks/useServicePrices";
 // Curated related services map: serviceId -> [relatedId, relatedId, relatedId]
 const relatedServicesMap = {
   "exterior-detailing":       ["paint-decontamination", "engine-bay-detailing", "ceramic-coating"],
-  "paint-decontamination":    ["exterior-detailing", "ceramic-coating", "two-step-polish"],
+  "paint-decontamination":    ["ceramic-coating", "paint-sealant", "car-wax"],
   "engine-bay-detailing":     ["exterior-detailing", "interior-detailing", "headlight-restoration"],
   "headlight-restoration":    ["headlight-taillight-tint", "exterior-detailing", "engine-bay-detailing"],
   "headlight-taillight-tint": ["headlight-restoration", "exterior-detailing", "paint-decontamination"],
@@ -22,14 +22,14 @@ const relatedServicesMap = {
   "floor-carpet-shampoo":     ["interior-detailing", "fabric-seat-shampoo", "pet-hair-removal"],
   "pet-hair-removal":         ["interior-detailing", "floor-carpet-shampoo", "fabric-seat-shampoo"],
   "fabric-seat-shampoo":      ["interior-detailing", "pet-hair-removal", "leather-seat-treatment"],
-  "leather-seat-treatment":   ["interior-detailing", "fabric-seat-shampoo", "ceramic-coating"],
-  "gloss-enhancer":           ["one-step-polish", "paint-decontamination", "paint-sealant"],
-  "one-step-polish":          ["two-step-polish", "gloss-enhancer", "ceramic-coating"],
-  "two-step-polish":          ["three-step-polish", "one-step-polish", "ceramic-coating"],
-  "three-step-polish":        ["two-step-polish", "ceramic-coating", "paint-decontamination"],
-  "ceramic-coating":          ["paint-decontamination", "two-step-polish", "paint-sealant"],
-  "paint-sealant":            ["ceramic-coating", "car-wax", "paint-decontamination"],
-  "car-wax":                  ["paint-sealant", "ceramic-coating", "gloss-enhancer"],
+  "leather-seat-treatment":   ["floor-carpet-shampoo"],
+  "gloss-enhancer":           ["one-step-polish", "two-step-polish", "three-step-polish"],
+  "one-step-polish":          ["two-step-polish", "three-step-polish", "ceramic-coating"],
+  "two-step-polish":          ["one-step-polish", "three-step-polish", "ceramic-coating"],
+  "three-step-polish":        ["one-step-polish", "two-step-polish", "ceramic-coating"],
+  "ceramic-coating":          ["one-step-polish", "two-step-polish", "three-step-polish"],
+  "paint-sealant":            ["paint-decontamination", "ceramic-coating", "car-wax"],
+  "car-wax":                  ["paint-decontamination", "paint-sealant", "ceramic-coating"],
 };
 
 // Flat lookup: serviceId -> service object

@@ -6,6 +6,7 @@ import { ChevronDown, ArrowRight, Check } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 import { usePackagePrices } from "../hooks/usePackagePrices";
 import { defaultPrices } from "../data/defaultPrices";
+import { pushToDataLayer } from "../utils/dataLayer";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -483,6 +484,7 @@ export default function PackagesDetail() {
               <Link
                 to="/booking?category=detail"
                 className="btn-filled_2 relative z-10"
+                onClick={() => pushToDataLayer({ event: "package_select", packageName: "Exterior & Interior Detail", vehicleType: t[activeVehicle] || activeVehicle, price: "N/A - See Cards", component: "PackagesDetail", pageLocation: window.location.pathname })}
               >
                 {t.bookThisPackage}
                 <ArrowRight size={16} />

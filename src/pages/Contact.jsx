@@ -8,6 +8,7 @@ import emailjs from "@emailjs/browser";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
+import { pushToDataLayer } from "../utils/dataLayer";
 
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
@@ -68,6 +69,9 @@ export default function Contact() {
         },
         EMAILJS_PUBLIC_KEY,
       );
+      
+      pushToDataLayer({ event: "form_submit", formName: "contact_form", pageLocation: window.location.pathname });
+
       toast.success("Message sent! We'll get back to you shortly.");
       reset();
     } catch (err) {

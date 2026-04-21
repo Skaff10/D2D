@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
@@ -18,6 +18,7 @@ import {
 import SectionHeading from "../components/ui/SectionHeading";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
+import { pushToDataLayer } from "../utils/dataLayer";
 
 import heroImg from "../assets/dk/imgi_3_shutHero.jpg";
 import ceramicImg from "../assets/dk/imgi_2_ceramiccoating.webp";
@@ -60,6 +61,7 @@ const brandLogos = [
 
 export default function Home() {
   const { lang } = useLang();
+  const location = useLocation();
   const t = translations[lang].home;
   const th = translations[lang].hero;
   const tn = translations[lang].navbar;
@@ -334,10 +336,18 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-              <Link to="/booking" className="btn-filled_2">
+              <Link 
+                to="/booking" 
+                className="btn-filled_2"
+                onClick={() => pushToDataLayer({ event: "cta_click", buttonText: th.bookUs, component: "HomeHero", pageLocation: location.pathname })}
+              >
                 {th.bookUs}
               </Link>
-              <Link to="/contact" className="btn-filled">
+              <Link 
+                to="/contact" 
+                className="btn-filled"
+                onClick={() => pushToDataLayer({ event: "cta_click", buttonText: th.contactUs, component: "HomeHero", pageLocation: location.pathname })}
+              >
                 {th.contactUs}
               </Link>
             </div>
@@ -436,7 +446,11 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <Link to="/services" className="btn-outline">
+            <Link 
+              to="/services" 
+              className="btn-outline"
+              onClick={() => pushToDataLayer({ event: "cta_click", buttonText: t.viewAllServices, component: "HomeServices", pageLocation: location.pathname })}
+            >
               {t.viewAllServices}
               <ArrowRight size={14} />
             </Link>
@@ -490,10 +504,18 @@ export default function Home() {
                 </span>
               </h2>
               <div className="flex gap-3 mb-8">
-                <Link to="/booking" className="btn-filled">
+                <Link 
+                  to="/booking" 
+                  className="btn-filled"
+                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: "Book Now", component: "HomeDifference", pageLocation: location.pathname })}
+                >
                   Book Now
                 </Link>
-                <Link to="/contact" className="btn-outline">
+                <Link 
+                  to="/contact" 
+                  className="btn-outline"
+                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: "Contact Us", component: "HomeDifference", pageLocation: location.pathname })}
+                >
                   Contact Us
                 </Link>
               </div>
@@ -713,10 +735,18 @@ export default function Home() {
                 {t.bookYourPremiumToday}
               </h2>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link to="/booking" className="btn-filled">
+                <Link 
+                  to="/booking" 
+                  className="btn-filled"
+                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: tn.bookNow, component: "HomeCTA", pageLocation: location.pathname })}
+                >
                   {tn.bookNow}
                 </Link>
-                <Link to="/contact" className="btn-outline">
+                <Link 
+                  to="/contact" 
+                  className="btn-outline"
+                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: th.contactUs, component: "HomeCTA", pageLocation: location.pathname })}
+                >
                   {th.contactUs}
                 </Link>
               </div>

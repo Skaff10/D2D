@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Globe } from "lucide-react";
 import logo from "../assets/logo/logo.png";
 import { useLang } from "../context/LanguageContext";
+import { pushToDataLayer } from "../utils/dataLayer";
 import { translations } from "../translations";
-
+import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -102,7 +102,11 @@ export default function Navbar() {
             <Phone size={14} />
             <span className="font-mono text-xs"></span>
           </a>
-          <Link to="/booking" className="btn-outline text-sm">
+          <Link 
+            to="/booking" 
+            className="btn-outline text-sm"
+            onClick={() => pushToDataLayer({ event: "cta_click", buttonText: t.bookNow, component: "Navbar", pageLocation: location.pathname })}
+          >
             {t.bookNow}
           </Link>
         </div>
@@ -165,7 +169,11 @@ export default function Navbar() {
                   <Phone size={16} />
                   <span className="font-mono text-sm">438-483-8175</span>
                 </a>
-                <Link to="/booking" className="btn-outline text-center py-3">
+                <Link 
+                  to="/booking" 
+                  className="btn-outline text-center py-3"
+                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: t.bookNow, component: "NavbarMobile", pageLocation: location.pathname })}
+                >
                   {t.bookNow}
                 </Link>
               </div>

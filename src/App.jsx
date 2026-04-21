@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
@@ -8,7 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/ui/WhatsAppButton";
 import RimBackground from "./components/RimBackground";
-
+import { pushToDataLayer } from "./utils/dataLayer";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
@@ -30,6 +31,23 @@ import AdminServices from "./admin/AdminServices";
 import AdminPricing from "./admin/AdminPricing";
 import AdminGallery from "./admin/AdminGallery";
 
+function PageTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Timeout allows Helmet to update document.title first
+    setTimeout(() => {
+      pushToDataLayer({
+        event: "virtual_page_view",
+        pagePath: location.pathname + location.search,
+        pageTitle: document.title,
+      });
+    }, 100);
+  }, [location]);
+
+  return null;
+}
+
 function PublicLayout({ children }) {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
@@ -49,6 +67,7 @@ export default function App() {
       <HelmetProvider>
         <AuthProvider>
           <Router>
+            <PageTracker />
             <ScrollToTop />
             <Toaster
               position="top-right"

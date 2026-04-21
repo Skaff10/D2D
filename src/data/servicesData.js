@@ -366,8 +366,8 @@ export const services = {
         "Cargo area and trunk cleaning",
         "Final inspection",
       ],
-      priceString: "$129.99 CAD",
-      price: { type: "flat", amount: "$129.99 CAD" },
+      priceString: "Starting at $59",
+      price: { type: "flat", amount: "Starting at $59" },
       whyUs:
         "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
 
@@ -700,7 +700,7 @@ export const services = {
         },
         {
           surface: "Plastics",
-          durability: "Up to 2 years",
+          durability: "Up to 12 months",
           price: "$149.99",
         },
         {
@@ -738,7 +738,7 @@ export const services = {
       shortDescription:
         "A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants.",
       fullDescription:
-        "A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants. Offers 6–12 months of protection while enhancing gloss.",
+        "A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants. Offers up to 3 months of protection while enhancing gloss.",
       features: [
         "Paint surface preparation and cleaning",
         "Professional-grade synthetic sealant application",
@@ -758,7 +758,7 @@ export const services = {
       pic1: sealant1,
       pic2: sealant2,
       included: [
-        "6–12 months of durable protection",
+        "Up to 3 months of reliable protection",
         "Enhanced gloss and shine",
         "UV damage and oxidation prevention",
         "Easier cleaning and maintenance",
@@ -774,7 +774,7 @@ export const services = {
       shortDescription:
         "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss.",
       fullDescription:
-        "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss. Provides 2–4 months of protection with a warm, rich appearance that only wax can achieve.",
+        "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss. Provides up to 7 days of protection with a warm, rich appearance that only wax can achieve.",
       features: [
         "Paint surface preparation and cleaning",
         "Premium carnauba or hybrid wax application",
@@ -802,7 +802,7 @@ export const services = {
       pic2: wax2,
       included: [
         "Classic warm, rich gloss appearance",
-        "2–4 months of reliable protection",
+        "Up to 7 days of reliable protection",
         "Enhanced paint depth and clarity",
         "UV damage prevention",
         "Affordable protection",

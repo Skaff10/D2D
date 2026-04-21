@@ -27,6 +27,7 @@ import { db } from "../firebase/config";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
+import { pushToDataLayer } from "../utils/dataLayer";
 
 
 
@@ -197,6 +198,8 @@ export default function Booking() {
         `,
         },
       });
+
+      pushToDataLayer({ event: "form_submit", formName: "booking_form", pageLocation: window.location.pathname });
 
       toast.success(t.thankYou);
       setSubmitted(true);
@@ -479,23 +482,6 @@ export default function Booking() {
                     <optgroup
                       label={
                         lang === "en"
-                          ? "Exterior & Interior Detail"
-                          : "Détail Extérieur & Intérieur"
-                      }
-                    >
-                      <option value="Essential ">
-                        {lang === "en" ? "Essential" : "Essentiel"}
-                      </option>
-                      <option value="Signature ">
-                        {lang === "en" ? "Signature" : "Signature"}
-                      </option>
-                      <option value="Elite ">
-                        {lang === "en" ? "Elite" : "Élite"}
-                      </option>
-                    </optgroup>
-                    <optgroup
-                      label={
-                        lang === "en"
                           ? "Paint Polish & Protection"
                           : "Polissage & Protection de Peinture"
                       }
@@ -521,10 +507,10 @@ export default function Booking() {
                           ? "Monthly Refresh"
                           : "Actualisation Mensuelle"}
                       </option>
-                      <option value="Ceramic Refresh ">
+                      <option value="Ceramic Care ">
                         {lang === "en"
-                          ? "Ceramic Refresh"
-                          : "Actualisation Céramique"}
+                          ? "Ceramic Care"
+                          : "Soins Céramique"}
                       </option>
                     </optgroup>
                   </select>
@@ -612,6 +598,11 @@ export default function Booking() {
 
             <p className="text-text-muted text-xs text-center font-mono">
               {t.confirmationNote}
+            </p>
+            <p className="text-text-muted text-xs text-center font-mono mt-1">
+              {lang === "en"
+                ? "Pricing may vary based on vehicle condition."
+                : "Les prix peuvent varier selon l'état du véhicule."}
             </p>
           </motion.form>
         </div>

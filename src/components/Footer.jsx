@@ -92,7 +92,7 @@ export default function Footer() {
                 <div className="footer-link-card">
                   <h4>{t.official}</h4>
                   <a href="https://www.google.com/maps?cid=18264423434641924634&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=BD&source=embed">
-                    Saint-Hubert, QC
+                    Saint-Hubert, Quebec
                   </a>
                   <a href="tel:+14384838175">438-483-8175</a>
                   <p>08:00 - 21:00</p>
@@ -166,8 +166,8 @@ export default function Footer() {
                     </div>
                     <div>
                       <p className="text-white text-sm font-medium">
-                        4500 Bd Kimber, Saint-Hubert, QC J3Y 8K5
-                      </p>
+                         4500 Bd Kimber Local 30, Saint-Hubert, Quebec J3Y 8K5, Canada
+                       </p>
                       <p className="text-text-muted text-xs mt-0.5">
                         {t.servingGreaterMontreal}
                       </p>
@@ -216,13 +216,23 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/[0.04]">
-        <div className="max-w-7xl  px-4 sm:px-6 lg:px-8 py-2 flex flex-row items-center justify-between gap-2">
-          <p className="text-text-muted text-[5px] sm:text-[2px] font-mono leading-none">
-            © {new Date().getFullYear()} Down2Detail. {t.developedBy}{" "}
+        <div className=" px-4 sm:px-6 lg:px-8 py-2 flex flex-row items-center justify-between">
+          <p
+            className="text-text-muted  font-mono leading-none"
+            style={{ fontSize: "12px" }}
+          >
+            © {new Date().getFullYear()} Down2Detail.
+          </p>
+          <p
+            className="text-text-muted  font-mono leading-none"
+            style={{ fontSize: "12px" }}
+          >
+            {t.developedBy}{" "}
             <a href="https://www.instagram.com/skafff_10/">Skaf</a>
           </p>
           <button
             onClick={scrollToTop}
+            style={{ fontSize: "12px" }}
             className="flex items-center gap-1 text-text-muted hover:text-white text-[8px] sm:text-xs transition-colors font-mono shrink-0 leading-none"
           >
             {t.backToTop}

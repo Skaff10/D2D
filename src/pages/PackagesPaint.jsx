@@ -6,6 +6,7 @@ import { ChevronDown, ArrowRight, Check } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 import { usePackagePrices } from "../hooks/usePackagePrices";
 import { defaultPrices } from "../data/defaultPrices";
+import { pushToDataLayer } from "../utils/dataLayer";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -493,23 +494,20 @@ export default function PackagesPaint() {
             <div className="grid sm:grid-cols-2 gap-x-10">
               <div>
                 {[
-                  { name: t.addon_ceramic1y,    price: "+$99"              },
-                  { name: t.addon_ceramic2y,    price: "+$149"             },
-                  { name: t.addon_ceramic3y,    price: "+$249"             },
-                  { name: t.addon_ceramic8y,    price: "+$499"             },
-                  { name: t.addon_wheelCaliper, price: t.contactForPricing },
-                  { name: t.addon_glass,        price: "+$149"             },
+                  { name: t.addon_ceramic1y,    price: "+$99"    },
+                  { name: t.addon_ceramic2y,    price: "+$149"   },
+                  { name: t.addon_ceramic3y,    price: "+$249"   },
+                  { name: t.addon_ceramic8y,    price: "+$499"   },
+                  { name: t.addon_wheelCaliper, price: "$199.99" },
+                  { name: t.addon_glass,        price: "+$149"   },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
                 ))}
               </div>
               <div>
                 {[
-                  { name: t.addon_plastics,      price: t.contactForPricing },
-                  { name: t.addon_leatherCeramic, price: t.contactForPricing },
-                  { name: t.addon_upgrade2y,     price: "+$149"             },
-                  { name: t.addon_upgrade3y,     price: "+$249"             },
-                  { name: t.addon_upgrade8y,     price: "+$499"             },
+                  { name: t.addon_plastics,       price: "$149.99" },
+                  { name: t.addon_leatherCeramic, price: "$199.99" },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
                 ))}
@@ -550,6 +548,7 @@ export default function PackagesPaint() {
               <Link
                 to="/booking?category=paint"
                 className="btn-filled_2 relative z-10"
+                onClick={() => pushToDataLayer({ event: "package_select", packageName: "Paint Polish & Protection", vehicleType: t[activeVehicle] || activeVehicle, price: "N/A - See Cards", component: "PackagesPaint", pageLocation: window.location.pathname })}
               >
                 {t.bookThisPackage}
                 <ArrowRight size={16} />

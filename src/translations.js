@@ -64,7 +64,7 @@ export const translations = {
       testimonials: "Testimonials",
       whatOurClientsSay: "What Our Clients Say",
       verifiedCustomer: "Verified Customer",
-      bookYourPremiumToday: "Book Your Premium Car Wash Today",
+      bookYourPremiumToday: "Book Your Premium Service Today",
       premiumCarDetailing: "Premium car detailing",
       interiorDetail: "Interior detail",
       carsDetailed: "Cars Detailed",
@@ -232,7 +232,7 @@ export const translations = {
       learnMore: "Learn More",
       relatedServices: "Related Services You Might Be Interested In",
       ceramicCoatingNote:
-        "All Paint Coating packages require prior Paint Decontamination & Polishing (additional cost if not already performed).",
+        "All Ceramic Coating packages require prior Paint Decontamination & Polishing (additional cost if not already performed).",
     },
     servicesList: {
       "exterior-detailing": {
@@ -347,7 +347,7 @@ export const translations = {
     },
     hero: {
       tag: "Approuvé par les Propriétaires de Montréal",
-      description: "Votre Voiture mérite plus qu'un simple lavage.",
+      description: "Votre voiture mérite plus qu'un simple lavage.",
       bookUs: "Réserver",
       contactUs: "Contactez-nous",
     },
@@ -444,7 +444,7 @@ export const translations = {
         "Nous soutenons notre travail avec une confiance totale. Si vous n'êtes pas satisfait, nous corrigerons la situation — un point c'est tout.",
       readyToExperience: "Prêt à découvrir la différence ?",
       bookToday:
-        "Réservez votre rendez-vous aujourd'hui et voyez pourquoi des centaines de propriétaires de voitures font confiance à Down2Detail.",
+        "Réservez votre rendez-vous dès aujourd'hui et voyez pourquoi des centaines de propriétaires de voitures font confiance à Down2Detail.",
     },
     services: {
       ourServices: "Nos Services",
@@ -571,7 +571,7 @@ export const translations = {
       learnMore: "En Savoir Plus",
       relatedServices: "Services Connexes Qui Pourraient Vous Intéresser",
       ceramicCoatingNote:
-        "Tous les forfaits de revêtement de peinture nécessitent une décontamination et un polissage préalables de la peinture (coût supplémentaire si pas déjà effectué).",
+        "Tous les forfaits de revêtement céramique exigent une décontamination et un polissage préalables de la peinture (coût supplémentaire si non déjà effectué).",
     },
     servicesList: {
       "exterior-detailing": {
@@ -955,7 +955,7 @@ export const translations = {
         shortDescription:
           "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable.",
         fullDescription:
-          "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable contre les contaminants environnementaux. Offre 6 à 12 mois de protection tout en rehaussant la brillance.",
+          "Une formule de polymère synthétique qui adhère à la surface de la peinture, créant une barrière durable contre les contaminants environnementaux. Offre jusqu'à 3 mois de protection tout en rehaussant la brillance.",
         features: [
           "Lavage minutieux",
           "Décontamination avant pose",
@@ -964,7 +964,7 @@ export const translations = {
           "Protection de longue haleine",
         ],
         included: [
-          "Durabilité de 6 à 12 mois",
+          "Jusqu'à 3 mois de protection fiable",
           "Éclat très clair",
           "Protège adéquatement le vernis d'été ou d'hiver",
           "Alternative abordable",
@@ -975,7 +975,7 @@ export const translations = {
         shortDescription:
           "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde.",
         fullDescription:
-          "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde. Fournit 2 à 4 mois de protection avec une apparence riche et chaleureuse que seule la cire peut offrir.",
+          "L'approche traditionnelle de la protection de la peinture utilisant des formules de cire de carnauba ou hybrides pour une brillance profonde et chatoyante. Fournit jusqu'à 7 jours de protection avec une apparence riche et chaleureuse que seule la cire peut offrir.",
         features: [
           "Lavage et préparation",
           "Application manuelle Carnauba",
@@ -984,9 +984,9 @@ export const translations = {
         ],
         included: [
           "Esthétique classique et chaude",
+          "Jusqu'à 7 jours de protection fiable",
           "Protège contre les UV et l'oxydation",
           "Option purement esthétique abordable",
-          "Brillance riche",
         ],
       },
     },

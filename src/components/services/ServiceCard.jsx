@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '../../context/LanguageContext'
 import { translations } from '../../translations'
+import { pushToDataLayer } from '../../utils/dataLayer'
 
 export default function ServiceCard({ service, index, customPricing }) {
   const { lang } = useLang()
@@ -57,6 +58,7 @@ export default function ServiceCard({ service, index, customPricing }) {
 
   const handleButtonClick = (e) => {
     e.stopPropagation()
+    pushToDataLayer({ event: "cta_click", buttonText, component: "ServiceCard", pageLocation: window.location.pathname, serviceName: serviceTrans.name || service.name })
     if (isPackageIncluded) {
       navigate('/packages')
     } else {

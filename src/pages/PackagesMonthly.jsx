@@ -6,6 +6,7 @@ import { ChevronDown, ArrowRight, Check } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 import { usePackagePrices } from "../hooks/usePackagePrices";
 import { defaultPrices } from "../data/defaultPrices";
+import { pushToDataLayer } from "../utils/dataLayer";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -27,14 +28,20 @@ const translations = {
     compactMidSuv: "Compact / Mid-Size SUV",
     fullSizePickup: "Full-Size SUV / Pickup",
     monthlyRefresh: "Monthly Refresh",
-    ceramicRefresh: "Ceramic Refresh",
+    ceramicRefresh: "Ceramic Care",
     everyFourSix: "Every 4–6 Months",
-    monthlyRefresh_s1: "Basic Exterior Package",
-    monthlyRefresh_s2: "Standard Interior Package",
+    sixYearPlan: "6 Year Plan",
+    monthlyRefresh_s1: "Essential Interior & Exterior Package",
+    monthlyRefresh_s2: "Detailed Brush Cleaning",
     monthlyRefresh_s3: "Summer Carpet / Winter Mat Detailing",
-    ceramicRefresh_s1: "Advanced Exterior Package",
-    ceramicRefresh_s2: "Standard Interior Package",
-    ceramicRefresh_s3: "Ceramic Coating Topper",
+    monthlyRefresh_s4: "Tire Dressing",
+    ceramicRefresh_s1: "Elite Interior & Exterior Package",
+    ceramicRefresh_s2: "Paint Decontamination Process",
+    ceramicRefresh_s3: "Ceramic Booster",
+    ceramicRefresh_excTitle: "Not Included",
+    ceramicRefresh_ex1: "Engine Bay Detail",
+    ceramicRefresh_ex2: "Fabric Seat Shampoo / Leather Seat Treatment",
+    ceramicRefresh_ex3: "Floor & Carpet Shampoo",
     ctaTitle: "Ready to book?",
     ctaSub: "Contact us to set up your monthly plan.",
     bookThisPackage: "Book This Package",
@@ -55,14 +62,20 @@ const translations = {
     compactMidSuv: "VUS Compact / Intermédiaire",
     fullSizePickup: "Grand VUS / Camionnette",
     monthlyRefresh: "Actualisation Mensuelle",
-    ceramicRefresh: "Actualisation Céramique",
+    ceramicRefresh: "Soins Céramique",
     everyFourSix: "Aux 4–6 Mois",
-    monthlyRefresh_s1: "Forfait extérieur de base",
-    monthlyRefresh_s2: "Forfait intérieur standard",
+    sixYearPlan: "Plan 6 Ans",
+    monthlyRefresh_s1: "Forfait extérieur & intérieur essentiel",
+    monthlyRefresh_s2: "Nettoyage détaillé à la brosse",
     monthlyRefresh_s3: "Entretien tapis été / tapis d'hiver",
-    ceramicRefresh_s1: "Forfait extérieur avancé",
-    ceramicRefresh_s2: "Forfait intérieur standard",
-    ceramicRefresh_s3: "Applicateur de revêtement céramique",
+    monthlyRefresh_s4: "Application brillant pneus",
+    ceramicRefresh_s1: "Forfait extérieur & intérieur élite",
+    ceramicRefresh_s2: "Processus de décontamination de peinture",
+    ceramicRefresh_s3: "Activateur céramique",
+    ceramicRefresh_excTitle: "Non inclus",
+    ceramicRefresh_ex1: "Détail compartiment moteur",
+    ceramicRefresh_ex2: "Shampooing tissu / Traitement cuir",
+    ceramicRefresh_ex3: "Shampooing tapis & planchers",
     ctaTitle: "Prêt à réserver?",
     ctaSub: "Contactez-nous pour mettre en place votre plan mensuel.",
     bookThisPackage: "Réserver ce forfait",
@@ -303,6 +316,7 @@ export default function PackagesMonthly() {
                   t.monthlyRefresh_s1,
                   t.monthlyRefresh_s2,
                   t.monthlyRefresh_s3,
+                  t.monthlyRefresh_s4,
                 ].map((s) => (
                   <ServiceItem key={s} text={s} checkColor="#CD7F32" />
                 ))}
@@ -322,7 +336,7 @@ export default function PackagesMonthly() {
               </div>
             </motion.div>
 
-            {/* Ceramic Refresh */}
+            {/* Ceramic Care */}
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
@@ -350,7 +364,8 @@ export default function PackagesMonthly() {
               >
                 {t.ceramicRefresh}
               </h3>
-              <ul className="space-y-2 flex-1 pb-14">
+             
+              <ul className="space-y-2 flex-1">
                 {[
                   t.ceramicRefresh_s1,
                   t.ceramicRefresh_s2,
@@ -359,6 +374,21 @@ export default function PackagesMonthly() {
                   <ServiceItem key={s} text={s} checkColor="#A8D8EA" />
                 ))}
               </ul>
+              {/* Not Included section */}
+              <div className="mt-4 ">
+                <ul className="space-y-1.5">
+                  {[
+                    t.ceramicRefresh_ex1,
+                    t.ceramicRefresh_ex2,
+                    t.ceramicRefresh_ex3,
+                  ].map((s) => (
+                    <li key={s} className="flex items-start gap-2 text-xs text-neutral-500">
+                      <span className="mt-0.5 shrink-0" style={{ color: "#ef4444" }}>✕</span>
+                      <span>{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div
                 style={{
                   position: "absolute",
@@ -406,6 +436,7 @@ export default function PackagesMonthly() {
               <Link
                 to="/booking?category=monthly"
                 className="btn-filled_2 relative z-10"
+                onClick={() => pushToDataLayer({ event: "package_select", packageName: "Monthly Plans", vehicleType: t[activeVehicle] || activeVehicle, price: "N/A - See Cards", component: "PackagesMonthly", pageLocation: window.location.pathname })}
               >
                 {t.bookThisPackage}
                 <ArrowRight size={16} />
