@@ -135,11 +135,11 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="text-primary/80 text-sm font-medium hover:text-primary transition-colors"
                   >
-                    {info.value}
+                   4500 Bd Kimber Local 30, Saint-Hubert, QC J3Y 8K5, Canada
                   </a>
                 ) : (
                   <p className="text-primary/80 text-sm font-medium">
-                    {info.value}
+                   Mon – Sun: 8AM – 9PM
                   </p>
                 )}
                 <p className="text-text-muted text-xs mt-1">{info.desc}</p>
