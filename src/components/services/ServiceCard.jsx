@@ -13,6 +13,8 @@ export default function ServiceCard({ service, index, customPricing }) {
   const serviceTrans = tGlobal.servicesList[service.id] || {};
 
   const packageIncludedServices = [
+    "exterior-detailing",
+    "interior-detailing",
     "paint-decontamination",
     "floor-carpet-shampoo",
     "pet-hair-removal",

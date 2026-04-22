@@ -1,11 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Upload, Trash2, X, Image, Loader2, Plus } from 'lucide-react'
-import { collection, getDocs, addDoc, deleteDoc, doc, Timestamp } from 'firebase/firestore'
-import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-import { db, storage } from '../firebase/config'
+import { Upload, Trash2, X, Image, Loader2, Plus, Tag } from 'lucide-react'
+import { fetchGalleryImages, uploadGalleryImage, deleteGalleryImage } from '../lib/galleryService'
 import toast from 'react-hot-toast'
 
+const CATEGORIES = [
+  'Exterior Detailing',
+  'Interior Detailing',
+  'Paint Polish & Protection',
+  'Ceramic Coating'
+]
 
 export default function AdminGallery() {
   const [images, setImages] = useState([])
@@ -13,19 +17,17 @@ export default function AdminGallery() {
   const [uploading, setUploading] = useState(false)
   const [showUpload, setShowUpload] = useState(false)
   const [preview, setPreview] = useState(null)
-  const [uploadForm, setUploadForm] = useState({ file: null, alt: '' })
+  const [uploadForm, setUploadForm] = useState({ file: null, alt: '', category: CATEGORIES[0] })
   const [deleting, setDeleting] = useState(null)
   const fileRef = useRef(null)
 
   useEffect(() => {
-    fetchImages()
+    loadImages()
   }, [])
 
-  async function fetchImages() {
+  async function loadImages() {
     try {
-      const snapshot = await getDocs(collection(db, 'gallery'))
-      const data = snapshot.docs.map(d => ({ id: d.id, ...d.data() }))
-      data.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0))
+      const data = await fetchGalleryImages()
       setImages(data)
     } catch (err) {
       console.error('Fetch gallery error:', err)
@@ -60,25 +62,11 @@ export default function AdminGallery() {
     }
     setUploading(true)
     try {
-      // Upload to Firebase Storage
-      const timestamp = Date.now()
-      const safeName = uploadForm.file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-      const storageRef = ref(storage, `gallery/${timestamp}_${safeName}`)
-      await uploadBytes(storageRef, uploadForm.file)
-      const url = await getDownloadURL(storageRef)
-
-      // Save to Firestore
-      const docData = {
-        url,
-        storagePath: `gallery/${timestamp}_${safeName}`,
-        alt: uploadForm.alt || uploadForm.file.name,
-        createdAt: Timestamp.now(),
-      }
-      const docRef = await addDoc(collection(db, 'gallery'), docData)
-      setImages(prev => [{ id: docRef.id, ...docData }, ...prev])
+      const newImage = await uploadGalleryImage(uploadForm.file, uploadForm.category, uploadForm.alt)
+      setImages(prev => [newImage, ...prev])
 
       // Reset form
-      setUploadForm({ file: null, alt: '' })
+      setUploadForm({ file: null, alt: '', category: CATEGORIES[0] })
       setPreview(null)
       setShowUpload(false)
       if (fileRef.current) fileRef.current.value = ''
@@ -95,16 +83,7 @@ export default function AdminGallery() {
     if (!window.confirm('Delete this image? This cannot be undone.')) return
     setDeleting(image.id)
     try {
-      // Delete from Storage
-      if (image.storagePath) {
-        try {
-          await deleteObject(ref(storage, image.storagePath))
-        } catch (e) {
-          console.log('Storage delete skipped:', e.message)
-        }
-      }
-      // Delete from Firestore
-      await deleteDoc(doc(db, 'gallery', image.id))
+      await deleteGalleryImage(image.id, image.storagePath)
       setImages(prev => prev.filter(img => img.id !== image.id))
       toast.success('Image deleted')
     } catch (err) {
@@ -144,7 +123,7 @@ export default function AdminGallery() {
             <div className="bg-card rounded-xl border border-border-warm/50 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-heading text-base font-bold text-white">Upload New Image</h3>
-                <button onClick={() => { setShowUpload(false); setPreview(null); setUploadForm({ file: null, alt: '' }) }} className="text-text-muted hover:text-white">
+                <button onClick={() => { setShowUpload(false); setPreview(null); setUploadForm({ file: null, alt: '', category: CATEGORIES[0] }) }} className="text-text-muted hover:text-white">
                   <X size={18} />
                 </button>
               </div>
@@ -181,7 +160,19 @@ export default function AdminGallery() {
                 {/* Right: Details */}
                 <div className="space-y-4">
                   <div>
-                    <label className="text-sm font-medium text-text-secondary mb-1.5 block">Alt Text</label>
+                    <label className="text-sm font-medium text-text-secondary mb-1.5 block">Category</label>
+                    <select
+                      className={inputClasses}
+                      value={uploadForm.category}
+                      onChange={e => setUploadForm(prev => ({ ...prev, category: e.target.value }))}
+                    >
+                      {CATEGORIES.map(cat => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-text-secondary mb-1.5 block">Alt Text (Optional)</label>
                     <input
                       type="text"
                       className={inputClasses}
@@ -193,7 +184,7 @@ export default function AdminGallery() {
                   <button
                     onClick={handleUpload}
                     disabled={uploading || !uploadForm.file}
-                    className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark disabled:opacity-40 text-black font-semibold py-3 rounded-lg transition-all text-sm"
+                    className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark disabled:opacity-40 text-black font-semibold py-3 rounded-lg transition-all text-sm mt-2"
                   >
                     {uploading ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />}
                     {uploading ? 'Uploading...' : 'Upload Image'}
@@ -208,7 +199,7 @@ export default function AdminGallery() {
       {/* Image count */}
       <p className="text-text-muted text-sm mb-4">{images.length} image{images.length !== 1 ? 's' : ''} in gallery</p>
 
-      {/* Gallery Grid */}
+      {/* Gallery Grid - Masonry */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <Loader2 size={32} className="text-primary animate-spin" />
@@ -222,28 +213,32 @@ export default function AdminGallery() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="columns-2 sm:columns-3 lg:columns-4 gap-4 space-y-4">
           {images.map(img => (
             <motion.div
               key={img.id}
               layout
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="group relative bg-card rounded-xl border border-border-warm/50 overflow-hidden aspect-square"
+              className="group relative bg-card rounded-xl border border-border-warm/50 overflow-hidden break-inside-avoid"
             >
               <img
-                src={img.url}
+                src={img.imageUrl || img.url}
                 alt={img.alt || 'Gallery image'}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-cover"
                 loading="lazy"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-between p-3">
-                <div className="flex justify-end">
+                <div className="flex justify-between items-start">
+                  <span className="inline-flex items-center gap-1 bg-black/50 backdrop-blur-sm px-2 py-1 rounded text-[10px] text-white uppercase tracking-wider font-medium">
+                    <Tag size={10} />
+                    {img.category || 'Uncategorized'}
+                  </span>
                   <button
                     onClick={() => handleDelete(img)}
                     disabled={deleting === img.id}
-                    className="p-2 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-400 transition-all"
+                    className="p-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-400 transition-all"
                   >
                     {deleting === img.id ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
                   </button>

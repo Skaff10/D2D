@@ -142,6 +142,8 @@ export default function ServiceDetailPage() {
     serviceTrans.additionalSurfaces || service.additionalSurfaces;
 
   const packageIncludedServices = [
+    "exterior-detailing",
+    "interior-detailing",
     "paint-decontamination",
     "floor-carpet-shampoo",
     "pet-hair-removal",

@@ -32,7 +32,7 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex">
+    <div className="min-h-screen bg-black flex w-full max-w-[100vw] overflow-x-auto lg:overflow-x-hidden">
       {/* Sidebar */}
       <aside
         className={`fixed lg:sticky top-0 self-start h-screen left-0 z-50 w-64 bg-black/95 lg:bg-transparent backdrop-blur-md border-r border-border-warm transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
