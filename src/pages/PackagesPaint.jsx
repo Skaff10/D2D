@@ -51,9 +51,8 @@ const translations = {
     diamond_s4: "1-Year Paint Ceramic Coating",
     addonTitle: "Available Add-Ons",
     addon_ceramic1y: "1-Year Paint Ceramic Coating",
-    addon_ceramic2y: "2-Year Paint Ceramic Coating",
-    addon_ceramic3y: "3-Year Paint Ceramic Coating",
-    addon_ceramic8y: "8-Year Paint Ceramic Coating",
+    addon_ceramic2y: "3-Year Paint Ceramic Coating",
+    addon_ceramic3y: "5-Year Paint Ceramic Coating",
     addon_wheelCaliper: "Wheel & Brake Caliper Ceramic Coating",
     addon_glass: "Windshields & Glass Ceramic Coating",
     addon_plastics: "Plastics & Trim Ceramic Coating",
@@ -105,9 +104,8 @@ const translations = {
     diamond_s4: "Revêtement céramique peinture 1 an",
     addonTitle: "Suppléments Disponibles",
     addon_ceramic1y: "Revêtement céramique peinture 1 an",
-    addon_ceramic2y: "Revêtement céramique peinture 2 ans",
-    addon_ceramic3y: "Revêtement céramique peinture 3 ans",
-    addon_ceramic8y: "Revêtement céramique peinture 8 ans",
+    addon_ceramic2y: "Revêtement céramique peinture 3 ans",
+    addon_ceramic3y: "Revêtement céramique peinture 5 ans",
     addon_wheelCaliper: "Céramique jantes & étriers de frein",
     addon_glass: "Céramique pare-brise & vitres",
     addon_plastics: "Céramique plastiques & garnitures",
@@ -495,10 +493,9 @@ export default function PackagesPaint() {
               <div>
                 {[
                   { name: t.addon_ceramic1y,    price: "+$99"    },
-                  { name: t.addon_ceramic2y,    price: "+$149"   },
-                  { name: t.addon_ceramic3y,    price: "+$249"   },
-                  { name: t.addon_ceramic8y,    price: "+$499"   },
-                  { name: t.addon_wheelCaliper, price: "+$199.99" },
+                  { name: t.addon_ceramic2y,    price: "+$249"   },
+                  { name: t.addon_ceramic3y,    price: "+$399"   },
+                  { name: t.addon_wheelCaliper, price: "+$199" },
                   { name: t.addon_glass,        price: "+$149"   },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
@@ -506,8 +503,8 @@ export default function PackagesPaint() {
               </div>
               <div>
                 {[
-                  { name: t.addon_plastics,       price: "+$149.99" },
-                  { name: t.addon_leatherCeramic, price: "+$199.99" },
+                  { name: t.addon_plastics,       price: "+$149" },
+                  { name: t.addon_leatherCeramic, price: "+$199" },
                 ].map((a) => (
                   <AddonRow key={a.name} name={a.name} price={a.price} />
                 ))}

@@ -66,17 +66,15 @@ const timeSlots = [
 ];
 
 const fallbackServices = [
-  { id: "1", name: "Exterior Detailing" },
-  { id: "2", name: "Engine Bay Detailing" },
-  { id: "3", name: "Headlight Restoration" },
-  { id: "4", name: "Headlight & Taillight Tint" },
-  { id: "5", name: "Interior Detailing" },
-  { id: "6", name: "Leather Seat Treatment" },
-  { id: "7", name: "Gloss Enhancer" },
-  { id: "8", name: "One-Step Polish" },
-  { id: "9", name: "Two-Step Polish" },
-  { id: "10", name: "Three-Step Polish" },
-  { id: "11", name: "Ceramic Coating" },
+  { id: "1", name: "Engine Bay Detailing" },
+  { id: "2", name: "Headlight Restoration" },
+  { id: "3", name: "Headlight & Taillight Tint" },
+  { id: "4", name: "Leather Seat Treatment" },
+  { id: "5", name: "Gloss Enhancer" },
+  { id: "6", name: "One-Step Polish" },
+  { id: "7", name: "Two-Step Polish" },
+  { id: "8", name: "Three-Step Polish" },
+  { id: "9", name: "Ceramic Coating" },
 ];
 
 const defaultPackageMap = {
@@ -152,9 +150,9 @@ export default function Booking() {
         );
         const snapshot = await getDocs(q);
         if (!snapshot.empty) {
-          setServices(
-            snapshot.docs.map((doc) => ({ id: doc.id, name: doc.data().name })),
-          );
+          const fetchedServices = snapshot.docs.map((doc) => ({ id: doc.id, name: doc.data().name }));
+          const filteredServices = fetchedServices.filter(s => s.name !== "Interior Detailing" && s.name !== "Exterior Detailing" && s.name !== "Détail Intérieur" && s.name !== "Détail Extérieur");
+          setServices(filteredServices);
         }
       } catch (err) {
         console.log("Using fallback services for dropdown");
@@ -485,6 +483,23 @@ export default function Booking() {
                         ? "Select a package"
                         : "Sélectionnez un forfait"}
                     </option>
+                    <optgroup
+                      label={
+                        lang === "en"
+                          ? "Exterior & Interior Detail"
+                          : "Détail Extérieur & Intérieur"
+                      }
+                    >
+                      <option value="Essential ">
+                        {lang === "en" ? "Essential" : "Essentiel"}
+                      </option>
+                      <option value="Signature ">
+                        {lang === "en" ? "Signature" : "Signature"}
+                      </option>
+                      <option value="Elite ">
+                        {lang === "en" ? "Elite" : "Élite"}
+                      </option>
+                    </optgroup>
                     <optgroup
                       label={
                         lang === "en"
