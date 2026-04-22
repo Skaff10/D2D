@@ -116,8 +116,8 @@ export default function Gallery() {
                 onClick={() => setActiveCategory(category)}
                 className={`whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-primary text-black shadow-[0_0_15px_rgba(249,115,22,0.3)]'
-                    : 'bg-black/40 border border-border-warm text-white hover:bg-black/60 hover:border-primary/50'
+                    ? 'bg-primary text-black '
+                    : 'border border-border-warm text-white hover:bg-black/60 hover:border-primary/50'
                 }`}
               >
                 {category}
@@ -206,15 +206,6 @@ export default function Gallery() {
               className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
               onClick={closeLightbox}
             >
-              {/* Prev Button */}
-              {filteredImages.length > 1 && (
-                <button
-                  className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all bg-black/50 hover:bg-primary/20 p-3 rounded-full hidden sm:block z-50"
-                  onClick={showPrev}
-                >
-                  <ChevronLeft size={32} />
-                </button>
-              )}
 
               {/* Image Container */}
               <div
@@ -224,7 +215,7 @@ export default function Gallery() {
                 <div className="relative">
                   {/* Close Button */}
                   <button
-                    className="absolute top-2 right-2 sm:top-3 sm:right-3 text-white/70 hover:text-white transition-colors bg-black/50 hover:bg-black/80 p-2 rounded-full z-50"
+                    className="absolute cursor-pointer top-2 right-2 sm:top-3 sm:right-3 text-white/70 hover:text-white transition-colors bg-black/50 hover:bg-black/80 p-2 rounded-full z-50"
                     onClick={closeLightbox}
                   >
                     <X size={24} />
@@ -251,39 +242,9 @@ export default function Gallery() {
                   {filteredImages[lightboxIndex].alt && (
                     <p className="text-white text-lg">{filteredImages[lightboxIndex].alt}</p>
                   )}
-                  <p className="text-white/40 text-sm mt-2">
-                    {lightboxIndex + 1} / {filteredImages.length}
-                  </p>
                 </div>
 
-                {/* Mobile Navigation */}
-                {filteredImages.length > 1 && (
-                  <div className="flex justify-center gap-6 mt-4 sm:hidden">
-                    <button
-                      onClick={showPrev}
-                      className="p-3 bg-black/50 rounded-full text-white/80 active:bg-primary/50"
-                    >
-                      <ChevronLeft size={24} />
-                    </button>
-                    <button
-                      onClick={showNext}
-                      className="p-3 bg-black/50 rounded-full text-white/80 active:bg-primary/50"
-                    >
-                      <ChevronRight size={24} />
-                    </button>
-                  </div>
-                )}
               </div>
-
-              {/* Next Button */}
-              {filteredImages.length > 1 && (
-                <button
-                  className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-all bg-black/50 hover:bg-primary/20 p-3 rounded-full hidden sm:block z-50"
-                  onClick={showNext}
-                >
-                  <ChevronRight size={32} />
-                </button>
-              )}
             </motion.div>
           )}
         </AnimatePresence>,
