@@ -74,7 +74,7 @@ export default function Home() {
           ? "Complete exterior cleaning with snow foam, two-bucket wash, paint decontamination, clay bar treatment, and tire dressing."
           : "Nettoyage extérieur complet avec mousse de neige, lavage à deux seaux, décontamination de la peinture, traitement à la barre d'argile et lustrage des pneus.",
       image: exteriorImg,
-      price: lang === "en" ? "Package Pricing" : "Prix par forfait",
+      price: lang === "en" ? "Included in Packages" : "Inclus dans les forfaits",
     },
     {
       title: lang === "en" ? "Interior Detailing" : "Esthétique Intérieure",
