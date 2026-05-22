@@ -7,6 +7,7 @@ import { useLang } from "../context/LanguageContext";
 import { usePackagePrices } from "../hooks/usePackagePrices";
 import { defaultPrices } from "../data/defaultPrices";
 import { pushToDataLayer } from "../utils/dataLayer";
+import { BreadcrumbSchema } from "../seo/schemas";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -61,8 +62,7 @@ const translations = {
       "Consultez nos forfaits de détail extérieur et intérieur — Essentiel, Signature et Élite — avec tarification transparente.",
     heroBadge: "[01]",
     heroTitle: "Détail Extérieur & Intérieur",
-    heroSub:
-      "Choisissez le forfait de nettoyage idéal pour votre véhicule.",
+    heroSub: "Choisissez le forfait de nettoyage idéal pour votre véhicule.",
     backToPackages: "← Retour aux forfaits",
     breadcrumbPackages: "Forfaits",
     breadcrumbCurrent: "Détail Extérieur & Intérieur",
@@ -144,10 +144,7 @@ function PriceDisplay({ value, vehicleLabel, loading }) {
         exit={{ opacity: 0, scale: 0.92 }}
         transition={{ duration: 0.22 }}
       >
-        <p className="price-mono text-3xl font-bold text-white">
-          ${value}
-        </p>
-        
+        <p className="price-mono text-3xl font-bold text-white">${value}</p>
       </motion.div>
     </AnimatePresence>
   );
@@ -178,7 +175,11 @@ function VehicleToggle({ options, active, onChange }) {
 function ServiceItem({ text, checkColor = "#C9A84C" }) {
   return (
     <li className="flex items-start gap-2 text-sm text-neutral-300">
-      <Check size={14} style={{ color: checkColor }} className="mt-0.5 shrink-0" />
+      <Check
+        size={14}
+        style={{ color: checkColor }}
+        className="mt-0.5 shrink-0"
+      />
       <span>{text}</span>
     </li>
   );
@@ -189,7 +190,9 @@ function AddonChip({ name, price }) {
   return (
     <div className="flex items-center justify-between gap-2 bg-neutral-800/60 border border-neutral-700 rounded-lg px-3 py-2">
       <span className="text-sm text-neutral-300">{name}</span>
-      <span className="text-xs font-semibold text-[#C9A84C] whitespace-nowrap">{price}</span>
+      <span className="text-xs font-semibold text-[#C9A84C] whitespace-nowrap">
+        {price}
+      </span>
     </div>
   );
 }
@@ -215,6 +218,9 @@ export default function PackagesDetail() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <BreadcrumbSchema crumbs={[{ name: "Packages", url: "/packages" }, { name: "Exterior & Interior Detail", url: "/packages/detail" }]} />
+
       <Helmet>
         <title>{t.pageTitle}</title>
         <meta name="description" content={t.metaDesc} />
@@ -325,29 +331,45 @@ export default function PackagesDetail() {
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ minHeight: "320px", borderColor: "rgba(205,127,50,0.3)" }}
+              style={{
+                minHeight: "320px",
+                borderColor: "rgba(205,127,50,0.3)",
+              }}
             >
-              <h3 style={{
-                textAlign: "center",
-                color: "#CD7F32",
-                fontSize: "13.5px",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                fontFamily: "var(--font-family-mono)",
-                marginBottom: "1rem",
-              }}>
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "#CD7F32",
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-family-mono)",
+                  marginBottom: "1rem",
+                }}
+              >
                 {t.essential}
               </h3>
               <ul className="space-y-2 flex-1 pb-14">
                 {[
-                  t.essential_s1, t.essential_s2, t.essential_s3,
-                  t.essential_s4, t.essential_s5, t.essential_s6, t.essential_s7,
+                  t.essential_s1,
+                  t.essential_s2,
+                  t.essential_s3,
+                  t.essential_s4,
+                  t.essential_s5,
+                  t.essential_s6,
+                  t.essential_s7,
                 ].map((s) => (
                   <ServiceItem key={s} text={s} checkColor="#CD7F32" />
                 ))}
               </ul>
-              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1rem",
+                  right: "1.25rem",
+                }}
+              >
                 <PriceDisplay
                   value={getPrice("essential", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
@@ -360,18 +382,23 @@ export default function PackagesDetail() {
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ minHeight: "320px", borderColor: "rgba(192,192,192,0.25)" }}
+              style={{
+                minHeight: "320px",
+                borderColor: "rgba(192,192,192,0.25)",
+              }}
             >
-              <h3 style={{
-                textAlign: "center",
-                color: "#C0C0C0",
-                fontSize: "13.5px",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                fontFamily: "var(--font-family-mono)",
-                marginBottom: "1rem",
-              }}>
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "#C0C0C0",
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-family-mono)",
+                  marginBottom: "1rem",
+                }}
+              >
                 {t.signature}
               </h3>
               <p className="text-xs text-neutral-500 italic mb-3">
@@ -382,7 +409,13 @@ export default function PackagesDetail() {
                   <ServiceItem key={s} text={s} checkColor="#C0C0C0" />
                 ))}
               </ul>
-              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1rem",
+                  right: "1.25rem",
+                }}
+              >
                 <PriceDisplay
                   value={getPrice("signature", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
@@ -395,22 +428,27 @@ export default function PackagesDetail() {
             <motion.div
               variants={cardVariants}
               className="relative dark-card p-6 flex flex-col"
-              style={{ minHeight: "320px", borderColor: "rgba(201,168,76,0.5)" }}
+              style={{
+                minHeight: "320px",
+                borderColor: "rgba(201,168,76,0.5)",
+              }}
             >
               {/* Best Value badge */}
               <span className="absolute top-3 right-3 bg-[#C9A84C] text-black text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
                 {t.bestValue}
               </span>
-              <h3 style={{
-                textAlign: "center",
-                color: "#C9A84C",
-                fontSize: "13.5px",
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                fontFamily: "var(--font-family-mono)",
-                marginBottom: "1rem",
-              }}>
+              <h3
+                style={{
+                  textAlign: "center",
+                  color: "#C9A84C",
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-family-mono)",
+                  marginBottom: "1rem",
+                }}
+              >
                 {t.elite}
               </h3>
               <p className="text-xs text-neutral-500 italic mb-3">
@@ -421,7 +459,13 @@ export default function PackagesDetail() {
                   <ServiceItem key={s} text={s} checkColor="#C9A84C" />
                 ))}
               </ul>
-              <div style={{ position: "absolute", bottom: "1rem", right: "1.25rem" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "1rem",
+                  right: "1.25rem",
+                }}
+              >
                 <PriceDisplay
                   value={getPrice("elite", activeVehicle)}
                   vehicleLabel={t[activeVehicle]}
@@ -441,12 +485,12 @@ export default function PackagesDetail() {
           >
             <p className="section-tag text-center mb-5">{t.addonTitle}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              <AddonChip name={t.addon_odor}    price="+$29"       />
-              <AddonChip name={t.addon_pet}     price="$59–$129"   />
-              <AddonChip name={t.addon_fabric}  price="+$49"       />
-              <AddonChip name={t.addon_leather} price="+$149"      />
-              <AddonChip name={t.addon_clay}    price="+$25"       />
-              <AddonChip name={t.addon_sealant} price="+$25"       />
+              <AddonChip name={t.addon_odor} price="$59-$99" />
+              <AddonChip name={t.addon_pet} price="$59-$129" />
+              <AddonChip name={t.addon_fabric} price="$49" />
+              <AddonChip name={t.addon_leather} price="$149" />
+              <AddonChip name={t.addon_clay} price="$59" />
+              <AddonChip name={t.addon_sealant} price="$99" />
             </div>
           </motion.div>
         </div>
@@ -478,13 +522,20 @@ export default function PackagesDetail() {
               <h2 className="serif-heading text-3xl md:text-4xl text-white mb-3 relative z-10">
                 {t.ctaTitle}
               </h2>
-              <p className="text-neutral-400 mb-8 relative z-10">
-                {t.ctaSub}
-              </p>
+              <p className="text-neutral-400 mb-8 relative z-10">{t.ctaSub}</p>
               <Link
                 to="/booking?category=detail"
                 className="btn-filled_2 relative z-10"
-                onClick={() => pushToDataLayer({ event: "package_select", packageName: "Exterior & Interior Detail", vehicleType: t[activeVehicle] || activeVehicle, price: "N/A - See Cards", component: "PackagesDetail", pageLocation: window.location.pathname })}
+                onClick={() =>
+                  pushToDataLayer({
+                    event: "package_select",
+                    packageName: "Exterior & Interior Detail",
+                    vehicleType: t[activeVehicle] || activeVehicle,
+                    price: "N/A - See Cards",
+                    component: "PackagesDetail",
+                    pageLocation: window.location.pathname,
+                  })
+                }
               >
                 {t.bookThisPackage}
                 <ArrowRight size={16} />

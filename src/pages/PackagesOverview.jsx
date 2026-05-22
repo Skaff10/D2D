@@ -11,6 +11,7 @@ import imgMonthly from "../assets/images/services/Ceramic Coating.jpg";
 import posterPackage from "../assets/videos/poster.jpg";
 import vid from "../assets/videos/d2dpackagevid.mp4";
 import { useEffect, useRef } from "react";
+import { BreadcrumbSchema } from "../seo/schemas";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -114,9 +115,47 @@ export default function PackagesOverview() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <BreadcrumbSchema crumbs={[{ name: "Packages", url: "/packages" }]} />
+
       <Helmet>
-        <title>{t.pageTitle}</title>
-        <meta name="description" content={t.metaDesc} />
+        <title>Detailing Packages & Pricing | Down2Detail</title>
+        <meta
+          name="description"
+          content="Choose from Down2Detail's detailing packages — basic wash to full ceramic coating. Transparent pricing for all vehicle sizes. Serving Montreal & Saint-Hubert."
+        />
+        <link rel="canonical" href="https://down2detail.ca/packages" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://down2detail.ca/packages" />
+        <meta
+          property="og:title"
+          content="Detailing Packages & Pricing | Down2Detail"
+        />
+        <meta
+          property="og:description"
+          content="From basic washes to full ceramic coating — transparent pricing for all vehicle sizes in Montreal & Saint-Hubert."
+        />
+        <meta
+          property="og:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
+        <meta property="og:site_name" content="Down2Detail" />
+        <meta property="og:locale" content="en_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Detailing Packages & Pricing | Down2Detail"
+        />
+        <meta
+          name="twitter:description"
+          content="From basic washes to full ceramic coating — transparent pricing for all vehicle sizes in Montreal & Saint-Hubert."
+        />
+        <meta
+          name="twitter:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
       </Helmet>
 
       <section className="relative min-h-[55vh] flex flex-col items-center justify-center overflow-hidden">

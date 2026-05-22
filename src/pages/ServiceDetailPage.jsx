@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { categories, services } from "../data/servicesData";
+import { ServiceDetailSchema, BreadcrumbSchema } from "../seo/schemas";
 import FAQAccordion from "../components/services/FAQAccordion";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
@@ -179,6 +180,15 @@ export default function ServiceDetailPage() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <ServiceDetailSchema service={service} />
+      <BreadcrumbSchema
+        crumbs={[
+          { name: "Services", url: "/services" },
+          { name: service.name, url: `/services/${service.id}` },
+        ]}
+      />
+
       <Helmet>
         <title>{displayName} | Down2Detail Detailing</title>
         <meta name="description" content={displayShortDesc} />

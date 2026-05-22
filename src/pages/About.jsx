@@ -15,6 +15,7 @@ import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 import ceramicImg from "../assets/dk/down2detail.png";
+import { BreadcrumbSchema } from "../seo/schemas";
 
 export default function About() {
   const { lang } = useLang();
@@ -53,13 +54,48 @@ export default function About() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <BreadcrumbSchema crumbs={[{ name: "About", url: "/about" }]} />
+
       <Helmet>
         <title>
-          About Down2Detail | Auto Detailing in Montreal & Saint-Hubert
+          About Down2Detail | Auto Detailing Montreal & Saint-Hubert
         </title>
         <meta
           name="description"
           content="Learn about Down2Detail — professional auto detailing experts in Montreal & Saint-Hubert, QC. Our story, values, and commitment to quality auto care."
+        />
+        <link rel="canonical" href="https://down2detail.ca/about" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://down2detail.ca/about" />
+        <meta
+          property="og:title"
+          content="About Down2Detail | Auto Detailing Montreal & Saint-Hubert"
+        />
+        <meta
+          property="og:description"
+          content="Meet the Down2Detail team — professional auto detailing experts in Montreal & Saint-Hubert. Our story, values, and commitment to quality."
+        />
+        <meta
+          property="og:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
+        <meta property="og:site_name" content="Down2Detail" />
+        <meta property="og:locale" content="en_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="About Down2Detail | Auto Detailing Montreal & Saint-Hubert"
+        />
+        <meta
+          name="twitter:description"
+          content="Meet the Down2Detail team — professional auto detailing experts in Montreal & Saint-Hubert. Our story, values, and commitment to quality."
+        />
+        <meta
+          name="twitter:image"
+          content="https://down2detail.ca/og-image.jpg"
         />
       </Helmet>
 

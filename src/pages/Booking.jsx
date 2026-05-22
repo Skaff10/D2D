@@ -28,6 +28,7 @@ import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 import { pushToDataLayer } from "../utils/dataLayer";
+import { BreadcrumbSchema } from "../seo/schemas";
 
 const vehicleTypes = [
   "Sedan/Coupe/Crossover",
@@ -94,11 +95,13 @@ export default function Booking() {
 
   const preselectedService = searchParams.get("service") || "";
   const categoryParam = searchParams.get("category") || "";
-  const preselectedPackage = defaultPackageMap[categoryParam] || "";
+  const urlPackage = searchParams.get("package") || "";
+  const preselectedPackage =
+    urlPackage || defaultPackageMap[categoryParam] || "";
 
-  // Default to "package" mode if a category query param is present
+  // Default to "package" mode if a category or package query param is present
   const [bookingType, setBookingType] = useState(
-    categoryParam ? "package" : "service",
+    categoryParam || urlPackage ? "package" : "service",
   );
 
   const {
@@ -122,6 +125,12 @@ export default function Booking() {
       notes: "",
     },
   });
+
+  useEffect(() => {
+    if (preselectedPackage) {
+      setValue("selectedPackage", preselectedPackage);
+    }
+  }, [preselectedPackage, setValue]);
 
   const selectedService = watch("serviceName");
   const showPricingNote =
@@ -150,8 +159,17 @@ export default function Booking() {
         );
         const snapshot = await getDocs(q);
         if (!snapshot.empty) {
-          const fetchedServices = snapshot.docs.map((doc) => ({ id: doc.id, name: doc.data().name }));
-          const filteredServices = fetchedServices.filter(s => s.name !== "Interior Detailing" && s.name !== "Exterior Detailing" && s.name !== "Détail Intérieur" && s.name !== "Détail Extérieur");
+          const fetchedServices = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            name: doc.data().name,
+          }));
+          const filteredServices = fetchedServices.filter(
+            (s) =>
+              s.name !== "Interior Detailing" &&
+              s.name !== "Exterior Detailing" &&
+              s.name !== "Détail Intérieur" &&
+              s.name !== "Détail Extérieur",
+          );
           setServices(filteredServices);
         }
       } catch (err) {
@@ -262,13 +280,46 @@ export default function Booking() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <BreadcrumbSchema crumbs={[{ name: "Booking", url: "/booking" }]} />
+
       <Helmet>
-        <title>
-          Book Auto Detailing in Montreal & Saint-Hubert | Down2Detail
-        </title>
+        <title>Book Auto Detailing in Montreal | Down2Detail</title>
         <meta
           name="description"
-          content="Book your professional auto detailing appointment with Down2Detail. Serving Montreal, Saint-Hubert & the Greater Montreal Area. Easy online booking."
+          content="Book your professional auto detailing appointment with Down2Detail online. Serving Montreal, Saint-Hubert & the Greater Montreal Area. Easy & fast booking."
+        />
+        <link rel="canonical" href="https://down2detail.ca/booking" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://down2detail.ca/booking" />
+        <meta
+          property="og:title"
+          content="Book Auto Detailing in Montreal | Down2Detail"
+        />
+        <meta
+          property="og:description"
+          content="Book your professional auto detailing appointment online. Serving Montreal, Saint-Hubert & Greater Montreal. Easy & fast."
+        />
+        <meta
+          property="og:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
+        <meta property="og:site_name" content="Down2Detail" />
+        <meta property="og:locale" content="en_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Book Auto Detailing in Montreal | Down2Detail"
+        />
+        <meta
+          name="twitter:description"
+          content="Book your professional auto detailing appointment online. Serving Montreal, Saint-Hubert & Greater Montreal. Easy & fast."
+        />
+        <meta
+          name="twitter:image"
+          content="https://down2detail.ca/og-image.jpg"
         />
       </Helmet>
 
@@ -518,6 +569,11 @@ export default function Booking() {
                       </option>
                       <option value="Diamond ">
                         {lang === "en" ? "Diamond" : "Diamant"}
+                      </option>
+                      <option value="Paint Correction & Protection">
+                        {lang === "en"
+                          ? "Paint Correction & Ceramic Coating"
+                          : "Correction de peinture et revêtement céramique"}
                       </option>
                     </optgroup>
                     <optgroup

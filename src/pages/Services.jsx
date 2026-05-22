@@ -3,13 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
+import { ServiceSchema, BreadcrumbSchema, FAQSchema } from "../seo/schemas";
 import ServiceCategoryTabs from "../components/services/ServiceCategoryTabs";
 import ServiceCard from "../components/services/ServiceCard";
 import { categories, services } from "../data/servicesData";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import { useServicePrices } from "../hooks/useServicePrices";
-import {HeroTypewriter2} from "../components/ui/HeroTypewriter2";
+import { HeroTypewriter2 } from "../components/ui/HeroTypewriter2";
 
 export default function Services() {
   const { lang } = useLang();
@@ -57,23 +58,61 @@ export default function Services() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <ServiceSchema />
+      <BreadcrumbSchema crumbs={[{ name: "Services", url: "/services" }]} />
+      <FAQSchema />
+
       <Helmet>
-        <title>
-          Professional Detailing Services | Down2Detail — Montreal &
-          Saint-Hubert
-        </title>
+        <title>Detailing Services — Ceramic Coating & More | Down2Detail</title>
         <meta
           name="description"
-          content="Explore Down2Detail's full range of professional detailing services — exterior, interior, paint correction, ceramic coating, and more. Serving Montreal & Saint-Hubert. Book today!"
+          content="Browse Down2Detail's full service menu — exterior & interior detailing, paint correction, ceramic coating, and more. Serving Montreal & Saint-Hubert. Book today!"
+        />
+        <link rel="canonical" href="https://down2detail.ca/services" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://down2detail.ca/services" />
+        <meta
+          property="og:title"
+          content="Detailing Services — Ceramic Coating & More | Down2Detail"
+        />
+        <meta
+          property="og:description"
+          content="Exterior & interior detailing, paint correction, ceramic coating and more in Montreal & Saint-Hubert. Book your appointment today."
+        />
+        <meta
+          property="og:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
+        <meta property="og:site_name" content="Down2Detail" />
+        <meta property="og:locale" content="en_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Detailing Services — Ceramic Coating & More | Down2Detail"
+        />
+        <meta
+          name="twitter:description"
+          content="Exterior & interior detailing, paint correction, ceramic coating and more in Montreal & Saint-Hubert. Book your appointment today."
+        />
+        <meta
+          name="twitter:image"
+          content="https://down2detail.ca/og-image.jpg"
         />
       </Helmet>
 
       {/* ===== PAGE HERO ===== */}
       <section className="pt-32 pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center font-bold text-primary text-md mb-4">{t.ourServices}</p>
+          <p className="text-center font-bold text-primary text-md mb-4">
+            {t.ourServices}
+          </p>
           <HeroTypewriter2 />
-          <p className="text-text-secondary text-lg mb-8 text-center">{t.servicesDescription}</p>
+          <p className="text-text-secondary text-lg mb-8 text-center">
+            {t.servicesDescription}
+          </p>
         </div>
       </section>
 

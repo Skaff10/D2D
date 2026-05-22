@@ -7,6 +7,7 @@ import { useLang } from "../context/LanguageContext";
 import { usePackagePrices } from "../hooks/usePackagePrices";
 import { defaultPrices } from "../data/defaultPrices";
 import { pushToDataLayer } from "../utils/dataLayer";
+import { BreadcrumbSchema } from "../seo/schemas";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TRANSLATIONS
@@ -229,6 +230,9 @@ export default function PackagesPaint() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <BreadcrumbSchema crumbs={[{ name: "Packages", url: "/packages" }, { name: "Paint Polish & Protection", url: "/packages/paint" }]} />
+
       <Helmet>
         <title>{t.pageTitle}</title>
         <meta name="description" content={t.metaDesc} />

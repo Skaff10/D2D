@@ -1,4 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
+import {
+  LocalBusinessSchema,
+  WebSiteSchema,
+  ServiceSchema,
+  ReviewSchema,
+  FAQSchema,
+} from "../seo/schemas";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
@@ -74,7 +81,8 @@ export default function Home() {
           ? "Complete exterior cleaning with snow foam, two-bucket wash, paint decontamination, clay bar treatment, and tire dressing."
           : "Nettoyage extérieur complet avec mousse de neige, lavage à deux seaux, décontamination de la peinture, traitement à la barre d'argile et lustrage des pneus.",
       image: exteriorImg,
-      price: lang === "en" ? "Included in Packages" : "Inclus dans les forfaits",
+      price:
+        lang === "en" ? "Included in Packages" : "Inclus dans les forfaits",
     },
     {
       title: lang === "en" ? "Interior Detailing" : "Esthétique Intérieure",
@@ -267,15 +275,51 @@ export default function Home() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <LocalBusinessSchema />
+      <WebSiteSchema />
+      <ServiceSchema />
+      <ReviewSchema />
+      <FAQSchema />
+
       <Helmet>
-        <title>
-          Premium Auto Detailing in Montreal & Saint-Hubert | Down2Detail
-        </title>
+        <title>Professional Auto Detailing Montreal | Down2Detail</title>
         <meta
           name="description"
-          content="Down2Detail offers professional auto detailing in Montreal & Saint-Hubert, QC. Paint correction, ceramic coating, interior & exterior detailing. Serving the Greater Montreal Area. Book today!"
+          content="Professional auto detailing in Montreal & Saint-Hubert, QC. Paint correction, ceramic coating, interior & exterior packages. Serving Greater Montreal. Book today!"
         />
         <link rel="canonical" href="https://down2detail.ca/" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://down2detail.ca/" />
+        <meta
+          property="og:title"
+          content="Professional Auto Detailing Montreal | Down2Detail"
+        />
+        <meta
+          property="og:description"
+          content="Paint correction, ceramic coating & full detailing in Montreal & Saint-Hubert. Book your appointment today."
+        />
+        <meta
+          property="og:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
+        <meta property="og:site_name" content="Down2Detail" />
+        <meta property="og:locale" content="en_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Professional Auto Detailing Montreal | Down2Detail"
+        />
+        <meta
+          name="twitter:description"
+          content="Paint correction, ceramic coating & full detailing in Montreal & Saint-Hubert. Book your appointment today."
+        />
+        <meta
+          name="twitter:image"
+          content="https://down2detail.ca/og-image.jpg"
+        />
       </Helmet>
 
       {/* ===== HERO SECTION ===== */}
@@ -336,17 +380,31 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-              <Link 
-                to="/booking" 
+              <Link
+                to="/booking"
                 className="btn-filled_2"
-                onClick={() => pushToDataLayer({ event: "cta_click", buttonText: th.bookUs, component: "HomeHero", pageLocation: location.pathname })}
+                onClick={() =>
+                  pushToDataLayer({
+                    event: "cta_click",
+                    buttonText: th.bookUs,
+                    component: "HomeHero",
+                    pageLocation: location.pathname,
+                  })
+                }
               >
                 {th.bookUs}
               </Link>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="btn-filled"
-                onClick={() => pushToDataLayer({ event: "cta_click", buttonText: th.contactUs, component: "HomeHero", pageLocation: location.pathname })}
+                onClick={() =>
+                  pushToDataLayer({
+                    event: "cta_click",
+                    buttonText: th.contactUs,
+                    component: "HomeHero",
+                    pageLocation: location.pathname,
+                  })
+                }
               >
                 {th.contactUs}
               </Link>
@@ -446,10 +504,17 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <Link 
-              to="/services" 
+            <Link
+              to="/services"
               className="btn-outline"
-              onClick={() => pushToDataLayer({ event: "cta_click", buttonText: t.viewAllServices, component: "HomeServices", pageLocation: location.pathname })}
+              onClick={() =>
+                pushToDataLayer({
+                  event: "cta_click",
+                  buttonText: t.viewAllServices,
+                  component: "HomeServices",
+                  pageLocation: location.pathname,
+                })
+              }
             >
               {t.viewAllServices}
               <ArrowRight size={14} />
@@ -504,17 +569,31 @@ export default function Home() {
                 </span>
               </h2>
               <div className="flex gap-3 mb-8">
-                <Link 
-                  to="/booking" 
+                <Link
+                  to="/booking"
                   className="btn-filled"
-                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: "Book Now", component: "HomeDifference", pageLocation: location.pathname })}
+                  onClick={() =>
+                    pushToDataLayer({
+                      event: "cta_click",
+                      buttonText: "Book Now",
+                      component: "HomeDifference",
+                      pageLocation: location.pathname,
+                    })
+                  }
                 >
                   Book Now
                 </Link>
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="btn-outline"
-                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: "Contact Us", component: "HomeDifference", pageLocation: location.pathname })}
+                  onClick={() =>
+                    pushToDataLayer({
+                      event: "cta_click",
+                      buttonText: "Contact Us",
+                      component: "HomeDifference",
+                      pageLocation: location.pathname,
+                    })
+                  }
                 >
                   Contact Us
                 </Link>
@@ -735,17 +814,31 @@ export default function Home() {
                 {t.bookYourPremiumToday}
               </h2>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link 
-                  to="/booking" 
+                <Link
+                  to="/booking"
                   className="btn-filled"
-                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: tn.bookNow, component: "HomeCTA", pageLocation: location.pathname })}
+                  onClick={() =>
+                    pushToDataLayer({
+                      event: "cta_click",
+                      buttonText: tn.bookNow,
+                      component: "HomeCTA",
+                      pageLocation: location.pathname,
+                    })
+                  }
                 >
                   {tn.bookNow}
                 </Link>
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="btn-outline"
-                  onClick={() => pushToDataLayer({ event: "cta_click", buttonText: th.contactUs, component: "HomeCTA", pageLocation: location.pathname })}
+                  onClick={() =>
+                    pushToDataLayer({
+                      event: "cta_click",
+                      buttonText: th.contactUs,
+                      component: "HomeCTA",
+                      pageLocation: location.pathname,
+                    })
+                  }
                 >
                   {th.contactUs}
                 </Link>

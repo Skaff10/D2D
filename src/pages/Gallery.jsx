@@ -7,6 +7,7 @@ import { fetchGalleryImages } from '../lib/galleryService'
 import { useLang } from '../context/LanguageContext'
 import { translations } from '../translations'
 import SectionHeading from '../components/ui/SectionHeading'
+import { BreadcrumbSchema } from '../seo/schemas'
 
 const CATEGORIES = [
   'All',
@@ -87,6 +88,9 @@ export default function Gallery() {
 
   return (
     <>
+      {/* ===== JSON-LD SCHEMA MARKUP ===== */}
+      <BreadcrumbSchema crumbs={[{ name: "Gallery", url: "/gallery" }]} />
+
       <Helmet>
         <title>Auto Detailing Gallery in Montreal | Down2Detail</title>
         <meta

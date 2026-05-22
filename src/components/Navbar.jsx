@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Globe } from "lucide-react";
-import logo from "../assets/logo/logo.png";
+import logo from "../assets/logo/logo.png"
 import { useLang } from "../context/LanguageContext";
 import { pushToDataLayer } from "../utils/dataLayer";
 import { translations } from "../translations";
@@ -48,7 +48,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 w-full z-[1000] transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 w-full z-1000 transition-all duration-500 ${
         scrolled ? "glass-navbar py-5" : "transparent py-5"
       }`}
     >
@@ -58,7 +58,7 @@ export default function Navbar() {
           <img
             src={logo}
             alt="Down2Detail Logo"
-            className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
@@ -67,8 +67,8 @@ export default function Navbar() {
           <div
             className={`flex items-center gap-1 px-1.5 py-1 rounded-xl transition-all duration-300 ${
               scrolled
-                ? "bg-white/[0.04] border border-white/[0.06]"
-                : "bg-white/[0.03] border border-white/[0.05]"
+                ? "bg-white/4 border border-white/6"
+                : "bg-white/3 border border-white/5"
             }`}
           >
             {navLinks.map((link) => (
@@ -152,8 +152,8 @@ export default function Navbar() {
                     className={({ isActive }) =>
                       `block py-3 px-4 rounded-xl text-base font-medium transition-all ${
                         isActive
-                          ? "bg-white/[0.06] text-white"
-                          : "text-white/50 hover:bg-white/[0.03] hover:text-white/80"
+                          ? "bg-white/6 text-white"
+                          : "text-white/50 hover:bg-white/3 hover:text-white/80"
                       }`
                     }
                   >
@@ -161,7 +161,7 @@ export default function Navbar() {
                   </NavLink>
                 </motion.div>
               ))}
-              <div className="border-t border-white/[0.06] mt-2 pt-4 flex flex-col gap-3">
+              <div className="border-t border-white/6 mt-2 pt-4 flex flex-col gap-3">
                 <a
                   href="tel:+14384838175"
                   className="flex items-center gap-3 py-3 px-4 text-white/50 hover:text-white transition-colors"

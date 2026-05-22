@@ -22,6 +22,7 @@ import PackagesDetail from "./pages/PackagesDetail";
 import PackagesPaint from "./pages/PackagesPaint";
 import PackagesMonthly from "./pages/PackagesMonthly";
 import NotFound from "./pages/NotFound";
+import PaintCorrectionLanding from "./pages/PaintCorrectionLanding";
 
 import AdminLayout from "./admin/AdminLayout";
 import AdminLogin from "./admin/AdminLogin";
@@ -194,6 +195,9 @@ export default function App() {
                 <Route path="pricing" element={<AdminPricing />} />
                 <Route path="gallery" element={<AdminGallery />} />
               </Route>
+
+              {/* Standalone Landing Pages */}
+              <Route path="/paint-correction" element={<PaintCorrectionLanding />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
