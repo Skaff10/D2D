@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Globe } from "lucide-react";
-import logo from "../assets/logo/logo.png"
 import { useLang } from "../context/LanguageContext";
 import { pushToDataLayer } from "../utils/dataLayer";
 import { translations } from "../translations";
@@ -56,7 +55,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
           <img
-            src={logo}
+            src="/d2d2.svg"
             alt="Down2Detail Logo"
             className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
           />

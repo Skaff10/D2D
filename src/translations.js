@@ -10,9 +10,9 @@ export const translations = {
       bookNow: "Book Now",
     },
     hero: {
-      tag: "Trusted by Montreal Car Owners",
-      description: "Your Car Deserves More Than a Wash.",
-      bookUs: "Book Us",
+      tag: "Premium Car Detailing in Montreal",
+      description: "Your car deserves more than a wash",
+      bookUs: "Book Now",
       contactUs: "Contact Us",
     },
     footer: {
@@ -43,14 +43,15 @@ export const translations = {
     home: {
       trustedBy: "Trusted by owners of",
       whatWeOffer: "What We Offer",
-      simpleToComprehensive: "From a Simple Wash to Comprehensive Detailing",
+      simpleToComprehensive:
+        "Our professional detailing services restore shine, protect against Montreal's harsh weather, and keep your vehicle looking its absolute best all year long.",
       offerDescription:
-        "We offer a range of premium services to keep your car looking and feeling its best year-round.",
+        "(Proudly serving Montreal, Laval, Longueuil, Brossard, Saint-Hubert, West Island, Pointe-Claire, Dorval, Saint-Laurent, and the Greater Montreal area.)",
       viewAllServices: "View All Services",
-      whyDown2Detail: "Why Down2Detail",
-      theD2Ddifference: "The Down2Detail Difference",
+      whyDown2Detail: "Why down2detail",
+      theD2Ddifference: "Restore the Shine. Preserve the Pride.",
       dontCutCorners:
-        "We don't cut corners. Every detail matters to us — that's what sets us apart.",
+        "From luxury vehicles to everyday family cars, we revive your car's original look — preserving its value, protecting its finish, and keeping it looking its best for years to come.Whether you need pet hair removal, interior rejuvenation, paint correction, or premium paint protection, every service is carried out with meticulous attention to detail. Because your car is more than just transportation — it's a part of your memories and lifestyle.",
       deservesMoreThanOrdinary: "Your Car Deserves More than an Ordinary Wash",
       professionalGrade: "Professional-Grade Products & Technology",
       professionalGradeDesc:
@@ -64,7 +65,8 @@ export const translations = {
       testimonials: "Testimonials",
       whatOurClientsSay: "What Our Clients Say",
       verifiedCustomer: "Verified Customer",
-      bookYourPremiumToday: "Book Your Premium Service Today",
+      bookYourPremiumToday:
+        "Book your service today and rediscover the look that made your dream car unforgettable.",
       premiumCarDetailing: "Premium car detailing",
       interiorDetail: "Interior detail",
       carsDetailed: "Cars Detailed",
@@ -76,7 +78,7 @@ export const translations = {
       aboutUs: "About Us",
       ourStory: "Our Story",
       storyDescription:
-        "From car enthusiasts to professional detailers — how Down2Detail became Montreal's trusted name in auto care.",
+        "Down2Detail was built by people who genuinely care about vehicles. We believe your car reflects your standards, lifestyle, and attention to detail. That’s why we focus on quality craftsmanship, safe detailing methods, and long-term paint protection instead of rushed volume-based washes.",
       ourJourney: "OUR JOURNEY",
       simpleToComprehensive: "From a Simple Wash to Comprehensive Detailing",
       journeyP1:
@@ -112,7 +114,7 @@ export const translations = {
       tailoredForVehicle:
         "Professional Detailing Services Tailored for Your Vehicle",
       servicesDescription:
-        "From restorative detailing to advanced ceramic protection, we provide bespoke care designed to preserve the beauty and value of your vehicle.",
+        "Our detailing and ceramic coating services are designed specifically to protect your vehicle against harsh Canadian weather while restoring that deep showroom-quality finish.Montreal roads, winter salt, UV exposure, and automatic car washes slowly damage your vehicle’s paint and interior over time.",
       exterior: "Exterior",
       interior: "Interior",
       paintPolish: "Paint Polish",
@@ -127,8 +129,9 @@ export const translations = {
     contact: {
       getInTouch: "Get in Touch",
       contactUs: "Contact Us",
+
       contactDescription:
-        "Have questions? We'd love to hear from you. Reach out by phone, email, or fill out the form below.",
+        "Looking for professional car detailing in Montreal? Whether you need ceramic coating, paint correction, interior restoration, or regular maintenance detailing, our team is ready to help you choose the perfect solution for your vehicle.\nWhat are you waiting for?\nBook now for Free Inspections\nFor any queries reach out by phone, email, or fill out the form below.",
       phone: "Phone",
       email: "Email",
       location: "Location",
@@ -148,7 +151,7 @@ export const translations = {
       ourWork: "Our Work",
       detailingGallery: "Detailing Gallery",
       galleryDescription:
-        "See the results for yourself. Every vehicle receives our full attention and expertise.",
+        "Every vehicle tells a different story. From heavily neglected interiors to dull, swirl-marked paint, our gallery showcases real transformations completed for drivers across Montreal and nearby areas.",
       categories: {
         all: "All",
         exterior: "Exterior",
@@ -346,8 +349,9 @@ export const translations = {
       bookNow: "Réserver",
     },
     hero: {
-      tag: "Approuvé par les Propriétaires de Montréal",
-      description: "Votre voiture mérite plus qu'un simple lavage.",
+      tag: "Nettoyage automobile haut de gamme à Montréal",
+      description:
+        "Redonnez tout son éclat à votre véhicule grâce à une correction de peinture professionnelle, un revêtement céramique et un nettoyage intérieur en profondeur.",
       bookUs: "Réserver",
       contactUs: "Contactez-nous",
     },
@@ -381,14 +385,15 @@ export const translations = {
     home: {
       trustedBy: "Approuvé par les propriétaires de",
       whatWeOffer: "Ce que nous offrons",
-      simpleToComprehensive: "D'un simple lavage à une esthétique complète",
+      simpleToComprehensive:
+        "De l'entretien quotidien aux résultats dignes d'une salle d'exposition",
       offerDescription:
-        "Nous offrons une gamme de services premium pour que votre voiture garde son meilleur aspect tout au long de l'année.",
+        "Nos services de nettoyage professionnel redonnent de l'éclat à votre véhicule, le protègent des intempéries montréalaises et lui permettent de conserver une apparence impeccable toute l'année.",
       viewAllServices: "Voir tous les services",
       whyDown2Detail: "Pourquoi Down2Detail",
-      theD2Ddifference: "La différence Down2Detail",
+      theD2Ddifference: "Restaurez l'Éclat. Préservez la Fierté.",
       dontCutCorners:
-        "Nous ne prenons pas de raccourcis. Chaque détail compte pour nous — c'est ce qui nous distingue.",
+        "Des véhicules de luxe aux voitures familiales, nous ravivons l'apparence originale de votre voiture — préservant sa valeur, protégeant sa finition et la gardant au mieux pour les années à venir.Que vous ayez besoin d'un retrait de poils d'animaux, d'un rajeunissement intérieur, d'une correction de peinture ou d'une protection premium de la peinture, chaque service est réalisé avec une attention méticuleuse aux détails. Parce que votre voiture est plus qu'un simple moyen de transport — elle fait partie de vos souvenirs et de votre style de vie.",
       deservesMoreThanOrdinary:
         "Votre voiture mérite plus qu'un lavage ordinaire",
       professionalGrade: "Produits et technologie de qualité professionnelle",
@@ -415,7 +420,7 @@ export const translations = {
       aboutUs: "À Propos de Nous",
       ourStory: "Notre Histoire",
       storyDescription:
-        "De passionnés d'automobile à esthéticiens professionnels — comment Down2Detail est devenu le nom de confiance à Montréal pour les soins auto.",
+        "Down2Detail a été créé par des passionnés d'automobile. Nous sommes convaincus que votre voiture reflète vos exigences, votre style de vie et votre souci du détail.C'est pourquoi nous privilégions un travail de qualité, des méthodes de nettoyage sécuritaires et une protection durable de la peinture, plutôt que des lavages rapides et à la chaîne.",
       ourJourney: "NOTRE PARCOURS",
       simpleToComprehensive: "D'un simple lavage à une esthétique complète",
       journeyP1:
@@ -451,7 +456,7 @@ export const translations = {
       tailoredForVehicle:
         "Services d'Esthétique Professionnelle Adaptés à Votre Véhicule",
       servicesDescription:
-        "Des lavages extérieurs aux revêtements céramiques — chaque service est effectué avec précision, des produits premium et une véritable passion pour la perfection.",
+        "Nos services d'esthétique automobile et de revêtement céramique sont spécialement conçus pour protéger votre véhicule contre les rigueurs du climat canadien, tout en lui redonnant son éclat d'origine.À Montréal, les routes salées, les rayons UV et les stations de lavage automatique endommagent progressivement la peinture et l'intérieur de votre véhicule.",
       exterior: "Extérieur",
       interior: "Intérieur",
       paintPolish: "Polissage de Peinture",
@@ -467,7 +472,7 @@ export const translations = {
       getInTouch: "Entrer en Contact",
       contactUs: "Contactez-nous",
       contactDescription:
-        "Vous avez des questions ? Nous aimerions avoir de vos nouvelles. Contactez-nous par téléphone, e-mail ou remplissez le formulaire ci-dessous.",
+        "Vous recherchez un service d'esthétique automobile professionnel à Montréal ? Que vous ayez besoin d'un revêtement céramique, d'une correction de peinture, d'une restauration intérieure ou d'un entretien régulier\n notre équipe est là pour vous aider à choisir la solution idéale pour votre véhicule.\n N'attendez plus !Prenez rendez-vous dès maintenant pour une inspection gratuite.Pour toute question, contactez-nous par téléphone, par courriel ou remplissez le formulaire ci-dessous.",
       phone: "Téléphone",
       email: "E-mail",
       location: "Emplacement",
@@ -487,7 +492,7 @@ export const translations = {
       ourWork: "Notre Travail",
       detailingGallery: "Galerie d'Esthétique",
       galleryDescription:
-        "Voyez les résultats par vous-même. Chaque véhicule reçoit toute notre attention et notre expertise.",
+        "Chaque véhicule raconte une histoire différente. Des intérieurs négligés aux peintures ternes et micro-rayées, notre galerie présente de véritables transformations réalisées pour des conducteurs de Montréal et des environs.",
       categories: {
         all: "Tous",
         exterior: "Extérieur",

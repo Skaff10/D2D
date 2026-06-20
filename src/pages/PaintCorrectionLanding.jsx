@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { FaCheckCircle } from "react-icons/fa";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import Footer from "../components/Footer";
+import { FaGoogle } from "react-icons/fa";
 import RimBackground from "../components/RimBackground";
-import logo from "../assets/logo/logo.png";
+import Footer from "../components/Footer";
 import d1 from "../assets/bv/d1.png";
 import d3 from "../assets/bv/d2.png";
 import d4 from "../assets/bv/d3.png";
@@ -280,14 +280,15 @@ export default function PaintCorrectionLanding() {
       </Helmet>
 
       <RimBackground />
-      <nav className="flex items-center justify-center">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         {/* Logo */}
-
-        <img
-          src={logo}
-          alt="Down2Detail Logo"
-          className="h-8 lg:h-11 mt-4 w-auto transition-transform duration-300 group-hover:scale-105"
-        />
+        <Link to="/" className="flex items-center gap-2.5 group mt-4">
+          <img
+            src="/d2d2.svg"
+            alt="Down2Detail Logo"
+            className="h-12 lg:h-16 w-auto transition-transform duration-300 group-hover:scale-105"
+          />
+        </Link>
       </nav>
 
       <div className="relative z-10">
@@ -315,7 +316,7 @@ export default function PaintCorrectionLanding() {
               </motion.h1>
               <motion.p
                 variants={fadeInUp}
-                className="text-text-secondary text-lg leading-relaxed max-w-xl text-center"
+                className="hidden lg:block text-text-secondary text-lg leading-relaxed max-w-xl text-center"
               >
                 This summer, give your ride a fresh start. Whether you're
                 looking for extra gloss or full paint correction, our Paint
@@ -348,7 +349,7 @@ export default function PaintCorrectionLanding() {
                     </p>
                     <p className="text-5xl font-bold tracking-tight text-white drop-shadow-md">
                       Only At{" "}
-                      <span className="text-primary price-mono">$599</span>
+                      <span className="text-primary price-mono">$349</span>
                     </p>
                   </div>
 
@@ -359,7 +360,7 @@ export default function PaintCorrectionLanding() {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="btn-filled_2 w-full text-center py-4"
+                      className="btn-filled w-full text-center py-4"
                     >
                       BOOK NOW TO GET A FREE INSPECTION
                     </motion.button>
@@ -367,6 +368,20 @@ export default function PaintCorrectionLanding() {
                 </div>
               </motion.div>
             </motion.div>
+
+            {/* Mobile view only paragraph, displayed under CTA */}
+            <motion.p
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="block lg:hidden text-text-secondary text-lg leading-relaxed max-w-xl text-center mx-auto"
+            >
+              This summer, give your ride a fresh start. Whether you're
+              looking for extra gloss or full paint correction, our Paint
+              Correction & Ceramic Coating package is designed to restore your
+              vehicle and protect it for years.
+            </motion.p>
           </div>
 
           {/* SECTION 2 - Image / Levels */}
@@ -493,6 +508,43 @@ export default function PaintCorrectionLanding() {
             </div>
           </div>
         </div>
+
+        {/* SECTION - Before/After Slider */}
+        <section className="py-16 px-4">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="section-tag mb-4 block text-primary text-center">
+                TRANSFORMATIONS
+              </span>
+              <h2 className="serif-heading text-3xl md:text-4xl text-white text-center mb-4">
+                See The Difference We Make
+              </h2>
+              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+                Every detail matters. Swipe to see the real transformation our
+                team delivers on every vehicle we touch.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <BeforeAfterSlider
+                beforeImage={beforeImg}
+                afterImage={afterImg}
+              />
+            </motion.div>
+          </div>
+        </section>
+
         <section className="py-16 px-4">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-primary">
@@ -534,42 +586,6 @@ export default function PaintCorrectionLanding() {
                 className="w-full mb-2 object-cover"
               />
             ))}
-          </div>
-        </section>
-
-        {/* SECTION - Before/After Slider */}
-        <section className="py-16 px-4">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <span className="section-tag mb-4 block text-primary text-center">
-                TRANSFORMATIONS
-              </span>
-              <h2 className="serif-heading text-3xl md:text-4xl text-white text-center mb-4">
-                See The Difference We Make
-              </h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-                Every detail matters. Swipe to see the real transformation our
-                team delivers on every vehicle we touch.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <BeforeAfterSlider
-                beforeImage={beforeImg}
-                afterImage={afterImg}
-              />
-            </motion.div>
           </div>
         </section>
 
@@ -653,6 +669,9 @@ export default function PaintCorrectionLanding() {
                           Verified Customer
                         </p>
                       </div>
+                      <div className="ml-auto">
+                        <FaGoogle size={22} className="text-white/20" />
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -660,7 +679,7 @@ export default function PaintCorrectionLanding() {
             </div>
           </div>
         </div>
-        <section className="pb-20 sm:pb-5 pt-10">
+        <section className="pb-20 sm:pb-5 pt-10 mt-10">
           <div className="max-w-3xl mx-auto px-4 text-center">
             <motion.div
               variants={sectionVariants}
@@ -688,7 +707,7 @@ export default function PaintCorrectionLanding() {
                 </p>
                 <Link
                   to="/booking?package=Paint+Correction+%26+Protection"
-                  className="btn-filled_2 relative z-10"
+                  className="btn-filled relative z-10"
                 >
                   Book This Package
                 </Link>
@@ -714,7 +733,7 @@ export default function PaintCorrectionLanding() {
               </a>
               <Link
                 to="/booking?package=Paint+Correction+%26+Protection"
-                className="py-3 px-6 w-1/2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium text-center hover:border-primary hover:text-primary transition-colors shadow-lg"
+                className="py-3 px-6 w-1/2 rounded-xl border border-white/10 bg-white backdrop-blur-md text-black font-medium text-center hover:border-primary hover:text-primary transition-colors shadow-lg"
               >
                 Book Now
               </Link>
@@ -722,6 +741,7 @@ export default function PaintCorrectionLanding() {
           )}
         </AnimatePresence>
       </div>
+      <Footer />
     </div>
   );
 }

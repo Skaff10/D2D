@@ -9,7 +9,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/ui/WhatsAppButton";
 import RimBackground from "./components/RimBackground";
+import GA4Tracker from "./components/GA4Tracker";
 import { pushToDataLayer } from "./utils/dataLayer";
+import useUTMCapture from "./hooks/useUTMCapture";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
@@ -31,9 +33,11 @@ import AdminBookings from "./admin/AdminBookings";
 import AdminServices from "./admin/AdminServices";
 import AdminPricing from "./admin/AdminPricing";
 import AdminGallery from "./admin/AdminGallery";
+import AdminAnalytics from "./admin/AdminAnalytics";
 
 function PageTracker() {
   const location = useLocation();
+  useUTMCapture();
 
   useEffect(() => {
     // Timeout allows Helmet to update document.title first
@@ -69,6 +73,7 @@ export default function App() {
         <AuthProvider>
           <Router>
             <PageTracker />
+            <GA4Tracker />
             <ScrollToTop />
             <Toaster
               position="top-right"
@@ -194,6 +199,7 @@ export default function App() {
                 <Route path="services" element={<AdminServices />} />
                 <Route path="pricing" element={<AdminPricing />} />
                 <Route path="gallery" element={<AdminGallery />} />
+                <Route path="analytics" element={<AdminAnalytics />} />
               </Route>
 
               {/* Standalone Landing Pages */}

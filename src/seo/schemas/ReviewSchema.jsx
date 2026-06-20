@@ -67,9 +67,6 @@ const ReviewSchema = () => {
       "@type": "Organization",
       name: "Google Maps",
     },
-    itemReviewed: {
-      "@id": `${siteConfig.url}/#business`,
-    },
   }));
 
   const schema = {
@@ -77,13 +74,6 @@ const ReviewSchema = () => {
     "@type": siteConfig.schemaType,
     "@id": `${siteConfig.url}/#business`,
     name: siteConfig.name,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: siteConfig.aggregateRating.ratingValue,
-      reviewCount: siteConfig.aggregateRating.reviewCount,
-      bestRating: siteConfig.aggregateRating.bestRating,
-      worstRating: siteConfig.aggregateRating.worstRating,
-    },
     review: reviewNodes,
   };
 

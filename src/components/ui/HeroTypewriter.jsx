@@ -44,11 +44,11 @@ export function HeroTypewriter() {
         }
         .d2d-hero-h1 {
           /* Scales smoothly from mobile → desktop, never wraps */
-          font-size: clamp(1.8rem, 6.5vw, 5rem);
+          font-size: clamp(1.5rem, 4vw, 2.25rem);
           white-space: nowrap;
           overflow: hidden;
           /* Fixed height = tallest the line ever needs — stops section jumping */
-          height: clamp(2.6rem, 8.5vw, 6.5rem);
+          height: clamp(2.2rem, 5vw, 3rem);
           display: flex;
           align-items: center;
           justify-content: center;

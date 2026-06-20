@@ -9,6 +9,7 @@ import {
   LogOut,
   Menu,
   X,
+  BarChart,
 } from "lucide-react";
 import { useState } from "react";
 import logo from "../assets/logo/logo.png";
@@ -16,6 +17,7 @@ import logo from "../assets/logo/logo.png";
 const sidebarLinks = [
   { name: "Dashboard", path: "/admin/dashboard", icon: LayoutDashboard },
   { name: "Bookings", path: "/admin/bookings", icon: CalendarDays },
+  { name: "Lead Analytics", path: "/admin/analytics", icon: BarChart },
   { name: "Services", path: "/admin/services", icon: Wrench },
   { name: "Packages", path: "/admin/pricing", icon: DollarSign },
   { name: "Gallery", path: "/admin/gallery", icon: ImageIcon },

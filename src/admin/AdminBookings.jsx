@@ -46,7 +46,7 @@ export default function AdminBookings() {
 
   async function fetchBookings() {
     try {
-      const snapshot = await getDocs(collection(db, "bookings"));
+      const snapshot = await getDocs(collection(db, "bookings_v2"));
       const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
       data.sort(
         (a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)
@@ -62,7 +62,7 @@ export default function AdminBookings() {
 
   const handleStatusChange = async (bookingId, newStatus) => {
     try {
-      await updateDoc(doc(db, "bookings", bookingId), { status: newStatus });
+      await updateDoc(doc(db, "bookings_v2", bookingId), { status: newStatus });
       setBookings((prev) =>
         prev.map((b) =>
           b.id === bookingId ? { ...b, status: newStatus } : b
@@ -76,7 +76,7 @@ export default function AdminBookings() {
 
   const handleSaveAdminNote = async (bookingId, noteText) => {
     try {
-      await updateDoc(doc(db, "bookings", bookingId), { adminNotes: noteText });
+      await updateDoc(doc(db, "bookings_v2", bookingId), { adminNotes: noteText });
       setBookings((prev) =>
         prev.map((b) =>
           b.id === bookingId ? { ...b, adminNotes: noteText } : b

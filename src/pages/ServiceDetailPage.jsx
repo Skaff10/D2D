@@ -189,10 +189,52 @@ export default function ServiceDetailPage() {
         ]}
       />
 
-      <Helmet>
-        <title>{displayName} | Down2Detail Detailing</title>
-        <meta name="description" content={displayShortDesc} />
-      </Helmet>
+      {isCeramicCoating ? (
+        <Helmet>
+          <title>Ceramic Coating Montreal & Saint-Hubert | Down2Detail</title>
+          <meta
+            name="description"
+            content="Professional ceramic coating in Montreal & Saint-Hubert, QC. Long-lasting paint protection, hydrophobic finish & UV defence. Get a free quote today!"
+          />
+          <link rel="canonical" href="https://down2detail.ca/services/ceramic-coating" />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://down2detail.ca/services/ceramic-coating" />
+          <meta
+            property="og:title"
+            content="Ceramic Coating Montreal & Saint-Hubert | Down2Detail"
+          />
+          <meta
+            property="og:description"
+            content="Protect your paint with professional ceramic coating in Montreal & Saint-Hubert. Hydrophobic finish, UV resistance & lasting gloss. Book your appointment."
+          />
+          <meta
+            property="og:image"
+            content="https://down2detail.ca/og-ceramic-coating.jpg"
+          />
+          <meta property="og:site_name" content="Down2Detail" />
+          <meta property="og:locale" content="en_CA" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content="Ceramic Coating Montreal & Saint-Hubert | Down2Detail"
+          />
+          <meta
+            name="twitter:description"
+            content="Protect your paint with professional ceramic coating in Montreal & Saint-Hubert. Hydrophobic finish, UV resistance & lasting gloss. Book your appointment."
+          />
+          <meta
+            name="twitter:image"
+            content="https://down2detail.ca/og-ceramic-coating.jpg"
+          />
+        </Helmet>
+      ) : (
+        <Helmet>
+          <title>{displayName} | Down2Detail Detailing</title>
+          <meta name="description" content={displayShortDesc} />
+        </Helmet>
+      )}
 
       {/* ===== HERO SECTION ===== */}
       <section

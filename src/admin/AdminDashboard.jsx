@@ -20,7 +20,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const snapshot = await getDocs(collection(db, 'bookings'))
+        const snapshot = await getDocs(collection(db, 'bookings_v2'))
         const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
 
         setStats({

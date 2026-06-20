@@ -3,7 +3,6 @@ import { useLang } from "../context/LanguageContext";
 import { Phone, Mail, MapPin, Clock, ArrowUp } from "lucide-react";
 import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import logo from "../assets/logo/logo.png";
 import { translations } from "../translations";
 
 export default function Footer() {
@@ -20,10 +19,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
           {/* Left Column — Email & Social */}
-          <div className="space-y-10">
+          <div className="space-y-4">
             {/* Logo */}
             <Link to="/" className="inline-block">
-              <img src={logo} alt="Down2Detail Logo" className="h-10 w-auto" />
+              <img src="/d2d.svg" alt="Down2Detail Logo" className="h-7 md:h-12 w-auto" />
             </Link>
 
             {/* Email */}

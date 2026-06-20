@@ -23,7 +23,8 @@ const translations = {
       "Explore our auto detailing packages: Exterior & Interior Detail, Paint Polish & Protection, and Monthly Plans.",
     heroBadge: "TRANSPARENT PRICING",
     heroTitle: "Our Packages",
-    heroSub: "Choose a category to explore our services",
+    heroSub:
+      "Whether you want a quick refresh, deep interior restoration, or full paint correction with ceramic protection, our detailing packages are designed for drivers who take pride in their vehicle. ",
     card1Title: "Exterior & Interior Detail",
     card1Desc: "Full interior and exterior cleaning packages for every budget.",
     card1Price: "Starting from $99",
@@ -42,7 +43,8 @@ const translations = {
       "Découvrez nos forfaits d'esthétique automobile : Détail Extérieur & Intérieur, Polissage & Protection, et Plans Mensuels.",
     heroBadge: "TARIFICATION TRANSPARENTE",
     heroTitle: "Nos Forfaits",
-    heroSub: "Choisissez une catégorie pour explorer nos services",
+    heroSub:
+      "Que vous souhaitiez un rafraîchissement rapide, une restauration intérieure en profondeur ou une correction complète de la peinture avec protection céramique, nos forfaits d'esthétique automobile sont conçus pour les conducteurs qui prennent soin de leur véhicule.",
     card1Title: "Détail Extérieur & Intérieur",
     card1Desc: "Forfaits de nettoyage complet pour tous les budgets.",
     card1Price: "À partir de 99$",

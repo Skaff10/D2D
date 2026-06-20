@@ -22,12 +22,11 @@ import {
   Truck,
   Leaf,
 } from "lucide-react";
+import { FaGoogle } from "react-icons/fa";
 import SectionHeading from "../components/ui/SectionHeading";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import { pushToDataLayer } from "../utils/dataLayer";
-
-import heroImg from "../assets/dk/imgi_3_shutHero.jpg";
 import ceramicImg from "../assets/dk/imgi_2_ceramiccoating.webp";
 import interiorImg from "../assets/dk/imgi_4_Interior.png";
 import exteriorImg from "../assets/dk/imgi_2_exterior2.jpg";
@@ -64,6 +63,19 @@ const brandLogos = [
   { src: chevroletImg, alt: "Chevrolet" },
   { src: hondaImg, alt: "Honda" },
   { src: toyotaImg, alt: "Toyota" },
+];
+
+// ── Service area cities (shown as chips under the services heading) ──────────
+const servicedCities = [
+  "Montreal",
+  "Laval",
+  "Longueuil",
+  "Brossard",
+  "Saint-Hubert",
+  "West Island",
+  "Pointe-Claire",
+  "Dorval",
+  "Saint-Laurent",
 ];
 
 export default function Home() {
@@ -165,6 +177,7 @@ export default function Home() {
     { value: "100%", label: "Satisfaction" },
     { value: "7/7", label: lang === "en" ? "Days Open" : "Jours Ouverts" },
   ];
+
   const testimonials = [
     {
       name: "Sholmi Konfino",
@@ -184,7 +197,6 @@ export default function Home() {
       rating: 5,
       url: "https://maps.app.goo.gl/Zk5RQmpWSHfyvh9x9",
     },
-
     {
       name: "Daksh Garg",
       text: "Got my 2025 F-150 ceramic coated and I couldn't be happier. The quality of work is top-notch, the attention to detail is insane, and the truck looks better than brand new. Super professional, no shortcuts, no nonsense. Highly recommend if you want your vehicle done right.",
@@ -215,7 +227,6 @@ export default function Home() {
       rating: 5,
       url: "https://maps.app.goo.gl/vBqDTWExouE8VYis8",
     },
-
     {
       name: "Shahriar Mahmud",
       text: "Initially, it seemed somewhat suspicious that they had only five-star reviews. Over the years, my car's paint had deteriorated, and there were swirl marks and scratches all over. I decided to take a chance and entrust my Porsche to them for paint correction. Upon picking up my car, I was astonished! It felt as though I was receiving a brand-new Cayenne! The paint had an incredibly smooth....",
@@ -248,7 +259,7 @@ export default function Home() {
       videoRef.current.muted = true;
       videoRef.current.play().catch(() => {});
     }
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -286,7 +297,7 @@ export default function Home() {
         <title>Professional Auto Detailing Montreal | Down2Detail</title>
         <meta
           name="description"
-          content="Professional auto detailing in Montreal & Saint-Hubert, QC. Paint correction, ceramic coating, interior & exterior packages. Serving Greater Montreal. Book today!"
+          content="Premium auto detailing in Montreal & Saint-Hubert, QC. Paint correction, ceramic coating & interior detailing packages. Book your appointment today!"
         />
         <link rel="canonical" href="https://down2detail.ca/" />
 
@@ -353,25 +364,24 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-[800px] w-full mx-auto flex flex-col items-center"
           >
+            {/* ── Item 1: Hero tag ─────────────────────────────────────────── */}
             <span
-              className="mb-4 block uppercase section-tag font-medium"
+              className="mb-4 block uppercase section-tag font-medium text-xs md:text-sm tracking-widest"
               style={{
                 color: "#e46904ff",
                 fontWeight: "bold",
-                fontSize: "clamp(0.7rem, 2.5vw, 1rem)",
                 textShadow: "0px 2px 12px rgba(10, 9, 9, 0.99)",
               }}
             >
-              {th.tag}
+              {lang === "en" ? "PREMIUM CAR DETAILING IN MONTREAL" : th.tag}
             </span>
 
             <HeroTypewriter />
 
             <p
-              className="mb-8"
+              className="mb-8 text-sm md:text-base"
               style={{
                 color: "rgba(255, 255, 255, 0.85)",
-                fontSize: "clamp(1rem, 2vw, 1.2rem)",
                 fontWeight: 400,
                 lineHeight: 1.7,
               }}
@@ -414,7 +424,7 @@ export default function Home() {
       </section>
 
       {/* ===== BRAND LOGOS ===== */}
-      <section className="py-12  border-white/[0.04] overflow-hidden">
+      <section className="py-12 border-white/[0.04] overflow-hidden">
         <div className="max-w-full mx-auto">
           <p className="text-center section-tag mb-8 px-4">{t.trustedBy}</p>
           <div className="relative md:w-1/2 mx-auto overflow-hidden group">
@@ -432,13 +442,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== SERVICES ===== */}
+      {/* ── Item 3: "What We Offer" heading + new description + city chips ── */}
       <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle={t.whatWeOffer}
             title={t.simpleToComprehensive}
-            description={t.offerDescription}
+            description={
+              lang === "en"
+                ? "Our professional detailing services restore shine, protect against Montreal's harsh weather, and keep your vehicle looking its absolute best all year long."
+                : t.offerDescription
+            }
           />
+
+          {/* City service-area chips */}
+          <div className="flex flex-wrap justify-center gap-2 mt-2 mb-10">
+            {servicedCities.map((city) => (
+              <span
+                key={city}
+                className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-white/[0.08] text-white/30"
+              >
+                {city}
+              </span>
+            ))}
+            <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-primary/20 text-primary/40">
+              {lang === "en" ? "+ Greater Montreal Area" : "+ Grand Montréal"}
+            </span>
+          </div>
 
           <div className="grid sm:grid-cols-2 gap-6">
             {services.map((service, i) => (
@@ -458,11 +489,11 @@ export default function Home() {
                 </div>
 
                 <div className="dark-card overflow-hidden">
-                  {/* Card header with gradient */}
+                  {/* Card header */}
                   <div className="p-5 pb-3">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <p className="price-mono text-white text-lg mt-2">
+                        <p className="price-mono text-white text-sm md:text-base mt-2">
                           {service.price}
                         </p>
                       </div>
@@ -523,25 +554,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-5 lg:py-15">
-        <SectionHeading
-          subtitle={t.whyDown2Detail}
-          title={t.theD2Ddifference}
-          description={t.dontCutCorners}
-        />
+      {/* ===== THE D2D DIFFERENCE ===== */}
+      {/*
+        Items 2, 4, 5:
+          • Heading      → "Your Car Deserves More Than a Wash"
+          • Left text    → Opening line of item 4 (sets tone with the image)
+          • Right body   → Body of item 4 (value prop) → item 5 (emotional closer)
+          • Buttons      → After the copy (read first, then CTA)
+      */}
+      <section className="pb-20 lg:pb-28 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <SectionHeading
+            subtitle={t.whyDown2Detail}
+            title={t.theD2Ddifference}
+            description={t.dontCutCorners}
+            maxWidth="max-w-7xl"
+          />
+
+          <div className="mt-30 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* LEFT — image with lead-in text above it */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              {/* Bento-style layout */}
-              <div className="space-y-4">
+              <div className="space-y-4 -mb-10">
+                {/* ── Item 4 — opening sentence above the photo ── */}
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  To ensure your car looks stunning —{" "}
-                  <span className="text-white font-medium">Down2Detail</span>
+                  {lang === "en"
+                    ? "From luxury vehicles to everyday family cars, we restore the appearance, shine, and pride that made you fall in love with yours — preserving its value and protecting its finish for years to come."
+                    : "Des véhicules de luxe aux voitures familiales, nous restaurons l'apparence, l'éclat et la fierté qui vous ont fait tomber amoureux de la vôtre — préservant sa valeur et protégeant sa finition pour les années à venir."}
                 </p>
 
                 <div className="relative rounded-xl overflow-hidden img-zoom mt-4">
@@ -554,21 +597,37 @@ export default function Home() {
               </div>
             </motion.div>
 
+            {/* RIGHT — heading → body copy → emotional closer → buttons */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-6">
-                {lang === "en"
-                  ? "Your Car Deserves More than an"
-                  : "Votre voiture mérite plus qu'un lavage"}{" "}
+              {/* ── Item 2 — section heading ── */}
+              <h2 className="serif-heading text-xl md:text-2xl lg:text-3xl mb-5">
+                {lang === "en" ? "Your Car Deserves" : "Votre voiture mérite"}{" "}
                 <span className="serif-heading-italic">
-                  {lang === "en" ? "Ordinary Wash" : "Ordinaire"}
+                  {lang === "en" ? "More Than a Wash" : "Plus Qu'un Lavage"}
                 </span>
               </h2>
-              <div className="flex gap-3 mb-8">
+
+              {/* ── Item 4 — body paragraph ── */}
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {lang === "en"
+                  ? "Whether it's pet hair removal, paint correction, or premium protection, every service is carried out with meticulous attention to detail. Because your car is more than transportation — it's part of your memories and lifestyle."
+                  : "Qu'il s'agisse d'un retrait de poils d'animaux, d'une correction de peinture ou d'une protection premium, chaque service est réalisé avec une attention méticuleuse aux détails. Parce que votre voiture est plus qu'un moyen de transport — elle fait partie de vos souvenirs et de votre mode de vie."}
+              </p>
+
+              {/* ── Item 5 — emotional closer (italic, slightly dimmer) ── */}
+              <p className="text-white/50 text-sm leading-relaxed italic mb-7">
+                {lang === "en"
+                  ? "That's why our goal is simple: to bring back that first-day feeling every time you see it."
+                  : "C'est pourquoi notre objectif est simple : retrouver cette sensation du premier jour à chaque fois que vous le voyez."}
+              </p>
+
+              {/* Buttons sit AFTER the copy so the value prop lands first */}
+              <div className="flex gap-3">
                 <Link
                   to="/booking"
                   className="btn-filled"
@@ -598,20 +657,16 @@ export default function Home() {
                   Contact Us
                 </Link>
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                {lang === "en"
-                  ? "At Down2Detail, we believe auto detailing is an art, not just a service. Based in Saint-Hubert and serving the Greater Montreal Area, we combine premium products with meticulous hand techniques to deliver results that basic car washes simply can't match."
-                  : "Chez Down2Detail, nous croyons que l'esthétique automobile est un art, pas seulement un service. Basés à Saint-Hubert et au service de la région du Grand Montréal, nous combinons des produits premium avec des techniques manuelles méticuleuses pour livrer des résultats que les lavages de voiture de base ne peuvent tout simplement pas égaler."}
-              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 lg:py-28">
+      {/* ===== WHY CARDS + STATS ===== */}
+      <section className="pb-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* Card 1 — Large left, row-span-2 */}
+            {/* Card 1 — Professional Grade */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -626,7 +681,7 @@ export default function Home() {
                     <Leaf size={14} className="text-white/40" />
                   </div>
                 </div>
-                <h3 className="serif-heading text-2xl text-white mb-3">
+                <h3 className="serif-heading text-xl md:text-2xl text-white mb-3">
                   {t.professionalGrade}
                 </h3>
                 <p className="text-text-secondary text-sm leading-relaxed">
@@ -657,7 +712,7 @@ export default function Home() {
               </p>
             </motion.div>
 
-            {/* Card 3 — Mobile & In-Shop (replaces image) */}
+            {/* Card 3 — Mobile & In-Shop */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -678,8 +733,6 @@ export default function Home() {
                 {t.mobileInShopDesc}
               </p>
             </motion.div>
-
-            {/* Card 4 — On-Time + Satisfaction */}
           </div>
 
           {/* Stats row */}
@@ -698,10 +751,10 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.1 * i }}
                 className="dark-card p-5 flex flex-col items-center justify-center text-center"
               >
-                <p className="text-primary text-3xl font-bold mb-1">
+                <p className="text-primary text-2xl md:text-3xl font-bold mb-1">
                   {stat.num}
                 </p>
-                <p className="text-white/30 text-[10px] uppercase tracking-widest">
+                <p className="text-white/30 text-xs md:text-sm uppercase tracking-widest">
                   {stat.label}
                 </p>
               </motion.div>
@@ -711,7 +764,7 @@ export default function Home() {
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="py-20 lg:py-28">
+      <section className="pb-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
             <div className="flex-1">
@@ -724,7 +777,7 @@ export default function Home() {
                 <span className="section-tag inline-block mb-4">
                   {t.testimonials}
                 </span>
-                <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl text-white">
+                <h2 className="serif-heading text-xl md:text-2xl lg:text-3xl text-white">
                   {t.whatOurClientsSay}
                 </h2>
               </motion.div>
@@ -792,6 +845,9 @@ export default function Home() {
                         {t.verifiedCustomer}
                       </p>
                     </div>
+                    <div className="ml-auto">
+                      <FaGoogle size={22} className="text-white/20" />
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -801,7 +857,8 @@ export default function Home() {
       </section>
 
       {/* ===== CTA BANNER ===== */}
-      <section className="py-20 lg:py-28">
+      {/* ── Item 6: tagline added as descriptor below the heading ── */}
+      <section className="pb-20 lg:pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -810,9 +867,17 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-6">
+              <h2 className="serif-heading text-xl md:text-2xl lg:text-3xl mb-3">
                 {t.bookYourPremiumToday}
               </h2>
+
+              {/* ── Item 6 — evocative tagline below the CTA heading ── */}
+              <p className="text-text-secondary text-sm leading-relaxed mb-6">
+                {lang === "en"
+                  ? "Book your service today and rediscover the look that made your dream car unforgettable."
+                  : "Réservez votre service aujourd'hui et redécouvrez l'apparence qui a rendu votre voiture de rêve inoubliable."}
+              </p>
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/booking"

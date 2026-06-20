@@ -29,6 +29,7 @@ import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 import { pushToDataLayer } from "../utils/dataLayer";
 import { BreadcrumbSchema } from "../seo/schemas";
+import useUTMCapture from "../hooks/useUTMCapture";
 
 const vehicleTypes = [
   "Sedan/Coupe/Crossover",
@@ -88,6 +89,7 @@ export default function Booking() {
   const { lang } = useLang();
   const t = translations[lang].booking;
 
+  const utmData = useUTMCapture();
   const [searchParams] = useSearchParams();
   const [services, setServices] = useState(fallbackServices);
   const [submitting, setSubmitting] = useState(false);
@@ -182,7 +184,7 @@ export default function Booking() {
   const onSubmit = async (data) => {
     setSubmitting(true);
     try {
-      await addDoc(collection(db, "bookings"), {
+      await addDoc(collection(db, "bookings_v2"), {
         customerName: data.customerName,
         phone: data.phone,
         email: data.email,
@@ -194,6 +196,7 @@ export default function Booking() {
         time: data.time,
         notes: data.notes || "",
         selectedPackage: bookingType === "package" ? data.selectedPackage : "",
+        lead_source: utmData,
         status: "Pending",
         createdAt: Timestamp.now(),
       });
@@ -495,7 +498,7 @@ export default function Booking() {
                     </p>
                   )}
                   {showPricingNote && (
-                    <div className="flex items-start gap-2 mt-2 dark-card p-3 bg-primary/[0.04] border-primary/10">
+                    <div className="flex items-start gap-2 mt-2 dark-card p-3 bg-primary/4 border-primary/10">
                       <AlertCircle
                         size={14}
                         className="text-primary/60 shrink-0 mt-0.5"
