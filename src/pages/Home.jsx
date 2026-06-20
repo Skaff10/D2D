@@ -424,7 +424,7 @@ export default function Home() {
       </section>
 
       {/* ===== BRAND LOGOS ===== */}
-      <section className="py-12 border-white/[0.04] overflow-hidden">
+      <section className="py-12 border-white/4 overflow-hidden">
         <div className="max-w-full mx-auto">
           <p className="text-center section-tag mb-8 px-4">{t.trustedBy}</p>
           <div className="relative md:w-1/2 mx-auto overflow-hidden group">
@@ -461,7 +461,7 @@ export default function Home() {
             {servicedCities.map((city) => (
               <span
                 key={city}
-                className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-white/[0.08] text-white/30"
+                className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-white/8 text-white/30"
               >
                 {city}
               </span>
@@ -816,7 +816,7 @@ export default function Home() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="dark-card p-6 card-hover cursor-pointer hover:!border-primary/50 flex flex-col h-full"
+                  className="dark-card p-6 card-hover cursor-pointer hover:border-primary/50! flex flex-col h-full"
                   onClick={() => window.open(t.url, "_blank")}
                   title="Click to view full review on Google Maps"
                 >
@@ -834,7 +834,7 @@ export default function Home() {
                     "{t.text}"
                   </p>
                   <div className="flex items-center gap-3 mt-auto">
-                    <div className="w-9 h-9 bg-white/[0.06] rounded-full flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 bg-white/6 rounded-full flex items-center justify-center shrink-0">
                       <span className="text-white/60 font-medium text-sm">
                         {t.name.charAt(0)}
                       </span>

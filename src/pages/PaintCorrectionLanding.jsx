@@ -336,7 +336,7 @@ export default function PaintCorrectionLanding() {
                 variants={fadeInUp}
                 className="dark-card p-8 relative overflow-hidden group glow-orange"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r " />
+                <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r " />
 
                 <div className="flex flex-col items-center text-center gap-6 relative z-10">
                   <div className="bg-primary text-black font-bold text-xs sm:text-sm tracking-widest uppercase py-1.5 px-4 rounded-full">
@@ -652,7 +652,7 @@ export default function PaintCorrectionLanding() {
                         />
                       ))}
                     </div>
-                    <p className="text-text-secondary text-sm leading-relaxed mb-8 italic flex-grow">
+                    <p className="text-text-secondary text-sm leading-relaxed mb-8 italic grow">
                       "{t.text}"
                     </p>
                     <div className="flex items-center gap-4 mt-auto">

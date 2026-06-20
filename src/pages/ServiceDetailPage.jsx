@@ -267,11 +267,11 @@ export default function ServiceDetailPage() {
               </div>
             ) : (
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-[1px] bg-primary/40" />
+                <div className="w-8 h-px bg-primary/40" />
                 <span className="section-tag text-primary/80">
                   {service.category}
                 </span>
-                <div className="w-8 h-[1px] bg-primary/40" />
+                <div className="w-8 h-1px bg-primary/40" />
               </div>
             )}
 
@@ -307,7 +307,7 @@ export default function ServiceDetailPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="aspect-[4/3] bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
+              className="aspect-4/3 bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
             >
               <img
                 src={service.pic1}
@@ -320,7 +320,7 @@ export default function ServiceDetailPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="aspect-[4/3] bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
+              className="aspect-4/3 bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
             >
               <img
                 src={service.pic2}
@@ -420,7 +420,7 @@ export default function ServiceDetailPage() {
                     {displaySurfaces?.map((surface, i) => (
                       <span
                         key={i}
-                        className="px-4 py-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-sm text-white/70"
+                        className="px-4 py-2 rounded-lg bg-white/4 border border-white/8 text-sm text-white/70"
                       >
                         {surface}
                       </span>
@@ -485,7 +485,7 @@ export default function ServiceDetailPage() {
                             return (
                               <div
                                 key={idx}
-                                className="flex justify-between items-center pb-3 border-b border-white/[0.05] last:border-0 last:pb-0"
+                                className="flex justify-between items-center pb-3 border-b border-white/5 last:border-0 last:pb-0"
                               >
                                 <span className="text-white/70 text-sm">
                                   {tier.label}
@@ -530,8 +530,8 @@ export default function ServiceDetailPage() {
                             key={i}
                             className={`relative p-4 rounded-xl border transition-all duration-300 ${
                               i === 2
-                                ? "bg-primary/[0.06] border-primary/20"
-                                : "bg-white/[0.02] border-white/[0.06]"
+                                ? "bg-primary/6 border-primary/20"
+                                : "bg-white/2 border-white/6"
                             }`}
                           >
                             {i === 2 && (
@@ -575,7 +575,7 @@ export default function ServiceDetailPage() {
                         return (
                           <div
                             key={i}
-                            className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]"
+                            className="p-4 rounded-xl bg-white/2 border border-white/6"
                           >
                             <div className="flex items-center justify-between gap-4 mb-1">
                               <p className="text-white font-medium text-sm">
@@ -629,7 +629,7 @@ export default function ServiceDetailPage() {
       </section>
 
       {/* ===== RELATED SERVICES SECTION — Task 1 ===== */}
-      <section className="py-16 border-t border-white/[0.06]">
+      <section className="py-16 border-t border-white/6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -639,9 +639,9 @@ export default function ServiceDetailPage() {
             className="mb-10"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-[1px] bg-primary/40" />
+              <div className="w-8 h-px bg-primary/40" />
               <span className="section-tag text-primary/80">Explore</span>
-              <div className="w-8 h-[1px] bg-primary/40" />
+              <div className="w-8 h-px bg-primary/40" />
             </div>
             <h2 className="serif-heading text-2xl sm:text-3xl text-white">
               {t.relatedServices}
@@ -668,7 +668,7 @@ export default function ServiceDetailPage() {
                     to={`/services/${relId}`}
                     className="block group dark-card overflow-hidden card-hover h-full"
                   >
-                    <div className="aspect-[16/9] overflow-hidden">
+                    <div className="aspect-video overflow-hidden">
                       <img
                         src={relSvc.cover_pic}
                         alt={relName}
