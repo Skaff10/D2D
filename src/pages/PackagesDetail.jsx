@@ -490,7 +490,7 @@ export default function PackagesDetail() {
               <AddonChip name={t.addon_fabric} price="$49" />
               <AddonChip name={t.addon_leather} price="$149" />
               <AddonChip name={t.addon_clay} price="$59" />
-              <AddonChip name={t.addon_sealant} price="$99" />
+              <AddonChip name={t.addon_sealant} price="$49" />
             </div>
           </motion.div>
         </div>

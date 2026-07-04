@@ -85,7 +85,7 @@ export default function App() {
                   border: "1px solid #2a1800",
                 },
                 success: {
-                  iconTheme: { primary: "#f97316", secondary: "#000" },
+                  iconTheme: { primary: "#e95514", secondary: "#000" },
                 },
                 error: {
                   iconTheme: { primary: "#ef4444", secondary: "#000" },

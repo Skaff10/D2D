@@ -16,6 +16,7 @@ import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 import ceramicImg from "../assets/dk/down2detail.png";
 import { BreadcrumbSchema } from "../seo/schemas";
+import SectionHeading2 from "../components/ui/SectionHeading2";
 
 export default function About() {
   const { lang } = useLang();
@@ -99,9 +100,9 @@ export default function About() {
         />
       </Helmet>
 
-      <section className="pt-32 pb-16">
+      <section className="pt-32 pb-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
+          <SectionHeading2
             subtitle={t.aboutUs}
             title={t.ourStory}
             description={t.storyDescription}
@@ -110,7 +111,7 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20">
+      <section className="">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
@@ -161,7 +162,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 border-y border-white/[0.04]">
+      <section className="py-16 mt-10 lg:mt-0 border-y border-white/[0.04]">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (

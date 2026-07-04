@@ -73,9 +73,9 @@ const fallbackServices = [
   { id: "3", name: "Headlight & Taillight Tint" },
   { id: "4", name: "Leather Seat Treatment" },
   { id: "5", name: "Gloss Enhancer" },
-  { id: "6", name: "One-Step Polish" },
-  { id: "7", name: "Two-Step Polish" },
-  { id: "8", name: "Three-Step Polish" },
+  { id: "6", name: "DA Two-Step Paint Correction" },
+  { id: "7", name: "Rotary Two-Step Paint Correction" },
+  { id: "8", name: "Three-Step Paint Correction" },
   { id: "9", name: "Ceramic Coating" },
 ];
 
@@ -98,6 +98,8 @@ export default function Booking() {
   const preselectedService = searchParams.get("service") || "";
   const categoryParam = searchParams.get("category") || "";
   const urlPackage = searchParams.get("package") || "";
+  // When coming from a landing page with a pre-set package, lock the selection
+  const isPackageLocked = !!urlPackage;
   const preselectedPackage =
     urlPackage || defaultPackageMap[categoryParam] || "";
 
@@ -137,9 +139,9 @@ export default function Booking() {
   const selectedService = watch("serviceName");
   const showPricingNote =
     selectedService === "Gloss Enhancer" ||
-    selectedService === "One-Step Polish" ||
-    selectedService === "Two-Step Polish" ||
-    selectedService === "Three-Step Polish";
+    selectedService === "DA Two-Step Paint Correction" ||
+    selectedService === "Rotary Two-Step Paint Correction" ||
+    selectedService === "Three-Step Paint Correction";
 
   // Clear the opposite field when toggling booking type
   const handleToggle = (type) => {
@@ -341,23 +343,25 @@ export default function Booking() {
             onSubmit={handleSubmit(onSubmit)}
             className="dark-card p-6 md:p-8 space-y-6"
           >
-            {/* Booking Type Toggle */}
-            <div className="flex gap-3">
-              <button
-                type="button"
-                className={`${pillBase} ${bookingType === "service" ? pillActive : pillInactive}`}
-                onClick={() => handleToggle("service")}
-              >
-                {lang === "en" ? "Book a Service" : "Réserver un service"}
-              </button>
-              <button
-                type="button"
-                className={`${pillBase} ${bookingType === "package" ? pillActive : pillInactive}`}
-                onClick={() => handleToggle("package")}
-              >
-                {lang === "en" ? "Book a Package" : "Réserver un forfait"}
-              </button>
-            </div>
+            {/* Booking Type Toggle — hidden when package is locked from landing page */}
+            {!isPackageLocked && (
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  className={`${pillBase} ${bookingType === "service" ? pillActive : pillInactive}`}
+                  onClick={() => handleToggle("service")}
+                >
+                  {lang === "en" ? "Book a Service" : "Réserver un service"}
+                </button>
+                <button
+                  type="button"
+                  className={`${pillBase} ${bookingType === "package" ? pillActive : pillInactive}`}
+                  onClick={() => handleToggle("package")}
+                >
+                  {lang === "en" ? "Book a Package" : "Réserver un forfait"}
+                </button>
+              </div>
+            )}
 
             {/* Name & Phone */}
             <div className="grid md:grid-cols-2 gap-6">
@@ -521,8 +525,11 @@ export default function Booking() {
                     <Package size={12} />{" "}
                     {lang === "en" ? "Package" : "Forfait"} *
                   </label>
+                  
                   <select
                     className={inputClasses}
+                    disabled={isPackageLocked}
+                    style={isPackageLocked ? { opacity: 0.7, cursor: "not-allowed", pointerEvents: "none" } : {}}
                     {...register("selectedPackage", {
                       validate: (v) =>
                         bookingType !== "package" ||

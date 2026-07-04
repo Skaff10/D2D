@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Goldman:wght@400;700&family=Oxanium:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Goldman:wght@400;700&family=Oxanium:wght@200..800&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #f97316;
-  --color-primary-dark: #ea580c;
-  --color-primary-light: #fb923c;
+  --color-primary: #e95514;
+  --color-primary-dark: #c44410;
+  --color-primary-light: #f06830;
   --color-card: #161616;
   --color-card-hover: #1e1e1e;
   --color-surface: #0e0e0e;
@@ -21,7 +21,6 @@
   --font-family-body: "Oxanium", sans-serif;
   --font-family-mono: "Exo", sans-serif;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -57,7 +56,7 @@ h6 {
   font-weight: 400;
 }
 
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 6px;
 }
 
@@ -71,7 +70,7 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f97316;
+  background: #e95514;
 }
 
 /* Glass cards matching reference */
@@ -138,7 +137,6 @@ h6 {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 .dark-card:hover {
   border-color: rgba(255, 255, 255, 0.12);
   box-shadow:
@@ -176,7 +174,7 @@ h6 {
   gap: 0.5rem;
   padding: 0.65rem 1.75rem;
   min-width: 130px; /* adjust this value to match your longest button */
-  border: 1.5px solid rgba(249, 115, 22, 0.08);
+  border: 1.5px solid rgba(233, 85, 20, 0.08);
   border-radius: 0.625rem;
   font-family: var(--font-family-body);
   font-size: 0.875rem;
@@ -188,7 +186,7 @@ h6 {
 }
 
 .btn-filled_2 {
-  background-color: #e46904ff;
+  background-color: #e95514;
   color: #ffffff;
 }
 .btn-filled_2:hover {
@@ -204,11 +202,11 @@ h6 {
 
 /* Orange glow */
 .glow-orange {
-  box-shadow: 0 0 40px rgba(249, 115, 22, 0.08);
+  box-shadow: 0 0 40px rgba(233, 85, 20, 0.08);
 }
 
 .glow-orange-strong {
-  box-shadow: 0 0 50px rgba(249, 115, 22, 0.15);
+  box-shadow: 0 0 50px rgba(233, 85, 20, 0.15);
 }
 
 /* Card hover effect */
@@ -236,7 +234,7 @@ h6 {
 
 /* Gradient text — amber/orange */
 .text-gradient {
-  background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24);
+  background: linear-gradient(135deg, #e95514, #f06830, #e97020);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -292,6 +290,12 @@ h6 {
   font-weight: 700;
   letter-spacing: 0.02em;
 }
+.price-mono_2 {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
 
 /* Shield icon badge */
 .shield-badge {
@@ -325,10 +329,10 @@ h6 {
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 0 10px rgba(233, 85, 20, 0.3);
   }
   50% {
-    box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+    box-shadow: 0 0 25px rgba(233, 85, 20, 0.5);
   }
 }
 
@@ -384,8 +388,8 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: #f97316;
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
+  border-color: #e95514;
+  box-shadow: 0 0 0 3px rgba(233, 85, 20, 0.12);
 }
 
 /* Admin table */
@@ -414,7 +418,7 @@ textarea:focus {
 }
 
 .admin-table tr:hover td {
-  background: rgba(249, 115, 22, 0.03);
+  background: rgba(233, 85, 20, 0.03);
 }
 
 /* Arrow indicator */

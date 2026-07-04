@@ -143,14 +143,7 @@ export default function ServiceDetailPage() {
     serviceTrans.additionalSurfaces || service.additionalSurfaces;
 
   const packageIncludedServices = [
-    "exterior-detailing",
-    "interior-detailing",
     "paint-decontamination",
-    "floor-carpet-shampoo",
-    "pet-hair-removal",
-    "fabric-seat-shampoo",
-    "paint-sealant",
-    "car-wax",
   ];
   const isPackageIncluded = packageIncludedServices.includes(service.id);
 
@@ -290,7 +283,29 @@ export default function ServiceDetailPage() {
             {!isCeramicCoating && (
               <div className="mt-4">
                 <p className="price-mono text-primary text-xl font-medium">
-                  {displayPrice}
+                  {(() => {
+                    // Hero section should show "Starting at $price CAD"
+                    if (!displayPrice) return "";
+                    const isContactOrIncluded =
+                      displayPrice === tGlobal.contactForPricing ||
+                      displayPrice === "Contact for Quote" ||
+                      displayPrice === "Contact for Pricing" ||
+                      displayPrice === "Contact pour devis" ||
+                      displayPrice === "Inclus dans les forfaits" ||
+                      displayPrice === "Included in Packages";
+                    if (isContactOrIncluded) return displayPrice;
+
+                    let clean = displayPrice
+                      .replace(/Starting at/gi, "")
+                      .replace(/À partir de/gi, "")
+                      .replace(/CAD/g, "")
+                      .replace(/CA\$/g, "")
+                      .trim();
+                    if (!clean.includes("$")) clean = `$${clean}`;
+
+                    const prefix = lang === "fr" ? "À partir de" : "Starting at";
+                    return `${prefix} ${clean} CAD`;
+                  })()}
                 </p>
               </div>
             )}
@@ -505,7 +520,12 @@ export default function ServiceDetailPage() {
                             ? displayPrice
                             : typeof customPricing === "string"
                               ? customPricing
-                              : service.price?.amount || displayPrice}
+                              : service.price?.amount || (displayPrice
+                                  ? displayPrice
+                                      .replace(/Starting at\s*/gi, "")
+                                      .replace(/À partir de\s*/gi, "")
+                                      .trim()
+                                  : displayPrice)}
                         </div>
                       )}
                     </div>

@@ -25,7 +25,7 @@ const statusColors = {
   "Not Contacted": "bg-slate-500/10 text-slate-400 border-slate-500/30",
   Booked: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
   "Coming for Inspection": "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
-  "No Answer": "bg-orange-500/10 text-orange-400 border-orange-500/30",
+  "No Answer": "bg-[#e95514]/10 text-[#e95514] border-[#e95514]/30",
   "Manual Follow Up": "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
   "Wrong Info": "bg-pink-500/10 text-pink-400 border-pink-500/30",
   "Dead Leads": "bg-zinc-800 text-zinc-500 border-zinc-700",

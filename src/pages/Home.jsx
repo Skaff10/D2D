@@ -28,9 +28,9 @@ import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
 import { pushToDataLayer } from "../utils/dataLayer";
 import ceramicImg from "../assets/dk/imgi_2_ceramiccoating.webp";
-import interiorImg from "../assets/dk/imgi_4_Interior.png";
-import exteriorImg from "../assets/dk/imgi_2_exterior2.jpg";
-import paintImg from "../assets/dk/imgi_5_paint-correction.webp";
+import interiorImg from "/newImages/interior/p1.webp";
+import exteriorImg from "/newImages/Exterior/p1.webp";
+import paintImg from "/newImages/paint_correction/p4.webp";
 import beforeAfterImg from "../assets/dk/img32.jpg";
 import cadillacImg from "../assets/images/brand/imgi_10_cadillac.webp";
 import chevroletImg from "../assets/images/brand/imgi_11_chevrolet.png";
@@ -368,7 +368,7 @@ export default function Home() {
             <span
               className="mb-4 block uppercase section-tag font-medium text-xs md:text-sm tracking-widest"
               style={{
-                color: "#e46904ff",
+                color: "#e95514",
                 fontWeight: "bold",
                 textShadow: "0px 2px 12px rgba(10, 9, 9, 0.99)",
               }}
@@ -422,9 +422,98 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      <section className="pb-15 lg:pb-28 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            subtitle={t.whyDown2Detail}
+            title={t.theD2Ddifference}
+            description={t.dontCutCorners}
+            maxWidth="max-w-7xl"
+          />
 
-      {/* ===== BRAND LOGOS ===== */}
-      <section className="py-12 border-white/4 overflow-hidden">
+          <div className="-mt-5 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* LEFT — image with lead-in text above it */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="space-y-1 -mb-10">
+                <div className="relative rounded-xl overflow-hidden img-zoom mt-4">
+                  <img
+                    src={beforeAfterImg}
+                    alt="Down2Detail"
+                    className="w-full h-[300px] object-cover rounded-2xl"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT — heading → body copy → emotional closer → buttons */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="pt-5"
+            >
+              {/* ── Item 2 — section heading ── */}
+              <h2 className="serif-heading text-xl md:text-2xl lg:text-3xl mb-5">
+                {lang === "en"
+                  ? "That's why our goal is simple"
+                  : "C'est pourquoi notre objectif est simple"}{" "}
+                <span className="serif-heading-italic">
+                  {lang === "en"
+                    ? "to bring back that first-day feeling"
+                    : "Retrouver cette sensation du premier jour"}
+                </span>
+              </h2>
+
+              {/* ── Item 4 — body paragraph ── */}
+              <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                {lang === "en"
+                  ? "Whether it's pet hair removal, paint correction, or premium protection, every service is carried out with meticulous attention to detail. Because your car is more than transportation — it's part of your memories and lifestyle."
+                  : "Qu'il s'agisse d'un retrait de poils d'animaux, d'une correction de peinture ou d'une protection premium, chaque service est réalisé avec une attention méticuleuse aux détails. Parce que votre voiture est plus qu'un moyen de transport — elle fait partie de vos souvenirs et de votre mode de vie."}
+              </p>
+
+              {/* Buttons sit AFTER the copy so the value prop lands first */}
+              <div className="flex gap-3">
+                <Link
+                  to="/booking"
+                  className="btn-filled"
+                  onClick={() =>
+                    pushToDataLayer({
+                      event: "cta_click",
+                      buttonText: "Book Now",
+                      component: "HomeDifference",
+                      pageLocation: location.pathname,
+                    })
+                  }
+                >
+                  Book Now
+                </Link>
+                <Link
+                  to="/contact"
+                  className="btn-outline"
+                  onClick={() =>
+                    pushToDataLayer({
+                      event: "cta_click",
+                      buttonText: "Contact Us",
+                      component: "HomeDifference",
+                      pageLocation: location.pathname,
+                    })
+                  }
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className=" border-white/4 overflow-hidden">
         <div className="max-w-full mx-auto">
           <p className="text-center section-tag mb-8 px-4">{t.trustedBy}</p>
           <div className="relative md:w-1/2 mx-auto overflow-hidden group">
@@ -441,19 +530,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ===== SERVICES ===== */}
-      {/* ── Item 3: "What We Offer" heading + new description + city chips ── */}
-      <section className="py-20 lg:py-28">
+      <section className="py-10 lg:py-15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle={t.whatWeOffer}
             title={t.simpleToComprehensive}
-            description={
-              lang === "en"
-                ? "Our professional detailing services restore shine, protect against Montreal's harsh weather, and keep your vehicle looking its absolute best all year long."
-                : t.offerDescription
-            }
           />
 
           {/* City service-area chips */}
@@ -554,114 +635,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== THE D2D DIFFERENCE ===== */}
-      {/*
-        Items 2, 4, 5:
-          • Heading      → "Your Car Deserves More Than a Wash"
-          • Left text    → Opening line of item 4 (sets tone with the image)
-          • Right body   → Body of item 4 (value prop) → item 5 (emotional closer)
-          • Buttons      → After the copy (read first, then CTA)
-      */}
-      <section className="pb-20 lg:pb-28 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            subtitle={t.whyDown2Detail}
-            title={t.theD2Ddifference}
-            description={t.dontCutCorners}
-            maxWidth="max-w-7xl"
-          />
-
-          <div className="mt-30 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* LEFT — image with lead-in text above it */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="space-y-4 -mb-10">
-                {/* ── Item 4 — opening sentence above the photo ── */}
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {lang === "en"
-                    ? "From luxury vehicles to everyday family cars, we restore the appearance, shine, and pride that made you fall in love with yours — preserving its value and protecting its finish for years to come."
-                    : "Des véhicules de luxe aux voitures familiales, nous restaurons l'apparence, l'éclat et la fierté qui vous ont fait tomber amoureux de la vôtre — préservant sa valeur et protégeant sa finition pour les années à venir."}
-                </p>
-
-                <div className="relative rounded-xl overflow-hidden img-zoom mt-4">
-                  <img
-                    src={beforeAfterImg}
-                    alt="Down2Detail"
-                    className="w-full h-[300px] object-cover rounded-2xl"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* RIGHT — heading → body copy → emotional closer → buttons */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              {/* ── Item 2 — section heading ── */}
-              <h2 className="serif-heading text-xl md:text-2xl lg:text-3xl mb-5">
-                {lang === "en" ? "Your Car Deserves" : "Votre voiture mérite"}{" "}
-                <span className="serif-heading-italic">
-                  {lang === "en" ? "More Than a Wash" : "Plus Qu'un Lavage"}
-                </span>
-              </h2>
-
-              {/* ── Item 4 — body paragraph ── */}
-              <p className="text-text-secondary text-sm leading-relaxed mb-5">
-                {lang === "en"
-                  ? "Whether it's pet hair removal, paint correction, or premium protection, every service is carried out with meticulous attention to detail. Because your car is more than transportation — it's part of your memories and lifestyle."
-                  : "Qu'il s'agisse d'un retrait de poils d'animaux, d'une correction de peinture ou d'une protection premium, chaque service est réalisé avec une attention méticuleuse aux détails. Parce que votre voiture est plus qu'un moyen de transport — elle fait partie de vos souvenirs et de votre mode de vie."}
-              </p>
-
-              {/* ── Item 5 — emotional closer (italic, slightly dimmer) ── */}
-              <p className="text-white/50 text-sm leading-relaxed italic mb-7">
-                {lang === "en"
-                  ? "That's why our goal is simple: to bring back that first-day feeling every time you see it."
-                  : "C'est pourquoi notre objectif est simple : retrouver cette sensation du premier jour à chaque fois que vous le voyez."}
-              </p>
-
-              {/* Buttons sit AFTER the copy so the value prop lands first */}
-              <div className="flex gap-3">
-                <Link
-                  to="/booking"
-                  className="btn-filled"
-                  onClick={() =>
-                    pushToDataLayer({
-                      event: "cta_click",
-                      buttonText: "Book Now",
-                      component: "HomeDifference",
-                      pageLocation: location.pathname,
-                    })
-                  }
-                >
-                  Book Now
-                </Link>
-                <Link
-                  to="/contact"
-                  className="btn-outline"
-                  onClick={() =>
-                    pushToDataLayer({
-                      event: "cta_click",
-                      buttonText: "Contact Us",
-                      component: "HomeDifference",
-                      pageLocation: location.pathname,
-                    })
-                  }
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* ===== WHY CARDS + STATS ===== */}
       <section className="pb-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -738,8 +711,8 @@ export default function Home() {
           {/* Stats row */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4 pt-5">
             {[
-              { num: "1000+", label: t.carsDetailed },
-              { num: "4.9★", label: t.averageRating },
+              { num: "800+", label: t.carsDetailed },
+              { num: "5★", label: t.averageRating },
               { num: "400+", label: t.happyClients },
               { num: "100%", label: t.satisfactionRate },
             ].map((stat, i) => (
@@ -826,7 +799,7 @@ export default function Home() {
                         key={j}
                         size={14}
                         className="text-primary"
-                        fill="#f97316"
+                        fill="#e95514"
                       />
                     ))}
                   </div>
@@ -936,7 +909,7 @@ export default function Home() {
                   src={interiorImg}
                   alt={t.interiorDetail}
                   className="w-full h-full object-cover"
-                  style={{ border: "2px solid rgba(249, 115, 22, 0.3)" }}
+                  style={{ border: "2px solid rgba(233, 85, 20, 0.3)" }}
                 />
               </motion.div>
             </motion.div>

@@ -51,7 +51,7 @@ export const translations = {
       whyDown2Detail: "Why down2detail",
       theD2Ddifference: "Restore the Shine. Preserve the Pride.",
       dontCutCorners:
-        "From luxury vehicles to everyday family cars, we revive your car's original look — preserving its value, protecting its finish, and keeping it looking its best for years to come.Whether you need pet hair removal, interior rejuvenation, paint correction, or premium paint protection, every service is carried out with meticulous attention to detail. Because your car is more than just transportation — it's a part of your memories and lifestyle.",
+        "From luxury vehicles to everyday family cars, we revive your car's original look preserving its value, protecting its finish, and keeping it looking its best for years to come.",
       deservesMoreThanOrdinary: "Your Car Deserves More than an Ordinary Wash",
       professionalGrade: "Professional-Grade Products & Technology",
       professionalGradeDesc:
@@ -78,7 +78,7 @@ export const translations = {
       aboutUs: "About Us",
       ourStory: "Our Story",
       storyDescription:
-        "Down2Detail was built by people who genuinely care about vehicles. We believe your car reflects your standards, lifestyle, and attention to detail. That’s why we focus on quality craftsmanship, safe detailing methods, and long-term paint protection instead of rushed volume-based washes.",
+        "Down2Detail was built by people who genuinely care about vehicles. We believe your car reflects your standards, lifestyle, and attention to detail. \n That’s why we focus on quality craftsmanship, safe detailing methods, and long-term paint protection instead of rushed volume-based washes.",
       ourJourney: "OUR JOURNEY",
       simpleToComprehensive: "From a Simple Wash to Comprehensive Detailing",
       journeyP1:
@@ -128,10 +128,10 @@ export const translations = {
     },
     contact: {
       getInTouch: "Get in Touch",
-      contactUs: "Contact Us",
+      contactUs: "Looking for professional car detailing in Montreal?",
 
       contactDescription:
-        "Looking for professional car detailing in Montreal? Whether you need ceramic coating, paint correction, interior restoration, or regular maintenance detailing, our team is ready to help you choose the perfect solution for your vehicle.\nWhat are you waiting for?\nBook now for Free Inspections\nFor any queries reach out by phone, email, or fill out the form below.",
+        "THe down2detail team is always ready to help you choose the best solution for your vehicle, Whether you need ceramic coating, paint correction, interior restoration, or regular maintenance detailing.",
       phone: "Phone",
       email: "Email",
       location: "Location",
@@ -293,12 +293,12 @@ export const translations = {
           "A great option for newer or well-maintained vehicles.",
       },
       "one-step-polish": {
-        name: "One-Step Polish",
+        name: "DA Two-Step Paint Correction",
         shortDescription:
           "Perfect for vehicles that need a quick refresh without extensive correction.",
       },
       "two-step-polish": {
-        name: "Two-Step Paint Correction",
+        name: "Rotary Two-Step Paint Correction",
         shortDescription:
           "Ideal for vehicles with moderate swirl marks, light scratches, and dull paint that need more than a single-stage refresh.",
       },
@@ -336,6 +336,50 @@ export const translations = {
       placeholderFormat: "e.g. Contact for Quote / $129.99 CAD",
       saveBtn: "Save Pricing",
       savingBtn: "Saving to Firestore...",
+    },
+    paintCorrection: {
+      metaTitle: "Paint Correction & Protection | Down2Detail",
+      metaDesc:
+        "Restore your vehicle and protect it for years with our Paint Correction & Ceramic Coating packages.",
+      heroTitleLine1: "Paint Correction &",
+      heroTitleLine2: "Ceramic Coating",
+      heroSubtitle:
+        "Luxury vehicles to family cars, this summer, Bring back the showroom look of your car.",
+      heroDiscount:
+        "Exclusive 20% OFF our Paint Polish & Protection 'Platinum' Package, First 50 bookings only.",
+      heroDesc:
+        "This summer, give your ride a fresh start. Whether you're looking for extra gloss or full paint correction, our Paint Correction & Ceramic Coating package is designed to restore your vehicle and protect it for years.",
+      limitedOffer: "Limited Time Offer!",
+      nowOnlyAt: "Now Only At",
+      bookNowBtn: "BOOK NOW",
+      overviewHeading: "Overview",
+      overviewText1:
+        "Our professional 'Premium Paint Correction & Ceramic Coating' services are designed to revive your car's original look, helping preserve its value, protect its finish, and keep your vehicle looking its absolute best all year long.",
+      overviewText2:
+        "Proudly serving Montreal, Laval, Longueuil, Brossard, Saint-Hubert, West Island, Pointe-Claire, Dorval, Saint-Laurent, South Shore & The Greater Montreal area.",
+      transformationsTag: "TRANSFORMATIONS",
+      transformationsTitle: "See The Difference We Make",
+      transformationsDesc:
+        "Every detail matters. Swipe to see the real transformation our team delivers on every vehicle we touch.",
+      beforeLabel: "Before",
+      afterLabel: "After",
+      benefitsHeading: "The Benefits",
+      benefitsList: [
+        "Restore gloss & remove swirl marks",
+        "Remove light to heavy scratches",
+        "Multi-stage paint correction options",
+        "Professional ceramic coating protection",
+        "Hydrophobic water-repellent finish",
+        "Long-term paint protection",
+      ],
+      photosHeading: "A Few Photos of The Cars We've Worked On",
+      testimonialsTag: "TESTIMONIALS",
+      testimonialsTitle: "What Our Clients Say",
+      readyToBookHeading: "Ready to book?",
+      readyToBookText: "Contact us to schedule your paint correction",
+      bookPackageBtn: "Book This Package",
+      callNowBtn: "Call Now",
+      verifiedCustomer: "Verified Customer",
     },
   },
   fr: {
@@ -819,7 +863,7 @@ export const translations = {
         ],
       },
       "one-step-polish": {
-        name: "Polissage en Une Étape",
+        name: "Correction de Peinture DA en Deux Étapes",
         shortDescription:
           "Parfait pour les véhicules qui ont besoin d'un rafraîchissement rapide sans correction approfondie.",
         fullDescription:
@@ -839,7 +883,7 @@ export const translations = {
         ],
       },
       "two-step-polish": {
-        name: "Polissage en Deux Étapes",
+        name: "Correction de Peinture Rotative en Deux Étapes",
         shortDescription:
           "Idéal pour les véhicules présentant des marques de tourbillon modérées, de légères rayures et une peinture terne.",
         fullDescription:
@@ -859,7 +903,7 @@ export const translations = {
         ],
       },
       "three-step-polish": {
-        name: "Polissage en Trois Étapes",
+        name: "Correction de Peinture en Trois Étapes",
         shortDescription:
           "Notre service de restauration de peinture le plus complet pour les peintures gravement négligées ou fortement rayées.",
         fullDescription:
@@ -908,7 +952,7 @@ export const translations = {
           { level: "Niveau 1", durability: "Jusqu'à 1 an ", price: "249,99 $" },
           {
             level: "Niveau 2",
-            durability: "Jusqu'à 3-4 ans ou 50 000 km",
+            durability: "Jusqu'à 2 ans ou 50 000 km",
             price: "499,99 $",
           },
           {
@@ -1009,6 +1053,52 @@ export const translations = {
       placeholderFormat: "ex. Contactez pour obtenir un devis / 129,99 $ CA",
       saveBtn: "Sauvegarder la Tarification",
       savingBtn: "Sauvegarde dans Firestore...",
+    },
+    paintCorrection: {
+      metaTitle: "Correction de Peinture et Protection | Down2Detail",
+      metaDesc:
+        "Restaurez votre véhicule et protégez-le pendant des années grâce à nos forfaits de correction de peinture et de revêtement céramique.",
+      heroTitleLine1: "Correction de Peinture &",
+      heroTitleLine2: "Revêtement Céramique",
+      heroSubtitle:
+        "Des véhicules de luxe aux voitures familiales, cet été, redonnez à votre voiture son aspect d'origine.",
+      heroDiscount:
+        "Profitez d'un rabais exclusif de 20 % sur notre forfait de polissage et protection de peinture 'Platine', réservé aux 50 premières réservations.",
+      heroDesc:
+        "Cet été, offrez un nouveau départ à votre véhicule. Que vous recherchiez une brillance accrue ou une correction complète de la peinture, notre forfait correction de peinture et revêtement céramique est conçu pour restaurer votre véhicule et le protéger pendant des années.",
+      limitedOffer: "Offre d'une durée limitée !",
+      nowOnlyAt: "Maintenant à seulement",
+      bookNowBtn: "RÉSERVER DÈS MAINTENANT",
+      overviewHeading: "Aperçu",
+      overviewText1:
+        "Nos services professionnels de 'Correction de peinture supérieure et revêtement céramique' sont conçus pour raviver l'apparence d'origine de votre voiture, aidant à préserver sa valeur, protéger sa finition et garder votre véhicule à son meilleur tout au long de l'année.",
+      overviewText2:
+        "Fiers de desservir Montréal, Laval, Longueuil, Brossard, Saint-Hubert, West Island, Pointe-Claire, Dorval, Saint-Laurent, la Rive-Sud et la grande région de Montréal.",
+      transformationsTag: "TRANSFORMATIONS",
+      transformationsTitle: "Voyez la différence que nous faisons",
+      transformationsDesc:
+        "Chaque détail compte. Glissez pour voir la véritable transformation que notre équipe apporte à chaque véhicule.",
+      beforeLabel: "Avant",
+      afterLabel: "Après",
+      benefitsHeading: "Les Avantages",
+      benefitsList: [
+        "Restaurer la brillance et éliminer les micro-rayures",
+        "Éliminer les rayures légères à profondes",
+        "Options de correction de peinture à plusieurs étapes",
+        "Protection professionnelle par revêtement céramique",
+        "Finition hydrophobe hydrofuge",
+        "Protection à long terme de la peinture",
+      ],
+      photosHeading:
+        "Quelques photos des voitures sur lesquelles nous avons travaillé",
+      testimonialsTag: "TÉMOIGNAGES",
+      testimonialsTitle: "Ce que disent nos clients",
+      readyToBookHeading: "Prêt à réserver ?",
+      readyToBookText:
+        "Contactez-nous pour planifier votre correction de peinture",
+      bookPackageBtn: "Réserver ce forfait",
+      callNowBtn: "Appeler maintenant",
+      verifiedCustomer: "Client vérifié",
     },
   },
 };

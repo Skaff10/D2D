@@ -10,6 +10,7 @@ import { translations } from "../translations";
 import SectionHeading from "../components/ui/SectionHeading";
 import { pushToDataLayer } from "../utils/dataLayer";
 import { LocalBusinessSchema, BreadcrumbSchema } from "../seo/schemas";
+import { Link } from "react-router-dom";
 
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
@@ -104,7 +105,7 @@ export default function Contact() {
         />
       </Helmet>
 
-      <section className="pt-32 pb-16">
+      <section className="pt-32 pb-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             subtitle={t.getInTouch}
@@ -113,8 +114,106 @@ export default function Contact() {
           />
         </div>
       </section>
+      <div className="flex flex-col item-center px-4 max-w-7xl justify-center mx-auto">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="shield-badge w-9 h-9 rounded-lg">
+            <MessageSquare size={15} className="text-primary/60" />
+          </div>
+          <h2 className="serif-heading text-2xl text-white">{t.sendMessage}</h2>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label className="text-xs font-medium text-text-secondary mb-2 block">
+                {t.name} *
+              </label>
+              <input
+                type="text"
+                placeholder={t.namePlaceholder}
+                className={inputClasses}
+                {...register("name", { required: "Name is required" })}
+              />
+              {errors.name && (
+                <p className="text-red-400 text-xs mt-1">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="text-xs font-medium text-text-secondary mb-2 block">
+                {t.phone}
+              </label>
+              <input
+                type="tel"
+                placeholder={t.phonePlaceholder}
+                className={inputClasses}
+                {...register("phone")}
+              />
+            </div>
+          </div>
+          <div>
+            <label className="text-xs font-medium text-text-secondary mb-2 block">
+              {t.email} *
+            </label>
+            <input
+              type="email"
+              placeholder={t.emailPlaceholder}
+              className={inputClasses}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Invalid email",
+                },
+              })}
+            />
+            {errors.email && (
+              <p className="text-red-400 text-xs mt-1">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <label className="text-xs font-medium text-text-secondary mb-2 block">
+              {t.message} *
+            </label>
+            <textarea
+              rows={5}
+              placeholder={t.messagePlaceholder}
+              className={`${inputClasses} resize-none`}
+              {...register("message", {
+                required: "Message is required",
+              })}
+            />
+            {errors.message && (
+              <p className="text-red-400 text-xs mt-1">
+                {errors.message.message}
+              </p>
+            )}
+          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full btn-filled py-3.5 justify-center"
+          >
+            {isSubmitting ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <>
+                <Send size={14} />
+                {lang === "fr" ? "Envoyer" : "Send Message"}
+              </>
+            )}
+          </button>
+        </form>
+      </div>
+      <section className="pt-5 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading description="Produly serving Montreal , laval , Longueuil, Brossard , Saint-Hubert, West Island , Pointe-Claire, Doval, Saint-Laurent, South Shore & The Greater Montreal are." />
+        </div>
+      </section>
 
-      <section className="py-16">
+      <section className="py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
@@ -140,18 +239,35 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="text-primary/80 text-sm font-medium hover:text-primary transition-colors"
                   >
-                   4500 Bd Kimber Local 30, Saint-Hubert, QC J3Y 8K5, Canada
+                    4500 Bd Kimber Local 30, Saint-Hubert, QC J3Y 8K5, Canada
                   </a>
                 ) : (
                   <p className="text-primary/80 text-sm font-medium">
-                   Mon – Sun: 8AM – 9PM
+                    Mon – Sun: 8AM – 9PM
                   </p>
                 )}
                 <p className="text-text-muted text-xs mt-1">{info.desc}</p>
               </motion.div>
             ))}
           </div>
-
+          <div className="bg-white/5  hover:bg-white/10 hover:border-white/20 backdrop-blur-md p-6 mt-6 rounded-2xl">
+            <h3 className="serif-heading text-xl text-white mb-3 ">
+              Ready to get started?
+            </h3>
+            <p className="text-text-secondary text-sm mb-5">
+              Book your premium car detailing appointment today.
+            </p>
+            <div className="flex justify-end">
+              <div className="flex gap-3">
+                <Link to="/booking" className="btn-filled text-sm">
+                  Book Now
+                </Link>
+                <a href="tel:+14384838175" className="btn-outline text-sm">
+                  Call us
+                </a>
+              </div>
+            </div>
+          </div>
           {/* Form + Map Grid */}
           <div className="grid lg:grid-cols-2 gap-10">
             {/* Contact Form */}
@@ -161,102 +277,8 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="shield-badge w-9 h-9 rounded-lg">
-                  <MessageSquare size={15} className="text-primary/60" />
-                </div>
-                <h2 className="serif-heading text-2xl text-white">
-                  {t.sendMessage}
-                </h2>
-              </div>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-xs font-medium text-text-secondary mb-2 block">
-                      {t.name} *
-                    </label>
-                    <input
-                      type="text"
-                      placeholder={t.namePlaceholder}
-                      className={inputClasses}
-                      {...register("name", { required: "Name is required" })}
-                    />
-                    {errors.name && (
-                      <p className="text-red-400 text-xs mt-1">
-                        {errors.name.message}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-text-secondary mb-2 block">
-                      {t.phone}
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder={t.phonePlaceholder}
-                      className={inputClasses}
-                      {...register("phone")}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-xs font-medium text-text-secondary mb-2 block">
-                    {t.email} *
-                  </label>
-                  <input
-                    type="email"
-                    placeholder={t.emailPlaceholder}
-                    className={inputClasses}
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^\S+@\S+$/i,
-                        message: "Invalid email",
-                      },
-                    })}
-                  />
-                  {errors.email && (
-                    <p className="text-red-400 text-xs mt-1">
-                      {errors.email.message}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label className="text-xs font-medium text-text-secondary mb-2 block">
-                    {t.message} *
-                  </label>
-                  <textarea
-                    rows={5}
-                    placeholder={t.messagePlaceholder}
-                    className={`${inputClasses} resize-none`}
-                    {...register("message", {
-                      required: "Message is required",
-                    })}
-                  />
-                  {errors.message && (
-                    <p className="text-red-400 text-xs mt-1">
-                      {errors.message.message}
-                    </p>
-                  )}
-                </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full btn-filled py-3.5 justify-center"
-                >
-                  {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <Send size={14} />
-                      {lang === "fr" ? "Envoyer" : "Send Message"}
-                    </>
-                  )}
-                </button>
-              </form>
-
               {/* Social Links */}
-              <div className="mt-8 pt-6 border-t border-white/[0.06]">
+              <div className="mt-8 pt-3">
                 <span className="section-tag block mb-3">
                   {t.socialMedia} →
                 </span>

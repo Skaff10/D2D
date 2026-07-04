@@ -13,14 +13,7 @@ export default function ServiceCard({ service, index, customPricing }) {
   const serviceTrans = tGlobal.servicesList[service.id] || {};
 
   const packageIncludedServices = [
-    "exterior-detailing",
-    "interior-detailing",
     "paint-decontamination",
-    "floor-carpet-shampoo",
-    "pet-hair-removal",
-    "fabric-seat-shampoo",
-    "paint-sealant",
-    "car-wax",
   ];
   const isPackageIncluded = packageIncludedServices.includes(service.id);
 
@@ -52,12 +45,40 @@ export default function ServiceCard({ service, index, customPricing }) {
           }
         });
 
-        displayPrice = minValStr.toLowerCase().includes("starting")
-          ? minValStr
-          : `Starting at ${minValStr}`;
+        displayPrice = minValStr;
       }
     }
   }
+
+  // Format outer price to always show "Starting at $price CAD"
+  const formatOuterPrice = (priceStr) => {
+    if (!priceStr) return "";
+    const isContactOrIncluded =
+      priceStr === tGlobal.contactForPricing ||
+      priceStr === "Contact for Quote" ||
+      priceStr === "Contact for Pricing" ||
+      priceStr === "Contact pour devis" ||
+      priceStr === "Inclus dans les forfaits" ||
+      priceStr === "Included in Packages";
+
+    if (isContactOrIncluded) return priceStr;
+
+    let clean = priceStr
+      .replace(/Starting at/gi, "")
+      .replace(/À partir de/gi, "")
+      .replace(/CAD/g, "")
+      .replace(/CA\$/g, "")
+      .trim();
+
+    if (!clean.includes("$")) {
+      clean = `$${clean}`;
+    }
+
+    const prefix = lang === "fr" ? "À partir de" : "Starting at";
+    return `${prefix} ${clean} CAD`;
+  };
+
+  const formattedDisplayPrice = formatOuterPrice(displayPrice);
 
   const buttonText = isPackageIncluded
     ? lang === "fr"
@@ -112,18 +133,18 @@ export default function ServiceCard({ service, index, customPricing }) {
         />
 
         {/* Image area */}
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-4/3 overflow-hidden">
           <img
             src={service.cover_pic}
             alt={service.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* Gradient fade into card body */}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/40 to-transparent" />
         </div>
 
         {/* Divider — glassy hairline */}
-        <div className="h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="h-px bg-linear-to-r from-transparent via-white/15 to-transparent" />
 
         {/* Info area */}
         <div className="relative z-10 p-5 flex flex-col flex-1">
@@ -135,7 +156,7 @@ export default function ServiceCard({ service, index, customPricing }) {
               {serviceTrans.shortDescription || service.shortDescription}
             </p>
             <p className="price-mono text-primary text-sm font-semibold">
-              {displayPrice}
+              {formattedDisplayPrice}
             </p>
           </div>
 
