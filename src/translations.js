@@ -119,6 +119,7 @@ export const translations = {
       interior: "Interior",
       paintPolish: "Paint Polish",
       protection: "Protection",
+      "add-ons": "Add ons",
       readyToBook: "Ready to Book?",
       notSureHelp: "Not Sure Which Service You Need?",
       consultation:
@@ -505,6 +506,7 @@ export const translations = {
       interior: "Intérieur",
       paintPolish: "Polissage de Peinture",
       protection: "Protection",
+      "add-ons": "Ajouts",
       readyToBook: "Prêt à réserver ?",
       notSureHelp: "Pas certain du service dont vous avez besoin ?",
       consultation:

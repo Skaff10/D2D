@@ -23,6 +23,13 @@ const categoryIcons = {
       <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
     </svg>
   ),
+  'add-ons': (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="8" x2="12" y2="16" />
+      <line x1="8" y1="12" x2="16" y2="12" />
+    </svg>
+  ),
 }
 
 export default function ServiceCategoryTabs({ categories, activeCategory, onCategoryChange }) {
@@ -47,7 +54,7 @@ export default function ServiceCategoryTabs({ categories, activeCategory, onCate
             ${
               activeCategory === cat.id
                 ? 'bg-primary/15 border-primary/40 text-white shadow-[0_0_20px_rgba(249,115,22,0.15)]'
-                : 'bg-white/[0.03] border-white/[0.08] text-white/50 hover:text-white/80 hover:border-white/20 hover:bg-white/[0.06]'
+                : 'bg-white/3 border-white/8 text-white/50 hover:text-white/80 hover:border-white/20 hover:bg-white/6'
             }
           `}
         >

@@ -14,7 +14,7 @@ export default function SectionHeading2({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
-      className={`mb-14 text-left`}
+      className={`mb-14 ${align === "center" ? "md:text-center" : "text-left"} `}
     >
       {subtitle && (
         <span className="section-tag inline-block mb-4">{subtitle}</span>

@@ -117,7 +117,7 @@ export default function Services() {
       </section>
 
       {/* ===== CATEGORY TABS ===== */}
-      <section className="pt-8 pb-4  top-[72px] z-30 border-b border-white/[0.04]">
+      <section className="pt-8 pb-4  top-[72px] z-30 border-b border-white/4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ServiceCategoryTabs
             categories={categories}
@@ -150,7 +150,7 @@ export default function Services() {
                   className="mb-10"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-[1px] bg-primary/40" />
+                    <div className="w-8 h-px bg-primary/40" />
                     <span className="section-tag text-primary/80">
                       {t[
                         category.id === "paint-polish"
@@ -158,7 +158,7 @@ export default function Services() {
                           : category.id
                       ] || category.label}
                     </span>
-                    <div className="flex-1 h-[1px] bg-white/[0.04]" />
+                    <div className="flex-1 h-px bg-white/4" />
                   </div>
                   <h2 className="serif-heading text-2xl sm:text-3xl text-white">
                     {t[

@@ -322,7 +322,7 @@ export default function ServiceDetailPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="aspect-4/3 bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
+              className={`${isCeramicCoating ? "aspect-video" : "aspect-4/3"} bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group`}
             >
               <img
                 src={service.pic1}
@@ -335,7 +335,7 @@ export default function ServiceDetailPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="aspect-4/3 bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group"
+              className={`${isCeramicCoating ? "aspect-video" : "aspect-4/3"} bg-zinc-800 border border-zinc-700 rounded-xl flex items-center justify-center relative group`}
             >
               <img
                 src={service.pic2}

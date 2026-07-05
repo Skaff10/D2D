@@ -48,7 +48,7 @@ export default function About() {
 
   const stats = [
     { icon: Car, value: "6yrs", label: t.inBusiness },
-    { icon: Star, value: "4.9", label: t.starRating },
+    { icon: Star, value: "5", label: t.starRating },
     { icon: Users, value: "400+", label: t.happyClients },
     { icon: Award, value: "100%", label: t.satisfactionRate },
   ];
@@ -129,7 +129,7 @@ export default function About() {
                   />
                 </div>
                 <div className="absolute -bottom-5 -right-5 glass rounded-xl p-4 hidden md:block">
-                  <p className="price-mono text-primary text-xl">1000+</p>
+                  <p className="price-mono text-primary text-xl">800+</p>
                   <p className="text-text-secondary text-xs mt-1">
                     {h.carsDetailed}
                   </p>
@@ -162,7 +162,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 mt-10 lg:mt-0 border-y border-white/[0.04]">
+      <section className="py-16 mt-10 lg:mt-0 border-y border-white/4">
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (

@@ -18,11 +18,6 @@ import glass2 from "../assets/images/services/gloss enhancer.jpg";
 
 
 
-import sealant_cover from "../assets/dk/sealant.jpg";
-import sealant1 from "../assets/dk/sealant1.jpg";
-import sealant2 from "../assets/dk/sealant.jpg";
-
-import wax_cover from "../assets/dk/carwax.webp";
 import wax1 from "../assets/dk/carwax1.jpg";
 import wax2 from "../assets/dk/carwax2.webp";
 
@@ -31,6 +26,7 @@ export const categories = [
   { id: "interior", label: "Interior" },
   { id: "paint-polish", label: "Paint Polish" },
   { id: "protection", label: "Protection" },
+  { id: "add-ons", label: "Add ons" },
 ];
 
 export const services = {
@@ -286,42 +282,6 @@ export const services = {
       ],
     },
     {
-      id: "pet-hair-removal",
-      category: "Interior",
-      name: "Pet Hair Removal",
-      shortDescription:
-        "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming.",
-      fullDescription:
-        "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
-      features: [
-        "Specialized pet hair removal tools and brushes",
-        "Deep vacuuming with high-powered equipment",
-        "Fabric brush treatment for embedded hair",
-        "Lint roller treatment for stubborn areas",
-        "Steam cleaning to loosen embedded hair",
-        "Detailed cleaning of all fabric surfaces",
-        "Cargo area and trunk cleaning",
-        "Final inspection",
-      ],
-      priceString: "Starting at $59",
-      price: { type: "flat", amount: "Starting at $59" },
-      whyUs:
-        "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
-      cover_pic: pet_cover,
-      pic1: pet1,
-      pic2: pet2,
-      included: [
-        "Completely removes all pet hair",
-        "Eliminates allergens and pet dander",
-        "Restores clean, professional appearance",
-        "Prevents spreading",
-        "Safe for all fabric types",
-        "Professional-grade results",
-        "Creates a healthier environment",
-        "Saves time and frustration",
-      ],
-    },
-    {
       id: "fabric-seat-shampoo",
       category: "Interior",
       name: "Fabric Seat Shampoo",
@@ -526,7 +486,7 @@ export const services = {
       price: { type: "flat", amount: "$2099 CAD" },
       whyUs:
         "Our most comprehensive paint restoration service for severely neglected or heavily scratched paint. Three dedicated stages — heavy cutting, medium correction, and fine finishing — work progressively to eliminate deep defects and deliver a flawless, showroom-quality result.",
-      cover_pic: "/newImages/paint_correction/p7.webp",
+      cover_pic: "/newImages/3step-paint-correction-cover.webp",
       pic1: "/newImages/paint_correction/p7.webp",
       pic2: "/newImages/paint_correction/p6.webp",
       included: [
@@ -653,9 +613,48 @@ export const services = {
         },
       ],
     },
+  ],
+
+  "add-ons": [
+    {
+      id: "pet-hair-removal",
+      category: "Add ons",
+      name: "Pet Hair Removal",
+      shortDescription:
+        "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming.",
+      fullDescription:
+        "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
+      features: [
+        "Specialized pet hair removal tools and brushes",
+        "Deep vacuuming with high-powered equipment",
+        "Fabric brush treatment for embedded hair",
+        "Lint roller treatment for stubborn areas",
+        "Steam cleaning to loosen embedded hair",
+        "Detailed cleaning of all fabric surfaces",
+        "Cargo area and trunk cleaning",
+        "Final inspection",
+      ],
+      priceString: "Starting at $59",
+      price: { type: "flat", amount: "Starting at $59" },
+      whyUs:
+        "Pet hair embeds deep into fabric fibers and is nearly impossible to remove with regular vacuuming. We use professional-grade tools and techniques to completely eliminate it.",
+      cover_pic: pet_cover,
+      pic1: pet1,
+      pic2: pet2,
+      included: [
+        "Completely removes all pet hair",
+        "Eliminates allergens and pet dander",
+        "Restores clean, professional appearance",
+        "Prevents spreading",
+        "Safe for all fabric types",
+        "Professional-grade results",
+        "Creates a healthier environment",
+        "Saves time and frustration",
+      ],
+    },
     {
       id: "paint-sealant",
-      category: "Protection",
+      category: "Add ons",
       name: "Paint Sealant",
       shortDescription:
         "A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants.",
@@ -675,10 +674,9 @@ export const services = {
       price: { type: "flat", amount: "Starting at $49 CAD" },
       whyUs:
         "A synthetic polymer formula that bonds to the surface, creating a durable barrier against environmental contaminants. Offers 6–12 months of protection while enhancing gloss.",
-
-      cover_pic: sealant_cover,
-      pic1: sealant1,
-      pic2: sealant2,
+      cover_pic: "/newImages/paint_seal/paint_seal_cover.jpg",
+      pic1: "/newImages/paint_seal/paint_seal-1.jpg",
+      pic2: "/newImages/paint_seal/paint_seal-2.jpg",
       included: [
         "Up to 3 months of reliable protection",
         "Enhanced gloss and shine",
@@ -691,7 +689,7 @@ export const services = {
     },
     {
       id: "car-wax",
-      category: "Protection",
+      category: "Add ons",
       name: "Car Wax",
       shortDescription:
         "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss.",
@@ -711,8 +709,7 @@ export const services = {
       price: { type: "flat", amount: "Starting at $39 CAD" },
       whyUs:
         "The traditional approach to paint protection using premium carnauba or hybrid wax formulas for a beautiful, deep gloss. Provides 2–4 months of protection with a warm, rich appearance that only wax can achieve.",
-
-      cover_pic: wax_cover,
+      cover_pic: "/newImages/carwax.jpg",
       pic1: wax1,
       pic2: wax2,
       included: [

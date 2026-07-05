@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import { useLang } from "../context/LanguageContext";
 
-import imgDetail from "../assets/images/services/Exterior Detailing.avif";
-import imgPaint from "../assets/images/services/Paint Polish Services.webp";
-import imgMonthly from "../assets/images/services/Ceramic Coating.jpg";
+
 
 import posterPackage from "../assets/videos/poster.jpg";
 import vid from "../assets/videos/d2dpackagevid.mp4";
@@ -96,21 +94,21 @@ export default function PackagesOverview() {
       title: t.card1Title,
       desc: t.card1Desc,
       price: t.card1Price,
-      img: imgDetail,
+      img: "/newImages/exterior.webp",
       route: "/packages/detail",
     },
     {
       title: t.card2Title,
       desc: t.card2Desc,
       price: t.card2Price,
-      img: imgPaint,
+      img: "/newImages/paint-correction.webp",
       route: "/packages/paint",
     },
     {
       title: t.card3Title,
       desc: t.card3Desc,
       price: t.card3Price,
-      img: imgMonthly,
+      img: "/newImages/monthly.jpeg",
       route: "/packages/monthly",
     },
   ];

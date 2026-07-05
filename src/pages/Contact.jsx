@@ -319,7 +319,7 @@ export default function Contact() {
                   {t.findUs}
                 </h2>
               </div>
-              <div className="rounded-2xl overflow-hidden border border-white/[0.06] h-[calc(100%-3.5rem)]">
+              <div className="rounded-2xl overflow-hidden border border-white/6 h-[calc(100%-3.5rem)]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.6157556086496!2d-73.444142!3d45.497681899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2756a366baaf79b5%3A0xfd7844584126e21a!2sDown2Detail%20Premium%20Auto%20Detailing!5e0!3m2!1sen!2sbd!4v1775407393365!5m2!1sen!2sbd"
                   width="100%"
