@@ -45,8 +45,7 @@ export default function Services() {
     }
   }, []);
 
-  // Track which index we're at globally across all categories for numbering
-  let globalIndex = 0;
+  // Calculate the global offset for a given category (for card index numbering)
   const getCategoryOffset = (catId) => {
     let offset = 0;
     for (const cat of categories) {

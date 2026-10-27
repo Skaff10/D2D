@@ -177,7 +177,7 @@ export default function Booking() {
           setServices(filteredServices);
         }
       } catch (err) {
-        console.log("Using fallback services for dropdown");
+        console.error("Using fallback services for dropdown:", err);
       }
     }
     fetchServices();

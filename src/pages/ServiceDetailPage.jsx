@@ -1,15 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import { categories, services } from "../data/servicesData";
 import { ServiceDetailSchema, BreadcrumbSchema } from "../seo/schemas";
 import FAQAccordion from "../components/services/FAQAccordion";
 import { useLang } from "../context/LanguageContext";
 import { translations } from "../translations";
-import { CheckCircle2 } from "lucide-react";
-import { ArrowRight, ArrowLeft, AlertTriangle } from "lucide-react";
-import { Shield } from "lucide-react";
+import { CheckCircle2, ArrowRight, ArrowLeft, AlertTriangle, Shield } from "lucide-react";
 import { useServicePrices } from "../hooks/useServicePrices";
 
 // Curated related services map: serviceId -> [relatedId, relatedId, relatedId]
@@ -102,8 +99,9 @@ export default function ServiceDetailPage() {
   const tGlobal = translations[lang];
   const t = tGlobal.serviceDetails;
   const { serviceSlug } = useParams();
+  const { prices } = useServicePrices();
 
-  // Find the requested service
+  // Find the requested service by slug across all categories
   const service = useMemo(() => {
     for (const cat of categories) {
       const found = services[cat.id]?.find((s) => s.id === serviceSlug);
@@ -116,12 +114,12 @@ export default function ServiceDetailPage() {
     window.scrollTo(0, 0);
   }, [serviceSlug]);
 
+  // Redirect to services listing if slug doesn't match any service
   if (!service) {
     return <Navigate to="/services" replace />;
   }
 
-  const { prices } = useServicePrices();
-  const customPricing = service ? prices[service.id] : null;
+  const customPricing = prices[service.id] || null;
 
   const isCeramicCoating = service.id === "ceramic-coating";
 

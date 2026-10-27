@@ -8,7 +8,6 @@ import { pushToDataLayer } from "../../utils/dataLayer";
 export default function ServiceCard({ service, index, customPricing }) {
   const { lang } = useLang();
   const navigate = useNavigate();
-  const t = translations[lang].serviceDetails;
   const tGlobal = translations[lang];
   const serviceTrans = tGlobal.servicesList[service.id] || {};
 

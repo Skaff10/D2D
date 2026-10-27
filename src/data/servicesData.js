@@ -3,9 +3,6 @@
 import ceramic_cover from "../assets/dk/imgi_2_ceramiccoating.webp";
 import ceramic1 from "../assets/dk/imgi_2_ceramiccoating.webp";
 import ceramic2 from "../assets/dk/imgi_3_beforeaftercoating.webp";
-
-import paintdec_cover from "../assets/images/services/Paint Decontamination.webp";
-import paintdec1 from "../assets/dk/img32.jpg";
 import paintdec2 from "../assets/images/services/Paint Decontamination.webp";
 
 import pet_cover from "../assets/dk/pet1.jpg";

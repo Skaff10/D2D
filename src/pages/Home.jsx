@@ -18,7 +18,6 @@ import {
   Star,
   ChevronRight,
   ChevronLeft,
-  Maximize2,
   Truck,
   Leaf,
 } from "lucide-react";
@@ -135,48 +134,6 @@ export default function Home() {
     [lang === "en" ? "Protection Services" : "Services de Protection"]:
       "/services#section-protection",
   };
-
-  const whyChooseUs = [
-    {
-      icon: Shield,
-      title: lang === "en" ? "Premium Products" : "Produits Premium",
-      desc:
-        lang === "en"
-          ? "Professional-grade detailing products only"
-          : "Produits d'esthétique de qualité professionnelle uniquement",
-    },
-    {
-      icon: Sparkles,
-      title: lang === "en" ? "Expert Detail" : "Détails Experts",
-      desc:
-        lang === "en"
-          ? "Meticulous attention to every surface"
-          : "Attention méticuleuse à chaque surface",
-    },
-    {
-      icon: Clock,
-      title: lang === "en" ? "Reliable Service" : "Service Fiable",
-      desc:
-        lang === "en"
-          ? "On-time, every time — 7 days a week"
-          : "À l'heure, à chaque fois — 7 jours sur 7",
-    },
-    {
-      icon: Award,
-      title: lang === "en" ? "Guaranteed Quality" : "Qualité Garantie",
-      desc:
-        lang === "en"
-          ? "100% satisfaction on every job"
-          : "100 % de satisfaction sur chaque travail",
-    },
-  ];
-
-  const stats = [
-    { value: "500+", label: t.carsDetailed },
-    { value: "4.9", label: t.averageRating },
-    { value: "100%", label: "Satisfaction" },
-    { value: "7/7", label: lang === "en" ? "Days Open" : "Jours Ouverts" },
-  ];
 
   const testimonials = [
     {
